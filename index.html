@@ -83,6 +83,10 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .bond-input{width:64px;border:1px solid var(--border);border-radius:6px;padding:5px 6px;font-size:12px;text-align:center;outline:none}
 .bond-input:focus{border-color:var(--primary)}
 .cat-tag{font-size:10px;color:var(--sub);border:1px solid var(--border);border-radius:4px;padding:0 4px;margin-left:4px}
+.auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
+.btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
+.btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.dps-val{font-size:11px;color:var(--sub);display:block;margin-top:2px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
@@ -96,6 +100,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <div class="header-actions">
       <span id="quote-time" style="font-size:12px;color:var(--sub)"></span>
       <button class="btn" onclick="refreshQuotes()">🔄 刷新行情</button>
+      <button class="btn" onclick="fetchAutoDps()" title="从东方财富分红接口自动计算最近12个月预期每股分红(A股)">✨ 自动更新分红</button>
       <button class="btn primary" onclick="openAddModal()">＋ 添加股票</button>
       <button class="btn" onclick="exportJSON()">⬇ 导出数据</button>
     </div>
@@ -166,9 +171,9 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
   </div>
 
   <div class="footer">
-    <b style="color:var(--gold)">自动数据</b>（腾讯行情接口实时获取，A股/部分港股）：
-    现价、涨跌幅、TTM股息率、PE(TTM)、PB、52周高低。
-    <b style="color:var(--primary)">预期数据</b>（自行维护，对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
+    <b style="color:var(--gold)">自动数据</b>（实时获取）：现价、涨跌幅、TTM股息率、PE(TTM)、PB、52周高低（腾讯行情接口）；
+    <b style="color:var(--green)">自动预期分红</b>（东方财富分红接口，A股）：按最近12个月已实施分红合计年化，点「✨ 自动更新分红」可批量计算，每行「采用」一键覆盖预期值。
+    <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，请定期更新基准值）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
@@ -367,6 +372,75 @@ function scheduleRetry(){
   retryTimer = setTimeout(()=>{ if(!quoteLoading) refreshQuotes(); }, 8000);
 }
 
+// ============ 自动预期分红（东财分红方案接口） ============
+// 思路：A股从东财分红送转接口拉最近分红方案，按"最近12个月宣告"年化自动计算预期每股分红
+// 港股/美股接口不支持，用 TTM股息率×现价 反推作为参考
+let autoDps = {};       // code -> {dps:自动年化值, source, note}
+let autoDpsLoading = false;
+
+function fetchAutoDps(){
+  if(autoDpsLoading) return;
+  const aList = pool.stocks.filter(s=>s.code.startsWith('sh')||s.code.startsWith('sz'));
+  if(!aList.length) return;
+  autoDpsLoading = true;
+  const tasks = aList.map(s => {
+    const num = s.code.slice(2);
+    const url = 'https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_SHAREBONUS_DET&columns=ALL' +
+      '&filter=(SECURITY_CODE%3D%22' + num + '%22)&pageSize=8&sortColumns=REPORT_DATE&sortTypes=-1&_t=' + Date.now();
+    return fetch(url, { method:'GET' }).then(r=>r.json()).then(js=>{
+      const rows = (js && js.result && js.result.data) || [];
+      if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
+      // 按除息日取最近12个月已宣告的分红合计
+      const now = new Date();
+      const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
+      let sum = 0, cnt = 0, last = null;
+      rows.forEach(r => {
+        const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
+        if(ex && ex >= oneYearAgo && ex <= now && r.ASSIGN_PROGRESS && r.ASSIGN_PROGRESS.indexOf('实施') >= 0){
+          const perShare = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
+          sum += perShare; cnt++;
+          if(!last || ex > last.ex) last = { ex, period: (r.REPORT_DATE||'').slice(0,10), plan: r.IMPL_PLAN_PROFILE };
+        }
+      });
+      if(!cnt){
+        // 无已实施记录：用最新方案（含预案）提示
+        const r0 = rows[0];
+        const perShare = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
+        return { code:s.code, dps:perShare, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'', lastPlan:(r0&&r0.REPORT_DATE||'').slice(0,10) };
+      }
+      return { code:s.code, dps:sum, source:'近12月已实施', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period };
+    }).catch(()=>({ code:s.code, dps:null, note:'接口失败' }));
+  });
+  return Promise.all(tasks).then(list=>{
+    autoDps = {};
+    list.forEach(x=>{ autoDps[x.code] = x; });
+    autoDpsLoading = false;
+    renderAll();
+    return autoDps;
+  }).catch(()=>{ autoDpsLoading = false; });
+}
+
+// TTM反推参考：TTM股息率(%) × 现价 = 每股TTM分红（腾讯字段64，A股/部分可用）
+function ttmDpsOf(s){
+  const q = quotes[s.code];
+  let ttmYield = null;
+  if(q && q.ttmYield!=null && !isNaN(q.ttmYield)) ttmYield = q.ttmYield;
+  else if(s.dividendRatioTtm!=null) ttmYield = s.dividendRatioTtm;
+  if(ttmYield!=null && q && q.price>0) return ttmYield/100 * q.price;
+  return null;
+}
+
+function applyAutoDps(code){
+  const s = pool.stocks.find(x=>x.code===code);
+  const auto = autoDps[code];
+  if(!s || !auto || !(auto.dps>0)){ toast('⚠️ 无可用自动值'); return; }
+  s.expDps = Math.round(auto.dps*100)/100;
+  s.autoDpsApplied = true;
+  s.autoNote = auto.note || '';
+  persist(); renderAll();
+  toast('✅ ' + s.name + ' 预期每股分红已更新为 ' + s.expDps.toFixed(2) + ' 元');
+}
+
 // ============ 渲染 ============
 const BANDS = [
   { min:8,   label:'极端低估·重点研究', cls:'band-extreme' },
@@ -476,12 +550,23 @@ function renderTable(){
     const excessTxt = excess!=null
       ? `<span class="excess ${excess>=0?'pos':'neg'}" title="预期股息率(${y.toFixed(2)}%) − 10年国债(${bondYield.toFixed(2)}%)">${excess>0?'+':''}${excess.toFixed(2)}%</span>`
       : '—';
+    // 自动预期分红对照（东财接口自动计算，A股）
+    const auto = autoDps[s.code];
+    const autoDpsTxt = auto && auto.dps>0
+      ? `<div class="auto-dps" title="自动计算(${auto.source})：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}">
+          自动 ${auto.dps.toFixed(2)} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button>
+        </div>`
+      : (ttmDpsOf(s)!=null
+        ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
+        : '');
     return `<tr>
       <td><span class="stock-name">${esc(s.name)}</span><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}</td>
       <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
       <td class="${chgCls}">${chgTxt}</td>
       <td><span class="ttm-yield">${ttmTxt}</span></td>
-      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}` : '<span class="flat">—</span>'}</td>
+      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}` : '<span class="flat">—</span>'}
+        <span class="dps-val">${s.expDps? s.expDps.toFixed(2)+'元' : ''}</span>
+        ${autoDpsTxt}</td>
       <td>${excessTxt}</td>
       <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
       <td><span class="history-range">${hist}</span></td>
@@ -584,6 +669,7 @@ document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==
 // 启动
 loadPool();
 refreshQuotes();
+fetchAutoDps();
 setInterval(()=>{ refreshQuotes(); }, 30000);
 </script>
 </body>
