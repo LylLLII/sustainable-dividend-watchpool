@@ -230,36 +230,25 @@ let quoteLoading = false;
 
 function codeList(){ return pool.stocks.map(s=>s.code).join(','); }
 
-function refreshQuotes(){
-  if(quoteLoading) return;
-  const codes = codeList();
-  if(!codes){ renderAll(); return; }
-  quoteLoading = true;
-  document.getElementById('quote-time').textContent = '行情加载中...';
-  const script = document.createElement('script');
-  script.src = 'https://qt.gtimg.cn/q=' + codes;
-  script.onload = () => {
-    quotes = collectQuotes(codes);
-    quoteLoading = false;
-    const t = new Date();
-    document.getElementById('quote-time').textContent = '行情时间 ' + t.toLocaleTimeString('zh-CN',{hour12:false});
-    renderAll();
-    script.remove();
-  };
-  script.onerror = () => {
-    quoteLoading = false;
-    document.getElementById('quote-time').textContent = '行情获取失败，请检查网络';
-    script.remove();
-  };
-  document.body.appendChild(script);
+// 腾讯行情接口：https://qt.gtimg.cn/q=sh601088,sz000895
+// 注意：接口返回 Content-Type: text/html; charset=GBK（支持 CORS: *）
+// 必须用 fetch + TextDecoder('gbk') 解析，不能用 <script> 标签（GBK会被浏览器按UTF-8解码导致脚本失败）
+function fetchQuotes(codes){
+  return fetch('https://qt.gtimg.cn/q=' + codes, { method:'GET' })
+    .then(r => r.arrayBuffer())
+    .then(buf => {
+      const text = new TextDecoder('gbk').decode(buf);
+      return parseQuotes(text, codes);
+    });
 }
 
-function collectQuotes(codes){
+function parseQuotes(text, codes){
   const q = {};
   codes.split(',').forEach(c => {
-    const v = window['v_' + c];
-    if(!v) return;
-    const p = v.split('~');
+    // 匹配 v_sh601088="..." 形式
+    const m = text.match(new RegExp('v_' + c + '="([^"]*)"'));
+    if(!m) return;
+    const p = m[1].split('~');
     const isHK = c.startsWith('hk');
     const isUS = c.startsWith('us');
     // A股字段：3现价 31涨跌 32涨跌幅 33最高 34最低 39 PE(TTM) 46 PB 64 TTM股息率 67/68 52周高低
@@ -279,6 +268,24 @@ function collectQuotes(codes){
     q[c] = rec;
   });
   return q;
+}
+
+function refreshQuotes(){
+  if(quoteLoading) return;
+  const codes = codeList();
+  if(!codes){ renderAll(); return; }
+  quoteLoading = true;
+  document.getElementById('quote-time').textContent = '行情加载中...';
+  fetchQuotes(codes).then(q => {
+    quotes = q;
+    quoteLoading = false;
+    const t = new Date();
+    document.getElementById('quote-time').textContent = '行情时间 ' + t.toLocaleTimeString('zh-CN',{hour12:false});
+    renderAll();
+  }).catch(() => {
+    quoteLoading = false;
+    document.getElementById('quote-time').textContent = '行情获取失败，请检查网络/稍后重试';
+  });
 }
 
 // ============ 渲染 ============
@@ -441,21 +448,20 @@ function closeModal(){ document.getElementById('modal').classList.remove('show')
 function autoFill(){
   const code = document.getElementById('f-code').value.trim();
   if(!code) return;
-  const v = window['v_'+code];
-  if(v){
-    const p = v.split('~');
-    document.getElementById('f-name').value = p[1];
-    document.getElementById('f-price').value = parseFloat(p[3])||'';
-    return;
-  }
-  const script = document.createElement('script');
-  script.src = 'https://qt.gtimg.cn/q=' + code;
-  script.onload = () => {
-    const v = window['v_'+code];
-    if(v){ const p=v.split('~'); document.getElementById('f-name').value=p[1]; document.getElementById('f-price').value=parseFloat(p[3])||''; }
-    script.remove();
-  };
-  document.body.appendChild(script);
+  fetch('https://qt.gtimg.cn/q=' + code, { method:'GET' })
+    .then(r => r.arrayBuffer())
+    .then(buf => {
+      const text = new TextDecoder('gbk').decode(buf);
+      const q = parseQuotes(text, code);
+      const rec = q[code];
+      if(rec){
+        document.getElementById('f-name').value = rec.name || '';
+        document.getElementById('f-price').value = rec.price || '';
+      } else {
+        toast('⚠️ 未识别该代码，请检查格式');
+      }
+    })
+    .catch(() => toast('⚠️ 行情接口访问失败，请手动填写名称'));
 }
 
 function saveStock(){
