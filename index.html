@@ -113,6 +113,9 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .badge-buy{background:#d3f9d8;color:#1a7f37}
 .badge-deep{background:#ffd8a8;color:#c2410c}
 .badge-extreme{background:#ffc9c9;color:#c92a2a}
+.pct-level{display:inline-block;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600;margin-left:3px}
+.pct-bar{width:70px;height:4px;background:#e9ecef;border-radius:2px;margin-top:3px;margin-left:auto;overflow:hidden}
+.pct-fill{height:100%;background:linear-gradient(90deg,#1c64f2,#12b886);border-radius:2px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
@@ -147,8 +150,8 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <span><i style="background:var(--band4)"></i> 深度低估 (7~8%)</span>
     <span><i style="background:var(--band5)"></i> 极端低估 (≥8%)</span>
     <span style="margin-left:auto">
-      10年国债收益率基准：
-      <input class="bond-input" id="bondYield" type="number" step="0.01" min="0" max="10" value="1.70" onchange="renderTable()" title="用于C4股息率五步测算第④步'对比国债'，请定期更新">
+      10年国债收益率基准（手动维护，参考中债 2026-08-06 约1.70%）：
+      <input class="bond-input" id="bondYield" type="number" step="0.01" min="0" max="10" value="1.70" onchange="saveBondYield()" title="C4股息率五步测算第④步'对比国债'，无免费实时接口，请定期手动更新（可查中债/财联社）">
       <b>%</b> ｜ 超额 = 预期股息率 − 国债
     </span>
   </div>
@@ -221,8 +224,8 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--gold)">自动数据</b>（实时获取）：现价、涨跌幅、TTM股息率、PE(TTM)、PB、52周高低（腾讯行情接口）；
     <b style="color:var(--green)">自动预期分红</b>（东方财富分红接口，A股全覆盖）：按最近12个月已实施分红合计年化，点「✨ 自动更新分红」可批量计算，每行「采用」一键覆盖预期值。
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
-    <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置；
-    超额收益率=预期股息率−10年国债（C4第④步"对比国债"，请定期更新基准值）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
+    <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
+    超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
   </div>
@@ -509,6 +512,17 @@ function applyAutoDps(code){
 }
 
 // ============ 渲染 ============
+const BOND_KEY = 'watchpool_bond_yield';
+function saveBondYield(){
+  try{ localStorage.setItem(BOND_KEY, document.getElementById('bondYield').value); }catch(e){}
+  renderTable();
+}
+function loadBondYield(){
+  try{
+    const v = localStorage.getItem(BOND_KEY);
+    if(v && parseFloat(v)>0){ document.getElementById('bondYield').value = v; }
+  }catch(e){}
+}
 const BANDS = [
   { min:8,   label:'极端低估·重点研究', cls:'band-extreme' },
   { min:7,   label:'深度低估', cls:'band-deep' },
@@ -611,13 +625,17 @@ function renderTable(){
     const ttmTxt = ttmYield!=null ? ttmYield.toFixed(2)+'%' : '—';
     // 52周股息率区间（用预期分红）与百分位
     const hi = q ? (q.high52||q.high) : 0, lo = q ? (q.low52||q.low) : 0;
-    let hist = '—', pctTxt = '—';
+    let hist = '—', pctTxt = '—', pctBar = '', pctPos = '';
     if(hi>0 && lo>0 && s.expDps>0 && y!=null){
       const yHi = s.expDps/lo*100, yLo = s.expDps/hi*100;   // 价格低→股息率高
       hist = yLo.toFixed(1)+'% ~ '+yHi.toFixed(1)+'%';
       if(yHi>yLo){
         const pct = Math.max(0, Math.min(100, (y - yLo)/(yHi - yLo)*100));
         pctTxt = pct.toFixed(0)+'%';
+        // 百分位含义：越高=当前股息率越接近52周高位区=股价越便宜
+        const level = pct>=70 ? {t:'高位·便宜', c:'#1a7f37', bg:'#d3f9d8'} : pct>=30 ? {t:'中位', c:'#9a6700', bg:'#fff3bf'} : {t:'低位·偏贵', c:'#c92a2a', bg:'#ffc9c9'};
+        pctPos = `<span class="pct-level" style="color:${level.c};background:${level.bg}" title="股息率百分位越高=股息率越接近52周高位=股价越便宜">${level.t}</span>`;
+        pctBar = `<div class="pct-bar"><div class="pct-fill" style="width:${pct}%"></div></div>`;
       }
     }
     // 派息率参考 = TTM股息率 × PE (参考 DividendRanks 分红可持续性思路)
@@ -668,7 +686,7 @@ function renderTable(){
       <td>${excessTxt}</td>
       <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
       <td><span class="history-range">${hist}</span></td>
-      <td><span class="percentile" title="当前预期股息率在52周区间中的位置，越接近100%越处于历史高位">${pctTxt}</span></td>
+      <td><span class="percentile" title="当前预期股息率在52周区间中的位置：百分位越高=股息率越接近52周高位=股价越便宜">${pctTxt}${pctPos}${pctBar}</span></td>
       <td>${q && q.pe>0 ? q.pe.toFixed(1) : '—'}</td>
       <td>${q && q.pb>0 ? q.pb.toFixed(2) : '—'}</td>
       <td>${payoutTxt}</td>
@@ -904,6 +922,7 @@ document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==
 
 // 启动
 loadPool();
+loadBondYield();
 refreshQuotes();
 fetchAutoDps();
 setInterval(()=>{ refreshQuotes(); }, 30000);
