@@ -172,7 +172,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 
   <div class="footer">
     <b style="color:var(--gold)">自动数据</b>（实时获取）：现价、涨跌幅、TTM股息率、PE(TTM)、PB、52周高低（腾讯行情接口）；
-    <b style="color:var(--green)">自动预期分红</b>（东方财富分红接口，A股）：按最近12个月已实施分红合计年化，点「✨ 自动更新分红」可批量计算，每行「采用」一键覆盖预期值。
+    <b style="color:var(--green)">自动预期分红</b>（东方财富分红接口，A股全覆盖）：按最近12个月已实施分红合计年化，点「✨ 自动更新分红」可批量计算，每行「采用」一键覆盖预期值。
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，请定期更新基准值）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
@@ -188,7 +188,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <div class="form-row">
       <label>股票代码 <span style="color:var(--red)">*</span></label>
       <input id="f-code" placeholder="sh601088 / sz000895 / hk00883 / usAAPL" onchange="autoFill()">
-      <div class="hint">格式：sh+沪市代码，sz+深市代码，hk+港股代码，us+美股代码；输入后自动识别名称与现价</div>
+      <div class="hint">当前观察池专注 A 股：sh+沪市代码（如 sh601088），sz+深市代码（如 sz000895）；输入后自动识别名称与现价</div>
     </div>
     <div class="form-row">
       <label>名称</label>
