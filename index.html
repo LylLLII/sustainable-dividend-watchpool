@@ -695,6 +695,39 @@ function fetchAutoDps(){
   const aList = pool.stocks.filter(s=>s.code.startsWith('sh')||s.code.startsWith('sz'));
   if(!aList.length) return;
   autoDpsLoading = true;
+  // 主源：本地 westock(腾讯自选股) 分红数据文件（含特殊分红，比东财完整）
+  fetch('data/dividends_westock.json', { method:'GET' }).then(r=>r.json()).then(wd=>{
+    const dividends = (wd && wd.dividends) || {};
+    const specialMap = (wd && wd.special) || {};
+    const now = new Date();
+    const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
+    aList.forEach(s=>{
+      const rows = dividends[s.code] || [];
+      let sum = 0, cnt = 0, last = null;
+      rows.forEach(r => {
+        const ex = r.exDate ? new Date(r.exDate) : null;
+        if(ex && ex >= oneYearAgo && ex <= now){
+          sum += r.dps || 0; cnt++;
+          if(!last || ex > last.ex) last = { ex, period:r.period, plan:r.period + ' 每股'+r.dps+'元' };
+        }
+      });
+      if(cnt){
+        autoDps[s.code] = { code:s.code, dps:sum, source:'westock近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period,
+          special: specialMap[s.code]||null };
+      } else {
+        autoDps[s.code] = { code:s.code, dps:null, note:'无近12月记录', special: specialMap[s.code]||null };
+      }
+    });
+    autoDpsLoading = false;
+    renderAll();
+    return autoDps;
+  }).catch(()=>{
+    // 后备：东财接口（不含特殊分红，但覆盖面广）
+    return fetchAutoDpsEastmoney(aList);
+  });
+}
+
+function fetchAutoDpsEastmoney(aList){
   const tasks = aList.map(s => {
     const num = s.code.slice(2);
     const url = 'https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_SHAREBONUS_DET&columns=ALL' +
@@ -702,7 +735,6 @@ function fetchAutoDps(){
     return fetch(url, { method:'GET' }).then(r=>r.json()).then(js=>{
       const rows = (js && js.result && js.result.data) || [];
       if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
-      // 按除息日取最近12个月已宣告的分红合计
       const now = new Date();
       const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
       let sum = 0, cnt = 0, last = null;
@@ -715,7 +747,6 @@ function fetchAutoDps(){
         }
       });
       if(!cnt){
-        // 无已实施记录：用最新方案（含预案）提示
         const r0 = rows[0];
         const perShare = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
         return { code:s.code, dps:perShare, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'', lastPlan:(r0&&r0.REPORT_DATE||'').slice(0,10) };
