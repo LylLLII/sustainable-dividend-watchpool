@@ -227,18 +227,57 @@ function persist(){ localStorage.setItem(LS_KEY, JSON.stringify(pool)); }
 // ============ 行情 ============
 let quotes = {};
 let quoteLoading = false;
+let lastQuoteOK = null;        // 最近一次成功时间戳
+let retryTimer = null;
+const QUOTES_CACHE_KEY = 'watchpool_quotes_v1';
 
 function codeList(){ return pool.stocks.map(s=>s.code).join(','); }
 
 // 腾讯行情接口：https://qt.gtimg.cn/q=sh601088,sz000895
 // 注意：接口返回 Content-Type: text/html; charset=GBK（支持 CORS: *）
 // 必须用 fetch + TextDecoder('gbk') 解析，不能用 <script> 标签（GBK会被浏览器按UTF-8解码导致脚本失败）
-function fetchQuotes(codes){
-  return fetch('https://qt.gtimg.cn/q=' + codes, { method:'GET' })
+function fetchTencent(codes){
+  return fetch('https://qt.gtimg.cn/q=' + codes + '&_t=' + Date.now(), { method:'GET' })
     .then(r => r.arrayBuffer())
     .then(buf => {
       const text = new TextDecoder('gbk').decode(buf);
       return parseQuotes(text, codes);
+    });
+}
+
+// 备用源：东方财富 push2 接口（返回 JSON，UTF-8，无编码问题）
+// secid 映射：sh→1.  sz→0.  hk→116.  us→105/106/107（美股）
+function emSecid(code){
+  if(code.startsWith('sh')) return '1.' + code.slice(2);
+  if(code.startsWith('sz')) return '0.' + code.slice(2);
+  if(code.startsWith('hk')) return '116.' + code.slice(2);
+  return null; // 美股暂不映射
+}
+
+function fetchEastmoney(codes){
+  const secids = codes.split(',').map(emSecid).filter(Boolean);
+  if(!secids.length) return Promise.reject(new Error('no secid'));
+  const url = 'https://push2.eastmoney.com/api/qt/ulist.np/get?secids=' + secids.join(',') +
+    '&fields=f12,f14,f2,f3,f4,f15,f16,f9,f23&fltt=2&_t=' + Date.now();
+  return fetch(url, { method:'GET' })
+    .then(r => r.json())
+    .then(js => {
+      const q = {};
+      const diff = (js.data && js.data.diff) || [];
+      // 通过 secid 顺序还原代码前缀（sh→1. sz→0. hk→116.）
+      secids.forEach((sid, idx) => {
+        const item = diff[idx];
+        if(!item) return;
+        const prefix = sid.split('.')[0]==='1'?'sh':sid.split('.')[0]==='0'?'sz':'hk';
+        const code = prefix + sid.split('.')[1];
+        q[code] = {
+          name: item.f14, price: parseFloat(item.f2),
+          chg: parseFloat(item.f4), chgPct: parseFloat(item.f3),
+          high: parseFloat(item.f15), low: parseFloat(item.f16),
+          pe: parseFloat(item.f9), pb: parseFloat(item.f23)
+        };
+      });
+      return q;
     });
 }
 
@@ -270,22 +309,62 @@ function parseQuotes(text, codes){
   return q;
 }
 
+// 尝试多源获取（腾讯主源 → 东财备用源）
+function fetchQuotesWithFallback(codes){
+  return fetchTencent(codes).then(q => {
+    if(Object.keys(q).length === 0) throw new Error('empty tencent');
+    return { quotes:q, source:'tencent' };
+  }).catch(() => {
+    return fetchEastmoney(codes).then(q => ({ quotes:q, source:'eastmoney' }));
+  });
+}
+
+function cacheQuotes(){
+  try{ localStorage.setItem(QUOTES_CACHE_KEY, JSON.stringify({ t: lastQuoteOK, quotes })); }catch(e){}
+}
+function loadCachedQuotes(){
+  try{
+    const raw = localStorage.getItem(QUOTES_CACHE_KEY);
+    if(raw){ const d = JSON.parse(raw); if(d && d.quotes) return d; }
+  }catch(e){}
+  return null;
+}
+
 function refreshQuotes(){
   if(quoteLoading) return;
   const codes = codeList();
   if(!codes){ renderAll(); return; }
   quoteLoading = true;
   document.getElementById('quote-time').textContent = '行情加载中...';
-  fetchQuotes(codes).then(q => {
+  fetchQuotesWithFallback(codes).then(({quotes:q, source}) => {
     quotes = q;
+    lastQuoteOK = new Date();
     quoteLoading = false;
+    cacheQuotes();
     const t = new Date();
-    document.getElementById('quote-time').textContent = '行情时间 ' + t.toLocaleTimeString('zh-CN',{hour12:false});
+    const src = source==='eastmoney' ? ' [备用源]' : '';
+    document.getElementById('quote-time').textContent = '行情时间 ' + t.toLocaleTimeString('zh-CN',{hour12:false}) + src;
     renderAll();
   }).catch(() => {
+    // 失败：先尝试显示缓存数据，再安排重试
     quoteLoading = false;
-    document.getElementById('quote-time').textContent = '行情获取失败，请检查网络/稍后重试';
+    const cached = loadCachedQuotes();
+    if(cached && cached.quotes && Object.keys(cached.quotes).length){
+      quotes = cached.quotes;
+      const t = cached.t ? new Date(cached.t) : null;
+      document.getElementById('quote-time').textContent =
+        '行情获取失败，显示缓存 ' + (t ? t.toLocaleTimeString('zh-CN',{hour12:false}) : '') + '，自动重试中...';
+      renderAll();
+    } else {
+      document.getElementById('quote-time').textContent = '行情获取失败，自动重试中...';
+    }
+    scheduleRetry();
   });
+}
+
+function scheduleRetry(){
+  clearTimeout(retryTimer);
+  retryTimer = setTimeout(()=>{ if(!quoteLoading) refreshQuotes(); }, 8000);
 }
 
 // ============ 渲染 ============
