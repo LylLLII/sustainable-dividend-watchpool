@@ -76,6 +76,13 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .ex-date{font-size:12px}
 .ex-date.soon{color:var(--red);font-weight:600}
 .percentile{font-size:12px}
+.excess{font-size:12px;font-weight:600}
+.excess.pos{color:var(--green)}
+.excess.neg{color:var(--red)}
+.redline{display:inline-block;font-size:10px;font-weight:700;color:#fff;background:var(--red);border-radius:4px;padding:1px 5px;margin-left:4px;vertical-align:1px}
+.bond-input{width:64px;border:1px solid var(--border);border-radius:6px;padding:5px 6px;font-size:12px;text-align:center;outline:none}
+.bond-input:focus{border-color:var(--primary)}
+.cat-tag{font-size:10px;color:var(--sub);border:1px solid var(--border);border-radius:4px;padding:0 4px;margin-left:4px}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
@@ -108,7 +115,11 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <span><i style="background:var(--band3)"></i> 明显低估 (6~7%)</span>
     <span><i style="background:var(--band4)"></i> 深度低估 (7~8%)</span>
     <span><i style="background:var(--band5)"></i> 极端低估 (≥8%)</span>
-    <span style="margin-left:auto">预期股息率 = 预期每股分红 ÷ 现价 ｜ TTM股息率 = 最近12个月分红 ÷ 现价</span>
+    <span style="margin-left:auto">
+      10年国债收益率基准：
+      <input class="bond-input" id="bondYield" type="number" step="0.01" min="0" max="10" value="1.70" onchange="renderTable()" title="用于C4股息率五步测算第④步'对比国债'，请定期更新">
+      <b>%</b> ｜ 超额 = 预期股息率 − 国债
+    </span>
   </div>
 
   <div class="toolbar">
@@ -136,6 +147,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
         <th>涨跌幅</th>
         <th>TTM股息率<sup style="color:var(--gold)">自动</sup></th>
         <th>预期股息率</th>
+        <th>超额收益率<sup style="color:var(--gold)">vs国债</sup></th>
         <th>估值区间</th>
         <th>52周股息率区间</th>
         <th>股息率百分位<sup style="color:var(--gold)">52周</sup></th>
@@ -144,6 +156,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
         <th>派息率<sup style="color:var(--gold)">参考</sup></th>
         <th>参考加仓价</th>
         <th>除息日</th>
+        <th>类别<sup style="color:var(--gold)">C32</sup></th>
         <th>备注</th>
         <th>操作</th>
       </tr>
@@ -155,9 +168,11 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
   <div class="footer">
     <b style="color:var(--gold)">自动数据</b>（腾讯行情接口实时获取，A股/部分港股）：
     现价、涨跌幅、TTM股息率、PE(TTM)、PB、52周高低。
-    <b style="color:var(--primary)">预期数据</b>（自行维护）：预期每股分红 → 预期股息率、估值区间、加仓价。
-    <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（衡量分红可持续性，参考DividendRanks思路）；股息率百分位=当前预期股息率在52周区间的位置，越接近100%说明股息率处于历史高位区。<br>
-    估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。本页面不构成投资建议。
+    <b style="color:var(--primary)">预期数据</b>（自行维护，对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
+    <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置；
+    超额收益率=预期股息率−10年国债（C4第④步"对比国债"，请定期更新基准值）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
+    估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
+    MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
   </div>
 </div>
 
@@ -328,7 +343,7 @@ function nextExDate(s){
 function renderTable(){
   const tb = document.getElementById('tbody');
   const list = filteredStocks();
-  if(!list.length){ tb.innerHTML = '<tr class="loading-row"><td colspan="15">没有符合条件的股票</td></tr>'; return; }
+  if(!list.length){ tb.innerHTML = '<tr class="loading-row"><td colspan="17">没有符合条件的股票</td></tr>'; return; }
   const today = new Date().toISOString().slice(0,10);
   tb.innerHTML = list.map(s=>{
     const q = quotes[s.code];
@@ -365,12 +380,23 @@ function renderTable(){
     const exTxt = ex ? (ex<=today ? '—' : (ex.slice(0,10)+ (ex<=today?'':'') )) : '—';
     const exSoon = ex && ex<=today ? '' : (ex && ex > today && (new Date(ex)-new Date(today))/86400000 <= 45 ? ' soon' : '');
     const marketTag = '<span class="market-tag">'+s.market+'</span>';
+    // 类别（MR Dang C32 股息率安全边际分级法）：资源类≥7%红线，稳健类≥5%
+    const isResource = (s.category||'').startsWith('资源类');
+    const redline = isResource ? '<span class="redline" title="C32：资源类股息率安全边际≥7%">7%红线</span>' : '';
+    const catTxt = s.category ? '<span class="cat-tag" title="C32股息率安全边际分级法">'+esc(s.category)+'</span>' : '';
+    // 超额收益率 = 预期股息率 - 10年国债收益率（C4第④步对比国债）
+    const bondYield = parseFloat(document.getElementById('bondYield').value) || 1.70;
+    const excess = y!=null ? y - bondYield : null;
+    const excessTxt = excess!=null
+      ? `<span class="excess ${excess>=0?'pos':'neg'}" title="预期股息率(${y.toFixed(2)}%) − 10年国债(${bondYield.toFixed(2)}%)">${excess>0?'+':''}${excess.toFixed(2)}%</span>`
+      : '—';
     return `<tr>
-      <td><span class="stock-name">${esc(s.name)}</span><span class="stock-code">${esc(s.code)}</span>${marketTag}</td>
+      <td><span class="stock-name">${esc(s.name)}</span><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}</td>
       <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
       <td class="${chgCls}">${chgTxt}</td>
       <td><span class="ttm-yield">${ttmTxt}</span></td>
-      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>` : '<span class="flat">—</span>'}</td>
+      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}` : '<span class="flat">—</span>'}</td>
+      <td>${excessTxt}</td>
       <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
       <td><span class="history-range">${hist}</span></td>
       <td><span class="percentile" title="当前预期股息率在52周区间中的位置，越接近100%越处于历史高位">${pctTxt}</span></td>
@@ -379,6 +405,7 @@ function renderTable(){
       <td>${payoutTxt}</td>
       <td><span class="price-target">${targets}</span></td>
       <td><span class="ex-date${exSoon}">${exTxt}</span></td>
+      <td>${catTxt}</td>
       <td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>
       <td>
         <button class="btn sm" onclick="openEditModal(${pool.stocks.indexOf(s)})">编辑</button>
