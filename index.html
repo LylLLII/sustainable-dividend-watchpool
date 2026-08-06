@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高股息观察池 · 可持续预期股息率看板</title>
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --border:#e5e7eb;
+  --text:#1f2937; --sub:#6b7280;
+  --red:#e03131; --green:#2f9e44;
+  --primary:#1c64f2; --primary-soft:#e8effd;
+  --gold:#b7791f; --gold-bg:#fdf3e3;
+  --band1:#e8effd; --band2:#dcfce7; --band3:#fef3c7; --band4:#ffedd5; --band5:#fee2e2;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:20px;line-height:1.5}
+.container{max-width:1200px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+h1{font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px}
+h1 .badge{font-size:12px;font-weight:500;background:var(--primary-soft);color:var(--primary);padding:4px 10px;border-radius:20px}
+.header-actions{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--border);background:#fff;color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s}
+.btn:hover{border-color:var(--primary);color:var(--primary)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn.primary:hover{background:#174fc8}
+.btn.sm{padding:4px 10px;font-size:12px}
+.btn.danger{color:var(--red);border-color:#f3c1c1}
+.btn.danger:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.stat-card .label{font-size:12px;color:var(--sub);margin-bottom:4px}
+.stat-card .value{font-size:24px;font-weight:700}
+.stat-card .value small{font-size:13px;font-weight:500;color:var(--sub)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:12px}
+.legend span{display:inline-flex;align-items:center;gap:5px;color:var(--sub)}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+thead th{background:#f9fafb;font-size:12px;color:var(--sub);text-align:right;padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap;position:sticky;top:0}
+thead th:first-child, td:first-child{text-align:left}
+tbody td{padding:12px;text-align:right;border-bottom:1px solid #f0f1f3;font-size:13px;white-space:nowrap}
+tbody tr:hover{background:#fafbfc}
+tbody tr:last-child td{border-bottom:none}
+.stock-name{font-weight:600}
+.stock-code{color:var(--sub);font-size:11px;font-weight:400;margin-left:6px}
+.up{color:var(--red)} .down{color:var(--green)} .flat{color:var(--sub)}
+.yield{font-size:17px;font-weight:700}
+.band{padding:3px 8px;border-radius:12px;font-size:12px;font-weight:600;white-space:nowrap}
+.band-normal{background:var(--band1);color:#1c4fd8}
+.band-cheap{background:var(--band2);color:#1a7f37}
+.band-cheaper{background:var(--band3);color:#9a6700}
+.band-deep{background:var(--band4);color:#c2410c}
+.band-extreme{background:var(--band5);color:#c92a2a}
+.note{max-width:200px;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--sub);text-align:left}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.search-input{border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;outline:none;flex:1;min-width:160px}
+.search-input:focus{border-color:var(--primary)}
+select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;background:#fff;outline:none}
+.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;z-index:100}
+.modal-mask.show{display:flex}
+.modal{background:#fff;border-radius:var(--radius);padding:24px;width:min(520px,92vw);max-height:90vh;overflow:auto}
+.modal h3{margin-bottom:16px;font-size:17px}
+.form-row{margin-bottom:12px}
+.form-row label{display:block;font-size:12px;color:var(--sub);margin-bottom:5px}
+.form-row input,.form-row textarea{width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:14px;outline:none}
+.form-row input:focus{border-color:var(--primary)}
+.form-row .hint{font-size:11px;color:var(--sub);margin-top:4px}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
+.footer{margin-top:20px;text-align:center;color:var(--sub);font-size:12px;line-height:1.8}
+.history-range{font-size:11px;color:var(--sub)}
+.price-target{font-size:12px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
+.toast.show{opacity:1}
+.loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
+@media(max-width:860px){
+  thead th:nth-child(n+5),td:nth-child(n+5){display:none}
+  body{padding:12px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>高股息观察池 <span class="badge">可持续预期股息率</span></h1>
+    <div class="header-actions">
+      <span id="quote-time" style="font-size:12px;color:var(--sub)"></span>
+      <button class="btn" onclick="refreshQuotes()">🔄 刷新行情</button>
+      <button class="btn primary" onclick="openAddModal()">＋ 添加股票</button>
+      <button class="btn" onclick="exportJSON()">⬇ 导出数据</button>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat-card"><div class="label">观察池股票数</div><div class="value" id="stat-count">0</div></div>
+    <div class="stat-card"><div class="label">平均预期股息率</div><div class="value" id="stat-avg">—</div></div>
+    <div class="stat-card"><div class="label">开始低估以上 (≥5%)</div><div class="value" id="stat-cheap">0</div></div>
+    <div class="stat-card"><div class="label">明显低估以上 (≥6%)</div><div class="value" id="stat-deeper">0</div></div>
+    <div class="stat-card"><div class="label">深度低估以上 (≥7%)</div><div class="value" id="stat-deep">0</div></div>
+  </div>
+
+  <div class="legend">
+    <span><i style="background:var(--band1)"></i> 正常/偏贵 (&lt;5%)</span>
+    <span><i style="background:var(--band2)"></i> 开始低估 (5~6%)</span>
+    <span><i style="background:var(--band3)"></i> 明显低估 (6~7%)</span>
+    <span><i style="background:var(--band4)"></i> 深度低估 (7~8%)</span>
+    <span><i style="background:var(--band5)"></i> 极端低估 (≥8%)</span>
+    <span style="margin-left:auto">预期股息率 = 预期每股分红 ÷ 现价</span>
+  </div>
+
+  <div class="toolbar">
+    <input class="search-input" id="search" placeholder="🔍 搜索名称 / 代码..." oninput="renderTable()">
+    <select id="filter" onchange="renderTable()">
+      <option value="all">全部</option>
+      <option value="cheap">低估及以上 (≥5%)</option>
+      <option value="deeper">明显低估及以上 (≥6%)</option>
+      <option value="deep">深度低估及以上 (≥7%)</option>
+      <option value="extreme">极端低估 (≥8%)</option>
+    </select>
+    <select id="sort" onchange="renderTable()">
+      <option value="yield-desc">按预期股息率↓</option>
+      <option value="yield-asc">按预期股息率↑</option>
+      <option value="name">按名称</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>股票</th><th>现价</th><th>涨跌幅</th><th>预期每股分红</th><th>预期股息率</th><th>估值区间</th><th>历史股息率区间 (52周)</th><th>参考加仓价</th><th>备注</th><th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <div class="footer">
+    数据来源：腾讯行情接口实时报价（交易日盘中约3秒更新）；预期每股分红为自行维护的估算值，须结合盈利与分红政策复核。<br>
+    估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。本页面不构成投资建议。
+  </div>
+</div>
+
+<div class="modal-mask" id="modal">
+  <div class="modal">
+    <h3 id="modal-title">添加股票</h3>
+    <input type="hidden" id="edit-index">
+    <div class="form-row">
+      <label>股票代码 <span style="color:var(--red)">*</span></label>
+      <input id="f-code" placeholder="sh601088 / sz000895 / hk00883 / usAAPL" onchange="autoFill()">
+      <div class="hint">格式：sh+沪市代码，sz+深市代码，hk+港股代码，us+美股代码；输入后自动识别名称与现价</div>
+    </div>
+    <div class="form-row">
+      <label>名称</label>
+      <input id="f-name" placeholder="自动识别，可手动填写">
+    </div>
+    <div class="form-row">
+      <label>当前价（自动识别，仅用于添加时预览）</label>
+      <input id="f-price" disabled>
+    </div>
+    <div class="form-row">
+      <label>预期每股分红（元） <span style="color:var(--red)">*</span></label>
+      <input id="f-dps" type="number" step="0.01" placeholder="例如 2.26" min="0">
+      <div class="hint">参考最近已宣告分红年化估算，例如中国神华年度合计每股约2.26元</div>
+    </div>
+    <div class="form-row">
+      <label>备注</label>
+      <textarea id="f-note" rows="2" placeholder="行业 / 分红政策 / 关注点..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">取消</button>
+      <button class="btn primary" onclick="saveStock()">保存</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ 数据 ============
+let pool = { meta:{ valuation_bands:[], disclaimer:"" }, stocks:[] };
+const LS_KEY = 'watchpool_v1';
+
+function loadPool(){
+  const ls = localStorage.getItem(LS_KEY);
+  if(ls){ try{ pool = JSON.parse(ls); return; }catch(e){} }
+  fetch('data/watchpool.json').then(r=>r.json()).then(d=>{ pool = d; renderAll(); }).catch(()=>{
+    toast('⚠️ 无法加载 data/watchpool.json，请通过本仓库页面访问');
+  });
+}
+function persist(){ localStorage.setItem(LS_KEY, JSON.stringify(pool)); }
+
+// ============ 行情 ============
+let quotes = {};   // code -> data
+let quoteLoading = false;
+
+function codeList(){ return pool.stocks.map(s=>s.code).join(','); }
+
+function refreshQuotes(){
+  if(quoteLoading) return;
+  const codes = codeList();
+  if(!codes){ renderAll(); return; }
+  quoteLoading = true;
+  document.getElementById('quote-time').textContent = '行情加载中...';
+  const script = document.createElement('script');
+  const cb = 'qb_' + Date.now();
+  script.src = 'https://qt.gtimg.cn/q=' + codes;
+  script.onload = () => {
+    quotes = collectQuotes(codes);
+    quoteLoading = false;
+    const t = new Date();
+    document.getElementById('quote-time').textContent = '行情时间 ' + t.toLocaleTimeString('zh-CN',{hour12:false});
+    renderAll();
+    script.remove();
+  };
+  script.onerror = () => {
+    quoteLoading = false;
+    document.getElementById('quote-time').textContent = '行情获取失败，请检查网络';
+    script.remove();
+  };
+  document.body.appendChild(script);
+}
+
+function collectQuotes(codes){
+  const q = {};
+  codes.split(',').forEach(c => {
+    const v = window['v_' + c];
+    if(!v) return;
+    const p = v.split('~');
+    // 腾讯接口字段: 1名称 2代码 3现价 4昨收 31涨跌额 32涨跌幅 33最高 34最低 44?52周高/低(部分) 43? 港股字段不同
+    q[c] = {
+      name: p[1], price: parseFloat(p[3]),
+      chg: parseFloat(p[31]), chgPct: parseFloat(p[32]),
+      high: parseFloat(p[33]), low: parseFloat(p[34])
+    };
+  });
+  return q;
+}
+
+// ============ 渲染 ============
+const BANDS = [
+  { min:8,   label:'极端低估·重点研究', cls:'band-extreme' },
+  { min:7,   label:'深度低估', cls:'band-deep' },
+  { min:6,   label:'明显低估', cls:'band-cheaper' },
+  { min:5,   label:'开始低估', cls:'band-cheap' },
+  { min:0,   label:'正常/偏贵', cls:'band-normal' }
+];
+
+function bandOf(y){
+  if(!isFinite(y)) return BANDS[4];
+  for(const b of BANDS){ if(y >= b.min) return b; }
+  return BANDS[4];
+}
+
+function renderAll(){ renderStats(); renderTable(); }
+
+function filteredStocks(){
+  const kw = (document.getElementById('search').value||'').trim().toLowerCase();
+  const f = document.getElementById('filter').value;
+  return pool.stocks.filter(s=>{
+    if(kw && !(s.name.toLowerCase().includes(kw) || s.code.toLowerCase().includes(kw))) return false;
+    const q = quotes[s.code]; const y = q && s.expDps>0 ? s.expDps/q.price*100 : -1;
+    if(f==='cheap' && y<5) return false;
+    if(f==='deeper' && y<6) return false;
+    if(f==='deep' && y<7) return false;
+    if(f==='extreme' && y<8) return false;
+    return true;
+  }).sort((a,b)=>{
+    const qa=quotes[a.code], qb=quotes[b.code];
+    const ya = qa&&a.expDps>0 ? a.expDps/qa.price : -1;
+    const yb = qb&&b.expDps>0 ? b.expDps/qb.price : -1;
+    const sort = document.getElementById('sort').value;
+    if(sort==='yield-desc') return yb-ya;
+    if(sort==='yield-asc') return ya-yb;
+    return a.name.localeCompare(b.name,'zh');
+  });
+}
+
+function renderStats(){
+  const rows = pool.stocks.map(s=>{ const q=quotes[s.code]; return { s, q, y: q&&s.expDps>0? s.expDps/q.price*100 : -1 }; });
+  const valid = rows.filter(r=>r.y>=0);
+  const avg = valid.length ? valid.reduce((a,r)=>a+r.y,0)/valid.length : 0;
+  document.getElementById('stat-count').textContent = pool.stocks.length;
+  document.getElementById('stat-avg').innerHTML = avg>0 ? avg.toFixed(2)+'<small>%</small>' : '—';
+  document.getElementById('stat-cheap').textContent = valid.filter(r=>r.y>=5).length;
+  document.getElementById('stat-deeper').textContent = valid.filter(r=>r.y>=6).length;
+  document.getElementById('stat-deep').textContent = valid.filter(r=>r.y>=7).length;
+}
+
+function renderTable(){
+  const tb = document.getElementById('tbody');
+  const list = filteredStocks();
+  if(!list.length){ tb.innerHTML = '<tr class="loading-row"><td colspan="10">没有符合条件的股票</td></tr>'; return; }
+  tb.innerHTML = list.map(s=>{
+    const q = quotes[s.code];
+    const y = q && s.expDps>0 ? s.expDps/q.price*100 : null;
+    const b = y!=null ? bandOf(y) : BANDS[4];
+    const chgCls = !q ? 'flat' : (q.chg>0?'up':(q.chg<0?'down':'flat'));
+    const chgTxt = !q ? '—' : (q.chg>0?'+':'')+q.chg.toFixed(2)+' ('+(q.chg>0?'+':'')+q.chgPct.toFixed(2)+'%)';
+    // 历史股息率区间：基于52周高低，若无则用当日高低
+    const hi = q&&q.high? q.high : 0, lo = q&&q.low? q.low : 0;
+    let hist = '—';
+    if(hi>0 && lo>0 && s.expDps>0) hist = (s.expDps/hi*100).toFixed(1)+'% ~ '+(s.expDps/lo*100).toFixed(1)+'%';
+    // 参考加仓价（对应档位股息率的买入价）
+    const targets = s.expDps>0 ? [
+      {y:5,label:'5%建仓'},{y:6,label:'6%加'},{y:7,label:'7%重'},{y:8,label:'8%重点'}
+    ].map(t=>{ const p=s.expDps/t.y*100; return '<span title="'+t.label+'" style="margin-right:6px">'+t.label+'<b style="color:var(--primary)">'+p.toFixed(2)+'</b></span>'; }).join('') : '—';
+    return `<tr>
+      <td><span class="stock-name">${esc(s.name)}</span><span class="stock-code">${esc(s.code)}</span></td>
+      <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
+      <td class="${chgCls}">${chgTxt}</td>
+      <td>${s.expDps? '<b>'+s.expDps.toFixed(2)+'</b>' : '<span class="flat">未设置</span>'}</td>
+      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>` : '<span class="flat">—</span>'}</td>
+      <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
+      <td><span class="history-range">${hist}</span></td>
+      <td><span class="price-target">${targets}</span></td>
+      <td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>
+      <td>
+        <button class="btn sm" onclick="openEditModal(${pool.stocks.indexOf(s)})">编辑</button>
+        <button class="btn sm danger" onclick="removeStock(${pool.stocks.indexOf(s)})">删除</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function esc(s){ return String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ============ 添加 / 编辑 ============
+function openAddModal(){
+  document.getElementById('modal-title').textContent = '添加股票';
+  document.getElementById('edit-index').value = -1;
+  ['f-code','f-name','f-dps','f-note'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-price').value='';
+  document.getElementById('modal').classList.add('show');
+}
+function openEditModal(i){
+  const s = pool.stocks[i];
+  document.getElementById('modal-title').textContent = '编辑 ' + s.name;
+  document.getElementById('edit-index').value = i;
+  document.getElementById('f-code').value = s.code;
+  document.getElementById('f-name').value = s.name;
+  document.getElementById('f-price').value = quotes[s.code] ? quotes[s.code].price : '';
+  document.getElementById('f-dps').value = s.expDps||'';
+  document.getElementById('f-note').value = s.note||'';
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){ document.getElementById('modal').classList.remove('show'); }
+
+function autoFill(){
+  const code = document.getElementById('f-code').value.trim();
+  if(!code) return;
+  const v = window['v_'+code];
+  if(v){
+    const p = v.split('~');
+    document.getElementById('f-name').value = p[1];
+    document.getElementById('f-price').value = parseFloat(p[3])||'';
+    return;
+  }
+  const script = document.createElement('script');
+  script.src = 'https://qt.gtimg.cn/q=' + code;
+  script.onload = () => {
+    const v = window['v_'+code];
+    if(v){ const p=v.split('~'); document.getElementById('f-name').value=p[1]; document.getElementById('f-price').value=parseFloat(p[3])||''; }
+    script.remove();
+  };
+  document.body.appendChild(script);
+}
+
+function saveStock(){
+  const i = parseInt(document.getElementById('edit-index').value);
+  const code = document.getElementById('f-code').value.trim();
+  const name = document.getElementById('f-name').value.trim();
+  const dps = parseFloat(document.getElementById('f-dps').value);
+  const note = document.getElementById('f-note').value.trim();
+  if(!code || !/^(sh|sz|hk|us)[a-zA-Z0-9]+$/.test(code)){ toast('⚠️ 代码格式不正确，如 sh601088'); return; }
+  if(!(dps>0)){ toast('⚠️ 请填写预期每股分红'); return; }
+  const obj = { code, name: name||code, market: code.startsWith('sh')?'A股':code.startsWith('sz')?'A股':code.startsWith('hk')?'港股':'美股', expDps: dps, note };
+  if(i>=0){ pool.stocks[i] = {...pool.stocks[i], ...obj}; toast('✅ 已保存'); }
+  else {
+    if(pool.stocks.some(s=>s.code===code)){ toast('⚠️ 该股票已在观察池中'); return; }
+    pool.stocks.push(obj); toast('✅ 已加入观察池');
+  }
+  persist(); closeModal(); refreshQuotes();
+}
+function removeStock(i){
+  if(!confirm('确定从观察池移除 '+pool.stocks[i].name+' 吗？')) return;
+  pool.stocks.splice(i,1); persist(); renderAll();
+  if(!pool.stocks.length){ quotes={}; }
+  else refreshQuotes();
+}
+
+// ============ 导出 ============
+function exportJSON(){
+  const blob = new Blob([JSON.stringify(pool,null,2)],{type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'watchpool_export_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+  toast('✅ 已导出 JSON（含本地修改）');
+}
+
+// ============ 其他 ============
+let toastTimer;
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2200); }
+document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal(); });
+
+// 启动
+loadPool();
+refreshQuotes();
+setInterval(()=>{ refreshQuotes(); }, 30000);
+</script>
+</body>
+</html>
