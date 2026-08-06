@@ -2,7 +2,7 @@
   "meta": {
     "strategy": "可持续高股息估值底价值投资策略",
     "formula": "可持续预期股息率 = 预期每股分红 ÷ 当前股价 × 100%",
-    "updated": "2026-08-06",
+    "updated": "2026-08-07",
     "disclaimer": "预期每股分红(expDps)为按最近已宣告分红年化估算的参考值；TTM股息率(dividendRatioTtm)与PE/PB等估值指标由行情接口自动获取(A股)，divHist为近三年实际分红记录。请结合公司盈利与分红政策自行复核。",
     "valuation_bands": [
       {
@@ -499,6 +499,596 @@
           "exDate": "2026-04-24"
         }
       ]
+    },
+    {
+      "code": "sh600329",
+      "name": "达仁堂",
+      "market": "A股",
+      "expDps": 4.79,
+      "divHist": [
+        {
+          "period": "2026-07-03",
+          "dps": 2.34,
+          "exDate": "2026-07-10"
+        },
+        {
+          "period": "2026-02-05",
+          "dps": 2.45,
+          "exDate": "2026-02-12"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601216",
+      "name": "君正集团",
+      "market": "A股",
+      "expDps": 0.38,
+      "divHist": [
+        {
+          "period": "2026-07-01",
+          "dps": 0.38,
+          "exDate": "2026-07-08"
+        }
+      ],
+      "note": "",
+      "category": "资源类·化工"
+    },
+    {
+      "code": "sh600066",
+      "name": "宇通客车",
+      "market": "A股",
+      "expDps": 2.5,
+      "divHist": [
+        {
+          "period": "2026-05-09",
+          "dps": 2.0,
+          "exDate": "2026-05-15"
+        },
+        {
+          "period": "2025-09-04",
+          "dps": 0.5,
+          "exDate": "2025-09-11"
+        }
+      ],
+      "note": "",
+      "category": "资源类·汽车制造"
+    },
+    {
+      "code": "sh600153",
+      "name": "建发股份",
+      "market": "A股",
+      "expDps": 0.7,
+      "divHist": [
+        {
+          "period": "2026-06-16",
+          "dps": 0.5,
+          "exDate": "2026-06-24"
+        },
+        {
+          "period": "2026-02-03",
+          "dps": 0.2,
+          "exDate": "2026-02-11"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002867",
+      "name": "周大生",
+      "market": "A股",
+      "expDps": 0.9,
+      "divHist": [
+        {
+          "period": "2026-07-11",
+          "dps": 0.65,
+          "exDate": "2026-07-17"
+        },
+        {
+          "period": "2025-11-05",
+          "dps": 0.25,
+          "exDate": "2025-11-11"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002271",
+      "name": "东方雨虹",
+      "market": "A股",
+      "expDps": 0.93,
+      "divHist": [
+        {
+          "period": "2025-08-21",
+          "dps": 0.925,
+          "exDate": "2025-08-27"
+        }
+      ],
+      "note": "",
+      "category": "资源类·建材"
+    },
+    {
+      "code": "sh600398",
+      "name": "海澜之家",
+      "market": "A股",
+      "expDps": 0.41,
+      "divHist": [
+        {
+          "period": "2026-04-30",
+          "dps": 0.41,
+          "exDate": "2026-05-11"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600566",
+      "name": "济川药业",
+      "market": "A股",
+      "expDps": 1.74,
+      "divHist": [
+        {
+          "period": "2026-06-24",
+          "dps": 1.74,
+          "exDate": "2026-06-30"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002007",
+      "name": "华兰生物",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-06-09",
+          "dps": 0.5,
+          "exDate": "2026-06-15"
+        },
+        {
+          "period": "2025-10-18",
+          "dps": 0.5,
+          "exDate": "2025-10-27"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz000690",
+      "name": "宝新能源",
+      "market": "A股",
+      "expDps": 0.25,
+      "divHist": [
+        {
+          "period": "2026-05-16",
+          "dps": 0.2,
+          "exDate": "2026-05-22"
+        },
+        {
+          "period": "2025-09-11",
+          "dps": 0.05,
+          "exDate": "2025-09-17"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002032",
+      "name": "苏泊尔",
+      "market": "A股",
+      "expDps": 2.63,
+      "divHist": [
+        {
+          "period": "2026-05-21",
+          "dps": 2.63,
+          "exDate": "2026-05-28"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600750",
+      "name": "华润江中",
+      "market": "A股",
+      "expDps": 1.38,
+      "divHist": [
+        {
+          "period": "2026-06-13",
+          "dps": 0.88,
+          "exDate": "2026-06-22"
+        },
+        {
+          "period": "2025-09-27",
+          "dps": 0.5,
+          "exDate": "2025-10-13"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600642",
+      "name": "申能股份",
+      "market": "A股",
+      "expDps": 0.46,
+      "divHist": [
+        {
+          "period": "2026-07-08",
+          "dps": 0.46,
+          "exDate": "2026-07-14"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600177",
+      "name": "雅戈尔",
+      "market": "A股",
+      "expDps": 0.44,
+      "divHist": [
+        {
+          "period": "2026-05-30",
+          "dps": 0.2,
+          "exDate": "2026-06-05"
+        },
+        {
+          "period": "2026-03-21",
+          "dps": 0.08,
+          "exDate": "2026-03-27"
+        },
+        {
+          "period": "2025-11-28",
+          "dps": 0.08,
+          "exDate": "2025-12-04"
+        }
+      ],
+      "note": "",
+      "category": "资源类·纺织"
+    },
+    {
+      "code": "sh600295",
+      "name": "鄂尔多斯",
+      "market": "A股",
+      "expDps": 0.7,
+      "divHist": [
+        {
+          "period": "2026-06-11",
+          "dps": 0.7,
+          "exDate": "2026-06-17"
+        }
+      ],
+      "note": "",
+      "category": "资源类·化工"
+    },
+    {
+      "code": "sz000719",
+      "name": "中原传媒",
+      "market": "A股",
+      "expDps": 0.66,
+      "divHist": [
+        {
+          "period": "2026-06-24",
+          "dps": 0.66,
+          "exDate": "2026-07-01"
+        }
+      ],
+      "note": "",
+      "category": "资源类·出版"
+    },
+    {
+      "code": "sz000423",
+      "name": "东阿阿胶",
+      "market": "A股",
+      "expDps": 2.71,
+      "divHist": [
+        {
+          "period": "2026-05-19",
+          "dps": 1.4355,
+          "exDate": "2026-05-25"
+        },
+        {
+          "period": "2025-08-27",
+          "dps": 1.2701,
+          "exDate": "2025-09-03"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz000333",
+      "name": "美的集团",
+      "market": "A股",
+      "expDps": 4.3,
+      "divHist": [
+        {
+          "period": "2026-06-23",
+          "dps": 3.8,
+          "exDate": "2026-06-29"
+        },
+        {
+          "period": "2025-11-12",
+          "dps": 0.5,
+          "exDate": "2025-11-18"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600803",
+      "name": "新奥股份",
+      "market": "A股",
+      "expDps": 1.14,
+      "divHist": [
+        {
+          "period": "2026-07-03",
+          "dps": 0.96,
+          "exDate": "2026-07-09"
+        },
+        {
+          "period": "2025-10-10",
+          "dps": 0.18,
+          "exDate": "2025-10-16"
+        }
+      ],
+      "note": "",
+      "category": "资源类·能源"
+    },
+    {
+      "code": "sh600007",
+      "name": "中国国贸",
+      "market": "A股",
+      "expDps": 1.07,
+      "divHist": [
+        {
+          "period": "2026-06-18",
+          "dps": 1.07,
+          "exDate": "2026-06-26"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600098",
+      "name": "广州发展",
+      "market": "A股",
+      "expDps": 0.35,
+      "divHist": [
+        {
+          "period": "2026-06-18",
+          "dps": 0.25,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025-12-05",
+          "dps": 0.1,
+          "exDate": "2025-12-12"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601668",
+      "name": "中国建筑",
+      "market": "A股",
+      "expDps": 0.27,
+      "divHist": [
+        {
+          "period": "2026-07-08",
+          "dps": 0.2718,
+          "exDate": "2026-07-16"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz000001",
+      "name": "平安银行",
+      "market": "A股",
+      "expDps": 0.6,
+      "divHist": [
+        {
+          "period": "2026-06-05",
+          "dps": 0.36,
+          "exDate": "2026-06-12"
+        },
+        {
+          "period": "2025-09-30",
+          "dps": 0.236,
+          "exDate": "2025-10-15"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002091",
+      "name": "江苏国泰",
+      "market": "A股",
+      "expDps": 0.47,
+      "divHist": [
+        {
+          "period": "2026-05-30",
+          "dps": 0.3,
+          "exDate": "2026-06-08"
+        },
+        {
+          "period": "2025-11-11",
+          "dps": 0.17,
+          "exDate": "2025-11-18"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sz002508",
+      "name": "老板电器",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-05-26",
+          "dps": 0.5,
+          "exDate": "2026-06-03"
+        },
+        {
+          "period": "2025-09-06",
+          "dps": 0.5,
+          "exDate": "2025-09-12"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601229",
+      "name": "上海银行",
+      "market": "A股",
+      "expDps": 0.52,
+      "divHist": [
+        {
+          "period": "2026-06-02",
+          "dps": 0.22,
+          "exDate": "2026-06-08"
+        },
+        {
+          "period": "2025-10-10",
+          "dps": 0.3,
+          "exDate": "2025-10-16"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600582",
+      "name": "天地科技",
+      "market": "A股",
+      "expDps": 0.3,
+      "divHist": [
+        {
+          "period": "2026-06-05",
+          "dps": 0.3,
+          "exDate": "2026-06-12"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601997",
+      "name": "贵阳银行",
+      "market": "A股",
+      "expDps": 0.3,
+      "divHist": [
+        {
+          "period": "2026-06-04",
+          "dps": 0.3,
+          "exDate": "2026-06-10"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601717",
+      "name": "中创智领",
+      "market": "A股",
+      "expDps": 1.25,
+      "divHist": [
+        {
+          "period": "2026-06-11",
+          "dps": 1.25,
+          "exDate": "2026-06-18"
+        }
+      ],
+      "note": "",
+      "category": "资源类·煤炭机械"
+    },
+    {
+      "code": "sh601169",
+      "name": "北京银行",
+      "market": "A股",
+      "expDps": 0.28,
+      "divHist": [
+        {
+          "period": "2026-07-04",
+          "dps": 0.278,
+          "exDate": "2026-07-10"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601166",
+      "name": "兴业银行",
+      "market": "A股",
+      "expDps": 1.07,
+      "divHist": [
+        {
+          "period": "2026-06-08",
+          "dps": 0.501,
+          "exDate": "2026-06-12"
+        },
+        {
+          "period": "2026-02-02",
+          "dps": 0.565,
+          "exDate": "2026-02-06"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601818",
+      "name": "光大银行",
+      "market": "A股",
+      "expDps": 0.17,
+      "divHist": [
+        {
+          "period": "2026-07-23",
+          "dps": 0.07,
+          "exDate": "2026-07-30"
+        },
+        {
+          "period": "2026-01-30",
+          "dps": 0.105,
+          "exDate": "2026-02-05"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600741",
+      "name": "华域汽车",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-07-22",
+          "dps": 1.0,
+          "exDate": "2026-07-28"
+        }
+      ],
+      "note": "",
+      "category": "稳健类"
     }
   ]
 }
