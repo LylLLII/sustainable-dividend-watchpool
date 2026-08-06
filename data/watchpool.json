@@ -5,68 +5,385 @@
     "updated": "2026-08-06",
     "disclaimer": "预期每股分红(expDps)为按最近已宣告分红年化估算的参考值；TTM股息率(dividendRatioTtm)与PE/PB等估值指标由行情接口自动获取(A股)，divHist为近三年实际分红记录。请结合公司盈利与分红政策自行复核。",
     "valuation_bands": [
-      { "max": 5,   "label": "正常/偏贵", "class": "band-normal" },
-      { "max": 6,   "label": "开始低估",  "class": "band-cheap" },
-      { "max": 7,   "label": "明显低估",  "class": "band-cheaper" },
-      { "max": 8,   "label": "深度低估",  "class": "band-deep" },
-      { "max": 999, "label": "极端低估·重点研究", "class": "band-extreme" }
+      {
+        "max": 5,
+        "label": "正常/偏贵",
+        "class": "band-normal"
+      },
+      {
+        "max": 6,
+        "label": "开始低估",
+        "class": "band-cheap"
+      },
+      {
+        "max": 7,
+        "label": "明显低估",
+        "class": "band-cheaper"
+      },
+      {
+        "max": 8,
+        "label": "深度低估",
+        "class": "band-deep"
+      },
+      {
+        "max": 999,
+        "label": "极端低估·重点研究",
+        "class": "band-extreme"
+      }
     ]
   },
   "stocks": [
-    { "code": "sh601088", "name": "中国神华", "market": "A股", "expDps": 2.01, "note": "煤价下行致分红随盈利波动，关注其高分红承诺兑现", "divHist": [
-      { "period": "2025年报", "dps": 1.03, "exDate": "2026-07-13" },
-      { "period": "2025中报", "dps": 0.98, "exDate": "2025-11-10" },
-      { "period": "2024年报", "dps": 2.26, "exDate": "2025-07-07" } ] },
-    { "code": "sh600900", "name": "长江电力", "market": "A股", "expDps": 1.00, "note": "水电龙头，现金流极稳，分红承诺长期稳固", "divHist": [
-      { "period": "2025年报", "dps": 0.79, "exDate": "2026-07-17" },
-      { "period": "2025Q3", "dps": 0.21, "exDate": "2026-02-12" },
-      { "period": "2024年报", "dps": 0.73, "exDate": "2025-07-18" } ] },
-    { "code": "sh601398", "name": "工商银行", "market": "A股", "expDps": 0.31, "note": "国有大行，分红率约30%，稳定", "divHist": [
-      { "period": "2025年报", "dps": 0.169, "exDate": "2026-05-13" },
-      { "period": "2025中报", "dps": 0.141, "exDate": "2025-12-15" },
-      { "period": "2024年报", "dps": 0.165, "exDate": "2025-07-14" } ] },
-    { "code": "sh601939", "name": "建设银行", "market": "A股", "expDps": 0.39, "note": "国有大行，分红率约30%，稳定", "divHist": [
-      { "period": "2025年报", "dps": 0.203, "exDate": "2026-07-13" },
-      { "period": "2025中报", "dps": 0.186, "exDate": "2025-12-11" },
-      { "period": "2024年报", "dps": 0.206, "exDate": "2025-05-09" } ] },
-    { "code": "sh601288", "name": "农业银行", "market": "A股", "expDps": 0.25, "note": "国有大行，分红率约30%，稳定", "divHist": [
-      { "period": "2025年报", "dps": 0.13, "exDate": "2026-05-13" },
-      { "period": "2025中报", "dps": 0.12, "exDate": "2025-12-15" },
-      { "period": "2024年报", "dps": 0.126, "exDate": "2025-07-17" } ] },
-    { "code": "sh600028", "name": "中国石化", "market": "A股", "expDps": 0.20, "note": "分红+回购组合回报，油价波动影响盈利", "divHist": [
-      { "period": "2025年报", "dps": 0.112, "exDate": "2026-06-17" },
-      { "period": "2025中报", "dps": 0.088, "exDate": "2025-09-12" },
-      { "period": "2024年报", "dps": 0.14, "exDate": "2025-06-18" } ] },
-    { "code": "sh601006", "name": "大秦铁路", "market": "A股", "expDps": 0.22, "note": "煤炭运输大动脉，分红率长期超50%", "divHist": [
-      { "period": "2025年报", "dps": 0.142, "exDate": "2026-07-10" },
-      { "period": "2025中报", "dps": 0.08, "exDate": "2025-10-24" },
-      { "period": "2024年报", "dps": 0.14, "exDate": "2025-07-11" } ] },
-    { "code": "sz000895", "name": "双汇发展", "market": "A股", "expDps": 1.45, "note": "肉制品龙头，高分红习惯，关注需求", "divHist": [
-      { "period": "2025年报", "dps": 0.80, "exDate": "2026-04-29" },
-      { "period": "2025中报", "dps": 0.65, "exDate": "2025-08-22" },
-      { "period": "2024年报", "dps": 0.75, "exDate": "2025-04-30" } ] },
-    { "code": "sz000651", "name": "格力电器", "market": "A股", "expDps": 3.00, "note": "含特别分红，历史分红率极高", "divHist": [
-      { "period": "2025Q3", "dps": 1.00, "exDate": "2026-01-23" },
-      { "period": "2024年报", "dps": 2.00, "exDate": "2025-08-29" },
-      { "period": "2024中报", "dps": 1.00, "exDate": "2025-05-15" } ] },
-    { "code": "sh600941", "name": "中国移动", "market": "A股", "expDps": 4.70, "note": "运营商龙头，承诺分红率提升至75%", "divHist": [
-      { "period": "2025年报", "dps": 2.20, "exDate": "2026-06-05" },
-      { "period": "2025中报", "dps": 2.50, "exDate": "2025-09-01" },
-      { "period": "2024年报", "dps": 2.29, "exDate": "2025-06-06" } ] },
-    { "code": "sh601225", "name": "陕西煤业", "market": "A股", "expDps": 0.95, "note": "煤炭主业稳健，分红率高", "divHist": [
-      { "period": "2025年报", "dps": 0.91, "exDate": "2026-06-26" },
-      { "period": "2025中报", "dps": 0.04, "exDate": "2025-09-26" },
-      { "period": "2024年报", "dps": 1.14, "exDate": "2025-06-25" } ] },
-    { "code": "sh601919", "name": "中远海控", "market": "A股", "expDps": 1.00, "note": "强周期航运股，分红随盈利大幅波动，谨慎", "divHist": [
-      { "period": "2025年报", "dps": 0.44, "exDate": "2026-06-26" },
-      { "period": "2025中报", "dps": 0.56, "exDate": "2025-10-24" },
-      { "period": "2024年报", "dps": 1.03, "exDate": "2025-06-25" } ] },
-    { "code": "sh600585", "name": "海螺水泥", "market": "A股", "expDps": 0.85, "note": "水泥行业下行期，分红仍维持但盈利承压", "divHist": [
-      { "period": "2025年报", "dps": 0.61, "exDate": "2026-07-02" },
-      { "period": "2025中报", "dps": 0.24, "exDate": "2025-09-30" },
-      { "period": "2024年报", "dps": 0.71, "exDate": "2025-06-27" } ] },
-    { "code": "hk00883", "name": "中国海洋石油", "market": "港股", "expDps": 1.28, "note": "高股息油气，承诺分红率40%+，油价敏感", "dividendRatioTtm": 5.64 },
-    { "code": "hk00941", "name": "中国移动", "market": "港股", "expDps": 5.26, "note": "港股股息率较A股更高", "dividendRatioTtm": 6.38 },
-    { "code": "hk00005", "name": "汇丰控股", "market": "港股", "expDps": 5.88, "note": "国际银行，定期分红，受利率周期影响", "dividendRatioTtm": 3.67 }
+    {
+      "code": "sh601088",
+      "name": "中国神华",
+      "market": "A股",
+      "expDps": 2.01,
+      "note": "煤价下行致分红随盈利波动，关注其高分红承诺兑现",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 1.03,
+          "exDate": "2026-07-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.98,
+          "exDate": "2025-11-10"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.26,
+          "exDate": "2025-07-07"
+        }
+      ],
+      "category": "资源类·煤炭"
+    },
+    {
+      "code": "sh600900",
+      "name": "长江电力",
+      "market": "A股",
+      "expDps": 1.0,
+      "note": "水电龙头，现金流极稳，分红承诺长期稳固",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.79,
+          "exDate": "2026-07-17"
+        },
+        {
+          "period": "2025Q3",
+          "dps": 0.21,
+          "exDate": "2026-02-12"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.73,
+          "exDate": "2025-07-18"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601398",
+      "name": "工商银行",
+      "market": "A股",
+      "expDps": 0.31,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.169,
+          "exDate": "2026-05-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.141,
+          "exDate": "2025-12-15"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.165,
+          "exDate": "2025-07-14"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601939",
+      "name": "建设银行",
+      "market": "A股",
+      "expDps": 0.39,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.203,
+          "exDate": "2026-07-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.186,
+          "exDate": "2025-12-11"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.206,
+          "exDate": "2025-05-09"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601288",
+      "name": "农业银行",
+      "market": "A股",
+      "expDps": 0.25,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.13,
+          "exDate": "2026-05-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.12,
+          "exDate": "2025-12-15"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.126,
+          "exDate": "2025-07-17"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sh600028",
+      "name": "中国石化",
+      "market": "A股",
+      "expDps": 0.2,
+      "note": "分红+回购组合回报，油价波动影响盈利",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.112,
+          "exDate": "2026-06-17"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.088,
+          "exDate": "2025-09-12"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.14,
+          "exDate": "2025-06-18"
+        }
+      ],
+      "category": "资源类·石化"
+    },
+    {
+      "code": "sh601006",
+      "name": "大秦铁路",
+      "market": "A股",
+      "expDps": 0.22,
+      "note": "煤炭运输大动脉，分红率长期超50%",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.142,
+          "exDate": "2026-07-10"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.08,
+          "exDate": "2025-10-24"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.14,
+          "exDate": "2025-07-11"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sz000895",
+      "name": "双汇发展",
+      "market": "A股",
+      "expDps": 1.45,
+      "note": "肉制品龙头，高分红习惯，关注需求",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.8,
+          "exDate": "2026-04-29"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.65,
+          "exDate": "2025-08-22"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.75,
+          "exDate": "2025-04-30"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sz000651",
+      "name": "格力电器",
+      "market": "A股",
+      "expDps": 3.0,
+      "note": "含特别分红，历史分红率极高",
+      "divHist": [
+        {
+          "period": "2025Q3",
+          "dps": 1.0,
+          "exDate": "2026-01-23"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.0,
+          "exDate": "2025-08-29"
+        },
+        {
+          "period": "2024中报",
+          "dps": 1.0,
+          "exDate": "2025-05-15"
+        }
+      ],
+      "category": "资源类·家电(含资源属性)"
+    },
+    {
+      "code": "sh600941",
+      "name": "中国移动",
+      "market": "A股",
+      "expDps": 4.7,
+      "note": "运营商龙头，承诺分红率提升至75%",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 2.2,
+          "exDate": "2026-06-05"
+        },
+        {
+          "period": "2025中报",
+          "dps": 2.5,
+          "exDate": "2025-09-01"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.29,
+          "exDate": "2025-06-06"
+        }
+      ],
+      "category": "稳健类"
+    },
+    {
+      "code": "sh601225",
+      "name": "陕西煤业",
+      "market": "A股",
+      "expDps": 0.95,
+      "note": "煤炭主业稳健，分红率高",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.91,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.04,
+          "exDate": "2025-09-26"
+        },
+        {
+          "period": "2024年报",
+          "dps": 1.14,
+          "exDate": "2025-06-25"
+        }
+      ],
+      "category": "资源类·煤炭"
+    },
+    {
+      "code": "sh601919",
+      "name": "中远海控",
+      "market": "A股",
+      "expDps": 1.0,
+      "note": "强周期航运股，分红随盈利大幅波动，谨慎",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.44,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.56,
+          "exDate": "2025-10-24"
+        },
+        {
+          "period": "2024年报",
+          "dps": 1.03,
+          "exDate": "2025-06-25"
+        }
+      ],
+      "category": "资源类·航运"
+    },
+    {
+      "code": "sh600585",
+      "name": "海螺水泥",
+      "market": "A股",
+      "expDps": 0.85,
+      "note": "水泥行业下行期，分红仍维持但盈利承压",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.61,
+          "exDate": "2026-07-02"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.24,
+          "exDate": "2025-09-30"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.71,
+          "exDate": "2025-06-27"
+        }
+      ],
+      "category": "资源类·水泥"
+    },
+    {
+      "code": "hk00883",
+      "name": "中国海洋石油",
+      "market": "港股",
+      "expDps": 1.28,
+      "note": "高股息油气，承诺分红率40%+，油价敏感",
+      "dividendRatioTtm": 5.64,
+      "category": "资源类·油气"
+    },
+    {
+      "code": "hk00941",
+      "name": "中国移动",
+      "market": "港股",
+      "expDps": 5.26,
+      "note": "港股股息率较A股更高",
+      "dividendRatioTtm": 6.38,
+      "category": "稳健类"
+    },
+    {
+      "code": "hk00005",
+      "name": "汇丰控股",
+      "market": "港股",
+      "expDps": 5.88,
+      "note": "国际银行，定期分红，受利率周期影响",
+      "dividendRatioTtm": 3.67,
+      "category": "稳健类"
+    }
   ]
 }
