@@ -122,6 +122,11 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .sync-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff8e6;border:1px solid #f5d78e;border-radius:10px;padding:8px 14px;margin-bottom:12px;font-size:13px}
 .sync-bar .btn{border-color:#e0c276}
 .sync-bar .btn:hover{border-color:var(--primary)}
+.cloud-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#eef4ff;border:1px solid #c5d8f8;border-radius:10px;padding:8px 14px;margin-bottom:12px;font-size:13px}
+.token-input{flex:1;min-width:200px;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;outline:none}
+.token-input:focus{border-color:var(--primary)}
+.btn.primary-cloud{background:#12b886;border-color:#12b886;color:#fff}
+.btn.primary-cloud:hover{background:#0ca678}
 @media(max-width:860px){ body{padding:12px} }
 </style>
 </head>
@@ -144,6 +149,17 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <span id="sync-detail" style="font-size:12px;color:var(--sub)"></span>
     <button class="btn sm" onclick="copySyncSummary()" title="复制变更摘要，发给AI即可同步到GitHub仓库">📋 复制变更摘要</button>
     <button class="btn sm" onclick="clearLocalDiff()" style="color:var(--red);border-color:#f3c1c1">🗑 放弃本地修改</button>
+  </div>
+
+  <!-- 云端同步：以 GitHub 仓库为唯一权威，双电脑共用 -->
+  <div class="cloud-bar">
+    <span style="font-weight:600">☁️ 云端同步</span>
+    <span style="font-size:12px;color:var(--sub)">以 GitHub 仓库为唯一数据源，家里/单位电脑共用同一在线版即可互通</span>
+    <input class="token-input" id="gh-token" type="password" placeholder="GitHub Token（可选填，仅存本机浏览器）" title="创建方式：GitHub → Settings → Developer settings → Personal access tokens → 勾选 repo 权限">
+    <button class="btn sm" onclick="saveToken()">💾 保存Token</button>
+    <button class="btn sm" onclick="pullCloud()">⬇ 拉取云端</button>
+    <button class="btn sm primary-cloud" onclick="pushCloud()">⬆ 推送云端</button>
+    <span id="cloud-status" style="font-size:12px;color:var(--sub)"></span>
   </div>
 
   <div class="stats">
@@ -422,6 +438,104 @@ function clearLocalDiff(){
   if(bar) bar.style.display = 'none';
   if(repoBase){ pool = repoBase; renderAll(); }
   toast('✅ 已恢复仓库数据');
+}
+
+// ============ 云端同步（GitHub API 直连，以仓库为唯一权威） ============
+const GH_REPO = 'LylLLII/sustainable-dividend-watchpool';
+const GH_PATH = 'data/watchpool.json';
+const GH_TOKEN_KEY = 'watchpool_gh_token';
+const GH_API = 'https://api.github.com';
+
+function getToken(){
+  try{ return localStorage.getItem(GH_TOKEN_KEY) || ''; }catch(e){ return ''; }
+}
+function saveToken(){
+  const t = document.getElementById('gh-token').value.trim();
+  try{ localStorage.setItem(GH_TOKEN_KEY, t); }catch(e){}
+  toast(t ? '✅ Token 已保存（仅存本机浏览器）' : '已清空 Token');
+  updateCloudStatus();
+}
+function loadTokenIntoInput(){
+  try{ const t = localStorage.getItem(GH_TOKEN_KEY); if(t) document.getElementById('gh-token').value = t; }catch(e){}
+}
+
+function ghHeaders(withAuth){
+  const h = { 'Accept':'application/vnd.github+json', 'Content-Type':'application/json' };
+  const t = getToken();
+  if(withAuth && t) h['Authorization'] = 'Bearer ' + t;
+  return h;
+}
+
+// base64 <-> unicode（GitHub contents API 内容为 base64）
+function b64encode(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = ''; bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+function b64decode(b64){
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder('utf-8').decode(bytes);
+}
+
+function updateCloudStatus(msg){
+  const el = document.getElementById('cloud-status');
+  if(msg) el.textContent = msg;
+  else el.textContent = getToken() ? '已连接云端（Token 已配置）' : '未配置 Token（拉取不需要，推送需要）';
+}
+
+// 拉取云端：GET 仓库文件 → 作为新基准，合并本地 diff
+function pullCloud(){
+  const status = document.getElementById('cloud-status');
+  status.textContent = '拉取中...';
+  fetch(GH_API + '/repos/' + GH_REPO + '/contents/' + GH_PATH, { headers: ghHeaders(false) })
+    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(js => {
+      const content = b64decode(js.content);
+      let cloud;
+      try{ cloud = JSON.parse(content); }catch(e){ throw new Error('云端数据解析失败'); }
+      if(!cloud || !Array.isArray(cloud.stocks)) throw new Error('云端数据格式错误');
+      // 云端数据作为新基准
+      repoBase = cloud;
+      const diff = loadDiff();
+      pool = applyDiff(cloud, diff);
+      renderAll();
+      updateSyncBar();
+      status.textContent = '✅ 已拉取云端（' + cloud.stocks.length + ' 只，本地差异已合并）';
+      toast('✅ 云端数据已拉取');
+    })
+    .catch(e => { status.textContent = '❌ 拉取失败：' + e.message; toast('⚠️ 拉取云端失败'); });
+}
+
+// 推送云端：把合并后的完整数据 PUT 回仓库（需 Token + 当前 sha）
+function pushCloud(){
+  if(!getToken()){ toast('⚠️ 请先填写并保存 GitHub Token'); document.getElementById('gh-token').focus(); return; }
+  const status = document.getElementById('cloud-status');
+  status.textContent = '推送中（先获取云端 sha）...';
+  // 1. 获取当前文件 sha
+  fetch(GH_API + '/repos/' + GH_REPO + '/contents/' + GH_PATH, { headers: ghHeaders(true) })
+    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(js => {
+      const sha = js.sha;
+      const content = b64encode(JSON.stringify({ meta: pool.meta, stocks: pool.stocks }, null, 2));
+      const payload = {
+        message: 'update watchpool via web cloud sync @' + new Date().toISOString().slice(0,16),
+        content: content,
+        sha: sha,
+        branch: 'main'
+      };
+      status.textContent = '推送中...';
+      return fetch(GH_API + '/repos/' + GH_REPO + '/contents/' + GH_PATH, {
+        method:'PUT', headers: ghHeaders(true), body: JSON.stringify(payload)
+      });
+    })
+    .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(() => {
+      status.textContent = '✅ 已推送云端（' + pool.stocks.length + ' 只）';
+      toast('✅ 已同步到 GitHub，其他电脑点「拉取云端」即可看到');
+    })
+    .catch(e => { status.textContent = '❌ 推送失败：' + e.message; toast('⚠️ 推送云端失败：' + e.message); });
 }
 
 // ============ 行情 ============
@@ -1082,6 +1196,8 @@ document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==
 // 启动
 loadPool();
 loadBondYield();
+loadTokenIntoInput();
+updateCloudStatus();
 refreshQuotes();
 fetchAutoDps();
 setInterval(()=>{ refreshQuotes(); }, 30000);
