@@ -119,6 +119,9 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
+.sync-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff8e6;border:1px solid #f5d78e;border-radius:10px;padding:8px 14px;margin-bottom:12px;font-size:13px}
+.sync-bar .btn{border-color:#e0c276}
+.sync-bar .btn:hover{border-color:var(--primary)}
 @media(max-width:860px){ body{padding:12px} }
 </style>
 </head>
@@ -134,6 +137,14 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
       <button class="btn" onclick="exportJSON()">⬇ 导出数据</button>
     </div>
   </header>
+
+  <!-- 同步状态条：显示本地差异，一键复制变更摘要 -->
+  <div class="sync-bar" id="sync-bar" style="display:none">
+    <span id="sync-info" style="font-weight:600">本地有未同步的修改</span>
+    <span id="sync-detail" style="font-size:12px;color:var(--sub)"></span>
+    <button class="btn sm" onclick="copySyncSummary()" title="复制变更摘要，发给AI即可同步到GitHub仓库">📋 复制变更摘要</button>
+    <button class="btn sm" onclick="clearLocalDiff()" style="color:var(--red);border-color:#f3c1c1">🗑 放弃本地修改</button>
+  </div>
 
   <div class="stats">
     <div class="stat-card"><div class="label">观察池股票数</div><div class="value" id="stat-count">0</div></div>
@@ -292,6 +303,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 // localStorage 只保存"用户差异"(diff)：removed删掉的 / custom改过的 / added新增的。
 // 每次加载 = 仓库数据 + 应用 diff → 全平台自动合并：仓库新增票自动出现，用户删/改/加持续生效。
 let pool = { meta:{ valuation_bands:[], disclaimer:"" }, stocks:[] };
+let repoBase = null;           // 仓库基准数据（用于生成变更摘要）
 const LS_KEY = 'watchpool_v1';        // 旧版完整快照（迁移用）
 const DIFF_KEY = 'watchpool_diff_v1'; // 新版差异同步
 
@@ -333,13 +345,83 @@ function applyDiff(repo, diff){
 
 function loadPool(){
   fetch('data/watchpool.json').then(r=>r.json()).then(repo=>{
+    repoBase = repo;
     let diff = loadDiff();
     diff = migrateLegacy(diff);
     pool = applyDiff(repo, diff);
     renderAll();
+    updateSyncBar();
   }).catch(()=>{
     toast('⚠️ 无法加载 data/watchpool.json，请通过本仓库页面访问');
   });
+}
+
+// ============ 同步状态条 ============
+function stockName(code){
+  if(repoBase){
+    const s = repoBase.stocks.find(x=>x.code===code);
+    if(s) return s.name;
+  }
+  const s = pool.stocks.find(x=>x.code===code);
+  return s ? s.name : code;
+}
+
+function updateSyncBar(){
+  const bar = document.getElementById('sync-bar');
+  const diff = loadDiff();
+  const nRemoved = diff.removed.length;
+  const nAdded = diff.added.length;
+  const nCustom = Object.keys(diff.custom).length;
+  const total = nRemoved + nAdded + nCustom;
+  if(!total){ bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  const parts = [];
+  if(nRemoved) parts.push('删 '+nRemoved+' 只');
+  if(nAdded) parts.push('加 '+nAdded+' 只');
+  if(nCustom) parts.push('改 '+nCustom+' 只');
+  document.getElementById('sync-info').textContent = '🔔 本地有未同步修改：';
+  document.getElementById('sync-detail').textContent = parts.join(' ｜ ') + '（点「复制变更摘要」发给 AI 即可同步到 GitHub）';
+}
+
+function syncSummaryText(){
+  const diff = loadDiff();
+  const lines = [];
+  lines.push('【观察池同步请求】' + new Date().toLocaleString('zh-CN',{hour12:false}));
+  diff.removed.forEach(c=>{ lines.push('- 删除：' + stockName(c) + ' (' + c + ')'); });
+  diff.added.forEach(s=>{ lines.push('- 新增：' + (s.name||s.code) + ' (' + s.code + ') 预期每股分红 ' + s.expDps + ' 元' + (s.note? '，备注：'+s.note : '')); });
+  Object.keys(diff.custom).forEach(c=>{
+    const o = diff.custom[c];
+    const name = stockName(c);
+    const edits = [];
+    if(o.expDps!=null) edits.push('预期每股分红=' + o.expDps + ' 元');
+    if(o.note!=null) edits.push('备注="' + o.note + '"');
+    if(edits.length) lines.push('- 修改：' + name + ' (' + c + ') ' + edits.join('，'));
+  });
+  return lines.join('\n');
+}
+
+function copySyncSummary(){
+  const txt = syncSummaryText();
+  const done = () => { toast('✅ 已复制，粘贴发给 AI 即可同步'); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt, done));
+  } else fallbackCopy(txt, done);
+}
+function fallbackCopy(txt, done){
+  const ta = document.createElement('textarea');
+  ta.value = txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ toast('⚠️ 复制失败，请手动导出'); }
+  document.body.removeChild(ta);
+}
+
+function clearLocalDiff(){
+  if(!confirm('确定放弃所有本地修改（删除/新增/修改）并恢复仓库数据吗？')) return;
+  try{ localStorage.removeItem(DIFF_KEY); localStorage.removeItem(LS_KEY); }catch(e){}
+  const bar = document.getElementById('sync-bar');
+  if(bar) bar.style.display = 'none';
+  if(repoBase){ pool = repoBase; renderAll(); }
+  toast('✅ 已恢复仓库数据');
 }
 
 // ============ 行情 ============
@@ -557,6 +639,7 @@ function applyAutoDps(code){
   saveDiff(diff);
   pool = applyDiff(pool, diff);
   renderAll();
+  updateSyncBar();
   toast('✅ ' + s.name + ' 预期每股分红已更新为 ' + newDps.toFixed(2) + ' 元');
 }
 
@@ -960,7 +1043,7 @@ function saveStock(){
     pool = applyDiff(pool, diff);
     toast('✅ 已加入观察池');
   }
-  closeModal(); refreshQuotes();
+  closeModal(); refreshQuotes(); updateSyncBar();
 }
 function removeStock(i){
   if(!confirm('确定从观察池移除 '+pool.stocks[i].name+' 吗？')) return;
@@ -973,6 +1056,7 @@ function removeStock(i){
   delete diff.custom[code];
   saveDiff(diff);
   pool = applyDiff(pool, diff);
+  updateSyncBar();
   renderAll();
   if(!pool.stocks.length){ quotes={}; }
   else refreshQuotes();
