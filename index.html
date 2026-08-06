@@ -88,6 +88,8 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .dps-val{font-size:11px;color:var(--sub);display:block;margin-top:2px}
+.yield-ex{font-size:12px;font-weight:600;color:var(--gold);margin-left:4px;cursor:help}
+.dps-ex{font-size:10px;color:var(--gold);margin-left:4px}
 .stock-link{cursor:pointer;text-decoration:none;color:var(--text);border-bottom:1px dashed var(--border)}
 .stock-link:hover{color:var(--primary);border-bottom-color:var(--primary)}
 .kline-modal{width:min(860px,95vw)}
@@ -862,6 +864,14 @@ function renderTable(){
   tb.innerHTML = list.map(s=>{
     const q = quotes[s.code];
     const y = q && s.expDps>0 ? s.expDps/q.price*100 : null;
+    // 不含特殊分红的预期股息率（若有 expDpsExSpecial 字段，如南山铝业特殊分红）
+    const yEx = q && s.expDpsExSpecial>0 ? s.expDpsExSpecial/q.price*100 : null;
+    const yExTxt = yEx!=null
+      ? `<span class="yield-ex" title="不含特殊分红的预期股息率（${s.expDpsExSpecial.toFixed(2)}元/股 ÷ 现价）">${yEx.toFixed(2)}%</span>`
+      : '';
+    const yExDpsTxt = s.expDpsExSpecial>0
+      ? `<span class="dps-ex" title="不含特殊分红的预期每股分红">（不含特殊 ${s.expDpsExSpecial.toFixed(2)}元）</span>`
+      : '';
     const b = y!=null ? bandOf(y) : BANDS[4];
     const chgCls = !q ? 'flat' : (q.chg>0?'up':(q.chg<0?'down':'flat'));
     const chgTxt = !q ? '—' : (q.chg>0?'+':'')+q.chg.toFixed(2)+' ('+(q.chg>0?'+':'')+q.chgPct.toFixed(2)+'%)';
@@ -927,8 +937,8 @@ function renderTable(){
       <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
       <td class="${chgCls}">${chgTxt}</td>
       <td><span class="ttm-yield">${ttmTxt}</span></td>
-      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}` : '<span class="flat">—</span>'}
-        <span class="dps-val">${s.expDps? s.expDps.toFixed(2)+'元' : ''}</span>
+      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}${yExTxt}` : '<span class="flat">—</span>'}
+        <span class="dps-val">${s.expDps? s.expDps.toFixed(2)+'元' : ''}${yExDpsTxt}</span>
         ${autoDpsTxt}</td>
       <td>${excessTxt}</td>
       <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
