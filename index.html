@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>高股息观察池 · 可持续预期股息率看板</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 :root{
   --bg:#f5f6f8; --card:#ffffff; --border:#e5e7eb;
@@ -87,6 +88,15 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .dps-val{font-size:11px;color:var(--sub);display:block;margin-top:2px}
+.stock-link{cursor:pointer;text-decoration:none;color:var(--text);border-bottom:1px dashed var(--border)}
+.stock-link:hover{color:var(--primary);border-bottom-color:var(--primary)}
+.kline-modal{width:min(860px,95vw)}
+.kline-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.kline-head h3{font-size:16px;margin:0}
+.kline-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.kline-period{display:flex;gap:4px}
+.period-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
+.kline-foot{font-size:11px;color:var(--sub);margin-top:8px;text-align:center}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
@@ -187,7 +197,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <input type="hidden" id="edit-index">
     <div class="form-row">
       <label>股票代码 <span style="color:var(--red)">*</span></label>
-      <input id="f-code" placeholder="sh601088 / sz000895 / hk00883 / usAAPL" onchange="autoFill()">
+      <input id="f-code" placeholder="sh601088 / sz000895" onchange="autoFill()">
       <div class="hint">当前观察池专注 A 股：sh+沪市代码（如 sh601088），sz+深市代码（如 sz000895）；输入后自动识别名称与现价</div>
     </div>
     <div class="form-row">
@@ -211,6 +221,26 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
       <button class="btn" onclick="closeModal()">取消</button>
       <button class="btn primary" onclick="saveStock()">保存</button>
     </div>
+  </div>
+</div>
+
+<!-- K线图模态框 -->
+<div class="modal-mask" id="kline-modal">
+  <div class="modal kline-modal">
+    <div class="kline-head">
+      <h3 id="kline-title">走势图</h3>
+      <div class="kline-actions">
+        <div class="kline-period">
+          <button class="btn sm period-btn active" data-p="day" onclick="switchPeriod('day')">日K</button>
+          <button class="btn sm period-btn" data-p="week" onclick="switchPeriod('week')">周K</button>
+          <button class="btn sm period-btn" data-p="month" onclick="switchPeriod('month')">月K</button>
+        </div>
+        <a id="kline-external" class="btn sm" target="_blank" rel="noopener">腾讯行情 ↗</a>
+        <button class="btn sm" onclick="closeKline()">关闭</button>
+      </div>
+    </div>
+    <div id="kline-chart" style="width:100%;height:480px"></div>
+    <div class="kline-foot" id="kline-foot">点击观察池中的股票名称查看实时走势</div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -560,7 +590,7 @@ function renderTable(){
         ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
         : '');
     return `<tr>
-      <td><span class="stock-name">${esc(s.name)}</span><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}</td>
+      <td><a class="stock-link" onclick="openKline('${s.code}','${esc(s.name)}')" title="点击查看实时走势">${esc(s.name)}</a><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}</td>
       <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
       <td class="${chgCls}">${chgTxt}</td>
       <td><span class="ttm-yield">${ttmTxt}</span></td>
@@ -608,6 +638,144 @@ function openEditModal(i){
   document.getElementById('modal').classList.add('show');
 }
 function closeModal(){ document.getElementById('modal').classList.remove('show'); }
+
+// ============ K线图（腾讯K线接口 + ECharts） ============
+let klineChart = null;
+let klineCode = null;
+let klinePeriod = 'day';
+
+function ensureEcharts(){
+  return new Promise((resolve, reject) => {
+    if(window.echarts){ resolve(); return; }
+    const urls = [
+      'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js',
+      'https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js',
+      'https://unpkg.com/echarts@5.5.0/dist/echarts.min.js'
+    ];
+    let i = 0;
+    const load = () => {
+      const s = document.createElement('script');
+      s.src = urls[i];
+      s.onload = () => window.echarts ? resolve() : (++i < urls.length ? load() : reject(new Error('echarts load fail')));
+      s.onerror = () => (++i < urls.length ? load() : reject(new Error('echarts load fail')));
+      document.head.appendChild(s);
+    };
+    load();
+  });
+}
+
+function openKline(code, name){
+  klineCode = code;
+  klinePeriod = 'day';
+  document.getElementById('kline-title').textContent = name + ' (' + code + ')';
+  document.getElementById('kline-external').href = 'https://gu.qq.com/' + code + '/gp';
+  document.getElementById('kline-foot').textContent = '数据来源：腾讯行情K线接口（前复权）｜ 红涨绿跌';
+  document.getElementById('kline-modal').classList.add('show');
+  // 重置周期按钮
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.toggle('active', b.dataset.p==='day'));
+  ensureEcharts().then(()=>{
+    if(!klineChart) klineChart = echarts.init(document.getElementById('kline-chart'));
+    loadKline();
+  }).catch(()=>{
+    document.getElementById('kline-foot').textContent = '⚠️ ECharts 加载失败，请检查网络（CDN不可达）';
+  });
+}
+function closeKline(){
+  document.getElementById('kline-modal').classList.remove('show');
+  klineCode = null;
+}
+function switchPeriod(p){
+  klinePeriod = p;
+  document.querySelectorAll('.period-btn').forEach(b=>b.classList.toggle('active', b.dataset.p===p));
+  if(klineCode) loadKline();
+}
+
+function loadKline(){
+  if(!klineCode) return;
+  const periodMap = { day:'day', week:'week', month:'month' };
+  const p = periodMap[klinePeriod] || 'day';
+  document.getElementById('kline-foot').textContent = '加载中...';
+  const url = 'https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=' + klineCode + ',' + p + ',,,250,qfq&_t=' + Date.now();
+  fetch(url, { method:'GET' })
+    .then(r => r.json())
+    .then(js => {
+      const node = js && js.data && js.data[klineCode];
+      if(!node){ document.getElementById('kline-foot').textContent = '⚠️ 未获取到K线数据'; return; }
+      // 前复权日K在 node[p] 或 node['qfq'+p]
+      const rows = node[p] || node['qfq' + p] || node['hfq' + p];
+      if(!rows || !rows.length){ document.getElementById('kline-foot').textContent = '⚠️ 无数据'; return; }
+      renderKline(rows, klineCode);
+      document.getElementById('kline-foot').textContent = '数据来源：腾讯行情K线接口（前复权）｜ 红涨绿跌 ｜ 共 ' + rows.length + ' 根';
+    })
+    .catch(() => { document.getElementById('kline-foot').textContent = '⚠️ K线获取失败，请检查网络'; });
+}
+
+function renderKline(rows, code){
+  const dates = [], ohlc = [], vols = [];
+  rows.forEach(r => {
+    // 格式: [日期, 开盘, 收盘, 最高, 最低, 成交量(手)]
+    dates.push(r[0]);
+    ohlc.push([parseFloat(r[1]), parseFloat(r[2]), parseFloat(r[3]), parseFloat(r[4])]);
+    vols.push(parseFloat(r[5])||0);
+  });
+  // 均线
+  const ma = (n) => ohlc.map((v,i)=>{
+    if(i < n-1) return '-';
+    let s = 0; for(let j=i-n+1;j<=i;j++) s += v[1]; return (s/n).toFixed(2);
+  });
+  const ma5 = ma(5), ma10 = ma(10), ma20 = ma(20);
+  // 涨跌颜色
+  const upColor = '#e03131', downColor = '#2f9e44';
+  const option = {
+    animation: false,
+    backgroundColor: '#ffffff',
+    tooltip: {
+      trigger: 'axis', axisPointer: { type: 'cross' },
+      formatter: (params) => {
+        let html = '<b>' + params[0].axisValue + '</b><br/>';
+        const candle = params.find(x=>x.seriesName==='K线');
+        if(candle){
+          const d = candle.data;
+          const o=candle.data[1], c=candle.data[2], h=candle.data[3], l=candle.data[4];
+          const col = c>=o ? upColor : downColor;
+          html += '开:'+o.toFixed(2)+' 收:<span style="color:'+col+'">'+c.toFixed(2)+'</span> 高:'+h.toFixed(2)+' 低:'+l.toFixed(2)+'<br/>';
+        }
+        params.forEach(p=>{ if(p.seriesName!=='K线') html += p.marker + ' ' + p.seriesName + ': ' + p.value + '<br/>'; });
+        return html;
+      }
+    },
+    legend: { data:['K线','MA5','MA10','MA20'], top:0, textStyle:{color:'#666',fontSize:11} },
+    grid: [ { left:70, right:20, top:30, height:'58%' }, { left:70, right:20, top:'72%', height:'20%' } ],
+    xAxis: [
+      { type:'category', data:dates, boundaryGap:true, axisLine:{lineStyle:{color:'#ccc'}}, axisLabel:{fontSize:10}, splitLine:{show:false} },
+      { type:'category', data:dates, gridIndex:1, axisLabel:{show:false}, axisLine:{lineStyle:{color:'#ccc'}}, splitLine:{show:false} }
+    ],
+    yAxis: [
+      { scale:true, axisLabel:{fontSize:10}, splitLine:{lineStyle:{color:'#eee'}} },
+      { scale:true, gridIndex:1, axisLabel:{fontSize:10, formatter: v => v>=10000 ? (v/10000).toFixed(1)+'万' : v}, splitLine:{show:false} }
+    ],
+    dataZoom: [
+      { type:'inside', xAxisIndex:[0,1], start:60, end:100 },
+      { type:'slider', xAxisIndex:[0,1], start:60, end:100, height:16, bottom:2 }
+    ],
+    series: [
+      {
+        name:'K线', type:'candlestick', data:ohlc,
+        itemStyle: { color:upColor, color0:downColor, borderColor:upColor, borderColor0:downColor }
+      },
+      { name:'MA5', type:'line', data:ma5, symbol:'none', smooth:true, lineStyle:{width:1,color:'#f59f00'}, itemStyle:{color:'#f59f00'} },
+      { name:'MA10', type:'line', data:ma10, symbol:'none', smooth:true, lineStyle:{width:1,color:'#1c64f2'}, itemStyle:{color:'#1c64f2'} },
+      { name:'MA20', type:'line', data:ma20, symbol:'none', smooth:true, lineStyle:{width:1,color:'#9b59b6'}, itemStyle:{color:'#9b59b6'} },
+      { name:'成交量', type:'bar', xAxisIndex:1, yAxisIndex:1, data:vols.map((v,i)=>{
+        const c = ohlc[i][2] >= ohlc[i][1];
+        return { value:v, itemStyle:{ color:c ? upColor : downColor, opacity:0.6 } };
+      }) }
+    ]
+  };
+  klineChart.setOption(option, true);
+}
+document.getElementById('kline-modal').addEventListener('click', e=>{ if(e.target.id==='kline-modal') closeKline(); });
+window.addEventListener('resize', ()=>{ if(klineChart) klineChart.resize(); });
 
 function autoFill(){
   const code = document.getElementById('f-code').value.trim();
