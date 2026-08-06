@@ -30,7 +30,8 @@
         "label": "极端低估·重点研究",
         "class": "band-extreme"
       }
-    ]
+    ],
+    "scope": "当前仅跟踪A股（港股/美股暂不考虑）"
   },
   "stocks": [
     {
@@ -357,33 +358,6 @@
         }
       ],
       "category": "资源类·水泥"
-    },
-    {
-      "code": "hk00883",
-      "name": "中国海洋石油",
-      "market": "港股",
-      "expDps": 1.28,
-      "note": "高股息油气，承诺分红率40%+，油价敏感",
-      "dividendRatioTtm": 5.64,
-      "category": "资源类·油气"
-    },
-    {
-      "code": "hk00941",
-      "name": "中国移动",
-      "market": "港股",
-      "expDps": 5.26,
-      "note": "港股股息率较A股更高",
-      "dividendRatioTtm": 6.38,
-      "category": "稳健类"
-    },
-    {
-      "code": "hk00005",
-      "name": "汇丰控股",
-      "market": "港股",
-      "expDps": 5.88,
-      "note": "国际银行，定期分红，受利率周期影响",
-      "dividendRatioTtm": 3.67,
-      "category": "稳健类"
     }
   ]
 }
