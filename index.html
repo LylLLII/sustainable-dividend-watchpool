@@ -227,6 +227,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
+    <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
   </div>
 </div>
@@ -287,17 +288,59 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 
 <script>
 // ============ 数据 ============
+// 同步机制：data/watchpool.json 是仓库基准数据；
+// localStorage 只保存"用户差异"(diff)：removed删掉的 / custom改过的 / added新增的。
+// 每次加载 = 仓库数据 + 应用 diff → 全平台自动合并：仓库新增票自动出现，用户删/改/加持续生效。
 let pool = { meta:{ valuation_bands:[], disclaimer:"" }, stocks:[] };
-const LS_KEY = 'watchpool_v1';
+const LS_KEY = 'watchpool_v1';        // 旧版完整快照（迁移用）
+const DIFF_KEY = 'watchpool_diff_v1'; // 新版差异同步
+
+function defaultDiff(){ return { removed:[], custom:{}, added:[] }; }
+
+function loadDiff(){
+  try{
+    const d = JSON.parse(localStorage.getItem(DIFF_KEY));
+    if(d && Array.isArray(d.removed) && d.custom && Array.isArray(d.added)) return d;
+  }catch(e){}
+  return defaultDiff();
+}
+function saveDiff(d){ try{ localStorage.setItem(DIFF_KEY, JSON.stringify(d)); }catch(e){} }
+
+// 旧版快照迁移：把旧快照中"用户手工加过"的股票转为 added（删除操作无法追溯，保留仓库数据）
+function migrateLegacy(diff){
+  try{
+    const ls = localStorage.getItem(LS_KEY);
+    if(!ls) return diff;
+    const old = JSON.parse(ls);
+    if(!old || !Array.isArray(old.stocks)) return diff;
+    const repoCodes = new Set(pool.stocks.map(s=>s.code));
+    const diffAdded = new Set(diff.added.map(s=>s.code));
+    old.stocks.forEach(s=>{
+      if(!repoCodes.has(s.code) && !diffAdded.has(s.code)) diff.added.push(s);
+    });
+    localStorage.removeItem(LS_KEY);
+  }catch(e){}
+  return diff;
+}
+
+// 应用 diff 到仓库数据 → 得到最终观察池
+function applyDiff(repo, diff){
+  let stocks = repo.stocks.filter(s => !diff.removed.includes(s.code));
+  diff.added.forEach(a => { if(!stocks.some(s=>s.code===a.code)) stocks.push(a); });
+  stocks = stocks.map(s => diff.custom[s.code] ? {...s, ...diff.custom[s.code]} : s);
+  return {...repo, stocks};
+}
 
 function loadPool(){
-  const ls = localStorage.getItem(LS_KEY);
-  if(ls){ try{ pool = JSON.parse(ls); return; }catch(e){} }
-  fetch('data/watchpool.json').then(r=>r.json()).then(d=>{ pool = d; renderAll(); }).catch(()=>{
+  fetch('data/watchpool.json').then(r=>r.json()).then(repo=>{
+    let diff = loadDiff();
+    diff = migrateLegacy(diff);
+    pool = applyDiff(repo, diff);
+    renderAll();
+  }).catch(()=>{
     toast('⚠️ 无法加载 data/watchpool.json，请通过本仓库页面访问');
   });
 }
-function persist(){ localStorage.setItem(LS_KEY, JSON.stringify(pool)); }
 
 // ============ 行情 ============
 let quotes = {};
@@ -504,11 +547,17 @@ function applyAutoDps(code){
   const s = pool.stocks.find(x=>x.code===code);
   const auto = autoDps[code];
   if(!s || !auto || !(auto.dps>0)){ toast('⚠️ 无可用自动值'); return; }
-  s.expDps = Math.round(auto.dps*100)/100;
-  s.autoDpsApplied = true;
-  s.autoNote = auto.note || '';
-  persist(); renderAll();
-  toast('✅ ' + s.name + ' 预期每股分红已更新为 ' + s.expDps.toFixed(2) + ' 元');
+  const newDps = Math.round(auto.dps*100)/100;
+  const diff = loadDiff();
+  if(diff.added.some(x=>x.code===code)){
+    diff.added = diff.added.map(x=> x.code===code ? {...x, expDps:newDps, autoNote:auto.note||''} : x);
+  } else {
+    diff.custom[code] = {...(diff.custom[code]||{}), expDps:newDps, autoNote:auto.note||''};
+  }
+  saveDiff(diff);
+  pool = applyDiff(pool, diff);
+  renderAll();
+  toast('✅ ' + s.name + ' 预期每股分红已更新为 ' + newDps.toFixed(2) + ' 元');
 }
 
 // ============ 渲染 ============
@@ -891,28 +940,54 @@ function saveStock(){
   if(!code || !/^(sh|sz|hk|us)[a-zA-Z0-9]+$/.test(code)){ toast('⚠️ 代码格式不正确，如 sh601088'); return; }
   if(!(dps>0)){ toast('⚠️ 请填写预期每股分红'); return; }
   const obj = { code, name: name||code, market: code.startsWith('sh')?'A股':code.startsWith('sz')?'A股':code.startsWith('hk')?'港股':'美股', expDps: dps, note };
-  if(i>=0){ pool.stocks[i] = {...pool.stocks[i], ...obj}; toast('✅ 已保存'); }
+  const diff = loadDiff();
+  if(i>=0){
+    // 编辑：判断是仓库票还是用户新增票
+    const isAdded = diff.added.some(s=>s.code===code);
+    if(isAdded){
+      diff.added = diff.added.map(s=> s.code===code ? {...s, ...obj} : s);
+    } else {
+      diff.custom[code] = {...(diff.custom[code]||{}), ...obj};
+    }
+    saveDiff(diff);
+    pool = applyDiff(pool, diff); // pool 本身就是合并后的，直接应用
+    toast('✅ 已保存');
+  }
   else {
     if(pool.stocks.some(s=>s.code===code)){ toast('⚠️ 该股票已在观察池中'); return; }
-    pool.stocks.push(obj); toast('✅ 已加入观察池');
+    diff.added.push(obj);
+    saveDiff(diff);
+    pool = applyDiff(pool, diff);
+    toast('✅ 已加入观察池');
   }
-  persist(); closeModal(); refreshQuotes();
+  closeModal(); refreshQuotes();
 }
 function removeStock(i){
   if(!confirm('确定从观察池移除 '+pool.stocks[i].name+' 吗？')) return;
-  pool.stocks.splice(i,1); persist(); renderAll();
+  const code = pool.stocks[i].code;
+  const diff = loadDiff();
+  // 若是用户新增票：从 added 删除；否则加入 removed
+  const addedIdx = diff.added.findIndex(s=>s.code===code);
+  if(addedIdx>=0){ diff.added.splice(addedIdx,1); }
+  else if(!diff.removed.includes(code)){ diff.removed.push(code); }
+  delete diff.custom[code];
+  saveDiff(diff);
+  pool = applyDiff(pool, diff);
+  renderAll();
   if(!pool.stocks.length){ quotes={}; }
   else refreshQuotes();
 }
 
 // ============ 导出 ============
 function exportJSON(){
-  const blob = new Blob([JSON.stringify(pool,null,2)],{type:'application/json'});
+  // 导出合并后的完整观察池（含本地差异），可直接作为 data/watchpool.json 提交
+  const out = { meta: pool.meta, stocks: pool.stocks };
+  const blob = new Blob([JSON.stringify(out,null,2)],{type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'watchpool_export_'+new Date().toISOString().slice(0,10)+'.json';
   a.click();
-  toast('✅ 已导出 JSON（含本地修改）');
+  toast('✅ 已导出合并后数据（可提交为 data/watchpool.json）');
 }
 
 // ============ 其他 ============
