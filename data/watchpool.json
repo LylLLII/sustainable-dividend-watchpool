@@ -432,7 +432,8 @@
           "dps": 0.04,
           "exDate": "2025-09-25"
         }
-      ]
+      ],
+      "expDpsExSpecial": 0.18
     },
     {
       "code": "sh601899",
