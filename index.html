@@ -228,7 +228,10 @@ function collectQuotes(codes){
     q[c] = {
       name: p[1], price: parseFloat(p[3]),
       chg: parseFloat(p[31]), chgPct: parseFloat(p[32]),
-      high: parseFloat(p[33]), low: parseFloat(p[34])
+      high: parseFloat(p[33]), low: parseFloat(p[34]),
+      // 52周高低价：腾讯接口 A股字段67/68；港股/美股字段结构不同，无则回退当日高低
+      high52: parseFloat(p[67]) || parseFloat(p[33]),
+      low52: parseFloat(p[68]) || parseFloat(p[34])
     };
   });
   return q;
@@ -294,8 +297,8 @@ function renderTable(){
     const b = y!=null ? bandOf(y) : BANDS[4];
     const chgCls = !q ? 'flat' : (q.chg>0?'up':(q.chg<0?'down':'flat'));
     const chgTxt = !q ? '—' : (q.chg>0?'+':'')+q.chg.toFixed(2)+' ('+(q.chg>0?'+':'')+q.chgPct.toFixed(2)+'%)';
-    // 历史股息率区间：基于52周高低，若无则用当日高低
-    const hi = q&&q.high? q.high : 0, lo = q&&q.low? q.low : 0;
+    // 历史股息率区间：基于52周高低价
+    const hi = q ? q.high52 : 0, lo = q ? q.low52 : 0;
     let hist = '—';
     if(hi>0 && lo>0 && s.expDps>0) hist = (s.expDps/hi*100).toFixed(1)+'% ~ '+(s.expDps/lo*100).toFixed(1)+'%';
     // 参考加仓价（对应档位股息率的买入价）
