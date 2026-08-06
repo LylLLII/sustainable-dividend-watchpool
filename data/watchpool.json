@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "strategy": "可持续高股息估值底价值投资策略",
+    "formula": "可持续预期股息率 = 预期每股分红 ÷ 当前股价 × 100%",
+    "updated": "2026-08-06",
+    "disclaimer": "预期每股分红(expDps)为按最近已宣告分红年化估算的参考值，请结合公司盈利与分红政策自行复核后维护更新。",
+    "valuation_bands": [
+      { "max": 5,   "label": "正常/偏贵", "class": "band-normal" },
+      { "max": 6,   "label": "开始低估",  "class": "band-cheap" },
+      { "max": 7,   "label": "明显低估",  "class": "band-cheaper" },
+      { "max": 8,   "label": "深度低估",  "class": "band-deep" },
+      { "max": 999, "label": "极端低估·重点研究", "class": "band-extreme" }
+    ]
+  },
+  "stocks": [
+    { "code": "sh601088", "name": "中国神华", "market": "A股", "expDps": 1.93, "note": "煤价下行致2025年度分红下滑，关注其高分红承诺兑现" },
+    { "code": "sh600900", "name": "长江电力", "market": "A股", "expDps": 1.00, "note": "水电龙头，现金流极稳，分红承诺长期稳固" },
+    { "code": "sh601398", "name": "工商银行", "market": "A股", "expDps": 0.31, "note": "国有大行，分红率约30%，稳定" },
+    { "code": "sh601939", "name": "建设银行", "market": "A股", "expDps": 0.39, "note": "国有大行，分红率约30%，稳定" },
+    { "code": "sh601288", "name": "农业银行", "market": "A股", "expDps": 0.25, "note": "国有大行，分红率约30%，稳定" },
+    { "code": "sh600028", "name": "中国石化", "market": "A股", "expDps": 0.20, "note": "分红+回购组合回报，油价波动影响盈利" },
+    { "code": "sh601006", "name": "大秦铁路", "market": "A股", "expDps": 0.22, "note": "煤炭运输大动脉，分红率长期超50%" },
+    { "code": "sz000895", "name": "双汇发展", "market": "A股", "expDps": 1.45, "note": "肉制品龙头，高分红习惯，关注需求" },
+    { "code": "sz000651", "name": "格力电器", "market": "A股", "expDps": 3.00, "note": "含特别分红，历史分红率极高" },
+    { "code": "sh600941", "name": "中国移动", "market": "A股", "expDps": 4.70, "note": "运营商龙头，承诺分红率提升至75%" },
+    { "code": "sh601225", "name": "陕西煤业", "market": "A股", "expDps": 0.95, "note": "煤炭主业稳健，分红率高" },
+    { "code": "sh601919", "name": "中远海控", "market": "A股", "expDps": 1.00, "note": "强周期航运股，分红随盈利大幅波动，谨慎" },
+    { "code": "sh600585", "name": "海螺水泥", "market": "A股", "expDps": 0.85, "note": "水泥行业下行期，分红仍维持但盈利承压" },
+    { "code": "hk00883", "name": "中国海洋石油", "market": "港股", "expDps": 1.28, "note": "高股息油气，承诺分红率40%+，油价敏感" },
+    { "code": "hk00941", "name": "中国移动", "market": "港股", "expDps": 5.26, "note": "港股股息率较A股更高，人民币计价" },
+    { "code": "hk00005", "name": "汇丰控股", "market": "港股", "expDps": 5.88, "note": "国际银行，定期分红，受利率周期影响" }
+  ]
+}
