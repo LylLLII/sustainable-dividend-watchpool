@@ -97,6 +97,22 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .kline-period{display:flex;gap:4px}
 .period-btn.active{background:var(--primary);border-color:var(--primary);color:#fff}
 .kline-foot{font-size:11px;color:var(--sub);margin-top:8px;text-align:center}
+.custom-filter{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--sub);flex-wrap:wrap}
+.custom-filter select{border:1px solid var(--border);border-radius:6px;padding:5px 6px;font-size:12px;background:#fff;outline:none}
+/* 状态徽章 */
+.zones{display:flex;gap:8px;margin-bottom:12px;font-size:12px;flex-wrap:wrap}
+.zone{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:16px;font-weight:600}
+.zone-sell{background:#f1f1f4;color:#666}
+.zone-hold{background:#fff3bf;color:#9a6700}
+.zone-buy{background:#d3f9d8;color:#1a7f37}
+.zone-deep{background:#ffd8a8;color:#c2410c}
+.zone-extreme{background:#ffc9c9;color:#c92a2a}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-sell{background:#f1f1f4;color:#666}
+.badge-hold{background:#fff3bf;color:#9a6700}
+.badge-buy{background:#d3f9d8;color:#1a7f37}
+.badge-deep{background:#ffd8a8;color:#c2410c}
+.badge-extreme{background:#ffc9c9;color:#c92a2a}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .3s;z-index:200;pointer-events:none}
 .toast.show{opacity:1}
 .loading-row td{text-align:center;color:var(--sub);padding:20px;font-size:13px}
@@ -137,15 +153,36 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     </span>
   </div>
 
+  <div class="zones" id="zones">
+    <span class="zone zone-sell">🚪 卖出区 ≤4%：<b id="zc-sell">0</b></span>
+    <span class="zone zone-hold">🤔 持有区 4~5%：<b id="zc-hold">0</b></span>
+    <span class="zone zone-buy">🟢 买入区 5~6%：<b id="zc-buy">0</b></span>
+    <span class="zone zone-deep">🟠 低估区 6~8%：<b id="zc-deep">0</b></span>
+    <span class="zone zone-extreme">🔴 极端低估 ≥8%：<b id="zc-extreme">0</b></span>
+    <span style="margin-left:auto;color:var(--sub);font-size:12px">点击下方表头筛选任意区间；自定义筛选可设任意阈值</span>
+  </div>
+
   <div class="toolbar">
     <input class="search-input" id="search" placeholder="🔍 搜索名称 / 代码..." oninput="renderTable()">
     <select id="filter" onchange="renderTable()">
       <option value="all">全部</option>
-      <option value="cheap">低估及以上 (≥5%)</option>
-      <option value="deeper">明显低估及以上 (≥6%)</option>
-      <option value="deep">深度低估及以上 (≥7%)</option>
+      <option value="sell">卖出区 (≤4%)</option>
+      <option value="hold">持有区 (4~5%)</option>
+      <option value="cheap">开始低估 (5~6%)</option>
+      <option value="deeper">明显低估 (6~7%)</option>
+      <option value="deep">深度低估 (7~8%)</option>
       <option value="extreme">极端低估 (≥8%)</option>
     </select>
+    <span class="custom-filter">
+      自定义筛选 预期股息率
+      <select id="custom-op" onchange="renderTable()">
+        <option value="gte">≥</option>
+        <option value="lte">≤</option>
+      </select>
+      <input class="bond-input" id="custom-yield" type="number" step="0.1" min="0" max="20" placeholder="如 4.5">
+      <b>%</b>
+      <button class="btn sm" onclick="renderTable()">筛选</button>
+    </span>
     <select id="sort" onchange="renderTable()">
       <option value="yield-desc">按预期股息率↓</option>
       <option value="yield-asc">按预期股息率↑</option>
@@ -491,13 +528,23 @@ function renderAll(){ renderStats(); renderTable(); }
 function filteredStocks(){
   const kw = (document.getElementById('search').value||'').trim().toLowerCase();
   const f = document.getElementById('filter').value;
+  const customOp = document.getElementById('custom-op').value;
+  const customY = parseFloat(document.getElementById('custom-yield').value);
   return pool.stocks.filter(s=>{
     if(kw && !(s.name.toLowerCase().includes(kw) || s.code.toLowerCase().includes(kw))) return false;
     const q = quotes[s.code]; const y = q && s.expDps>0 ? s.expDps/q.price*100 : -1;
-    if(f==='cheap' && y<5) return false;
-    if(f==='deeper' && y<6) return false;
-    if(f==='deep' && y<7) return false;
+    // 预设区间筛选
+    if(f==='sell' && !(y>=0 && y<=4)) return false;
+    if(f==='hold' && !(y>4 && y<5)) return false;
+    if(f==='cheap' && !(y>=5 && y<6)) return false;
+    if(f==='deeper' && !(y>=6 && y<7)) return false;
+    if(f==='deep' && !(y>=7 && y<8)) return false;
     if(f==='extreme' && y<8) return false;
+    // 自定义阈值筛选（输入了值才生效）
+    if(!isNaN(customY)){
+      if(customOp==='gte' && y < customY) return false;
+      if(customOp==='lte' && y > customY) return false;
+    }
     return true;
   }).sort((a,b)=>{
     const qa=quotes[a.code], qb=quotes[b.code];
@@ -510,6 +557,16 @@ function filteredStocks(){
   });
 }
 
+// 状态徽章：卖出区(≤4%) / 持有区(4-5%) / 买入区(5-6%) / 低估区(6-8%) / 极端低估(≥8%)
+function zoneOf(y){
+  if(!isFinite(y) || y<0) return { label:'—', cls:'badge-sell' };
+  if(y<=4) return { label:'🚪 卖出区', cls:'badge-sell' };
+  if(y<5) return { label:'🤔 持有区', cls:'badge-hold' };
+  if(y<6) return { label:'🟢 买入区', cls:'badge-buy' };
+  if(y<8) return { label:'🟠 低估区', cls:'badge-deep' };
+  return { label:'🔴 极端低估', cls:'badge-extreme' };
+}
+
 function renderStats(){
   const rows = pool.stocks.map(s=>{ const q=quotes[s.code]; return { s, q, y: q&&s.expDps>0? s.expDps/q.price*100 : -1 }; });
   const valid = rows.filter(r=>r.y>=0);
@@ -519,6 +576,12 @@ function renderStats(){
   document.getElementById('stat-cheap').textContent = valid.filter(r=>r.y>=5).length;
   document.getElementById('stat-deeper').textContent = valid.filter(r=>r.y>=6).length;
   document.getElementById('stat-deep').textContent = valid.filter(r=>r.y>=7).length;
+  // 分区统计
+  document.getElementById('zc-sell').textContent = valid.filter(r=>r.y>=0 && r.y<=4).length;
+  document.getElementById('zc-hold').textContent = valid.filter(r=>r.y>4 && r.y<5).length;
+  document.getElementById('zc-buy').textContent = valid.filter(r=>r.y>=5 && r.y<6).length;
+  document.getElementById('zc-deep').textContent = valid.filter(r=>r.y>=6 && r.y<8).length;
+  document.getElementById('zc-extreme').textContent = valid.filter(r=>r.y>=8).length;
 }
 
 function nextExDate(s){
@@ -589,8 +652,13 @@ function renderTable(){
       : (ttmDpsOf(s)!=null
         ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
         : '');
+    // 状态徽章（不删除，仅标注买卖区）
+    const zone = y!=null ? zoneOf(y) : { label:'—', cls:'badge-sell' };
     return `<tr>
-      <td><a class="stock-link" onclick="openKline('${s.code}','${esc(s.name)}')" title="点击查看实时走势">${esc(s.name)}</a><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}</td>
+      <td>
+        <a class="stock-link" onclick="openKline('${s.code}','${esc(s.name)}')" title="点击查看实时走势">${esc(s.name)}</a><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}
+        <br><span class="badge ${zone.cls}" title="预期股息率 ${y!=null?y.toFixed(2)+'%':'—'} 对应操作区">${zone.label}</span>
+      </td>
       <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
       <td class="${chgCls}">${chgTxt}</td>
       <td><span class="ttm-yield">${ttmTxt}</span></td>
