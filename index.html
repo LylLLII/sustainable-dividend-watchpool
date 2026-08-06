@@ -482,14 +482,15 @@ function b64decode(b64){
 function updateCloudStatus(msg){
   const el = document.getElementById('cloud-status');
   if(msg) el.textContent = msg;
-  else el.textContent = getToken() ? '已连接云端（Token 已配置）' : '未配置 Token（拉取不需要，推送需要）';
+  else el.textContent = getToken() ? '已连接云端（Token 已配置）' : '未配置 Token（私有仓库拉取/推送都需要）';
 }
 
 // 拉取云端：GET 仓库文件 → 作为新基准，合并本地 diff
 function pullCloud(){
+  if(!getToken()){ toast('⚠️ 私有仓库拉取也需要 Token，请先填写并保存'); document.getElementById('gh-token').focus(); return; }
   const status = document.getElementById('cloud-status');
   status.textContent = '拉取中...';
-  fetch(GH_API + '/repos/' + GH_REPO + '/contents/' + GH_PATH, { headers: ghHeaders(false) })
+  fetch(GH_API + '/repos/' + GH_REPO + '/contents/' + GH_PATH, { headers: ghHeaders(true) })
     .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(js => {
       const content = b64decode(js.content);
