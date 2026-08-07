@@ -100,6 +100,18 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .bond-input:focus{border-color:var(--primary)}
 .cat-tag{font-size:10px;color:var(--sub);border:1px solid var(--border);border-radius:4px;padding:0 4px;margin-left:4px}
 .biz-txt{font-size:11px;color:var(--sub);display:inline-block;margin-top:3px;line-height:1.4}
+.dec-cell{min-width:150px;line-height:1.5}
+.dec-state{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 7px;margin-bottom:3px}
+.dec-line{display:block;font-size:11.5px;color:#374151;margin-top:2px}
+.dec-pos{color:var(--primary);font-weight:700}
+.dec-price{color:var(--red);font-weight:700}
+.dec-warn{color:#b7791f}
+.dec-sub{color:var(--sub);font-size:10.5px}
+.fund-btn{margin-left:2px;padding:1px 7px;border-radius:8px;font-size:10.5px;cursor:pointer}
+.fund-btn.fund-good{background:#e6f4ea;color:#1a7f37;border:1px solid #b7dfc0}
+.fund-btn.fund-watch{background:#fef7e0;color:#9a6700;border:1px solid #f0dd9a}
+.fund-btn.fund-bad{background:#fdeaea;color:#c92a2a;border:1px solid #f3c1c1}
+.fund-btn.fund-none{background:#f3f4f6;color:var(--sub);border:1px solid #e5e7eb}
 .auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
@@ -261,6 +273,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；行业红线=资源/周期类≥7%（C32，血泪教训升级，按股票 isResource 标记判定）。<br>
+    <b style="color:var(--red)">🧭 决策引擎</b>：档位=非资源类 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类整体上移2%（7/8/9/10%）。卖出=非资源 ≤5%减仓/≤4.5%清仓（资源 7%/6.5%）。"下一档"=预期每股分红÷下一档股息率。基本面状态由你点击标记（🟢正常可加仓/🟡观察停止新增/🔴逻辑破坏停止买入并复核），系统仅自动提示派息率>100%。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
@@ -433,6 +446,7 @@ function syncSummaryText(){
     if(o.category!=null) edits.push('行业=' + o.category);
     if(o.biz!=null) edits.push('主营="' + o.biz + '"');
     if(o.isResource!=null) edits.push(o.isResource ? '资源类(7%红线)' : '非资源类');
+    if(o.fundStatus!=null) edits.push('基本面=' + ({good:'正常',watch:'观察',bad:'逻辑破坏'})[o.fundStatus]);
     if(edits.length) lines.push('- 修改：' + name + ' (' + c + ') ' + edits.join('，'));
   });
   return lines.join('\n');
@@ -881,6 +895,52 @@ function zoneOf(y){
   return { label:'🔴 极端低估', cls:'badge-extreme' };
 }
 
+// ============ 投资决策引擎（阶段1：状态/仓位/下一档价/卖出/基本面） ============
+// 档位规则：非资源类 5建仓/6加仓/7深度/8极端，资源周期类整体上移2%（C32红线）
+// 卖出：非资源 ≤5%减仓 ≤4.5%清仓；资源 ≤7%减仓 ≤6.5%清仓
+const DEC_DEFAULTS = { maxPos:20, buyRes:7, addRes:8, deepRes:9, extRes:10, sellRes:7, clearRes:6.5 };
+function decOf(s, q){
+  const y = q && s.expDps>0 ? s.expDps/q.price*100 : null;
+  const isRes = s.isResource===true;
+  const buy = isRes?DEC_DEFAULTS.buyRes:5, add = isRes?DEC_DEFAULTS.addRes:6,
+        deep = isRes?DEC_DEFAULTS.deepRes:7, ext = isRes?DEC_DEFAULTS.extRes:8,
+        sell = isRes?DEC_DEFAULTS.sellRes:5, clear = isRes?DEC_DEFAULTS.clearRes:4.5;
+  const d = { y, isRes, buy, add, deep, ext, sell, clear };
+  if(y==null || !isFinite(y) || y<0){ d.state='none'; d.label='—'; d.cls='badge-sell'; d.pos='—'; d.next=null; return d; }
+  if(y>=ext){ d.state='extreme'; d.label='🔥 极端低估'; d.cls='badge-extreme'; d.pos=DEC_DEFAULTS.maxPos+'%（复核后）'; d.next=null; }
+  else if(y>=deep){ d.state='deep'; d.label='🟠 深度低估'; d.cls='badge-deep'; d.pos='12%'; d.next=ext; }
+  else if(y>=add){ d.state='add'; d.label='🟢 加仓区'; d.cls='badge-buy'; d.pos='8%'; d.next=deep; }
+  else if(y>=buy){ d.state='buy'; d.label='🟢 建仓区'; d.cls='badge-buy'; d.pos='3%'; d.next=add; }
+  else if(y>=clear){ d.state='sell'; d.label='🟡 减仓区'; d.cls='badge-hold'; d.pos='减仓'; d.next=null; d.sellNote='估值修复，考虑减仓'; }
+  else { d.state='clear'; d.label='🔴 清仓区'; d.cls='badge-sell'; d.pos='清仓'; d.next=null; d.sellNote='估值偏贵，考虑清仓'; }
+  return d;
+}
+const FUND_ORDER = ['good','watch','bad',null];
+const FUND_MAP = {
+  good: ['🟢 正常','fund-good','✅ 基本面标记为正常'],
+  watch:['🟡 观察','fund-watch','🟡 基本面标记为观察'],
+  bad:  ['🔴 逻辑破坏','fund-bad','🔴 基本面标记为逻辑破坏'],
+  none: ['⚪ 未标记','fund-none','⚪ 已清除基本面标记']
+};
+function cycleFundStatus(code){
+  const s = pool.stocks.find(x=>x.code===code); if(!s) return;
+  const cur = s.fundStatus || null;
+  const next = FUND_ORDER[(FUND_ORDER.indexOf(cur)+1) % FUND_ORDER.length];
+  s.fundStatus = next || undefined;
+  const diff = loadDiff();
+  const o = diff.custom[code] = diff.custom[code]||{};
+  if(next) o.fundStatus = next; else delete o.fundStatus;
+  if(!Object.keys(o).length) delete diff.custom[code];
+  saveDiff(diff);
+  renderAll();
+  updateSyncBar();
+  toast(FUND_MAP[next||'none'][2]);
+}
+function fundBadge(s){
+  const f = FUND_MAP[s.fundStatus||'none'];
+  return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="cycleFundStatus(\''+s.code+'\')" title="点击切换：正常→观察→逻辑破坏→未标记">'+f[0]+'</button>';
+}
+
 function renderStats(){
   const rows = pool.stocks.map(s=>{ const q=quotes[s.code]; return { s, q, y: q&&s.expDps>0? s.expDps/q.price*100 : -1 }; });
   const valid = rows.filter(r=>r.y>=0);
@@ -923,6 +983,7 @@ const COLS = [
   { key:'target',    label:'参考加仓价' },
   { key:'exDate',    label:'除息日' },
   { key:'industry',  label:'行业/主营<sup style="color:var(--gold)">C32</sup>' },
+  { key:'decision',  label:'决策建议<sup style="color:var(--gold)">引擎</sup>' },
   { key:'note',      label:'备注' }
 ];
 const COLS_KEY = 'cols_v1';
@@ -1036,6 +1097,27 @@ function renderTable(){
         : '');
     // 状态徽章（不删除，仅标注买卖区）
     const zone = y!=null ? zoneOf(y) : { label:'—', cls:'badge-sell' };
+    // 决策引擎列
+    const d = decOf(s, q);
+    let decTxt = '<td class="dec-cell">';
+    if(d.y==null || d.state==='none'){
+      decTxt += '<span class="flat">—</span>';
+    } else {
+      decTxt += '<span class="dec-state '+d.cls+'">'+d.label+'</span>';
+      decTxt += '<span class="dec-line">建议仓位 <b class="dec-pos">'+d.pos+'</b></span>';
+      if(d.next){
+        const np = s.expDps/(d.next/100);
+        decTxt += '<span class="dec-line">下一档 <b class="dec-price">'+np.toFixed(2)+'元</b>（'+d.next+'%）</span>';
+      } else if(d.sellNote){
+        decTxt += '<span class="dec-line dec-warn">'+d.sellNote+'</span>';
+      } else {
+        decTxt += '<span class="dec-line dec-warn">已达极限档，基本面复核后再重仓</span>';
+      }
+      decTxt += '<span class="dec-line dec-sub">卖出：≤'+d.sell+'%减 / ≤'+d.clear+'%清</span>';
+      decTxt += '<span class="dec-line">基本面 '+fundBadge(s)+'</span>';
+      if(payout!=null && payout>1.0) decTxt += '<span class="dec-line dec-warn">⚠️ 派息率'+(payout*100).toFixed(0)+'%过高</span>';
+    }
+    decTxt += '</td>';
     const cells = [
       `<td>
         <a class="stock-link" onclick="openKline('${s.code}','${esc(s.name)}')" title="点击查看实时走势">${esc(s.name)}</a><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}
@@ -1058,6 +1140,7 @@ function renderTable(){
     if(colOn('target')) cells.push(`<td><span class="price-target">${targets}</span></td>`);
     if(colOn('exDate')) cells.push(`<td><span class="ex-date${exSoon}">${exTxt}</span></td>`);
     if(colOn('industry')) cells.push(`<td>${catTxt}${bizTxt?'<br>'+bizTxt:''}</td>`);
+    if(colOn('decision')) cells.push(decTxt);
     if(colOn('note')) cells.push(`<td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>`);
     cells.push(`<td>
         <button class="btn sm" onclick="openEditModal(${pool.stocks.indexOf(s)})">编辑</button>
