@@ -291,7 +291,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；行业红线=资源/周期类≥7%（C32，血泪教训升级，按股票 isResource 标记判定）。<br>
-    <b style="color:var(--red)">🧭 决策引擎</b>：买入档=非资源 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类上移2%（7/8/9/10%）。卖出滞回（防来回交易，默认 ⚙参数可调）=非资源 减仓≤4.2%/清仓≤3.8%，资源 减仓≤6.2%/清仓≤5.8%，两线之间为持有区（买卖不重叠）。"下一档"=预期每股分红÷下一档股息率。<b>双闸门</b>：①基本面（🟢可加仓/🟡暂停新增/🔴禁止买入，你点击标记）②expDps 确认状态（🟢已确认才能触发深度+档建议；未确认仅参考）。系统自动提示派息率>100%。<br>
+    <b style="color:var(--red)">🧭 决策引擎</b>：买入档=非资源 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类上移2%（7/8/9/10%，<b>仅为粗筛规则，非个股真实估值中枢</b>）。卖出滞回（防来回交易，⚙参数可调）=非资源 减仓≤4.2%/退出≤3.8%，资源 减仓≤6.2%/退出≤5.8%；<b>滞回线为执行参数，不代表估值合理区间</b>。无持仓数据时"退出评估区"意为停止新增并评估退出。"下一档"=预期每股分红÷下一档股息率。<b>双闸门</b>：①基本面（🟢/🟡暂停新增/🔴禁止买入，标记带日期与理由）②expDps 确认（🟢确认含日期与90天复核期，<b>超期自动失效</b>；未确认/过期时深度+档建议降级"待复核"）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
@@ -935,18 +935,22 @@ function decOf(s, q){
   else if(y>=deep){ d.state='deep'; d.label='🟠 深度低估'; d.cls='badge-deep'; d.pos='12%'; d.next=ext; }
   else if(y>=add){ d.state='add'; d.label='🟢 加仓区'; d.cls='badge-buy'; d.pos='8%'; d.next=deep; }
   else if(y>=buy){ d.state='buy'; d.label='🟢 建仓区'; d.cls='badge-buy'; d.pos='3%'; d.next=add; }
-  else if(y>=sell){ d.state='hold'; d.label='🤔 持有区'; d.cls='badge-hold'; d.pos='持有不动'; d.next=null; d.holdNote='滞回区间：未到减仓线，持有观察'; }
-  else if(y>=clear){ d.state='sell'; d.label='🟡 减仓区'; d.cls='badge-hold'; d.pos='减仓'; d.next=null; d.sellNote='估值修复明显，考虑减仓'; }
-  else { d.state='clear'; d.label='🔴 清仓区'; d.cls='badge-sell'; d.pos='清仓'; d.next=null; d.sellNote='估值偏贵，考虑清仓'; }
+  else if(y>=sell){ d.state='hold'; d.label='🤔 持有区'; d.cls='badge-hold'; d.pos='持有不动'; d.next=null; d.holdNote='滞回区间：未到减仓线，持有观察（非估值合理线）'; }
+  else if(y>=clear){ d.state='sell'; d.label='🟡 减仓评估区'; d.cls='badge-hold'; d.pos='评估减仓'; d.next=null; d.sellNote='估值修复明显，评估减仓'; }
+  else { d.state='clear'; d.label='🔴 退出评估区'; d.cls='badge-sell'; d.pos='停止新增/评估退出'; d.next=null; d.sellNote='估值明显高于策略买入区，停止新增并评估退出'; }
   const isBuyZone = (d.state==='extreme'||d.state==='deep'||d.state==='add'||d.state==='buy');
-  // 闸门1：基本面（人工标记）
+  // 闸门1：基本面（人工标记，含时间与理由）
   const fs = s.fundStatus;
   if(fs==='bad'){ d.gate='🔴 基本面逻辑破坏 → 禁止买入，重新估值'; d.pos='0%'; }
   else if(fs==='watch' && isBuyZone){ d.gate='⚠️ 基本面观察中 → 暂停新增仓位'; d.pos='持有不动'; }
-  // 闸门2：expDps 确认状态（未确认/过期 → 深度+档仓位降级为"待复核"，不直接给出加仓建议）
-  const ds = s.expDpsStatus;
+  // 闸门2：expDps 确认状态（自动过期：超过复核日期即失效）
+  let ds = s.expDpsStatus;
+  if(ds==='confirmed' && s.expDpsReviewDate){
+    const today = new Date().toISOString().slice(0,10);
+    if(today > s.expDpsReviewDate) ds = 'expired';
+  }
   if(ds==='expired'){
-    d.gate=(d.gate?d.gate+'；':'')+'🔴 expDps已过期 → 先重新核算';
+    d.gate=(d.gate?d.gate+'；':'')+'🔴 expDps已过期(复核日'+ (s.expDpsReviewDate? ' '+s.expDpsReviewDate:'') +') → 先重新核算';
     if(isBuyZone){ d.pos='待复核'; }
   } else if(ds!=='confirmed' && (d.state==='extreme'||d.state==='deep')){
     d.gate=(d.gate?d.gate+'；':'')+'⚠️ expDps未确认 → 复核确认后再执行';
@@ -967,19 +971,32 @@ function cycleFundStatus(code){
   const s = pool.stocks.find(x=>x.code===code); if(!s) return;
   const cur = s.fundStatus || null;
   const next = FUND_ORDER[(FUND_ORDER.indexOf(cur)+1) % FUND_ORDER.length];
-  s.fundStatus = next || undefined;
+  if(next){
+    const note = prompt('基本面标记为「'+({good:'🟢 正常',watch:'🟡 观察',bad:'🔴 逻辑破坏'})[next]+'」\n填写理由（如：2026Q2净利润同比下降18%，等待分红政策确认）：','');
+    if(note===null) return; // 取消
+    s.fundStatus = next;
+    s.fundUpdateDate = new Date().toISOString().slice(0,10);
+    s.fundNote = note.trim();
+  } else {
+    s.fundStatus = undefined;
+    s.fundUpdateDate = undefined;
+    s.fundNote = undefined;
+  }
   const diff = loadDiff();
   const o = diff.custom[code] = diff.custom[code]||{};
-  if(next) o.fundStatus = next; else delete o.fundStatus;
+  if(next){ o.fundStatus = next; o.fundUpdateDate = s.fundUpdateDate; o.fundNote = s.fundNote; }
+  else { delete o.fundStatus; delete o.fundUpdateDate; delete o.fundNote; }
   if(!Object.keys(o).length) delete diff.custom[code];
   saveDiff(diff);
   renderAll();
   updateSyncBar();
-  toast(FUND_MAP[next||'none'][2]);
+  toast(FUND_MAP[next||'none'][2] + (s.fundUpdateDate? '（'+s.fundUpdateDate+'）':''));
 }
 function fundBadge(s){
   const f = FUND_MAP[s.fundStatus||'none'];
-  return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="cycleFundStatus(\''+s.code+'\')" title="点击切换：正常→观察→逻辑破坏→未标记">'+f[0]+'</button>';
+  let tip = '点击切换：正常→观察→逻辑破坏→未标记';
+  if(s.fundStatus && s.fundUpdateDate) tip = '更新 '+s.fundUpdateDate + (s.fundNote? '｜理由：'+s.fundNote : '');
+  return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="cycleFundStatus(\''+s.code+'\')" title="'+esc(tip)+'">'+f[0]+'</button>';
 }
 // expDps 确认状态（决策闸门2：未确认/过期不得触发深度+档位的强买入建议）
 const DPS_ORDER = ['auto','confirmed','expired',null];
@@ -993,19 +1010,45 @@ function cycleExpDpsStatus(code){
   const s = pool.stocks.find(x=>x.code===code); if(!s) return;
   const cur = s.expDpsStatus || null;
   const next = DPS_ORDER[(DPS_ORDER.indexOf(cur)+1) % DPS_ORDER.length];
-  s.expDpsStatus = next || undefined;
+  if(next==='confirmed'){
+    const t = new Date();
+    s.expDpsStatus = 'confirmed';
+    s.expDpsConfirmDate = t.toISOString().slice(0,10);
+    const rv = new Date(t.getTime() + 90*86400000);
+    s.expDpsReviewDate = rv.toISOString().slice(0,10);
+  } else if(next){
+    s.expDpsStatus = next;
+    s.expDpsConfirmDate = undefined;
+    s.expDpsReviewDate = undefined;
+  } else {
+    s.expDpsStatus = undefined;
+    s.expDpsConfirmDate = undefined;
+    s.expDpsReviewDate = undefined;
+  }
   const diff = loadDiff();
   const o = diff.custom[code] = diff.custom[code]||{};
-  if(next) o.expDpsStatus = next; else delete o.expDpsStatus;
+  if(s.expDpsStatus){ o.expDpsStatus = s.expDpsStatus; o.expDpsConfirmDate = s.expDpsConfirmDate; o.expDpsReviewDate = s.expDpsReviewDate; }
+  else { delete o.expDpsStatus; delete o.expDpsConfirmDate; delete o.expDpsReviewDate; }
   if(!Object.keys(o).length) delete diff.custom[code];
   saveDiff(diff);
   renderAll();
   updateSyncBar();
-  toast(DPS_MAP[next||'none'][2]);
+  toast(next==='confirmed' ? '✅ expDps 已确认（'+s.expDpsConfirmDate+'），下次复核 '+s.expDpsReviewDate+'（超期自动失效）' : DPS_MAP[next||'none'][2]);
 }
 function dpsBadge(s){
-  const f = DPS_MAP[s.expDpsStatus||'none'];
-  return '<button class="btn sm mini dps-btn '+f[1]+'" onclick="cycleExpDpsStatus(\''+s.code+'\')" title="点击切换：自动·未确认→已确认→过期→未标记">'+f[0]+'</button>';
+  let ds = s.expDpsStatus||'none';
+  if(ds==='confirmed' && s.expDpsReviewDate && new Date().toISOString().slice(0,10) > s.expDpsReviewDate) ds = 'expired';
+  const f = DPS_MAP[ds];
+  let txt = f[0];
+  let tip = '点击切换：自动·未确认→已确认→过期→未标记';
+  if(ds==='confirmed'){
+    if(s.expDpsConfirmDate) tip = '确认 '+s.expDpsConfirmDate;
+    if(s.expDpsReviewDate) tip += '｜下次复核 '+s.expDpsReviewDate + '（超期自动失效）';
+    txt += ' ' + (s.expDpsConfirmDate ? s.expDpsConfirmDate.slice(5) : '');
+  } else if(ds==='expired'){
+    tip = '已超过复核日'+(s.expDpsReviewDate?' '+s.expDpsReviewDate:'')+'，需重新核算确认';
+  }
+  return '<button class="btn sm mini dps-btn '+f[1]+'" onclick="cycleExpDpsStatus(\''+s.code+'\')" title="'+esc(tip)+'">'+txt+'</button>';
 }
 // 决策参数面板
 function toggleDecPanel(ev){
@@ -1206,6 +1249,7 @@ function renderTable(){
       decTxt += '<span class="dec-line dec-sub" title="'+esc(d.reason)+'">依据：'+esc(d.reason)+'</span>';
       decTxt += '<span class="dec-line dec-sub">卖出：≤'+d.sell+'%减 / ≤'+d.clear+'%清</span>';
       decTxt += '<span class="dec-line">基本面 '+fundBadge(s)+' ｜ expDps '+dpsBadge(s)+'</span>';
+      if(s.fundNote) decTxt += '<span class="dec-line dec-sub" title="'+esc(s.fundNote)+'">📌 '+esc(s.fundNote)+'</span>';
       if(d.gate) decTxt += '<span class="dec-line dec-warn">'+d.gate+'</span>';
       if(payout!=null && payout>1.0) decTxt += '<span class="dec-line dec-warn">⚠️ 派息率'+(payout*100).toFixed(0)+'%过高</span>';
     }
