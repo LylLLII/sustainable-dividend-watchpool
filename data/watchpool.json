@@ -57,7 +57,9 @@
           "exDate": "2025-07-07"
         }
       ],
-      "category": "资源类·煤炭"
+      "category": "煤炭",
+      "isResource": true,
+      "biz": "煤炭开采、电力与铁路运输一体化"
     },
     {
       "code": "sh600900",
@@ -82,7 +84,9 @@
           "exDate": "2025-07-18"
         }
       ],
-      "category": "稳健类"
+      "category": "水电",
+      "isResource": false,
+      "biz": "水力发电开发与运营"
     },
     {
       "code": "sh601398",
@@ -107,7 +111,9 @@
           "exDate": "2025-07-14"
         }
       ],
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh601939",
@@ -132,7 +138,9 @@
           "exDate": "2025-05-09"
         }
       ],
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh601288",
@@ -157,7 +165,9 @@
           "exDate": "2025-07-17"
         }
       ],
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh600028",
@@ -182,7 +192,9 @@
           "exDate": "2025-06-18"
         }
       ],
-      "category": "资源类·石化"
+      "category": "石油石化",
+      "isResource": true,
+      "biz": "炼油、化工品与成品油销售"
     },
     {
       "code": "sh601006",
@@ -207,7 +219,9 @@
           "exDate": "2025-07-11"
         }
       ],
-      "category": "稳健类"
+      "category": "铁路运输",
+      "isResource": false,
+      "biz": "煤炭等大宗货物铁路运输"
     },
     {
       "code": "sz000895",
@@ -232,7 +246,9 @@
           "exDate": "2025-04-30"
         }
       ],
-      "category": "稳健类"
+      "category": "食品饮料",
+      "isResource": false,
+      "biz": "肉类加工与肉制品销售"
     },
     {
       "code": "sz000651",
@@ -257,7 +273,9 @@
           "exDate": "2025-05-15"
         }
       ],
-      "category": "资源类·家电(含资源属性)"
+      "category": "家用电器",
+      "isResource": true,
+      "biz": "空调等家电制造与销售"
     },
     {
       "code": "sh600941",
@@ -282,7 +300,9 @@
           "exDate": "2025-06-06"
         }
       ],
-      "category": "稳健类"
+      "category": "通信",
+      "isResource": false,
+      "biz": "移动通信与宽带服务"
     },
     {
       "code": "sh601225",
@@ -307,7 +327,9 @@
           "exDate": "2025-06-25"
         }
       ],
-      "category": "资源类·煤炭"
+      "category": "煤炭",
+      "isResource": true,
+      "biz": "煤炭开采与销售"
     },
     {
       "code": "sh601919",
@@ -332,7 +354,9 @@
           "exDate": "2025-06-25"
         }
       ],
-      "category": "资源类·航运"
+      "category": "航运",
+      "isResource": true,
+      "biz": "集装箱航运与码头运营"
     },
     {
       "code": "sh600585",
@@ -357,14 +381,16 @@
           "exDate": "2025-06-27"
         }
       ],
-      "category": "资源类·水泥"
+      "category": "建材",
+      "isResource": true,
+      "biz": "水泥及熟料生产销售"
     },
     {
       "code": "sh600015",
       "name": "华夏银行",
       "market": "A股",
       "expDps": 0.42,
-      "category": "稳健类",
+      "category": "银行",
       "note": "股份行，股息率较高，分红率稳定",
       "divHist": [
         {
@@ -382,14 +408,16 @@
           "dps": 0.305,
           "exDate": "2025-06-26"
         }
-      ]
+      ],
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sz000807",
       "name": "云铝股份",
       "market": "A股",
       "expDps": 0.7,
-      "category": "资源类·铝",
+      "category": "有色金属",
       "note": "电解铝，MR Dang周期变异分析可锚定股息率(C101)",
       "divHist": [
         {
@@ -407,14 +435,16 @@
           "dps": 0.18,
           "exDate": "2025-06-26"
         }
-      ]
+      ],
+      "isResource": true,
+      "biz": "电解铝及铝加工"
     },
     {
       "code": "sh600219",
       "name": "南山铝业",
       "market": "A股",
       "expDps": 0.43,
-      "category": "资源类·铝",
+      "category": "有色金属",
       "note": "含2025特殊分红0.258，若不再派则预期分红下降(C141)",
       "divHist": [
         {
@@ -433,14 +463,16 @@
           "exDate": "2025-09-25"
         }
       ],
-      "expDpsExSpecial": 0.18
+      "expDpsExSpecial": 0.18,
+      "isResource": true,
+      "biz": "氧化铝、电解铝与铝加工"
     },
     {
       "code": "sh601899",
       "name": "紫金矿业",
       "market": "A股",
       "expDps": 0.6,
-      "category": "资源类·黄金铜",
+      "category": "有色金属",
       "note": "铜金龙头，分红随盈利增长，股息率偏低",
       "divHist": [
         {
@@ -458,14 +490,16 @@
           "dps": 0.28,
           "exDate": "2025-06-13"
         }
-      ]
+      ],
+      "isResource": true,
+      "biz": "金铜等金属矿开采冶炼"
     },
     {
       "code": "sh600887",
       "name": "伊利股份",
       "market": "A股",
       "expDps": 1.38,
-      "category": "稳健类",
+      "category": "食品饮料",
       "note": "乳业龙头，高分红，关注需求与盈利",
       "divHist": [
         {
@@ -483,14 +517,16 @@
           "dps": 1.22,
           "exDate": "2025-06-06"
         }
-      ]
+      ],
+      "isResource": false,
+      "biz": "乳制品生产与销售"
     },
     {
       "code": "sz002379",
       "name": "宏桥控股",
       "market": "A股",
       "expDps": 0.25,
-      "category": "资源类·铝",
+      "category": "有色金属",
       "note": "铝产业链，近2年仅1次分红记录，股息率低，派息持续性待观察(C141)",
       "divHist": [
         {
@@ -498,7 +534,9 @@
           "dps": 0.25,
           "exDate": "2026-04-24"
         }
-      ]
+      ],
+      "isResource": true,
+      "biz": "铝产业链(氧化铝/电解铝/铝加工)"
     },
     {
       "code": "sh600329",
@@ -518,7 +556,9 @@
         }
       ],
       "note": "中药OTC龙头，高分红率，股息率极高，警惕盈利波动与股价低基数",
-      "category": "稳健类"
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "中药制剂与OTC产品"
     },
     {
       "code": "sh601216",
@@ -533,7 +573,9 @@
         }
       ],
       "note": "化工+能源集团，股息率较高，关注主营业绩稳定性",
-      "category": "资源类·化工"
+      "category": "化工",
+      "isResource": true,
+      "biz": "化工(PVC等)与能源"
     },
     {
       "code": "sh600066",
@@ -553,7 +595,9 @@
         }
       ],
       "note": "客车龙头，出口高增长，分红率高，关注销量与汇率",
-      "category": "资源类·汽车制造"
+      "category": "汽车制造",
+      "isResource": true,
+      "biz": "客车制造与销售"
     },
     {
       "code": "sh600153",
@@ -573,7 +617,9 @@
         }
       ],
       "note": "供应链+地产，分红率高但地产敞口需关注",
-      "category": "稳健类"
+      "category": "供应链",
+      "isResource": false,
+      "biz": "供应链运营与地产"
     },
     {
       "code": "sz002867",
@@ -593,7 +639,9 @@
         }
       ],
       "note": "黄金珠宝连锁，加盟扩张，分红稳定，关注金价与消费",
-      "category": "稳健类"
+      "category": "珠宝首饰",
+      "isResource": false,
+      "biz": "黄金珠宝零售"
     },
     {
       "code": "sz002271",
@@ -608,7 +656,9 @@
         }
       ],
       "note": "防水材料龙头，行业下行期分红仍维持，关注需求回暖(C141)",
-      "category": "资源类·建材"
+      "category": "建材",
+      "isResource": true,
+      "biz": "防水材料生产销售"
     },
     {
       "code": "sh600398",
@@ -623,7 +673,9 @@
         }
       ],
       "note": "男装龙头，高分红，分红率长期70%+，关注终端消费",
-      "category": "稳健类"
+      "category": "纺织服装",
+      "isResource": false,
+      "biz": "男装品牌零售"
     },
     {
       "code": "sh600566",
@@ -638,7 +690,9 @@
         }
       ],
       "note": "医药，高分红率，业绩稳定，关注集采影响",
-      "category": "稳健类"
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "中药制剂"
     },
     {
       "code": "sz002007",
@@ -658,7 +712,9 @@
         }
       ],
       "note": "血制品龙头，分红稳定，关注浆站扩张与采浆量",
-      "category": "稳健类"
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "血液制品与疫苗"
     },
     {
       "code": "sz000690",
@@ -678,7 +734,9 @@
         }
       ],
       "note": "火电，分红率提升，关注煤价与电价",
-      "category": "稳健类"
+      "category": "电力",
+      "isResource": false,
+      "biz": "火电与新能源电力"
     },
     {
       "code": "sz002032",
@@ -693,7 +751,9 @@
         }
       ],
       "note": "小家电龙头，ROE高，分红率高，关注海外与内需",
-      "category": "稳健类"
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "炊具与小家电制造"
     },
     {
       "code": "sh600750",
@@ -713,7 +773,9 @@
         }
       ],
       "note": "OTC医药，连续多年分红，业绩稳健，关注渠道改革",
-      "category": "稳健类"
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "OTC中成药"
     },
     {
       "code": "sh600642",
@@ -728,7 +790,9 @@
         }
       ],
       "note": "上海公用事业，分红稳定，关注电价气价",
-      "category": "稳健类"
+      "category": "电力",
+      "isResource": false,
+      "biz": "电力与燃气"
     },
     {
       "code": "sh600177",
@@ -753,7 +817,9 @@
         }
       ],
       "note": "服装+投资，分红率高(近年多次派息)，关注主业与投资收益",
-      "category": "资源类·纺织"
+      "category": "纺织服装",
+      "isResource": false,
+      "biz": "服装品牌与投资"
     },
     {
       "code": "sh600295",
@@ -768,7 +834,9 @@
         }
       ],
       "note": "煤化工+羊绒，周期品，股息率高，关注产品价格",
-      "category": "资源类·化工"
+      "category": "化工",
+      "isResource": true,
+      "biz": "羊绒制品与煤化工"
     },
     {
       "code": "sz000719",
@@ -783,7 +851,9 @@
         }
       ],
       "note": "出版传媒，分红稳定，现金充沛，关注数字化转型",
-      "category": "资源类·出版"
+      "category": "传媒出版",
+      "isResource": false,
+      "biz": "图书出版发行"
     },
     {
       "code": "sz000423",
@@ -803,7 +873,9 @@
         }
       ],
       "note": "滋补品龙头，分红率高，业绩稳健增长，关注消费复苏",
-      "category": "稳健类"
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "阿胶及滋补品"
     },
     {
       "code": "sz000333",
@@ -823,7 +895,9 @@
         }
       ],
       "note": "家电龙头，全球布局，分红率高(约50%)，关注海外需求",
-      "category": "稳健类"
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "家电全品类制造"
     },
     {
       "code": "sh600803",
@@ -843,7 +917,9 @@
         }
       ],
       "note": "2024年报含特殊分红10派2.2元(每股0.22,2025-07-22除息,已过窗口)",
-      "category": "资源类·能源"
+      "category": "燃气",
+      "isResource": true,
+      "biz": "城市燃气与能源分销"
     },
     {
       "code": "sh600007",
@@ -858,7 +934,9 @@
         }
       ],
       "note": "写字楼运营商，现金流稳定，分红稳定，关注租金",
-      "category": "稳健类"
+      "category": "房地产",
+      "isResource": false,
+      "biz": "商业写字楼运营"
     },
     {
       "code": "sh600098",
@@ -878,7 +956,9 @@
         }
       ],
       "note": "广州公用事业，分红稳定，关注燃气电力",
-      "category": "稳健类"
+      "category": "电力",
+      "isResource": false,
+      "biz": "电力燃气与能源物流"
     },
     {
       "code": "sh601668",
@@ -893,7 +973,9 @@
         }
       ],
       "note": "建筑央企，低估值高股息，分红率稳定，关注订单",
-      "category": "稳健类"
+      "category": "建筑",
+      "isResource": false,
+      "biz": "建筑工程与地产"
     },
     {
       "code": "sz000001",
@@ -913,7 +995,9 @@
         }
       ],
       "note": "股份行，股息率5%+，关注净息差与资产质量",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sz002091",
@@ -933,7 +1017,9 @@
         }
       ],
       "note": "供应链+贸易，分红率高，关注主营业务质量",
-      "category": "稳健类"
+      "category": "供应链",
+      "isResource": false,
+      "biz": "供应链服务与化工品贸易"
     },
     {
       "code": "sz002508",
@@ -953,7 +1039,9 @@
         }
       ],
       "note": "厨电龙头，分红率高，关注地产后周期需求",
-      "category": "稳健类"
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "厨电制造"
     },
     {
       "code": "sh601229",
@@ -973,7 +1061,9 @@
         }
       ],
       "note": "城商行，股息率5%+，分红稳定，关注资产质量",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh600582",
@@ -988,7 +1078,9 @@
         }
       ],
       "note": "煤机龙头，现金流好，分红稳定，关注煤价与订单",
-      "category": "稳健类"
+      "category": "机械设备",
+      "isResource": false,
+      "biz": "煤机装备制造"
     },
     {
       "code": "sh601997",
@@ -1003,7 +1095,9 @@
         }
       ],
       "note": "城商行，股息率5%+，关注区域经济与净息差",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh601717",
@@ -1018,7 +1112,9 @@
         }
       ],
       "note": "煤机装备龙头，分红率高，关注煤价与资本开支",
-      "category": "资源类·煤炭机械"
+      "category": "机械设备",
+      "isResource": true,
+      "biz": "煤机装备与汽车零部件"
     },
     {
       "code": "sh601169",
@@ -1033,7 +1129,9 @@
         }
       ],
       "note": "城商行，股息率5%+，分红稳定",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh601166",
@@ -1053,7 +1151,9 @@
         }
       ],
       "note": "股份行，股息率5%+，分红率约30%，关注资产质量",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh601818",
@@ -1073,7 +1173,9 @@
         }
       ],
       "note": "股份行，股息率5%+，分红稳定，关注净息差",
-      "category": "稳健类"
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
     },
     {
       "code": "sh600741",
@@ -1088,7 +1190,9 @@
         }
       ],
       "note": "汽车零部件龙头，分红率高，关注客户结构与新能源",
-      "category": "稳健类"
+      "category": "汽车零部件",
+      "isResource": false,
+      "biz": "汽车零部件制造"
     }
   ]
 }
