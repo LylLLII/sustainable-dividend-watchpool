@@ -66,6 +66,13 @@ tbody tr:last-child td{border-bottom:none}
 .band-extreme{background:var(--band5);color:#c92a2a}
 .note{max-width:200px;overflow:hidden;text-overflow:ellipsis;font-size:12px;color:var(--sub);text-align:left}
 .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.cols-toggle{position:relative}
+.cols-panel{position:absolute;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--border);border-radius:10px;padding:10px 12px;z-index:30;box-shadow:0 6px 20px rgba(0,0,0,.12);display:none;min-width:190px;max-height:60vh;overflow:auto}
+.cols-panel.show{display:block}
+.cols-title{font-size:11px;color:var(--sub);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #f0f1f3}
+.cols-panel label{display:flex;align-items:center;gap:6px;font-size:12.5px;padding:4px 0;cursor:pointer;white-space:nowrap}
+.cols-panel input[type=checkbox]{width:auto;accent-color:var(--primary)}
+.cols-foot{margin-top:8px;padding-top:8px;border-top:1px solid #f0f1f3}
 .search-input{border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;outline:none;flex:1;min-width:160px}
 .search-input:focus{border-color:var(--primary)}
 select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;background:#fff;outline:none}
@@ -229,30 +236,20 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
       <option value="yield-asc">按预期股息率↑</option>
       <option value="name">按名称</option>
     </select>
+    <div class="cols-toggle">
+      <button class="btn sm" onclick="toggleColsPanel(event)" title="自定义显示列，选择收窄表格">☰ 列</button>
+      <div class="cols-panel" id="cols-panel" onclick="event.stopPropagation()">
+        <div class="cols-title">显示列（股票 / 操作固定显示）</div>
+        <div id="cols-list"></div>
+        <div class="cols-foot"><button class="btn sm" onclick="resetCols()">恢复默认</button></div>
+      </div>
+    </div>
   </div>
 
   <div class="table-wrap">
   <table>
     <thead>
-      <tr>
-        <th>股票</th>
-        <th>现价</th>
-        <th>涨跌幅</th>
-        <th>TTM股息率<sup style="color:var(--gold)">自动</sup></th>
-        <th>预期股息率</th>
-        <th>超额收益率<sup style="color:var(--gold)">vs国债</sup></th>
-        <th>估值区间</th>
-        <th>52周股息率区间</th>
-        <th>股息率百分位<sup style="color:var(--gold)">52周</sup></th>
-        <th>PE(TTM)</th>
-        <th>PB</th>
-        <th>派息率<sup style="color:var(--gold)">参考</sup></th>
-        <th>参考加仓价</th>
-        <th>除息日</th>
-        <th>行业/主营<sup style="color:var(--gold)">C32</sup></th>
-        <th>备注</th>
-        <th>操作</th>
-      </tr>
+      <tr id="thead-row"></tr>
     </thead>
     <tbody id="tbody"></tbody>
   </table>
@@ -910,10 +907,65 @@ function nextExDate(s){
   return next;
 }
 
+// ============ 列显隐 ============
+const COLS = [
+  { key:'price',     label:'现价' },
+  { key:'chg',       label:'涨跌幅' },
+  { key:'ttmYield',  label:'TTM股息率<sup style="color:var(--gold)">自动</sup>' },
+  { key:'yield',     label:'预期股息率' },
+  { key:'excess',    label:'超额收益率<sup style="color:var(--gold)">vs国债</sup>' },
+  { key:'band',      label:'估值区间' },
+  { key:'histRange', label:'52周股息率区间' },
+  { key:'percentile',label:'股息率百分位<sup style="color:var(--gold)">52周</sup>' },
+  { key:'pe',        label:'PE(TTM)' },
+  { key:'pb',        label:'PB' },
+  { key:'payout',    label:'派息率<sup style="color:var(--gold)">参考</sup>' },
+  { key:'target',    label:'参考加仓价' },
+  { key:'exDate',    label:'除息日' },
+  { key:'industry',  label:'行业/主营<sup style="color:var(--gold)">C32</sup>' },
+  { key:'note',      label:'备注' }
+];
+const COLS_KEY = 'cols_v1';
+function loadCols(){ try{ return JSON.parse(localStorage.getItem(COLS_KEY)) || {}; }catch(e){ return {}; } }
+function saveCols(c){ try{ localStorage.setItem(COLS_KEY, JSON.stringify(c)); }catch(e){} }
+function colOn(key){ const c = loadCols(); return c[key] !== false; }
+function colLabel(key){ const c = COLS.find(x=>x.key===key); return c ? c.label.replace(/<sup[^>]*>.*?<\/sup>/g,'') : key; }
+function renderHead(){
+  const hs = ['<th>股票</th>'];
+  COLS.forEach(c=>{ if(colOn(c.key)) hs.push('<th>'+c.label+'</th>'); });
+  hs.push('<th>操作</th>');
+  const tr = document.getElementById('thead-row');
+  if(tr) tr.innerHTML = hs.join('');
+}
+function toggleColsPanel(ev){
+  if(ev && ev.stopPropagation) ev.stopPropagation();
+  const p = document.getElementById('cols-panel');
+  renderColsList();
+  p.classList.toggle('show', !p.classList.contains('show'));
+}
+function renderColsList(){
+  const box = document.getElementById('cols-list');
+  if(!box) return;
+  box.innerHTML = COLS.map(c=>{
+    const on = colOn(c.key);
+    return '<label><input type="checkbox" '+(on?'checked':'')+' onchange="toggleCol(\''+c.key+'\',this.checked)"> '+colLabel(c.key)+'</label>';
+  }).join('');
+}
+function toggleCol(key, on){
+  const c = loadCols(); c[key] = on; saveCols(c); renderTable();
+}
+function resetCols(){
+  try{ localStorage.removeItem(COLS_KEY); }catch(e){}
+  renderColsList(); renderTable(); toast('✅ 已恢复全部列');
+}
+document.addEventListener('click', ()=>{ const p=document.getElementById('cols-panel'); if(p) p.classList.remove('show'); });
+
 function renderTable(){
+  renderHead();
   const tb = document.getElementById('tbody');
   const list = filteredStocks();
-  if(!list.length){ tb.innerHTML = '<tr class="loading-row"><td colspan="17">没有符合条件的股票</td></tr>'; return; }
+  const nCols = COLS.filter(c=>colOn(c.key)).length + 2;
+  if(!list.length){ tb.innerHTML = '<tr class="loading-row"><td colspan="'+nCols+'">没有符合条件的股票</td></tr>'; return; }
   const today = new Date().toISOString().slice(0,10);
   tb.innerHTML = list.map(s=>{
     const q = quotes[s.code];
@@ -984,33 +1036,34 @@ function renderTable(){
         : '');
     // 状态徽章（不删除，仅标注买卖区）
     const zone = y!=null ? zoneOf(y) : { label:'—', cls:'badge-sell' };
-    return `<tr>
-      <td>
+    const cells = [
+      `<td>
         <a class="stock-link" onclick="openKline('${s.code}','${esc(s.name)}')" title="点击查看实时走势">${esc(s.name)}</a><span class="stock-code">${esc(s.code)}</span>${marketTag}${catTxt}
         <br><span class="badge ${zone.cls}" title="预期股息率 ${y!=null?y.toFixed(2)+'%':'—'} 对应操作区">${zone.label}</span>
-      </td>
-      <td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>
-      <td class="${chgCls}">${chgTxt}</td>
-      <td><span class="ttm-yield">${ttmTxt}</span></td>
-      <td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}${yExTxt}` : '<span class="flat">—</span>'}
+      </td>`
+    ];
+    if(colOn('price')) cells.push(`<td class="${chgCls}" style="font-size:15px;font-weight:600">${q? q.price.toFixed(2) : '—'}</td>`);
+    if(colOn('chg')) cells.push(`<td class="${chgCls}">${chgTxt}</td>`);
+    if(colOn('ttmYield')) cells.push(`<td><span class="ttm-yield">${ttmTxt}</span></td>`);
+    if(colOn('yield')) cells.push(`<td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}${yExTxt}` : '<span class="flat">—</span>'}
         <span class="dps-val">${s.expDps? s.expDps.toFixed(2)+'元' : ''}${yExDpsTxt}</span>
-        ${autoDpsTxt}</td>
-      <td>${excessTxt}</td>
-      <td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>
-      <td><span class="history-range">${hist}</span></td>
-      <td><span class="percentile" title="当前预期股息率在52周区间中的位置：百分位越高=股息率越接近52周高位=股价越便宜">${pctTxt}${pctPos}${pctBar}</span></td>
-      <td>${q && q.pe>0 ? q.pe.toFixed(1) : '—'}</td>
-      <td>${q && q.pb>0 ? q.pb.toFixed(2) : '—'}</td>
-      <td>${payoutTxt}</td>
-      <td><span class="price-target">${targets}</span></td>
-      <td><span class="ex-date${exSoon}">${exTxt}</span></td>
-      <td>${catTxt}${bizTxt?'<br>'+bizTxt:''}</td>
-      <td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>
-      <td>
+        ${autoDpsTxt}</td>`);
+    if(colOn('excess')) cells.push(`<td>${excessTxt}</td>`);
+    if(colOn('band')) cells.push(`<td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>`);
+    if(colOn('histRange')) cells.push(`<td><span class="history-range">${hist}</span></td>`);
+    if(colOn('percentile')) cells.push(`<td><span class="percentile" title="当前预期股息率在52周区间中的位置：百分位越高=股息率越接近52周高位=股价越便宜">${pctTxt}${pctPos}${pctBar}</span></td>`);
+    if(colOn('pe')) cells.push(`<td>${q && q.pe>0 ? q.pe.toFixed(1) : '—'}</td>`);
+    if(colOn('pb')) cells.push(`<td>${q && q.pb>0 ? q.pb.toFixed(2) : '—'}</td>`);
+    if(colOn('payout')) cells.push(`<td>${payoutTxt}</td>`);
+    if(colOn('target')) cells.push(`<td><span class="price-target">${targets}</span></td>`);
+    if(colOn('exDate')) cells.push(`<td><span class="ex-date${exSoon}">${exTxt}</span></td>`);
+    if(colOn('industry')) cells.push(`<td>${catTxt}${bizTxt?'<br>'+bizTxt:''}</td>`);
+    if(colOn('note')) cells.push(`<td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>`);
+    cells.push(`<td>
         <button class="btn sm" onclick="openEditModal(${pool.stocks.indexOf(s)})">编辑</button>
         <button class="btn sm danger" onclick="removeStock(${pool.stocks.indexOf(s)})">删除</button>
-      </td>
-    </tr>`;
+      </td>`);
+    return `<tr>${cells.join('')}</tr>`;
   }).join('');
 }
 
