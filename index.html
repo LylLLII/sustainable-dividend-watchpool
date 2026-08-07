@@ -120,6 +120,10 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .dps-btn.dps-conf{background:#e6f4ea;color:#1a7f37;border:1px solid #b7dfc0}
 .dps-btn.dps-exp{background:#fdeaea;color:#c92a2a;border:1px solid #f3c1c1}
 .dps-btn.dps-none{background:#f3f4f6;color:var(--sub);border:1px solid #e5e7eb}
+.fund-checks label{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 0;cursor:pointer;border-bottom:1px dashed #f0f1f3}
+.fund-checks input[type=checkbox]{width:auto;accent-color:var(--primary)}
+.fund-checks{background:#fafbfc;border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin-bottom:12px}
+#fund-preview{font-size:14px}
 .auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
@@ -291,7 +295,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；行业红线=资源/周期类≥7%（C32，血泪教训升级，按股票 isResource 标记判定）。<br>
-    <b style="color:var(--red)">🧭 决策引擎</b>：买入档=非资源 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类上移2%（7/8/9/10%，<b>仅为粗筛规则，非个股真实估值中枢</b>）。卖出滞回（防来回交易，⚙参数可调）=非资源 减仓≤4.2%/退出≤3.8%，资源 减仓≤6.2%/退出≤5.8%；<b>滞回线为执行参数，不代表估值合理区间</b>。无持仓数据时"退出评估区"意为停止新增并评估退出。"下一档"=预期每股分红÷下一档股息率。<b>双闸门</b>：①基本面（🟢/🟡暂停新增/🔴禁止买入，标记带日期与理由）②expDps 确认（🟢确认含日期与90天复核期，<b>超期自动失效</b>；未确认/过期时深度+档建议降级"待复核"）。<br>
+    <b style="color:var(--red)">🧭 决策引擎</b>：买入档=非资源 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类上移2%（7/8/9/10%，<b>仅为粗筛规则，非个股真实估值中枢</b>）。卖出滞回（防来回交易，⚙参数可调）=非资源 减仓≤4.2%/退出≤3.8%，资源 减仓≤6.2%/退出≤5.8%；<b>滞回线为执行参数，不代表估值合理区间</b>。无持仓数据时"退出评估区"意为停止新增并评估退出。"下一档"=预期每股分红÷下一档股息率。<b>估值锚=Forward DPS</b>（人工确认的前瞻分红，预期股息率用它计算）；Auto DPS（东财TTM实际分红年化）仅为后视候选值。<b>双闸门</b>：①基本面（结构化6项检查：重大事件一票否决🔴、5项评分🟢/🟡/🔴；标记含日期/理由/复核期，资源60天/其他90天，<b>超期自动降级待复核</b>）②Forward DPS 确认（含依据来源与90天复核期，<b>超期自动失效</b>；未确认/过期时深度+档建议降级"待复核"）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
@@ -338,6 +342,35 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <div class="modal-actions">
       <button class="btn" onclick="closeModal()">取消</button>
       <button class="btn primary" onclick="saveStock()">保存</button>
+    </div>
+  </div>
+</div>
+
+<!-- 基本面结构化检查模态框 -->
+<div class="modal-mask" id="fund-modal">
+  <div class="modal">
+    <h3>基本面检查 <span id="fund-name" style="font-size:13px;color:var(--sub)"></span></h3>
+    <input type="hidden" id="fund-code">
+    <div class="fund-checks">
+      <label><input type="checkbox" id="fc-profit" onchange="updateFundPreview()"> 盈利：净利润无明显恶化</label>
+      <label><input type="checkbox" id="fc-cashflow" onchange="updateFundPreview()"> 现金流：经营现金流无明显恶化</label>
+      <label><input type="checkbox" id="fc-dividend" onchange="updateFundPreview()"> 分红：分红政策无明显恶化</label>
+      <label><input type="checkbox" id="fc-debt" onchange="updateFundPreview()"> 负债：负债风险无明显恶化</label>
+      <label><input type="checkbox" id="fc-mainbiz" onchange="updateFundPreview()"> 主业：核心业务无明显恶化</label>
+      <label><input type="checkbox" id="fc-major" onchange="updateFundPreview()"> 重大事件：无重大负面事件（<b style="color:var(--red)">未勾选 = 一票否决 🔴</b>）</label>
+    </div>
+    <div class="form-row">
+      <label>检查结果预览：<span id="fund-preview" style="font-weight:700"></span></label>
+      <div class="hint">评分规则：重大事件未勾选→🔴禁止买入；其余5项通过 5项→🟢 / 3~4项→🟡 / ≤2项→🔴</div>
+    </div>
+    <div class="form-row">
+      <label>理由（可留空）</label>
+      <textarea id="fc-note" rows="2" placeholder="如：2026Q2净利润同比降18%，等待全年分红政策确认"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeFundModal()">取消</button>
+      <button class="btn danger" onclick="clearFundStatus()" style="color:var(--red);border-color:#f3c1c1">清除标记</button>
+      <button class="btn primary" onclick="saveFundStatus()">保存标记</button>
     </div>
   </div>
 </div>
@@ -464,7 +497,8 @@ function syncSummaryText(){
     if(o.category!=null) edits.push('行业=' + o.category);
     if(o.biz!=null) edits.push('主营="' + o.biz + '"');
     if(o.isResource!=null) edits.push(o.isResource ? '资源类(7%红线)' : '非资源类');
-    if(o.fundStatus!=null) edits.push('基本面=' + ({good:'正常',watch:'观察',bad:'逻辑破坏'})[o.fundStatus]);
+    if(o.fundStatus!=null) edits.push('基本面=' + ({good:'正常',watch:'观察',bad:'逻辑破坏'})[o.fundStatus] + (o.fundReviewDate? '（复核 '+o.fundReviewDate+'）':''));
+    if(o.expDpsStatus!=null) edits.push('ForwardDPS=' + (o.expDpsStatus==='confirmed'?'已确认('+(DPS_SOURCES[o.expDpsSource]||o.expDpsSource||'')+')':'未确认/过期'));
     if(edits.length) lines.push('- 修改：' + name + ' (' + c + ') ' + edits.join('，'));
   });
   return lines.join('\n');
@@ -939,10 +973,14 @@ function decOf(s, q){
   else if(y>=clear){ d.state='sell'; d.label='🟡 减仓评估区'; d.cls='badge-hold'; d.pos='评估减仓'; d.next=null; d.sellNote='估值修复明显，评估减仓'; }
   else { d.state='clear'; d.label='🔴 退出评估区'; d.cls='badge-sell'; d.pos='停止新增/评估退出'; d.next=null; d.sellNote='估值明显高于策略买入区，停止新增并评估退出'; }
   const isBuyZone = (d.state==='extreme'||d.state==='deep'||d.state==='add'||d.state==='buy');
-  // 闸门1：基本面（人工标记，含时间与理由）
-  const fs = s.fundStatus;
+  // 闸门1：基本面（人工结构化标记，含日期/复核/理由；超复核日自动降级为待复核）
+  let fs = s.fundStatus;
+  const fundExpired = fs && fs!=='none' && s.fundReviewDate && new Date().toISOString().slice(0,10) > s.fundReviewDate;
   if(fs==='bad'){ d.gate='🔴 基本面逻辑破坏 → 禁止买入，重新估值'; d.pos='0%'; }
-  else if(fs==='watch' && isBuyZone){ d.gate='⚠️ 基本面观察中 → 暂停新增仓位'; d.pos='持有不动'; }
+  else if((fs==='watch' || fundExpired) && isBuyZone){
+    d.gate=(fundExpired? '⏰ 基本面已过复核日'+(s.fundReviewDate?'('+s.fundReviewDate+')':'')+' → 待复核，暂停新增' : '⚠️ 基本面观察中 → 暂停新增仓位');
+    d.pos='持有不动';
+  }
   // 闸门2：expDps 确认状态（自动过期：超过复核日期即失效）
   let ds = s.expDpsStatus;
   if(ds==='confirmed' && s.expDpsReviewDate){
@@ -967,52 +1005,110 @@ const FUND_MAP = {
   bad:  ['🔴 逻辑破坏','fund-bad','🔴 基本面标记为逻辑破坏'],
   none: ['⚪ 未标记','fund-none','⚪ 已清除基本面标记']
 };
-function cycleFundStatus(code){
+// 基本面结构化检查（重大事件未勾选 = 一票否决🔴；其余5项：5→🟢, 3~4→🟡, ≤2→🔴）
+const FUND_CHECK_KEYS = ['fc-profit','fc-cashflow','fc-dividend','fc-debt','fc-mainbiz'];
+function fundScoreOf(){
+  const major = document.getElementById('fc-major').checked;
+  if(!major) return { st:'bad', label:'🔴 逻辑破坏（重大负面事件一票否决）', cls:'fund-bad' };
+  const pass = FUND_CHECK_KEYS.filter(id=>document.getElementById(id).checked).length;
+  if(pass>=5) return { st:'good', label:'🟢 正常（'+pass+'/5 通过）', cls:'fund-good' };
+  if(pass>=3) return { st:'watch', label:'🟡 观察（'+pass+'/5 通过）', cls:'fund-watch' };
+  return { st:'bad', label:'🔴 逻辑破坏（'+pass+'/5 通过）', cls:'fund-bad' };
+}
+function openFundModal(code){
   const s = pool.stocks.find(x=>x.code===code); if(!s) return;
-  const cur = s.fundStatus || null;
-  const next = FUND_ORDER[(FUND_ORDER.indexOf(cur)+1) % FUND_ORDER.length];
-  if(next){
-    const note = prompt('基本面标记为「'+({good:'🟢 正常',watch:'🟡 观察',bad:'🔴 逻辑破坏'})[next]+'」\n填写理由（如：2026Q2净利润同比下降18%，等待分红政策确认）：','');
-    if(note===null) return; // 取消
-    s.fundStatus = next;
-    s.fundUpdateDate = new Date().toISOString().slice(0,10);
-    s.fundNote = note.trim();
-  } else {
-    s.fundStatus = undefined;
-    s.fundUpdateDate = undefined;
-    s.fundNote = undefined;
-  }
+  document.getElementById('fund-code').value = code;
+  document.getElementById('fund-name').textContent = s.name + '（' + s.code + '）';
+  const c = s.fundChecks || {};
+  const set = (id,key)=>{ document.getElementById(id).checked = c[key] !== false; };
+  set('fc-profit','profit'); set('fc-cashflow','cashflow'); set('fc-dividend','dividend');
+  set('fc-debt','debt'); set('fc-mainbiz','mainbiz'); set('fc-major','major');
+  document.getElementById('fc-note').value = s.fundNote||'';
+  document.getElementById('fund-modal').classList.add('show');
+  updateFundPreview();
+}
+function updateFundPreview(){
+  const r = fundScoreOf();
+  const p = document.getElementById('fund-preview');
+  p.textContent = r.label;
+  p.className = r.cls;
+}
+function closeFundModal(){ document.getElementById('fund-modal').classList.remove('show'); }
+function saveFundStatus(){
+  const code = document.getElementById('fund-code').value;
+  const s = pool.stocks.find(x=>x.code===code); if(!s) return;
+  const r = fundScoreOf();
+  const note = document.getElementById('fc-note').value.trim();
+  const today = new Date().toISOString().slice(0,10);
+  const rv = new Date(Date.now() + (s.isResource? 60 : 90)*86400000).toISOString().slice(0,10); // 资源60天/其他90天
+  s.fundStatus = r.st;
+  s.fundUpdateDate = today;
+  s.fundReviewDate = rv;
+  s.fundNote = note;
+  s.fundChecks = {
+    profit:  document.getElementById('fc-profit').checked,
+    cashflow:document.getElementById('fc-cashflow').checked,
+    dividend:document.getElementById('fc-dividend').checked,
+    debt:    document.getElementById('fc-debt').checked,
+    mainbiz: document.getElementById('fc-mainbiz').checked,
+    major:   document.getElementById('fc-major').checked
+  };
   const diff = loadDiff();
   const o = diff.custom[code] = diff.custom[code]||{};
-  if(next){ o.fundStatus = next; o.fundUpdateDate = s.fundUpdateDate; o.fundNote = s.fundNote; }
-  else { delete o.fundStatus; delete o.fundUpdateDate; delete o.fundNote; }
-  if(!Object.keys(o).length) delete diff.custom[code];
+  Object.assign(o, { fundStatus:r.st, fundUpdateDate:today, fundReviewDate:rv, fundNote:note, fundChecks:s.fundChecks });
   saveDiff(diff);
+  closeFundModal();
   renderAll();
   updateSyncBar();
-  toast(FUND_MAP[next||'none'][2] + (s.fundUpdateDate? '（'+s.fundUpdateDate+'）':''));
+  toast(FUND_MAP[r.st][2] + '（复核 ' + rv + '，超期自动降级）');
+}
+function clearFundStatus(){
+  const code = document.getElementById('fund-code').value;
+  const s = pool.stocks.find(x=>x.code===code); if(!s) return;
+  s.fundStatus = undefined; s.fundUpdateDate = undefined; s.fundReviewDate = undefined;
+  s.fundNote = undefined; s.fundChecks = undefined;
+  const diff = loadDiff();
+  const o = diff.custom[code] || {};
+  delete o.fundStatus; delete o.fundUpdateDate; delete o.fundReviewDate;
+  delete o.fundNote; delete o.fundChecks;
+  if(!Object.keys(o).length) delete diff.custom[code];
+  saveDiff(diff);
+  closeFundModal();
+  renderAll(); updateSyncBar();
+  toast('⚪ 已清除基本面标记');
 }
 function fundBadge(s){
-  const f = FUND_MAP[s.fundStatus||'none'];
-  let tip = '点击切换：正常→观察→逻辑破坏→未标记';
-  if(s.fundStatus && s.fundUpdateDate) tip = '更新 '+s.fundUpdateDate + (s.fundNote? '｜理由：'+s.fundNote : '');
-  return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="cycleFundStatus(\''+s.code+'\')" title="'+esc(tip)+'">'+f[0]+'</button>';
+  // 渲染时判断自动过期：超过复核日期 → 显示"待复核"降级
+  let fs = s.fundStatus || 'none';
+  let expired = false;
+  if(fs!=='none' && s.fundReviewDate && new Date().toISOString().slice(0,10) > s.fundReviewDate){ expired = true; }
+  const f = FUND_MAP[expired ? 'watch' : fs];
+  let txt = expired ? '⏰ ' + FUND_MAP[fs][0].replace(/^.. /,'') + '·待复核' : f[0];
+  let tip = '点击打开基本面结构化检查';
+  if(fs!=='none' && s.fundUpdateDate) tip = '更新 '+s.fundUpdateDate + (s.fundReviewDate? '｜复核 '+s.fundReviewDate+(expired?'（已过期）':'') : '') + (s.fundNote? '｜理由：'+s.fundNote : '');
+  return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="openFundModal(\''+s.code+'\')" title="'+esc(tip)+'">'+txt+'</button>';
 }
 // expDps 确认状态（决策闸门2：未确认/过期不得触发深度+档位的强买入建议）
+// 概念分离：Auto DPS（东财自动=TTM实际分红年化，后视）→ 人工研究 → Forward DPS（expDps=前瞻估值锚）
 const DPS_ORDER = ['auto','confirmed','expired',null];
 const DPS_MAP = {
-  auto:      ['🟡 自动·未确认','dps-auto','🟡 expDps 标记为自动计算（未人工确认）'],
-  confirmed: ['🟢 已确认','dps-conf','✅ expDps 已人工确认'],
-  expired:   ['🔴 过期','dps-exp','🔴 expDps 已过期，需重新核算'],
+  auto:      ['🟡 自动·未确认','dps-auto','Auto DPS 自动计算（TTM实际分红年化，后视），未人工确认'],
+  confirmed: ['🟢 已确认','dps-conf','Forward DPS 已人工确认（前瞻估值锚）'],
+  expired:   ['🔴 过期','dps-exp','Forward DPS 已过期，需重新核算'],
   none:      ['⚪ 未标记','dps-none','⚪ 已清除 expDps 状态']
 };
+const DPS_SOURCES = { auto:'自动计算', report:'年报', interim:'中报', notice:'分红公告', estimate:'自己估算' };
 function cycleExpDpsStatus(code){
   const s = pool.stocks.find(x=>x.code===code); if(!s) return;
   const cur = s.expDpsStatus || null;
   const next = DPS_ORDER[(DPS_ORDER.indexOf(cur)+1) % DPS_ORDER.length];
   if(next==='confirmed'){
+    const src = prompt('确认依据（Forward DPS 来源）：\n1 年报  2 中报  3 分红公告  4 自己估算  5 自动计算','年报');
+    if(src===null) return; // 取消
+    const map = {'1':'report','2':'interim','3':'notice','4':'estimate','5':'auto'};
     const t = new Date();
     s.expDpsStatus = 'confirmed';
+    s.expDpsSource = map[src.trim()] || (src.trim()||'report');
     s.expDpsConfirmDate = t.toISOString().slice(0,10);
     const rv = new Date(t.getTime() + 90*86400000);
     s.expDpsReviewDate = rv.toISOString().slice(0,10);
@@ -1024,16 +1120,17 @@ function cycleExpDpsStatus(code){
     s.expDpsStatus = undefined;
     s.expDpsConfirmDate = undefined;
     s.expDpsReviewDate = undefined;
+    s.expDpsSource = undefined;
   }
   const diff = loadDiff();
   const o = diff.custom[code] = diff.custom[code]||{};
-  if(s.expDpsStatus){ o.expDpsStatus = s.expDpsStatus; o.expDpsConfirmDate = s.expDpsConfirmDate; o.expDpsReviewDate = s.expDpsReviewDate; }
-  else { delete o.expDpsStatus; delete o.expDpsConfirmDate; delete o.expDpsReviewDate; }
+  if(s.expDpsStatus){ o.expDpsStatus = s.expDpsStatus; o.expDpsConfirmDate = s.expDpsConfirmDate; o.expDpsReviewDate = s.expDpsReviewDate; o.expDpsSource = s.expDpsSource; }
+  else { delete o.expDpsStatus; delete o.expDpsConfirmDate; delete o.expDpsReviewDate; delete o.expDpsSource; }
   if(!Object.keys(o).length) delete diff.custom[code];
   saveDiff(diff);
   renderAll();
   updateSyncBar();
-  toast(next==='confirmed' ? '✅ expDps 已确认（'+s.expDpsConfirmDate+'），下次复核 '+s.expDpsReviewDate+'（超期自动失效）' : DPS_MAP[next||'none'][2]);
+  toast(next==='confirmed' ? '✅ Forward DPS 已确认（依据：'+(DPS_SOURCES[s.expDpsSource]||s.expDpsSource)+'，'+s.expDpsConfirmDate+'），复核 '+s.expDpsReviewDate+'（超期自动失效）' : DPS_MAP[next||'none'][2]);
 }
 function dpsBadge(s){
   let ds = s.expDpsStatus||'none';
@@ -1042,11 +1139,13 @@ function dpsBadge(s){
   let txt = f[0];
   let tip = '点击切换：自动·未确认→已确认→过期→未标记';
   if(ds==='confirmed'){
-    if(s.expDpsConfirmDate) tip = '确认 '+s.expDpsConfirmDate;
+    tip = 'Forward DPS 确认 '+(s.expDpsConfirmDate||'')+(s.expDpsSource? '｜依据：'+(DPS_SOURCES[s.expDpsSource]||s.expDpsSource) : '');
     if(s.expDpsReviewDate) tip += '｜下次复核 '+s.expDpsReviewDate + '（超期自动失效）';
     txt += ' ' + (s.expDpsConfirmDate ? s.expDpsConfirmDate.slice(5) : '');
   } else if(ds==='expired'){
     tip = '已超过复核日'+(s.expDpsReviewDate?' '+s.expDpsReviewDate:'')+'，需重新核算确认';
+  } else if(ds==='auto'){
+    tip = 'Auto DPS（TTM实际分红年化，后视）未人工确认；点确认时需选择依据（年报/中报/公告/自估）';
   }
   return '<button class="btn sm mini dps-btn '+f[1]+'" onclick="cycleExpDpsStatus(\''+s.code+'\')" title="'+esc(tip)+'">'+txt+'</button>';
 }
@@ -1217,12 +1316,10 @@ function renderTable(){
     const excessTxt = excess!=null
       ? `<span class="excess ${excess>=0?'pos':'neg'}" title="预期股息率(${y.toFixed(2)}%) − 10年国债(${bondYield.toFixed(2)}%)">${excess>0?'+':''}${excess.toFixed(2)}%</span>`
       : '—';
-    // 自动预期分红对照（东财接口自动计算，A股）
+    // 自动预期分红对照（东财接口自动计算=Auto DPS 后视值，A股）
     const auto = autoDps[s.code];
     const autoDpsTxt = auto && auto.dps>0
-      ? `<div class="auto-dps" title="自动计算(${auto.source})：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}">
-          自动 ${auto.dps.toFixed(2)} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button>
-        </div>`
+      ? `<div class="auto-dps" title="Auto DPS（TTM实际分红年化，后视）：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}。确认前不可作为前瞻估值锚">Auto后视 ${auto.dps.toFixed(2)} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button></div>`
       : (ttmDpsOf(s)!=null
         ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
         : '');
@@ -1264,7 +1361,7 @@ function renderTable(){
     if(colOn('chg')) cells.push(`<td class="${chgCls}">${chgTxt}</td>`);
     if(colOn('ttmYield')) cells.push(`<td><span class="ttm-yield">${ttmTxt}</span></td>`);
     if(colOn('yield')) cells.push(`<td>${y!=null ? `<span class="yield ${y>=7?'up':''}">${y.toFixed(2)}%</span>${redline}${yExTxt}` : '<span class="flat">—</span>'}
-        <span class="dps-val">${s.expDps? s.expDps.toFixed(2)+'元' : ''}${yExDpsTxt}</span>
+        <span class="dps-val" title="Forward DPS（人工确认的前瞻估值锚）">前瞻 ${s.expDps? s.expDps.toFixed(2)+'元' : ''}${yExDpsTxt}</span>
         ${autoDpsTxt}</td>`);
     if(colOn('excess')) cells.push(`<td>${excessTxt}</td>`);
     if(colOn('band')) cells.push(`<td>${y!=null ? `<span class="band ${b.cls}">${b.label}</span>` : '—'}</td>`);
@@ -1537,6 +1634,7 @@ function exportJSON(){
 let toastTimer;
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2200); }
 document.getElementById('modal').addEventListener('click', e=>{ if(e.target.id==='modal') closeModal(); });
+document.getElementById('fund-modal').addEventListener('click', e=>{ if(e.target.id==='fund-modal') closeFundModal(); });
 
 // 启动
 loadPool();
