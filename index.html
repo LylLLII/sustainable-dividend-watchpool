@@ -784,48 +784,55 @@ function fetchAutoDps(){
   const aList = pool.stocks.filter(s=>s.code.startsWith('sh')||s.code.startsWith('sz'));
   if(!aList.length) return;
   autoDpsLoading = true;
-  // 主源：本地 westock 分红数据文件（同源 fetch 必成功，含特殊分红）
-  // 说明：东财 F10 接口（emweb）无 CORS 头，浏览器端跨域 fetch 会被拦截，故不能作为主源
-  return fetchWestockDps(aList).then(()=>{
-    // 尝试东财 F10 实时覆盖（CORS 允许时生效；失败则保留 westock 值）
-    const tasks = aList.map(s => {
-      const url = 'https://emweb.securities.eastmoney.com/PC_HSF10/BonusFinancing/PageAjax?code=' + s.code.toUpperCase() + '&_t=' + Date.now();
-      return fetch(url, { method:'GET' }).then(r=>r.json()).then(js=>{
-        const rows = (js && js.fhyx) || [];
-        if(!rows.length) return null;
-        const now = new Date();
-        const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
-        let sum = 0, cnt = 0, last = null;
-        rows.forEach(r => {
-          const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
-          const prog = r.ASSIGN_PROGRESS || '';
-          if(ex && ex >= oneYearAgo && ex <= now && prog.indexOf('实施') >= 0){
-            const m = (r.IMPL_PLAN_PROFILE || '').match(/10派([\d.]+)/);
-            const perShare = m ? parseFloat(m[1])/10 : 0;
-            if(perShare>0){ sum += perShare; cnt++; }
-            if(!last || ex > last.ex) last = { ex, period:(r.NOTICE_DATE||'').slice(0,10), plan:r.IMPL_PLAN_PROFILE };
-          }
-        });
-        if(cnt) return { code:s.code, dps:sum, source:'东财F10近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period };
-        const r0 = rows.find(x=>/派/.test(x.IMPL_PLAN_PROFILE||'')) || rows[0];
-        const m0 = (r0 && r0.IMPL_PLAN_PROFILE || '').match(/10派([\d.]+)/);
-        const perShare0 = m0 ? parseFloat(m0[1])/10 : 0;
-        return perShare0>0 ? { code:s.code, dps:perShare0, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'', lastPlan:(r0&&r0.NOTICE_DATE||'').slice(0,10) } : null;
-      }).catch(()=>null);
-    });
-    return Promise.all(tasks).then(list=>{
-      list.forEach(x=>{ if(x && x.dps>0) autoDps[x.code] = x; });
+  // 主源：东财 datacenter 报表（带 CORS，浏览器可实时跨域）——实时、覆盖广，但缺特殊分红
+  const tasks = aList.map(s => fetchDatacenterDps(s));
+  return Promise.all(tasks).then(list=>{
+    const live = {};
+    list.forEach(x=>{ if(x && x.dps>0) live[x.code] = x; });
+    // 特殊分红补漏 + 失败兜底：westock 本地文件（含特殊分红标记）
+    return fetchWestockDps(aList).then(()=>{
+      aList.forEach(s=>{
+        const w = autoDps[s.code];
+        if(w && w.special){ autoDps[s.code] = w; }          // 特殊分红股票必须用 westock 完整值（含特殊分红）
+        else if(live[s.code]){ autoDps[s.code] = live[s.code]; } // 其余优先实时值
+      });
       autoDpsLoading = false;
       renderAll();
       return autoDps;
     });
   }).catch(()=>{
-    autoDpsLoading = false;
-    renderAll();
-    return autoDps;
+    // datacenter 整体失败：退到 westock 文件
+    return fetchWestockDps(aList).then(()=>{ autoDpsLoading = false; renderAll(); return autoDps; })
+      .catch(()=>{ autoDpsLoading = false; renderAll(); return autoDps; });
   });
 }
-// 本地 westock 分红数据文件（含特殊分红标记），同源读取，作为 Auto DPS 主源
+// 东财 datacenter 报表（RPT_SHAREBONUS_DET）：浏览器可实时跨域（CORS: *），缺特殊分红类型
+function fetchDatacenterDps(s){
+  const num = s.code.slice(2);
+  const url = 'https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_SHAREBONUS_DET&columns=ALL' +
+    '&filter=(SECURITY_CODE%3D%22' + num + '%22)&pageSize=8&sortColumns=REPORT_DATE&sortTypes=-1&_t=' + Date.now();
+  return fetch(url, { method:'GET' }).then(r=>r.json()).then(js=>{
+    const rows = (js && js.result && js.result.data) || [];
+    if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
+    const now = new Date();
+    const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
+    let sum = 0, cnt = 0, last = null;
+    rows.forEach(r => {
+      const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
+      const prog = r.ASSIGN_PROGRESS || '';
+      if(ex && ex >= oneYearAgo && ex <= now && prog.indexOf('实施') >= 0){
+        const per = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
+        if(per>0){ sum += per; cnt++; }
+        if(!last || ex > last.ex) last = { ex, period:(r.REPORT_DATE||'').slice(0,10), plan:r.IMPL_PLAN_PROFILE };
+      }
+    });
+    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period };
+    const r0 = rows.find(x=>/派/.test(x.IMPL_PLAN_PROFILE||'')) || rows[0];
+    const per0 = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
+    return per0>0 ? { code:s.code, dps:per0, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'' } : { code:s.code, dps:null, note:'无已实施分红' };
+  });
+}
+// 本地 westock 分红数据文件（含特殊分红标记），用于特殊分红补漏与失败兜底
 function fetchWestockDps(aList){
   return fetch('data/dividends_westock.json', { method:'GET' }).then(r=>r.json()).then(wd=>{
     const dividends = (wd && wd.dividends) || {};
