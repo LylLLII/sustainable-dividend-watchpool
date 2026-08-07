@@ -349,7 +349,9 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 <!-- 基本面结构化检查模态框 -->
 <div class="modal-mask" id="fund-modal">
   <div class="modal">
-    <h3>基本面检查 <span id="fund-name" style="font-size:13px;color:var(--sub)"></span></h3>
+    <h3>基本面检查 <span id="fund-name" style="font-size:13px;color:var(--sub)"></span>
+      <span style="display:block;font-size:11px;color:var(--sub);font-weight:400;margin-top:2px">人工检查记录（非自动数据评分）——你上次自己检查后的结论，不是系统对公司的评价</span>
+    </h3>
     <input type="hidden" id="fund-code">
     <div class="fund-checks">
       <label><input type="checkbox" id="fc-profit" onchange="updateFundPreview()"> 盈利：净利润无明显恶化</label>
@@ -367,6 +369,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
       <label>理由（可留空）</label>
       <textarea id="fc-note" rows="2" placeholder="如：2026Q2净利润同比降18%，等待全年分红政策确认"></textarea>
     </div>
+    <div class="hint" style="margin-bottom:8px">🔴 逻辑破坏不会随时间自动恢复，但可通过<u>重新完成本次检查</u>解除（问题解决后重新勾选并保存即可）。</div>
     <div class="modal-actions">
       <button class="btn" onclick="closeFundModal()">取消</button>
       <button class="btn danger" onclick="clearFundStatus()" style="color:var(--red);border-color:#f3c1c1">清除标记</button>
