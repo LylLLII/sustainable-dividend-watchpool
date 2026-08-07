@@ -112,6 +112,14 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .fund-btn.fund-watch{background:#fef7e0;color:#9a6700;border:1px solid #f0dd9a}
 .fund-btn.fund-bad{background:#fdeaea;color:#c92a2a;border:1px solid #f3c1c1}
 .fund-btn.fund-none{background:#f3f4f6;color:var(--sub);border:1px solid #e5e7eb}
+.dec-param-row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px;padding:5px 0;cursor:default}
+.dec-param-row input{width:70px;border:1px solid var(--border);border-radius:6px;padding:4px 6px;font-size:12.5px;text-align:right}
+.dec-param-row b{font-weight:600;color:var(--sub);font-size:11px}
+.dps-btn{margin-left:2px;padding:1px 7px;border-radius:8px;font-size:10.5px;cursor:pointer}
+.dps-btn.dps-auto{background:#fef7e0;color:#9a6700;border:1px solid #f0dd9a}
+.dps-btn.dps-conf{background:#e6f4ea;color:#1a7f37;border:1px solid #b7dfc0}
+.dps-btn.dps-exp{background:#fdeaea;color:#c92a2a;border:1px solid #f3c1c1}
+.dps-btn.dps-none{background:#f3f4f6;color:var(--sub);border:1px solid #e5e7eb}
 .auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
@@ -256,6 +264,16 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
         <div class="cols-foot"><button class="btn sm" onclick="resetCols()">恢复默认</button></div>
       </div>
     </div>
+    <div class="cols-toggle">
+      <button class="btn sm" onclick="toggleDecPanel(event)" title="决策引擎参数：单票最大仓位、卖出滞回">⚙ 参数</button>
+      <div class="cols-panel" id="dec-panel" onclick="event.stopPropagation()">
+        <div class="cols-title">决策引擎参数（卖出=建仓线−偏移，滞回防来回交易）</div>
+        <label class="dec-param-row">单票最大仓位<b>%</b><input id="dp-max" type="number" step="1" min="5" max="50"></label>
+        <label class="dec-param-row">减仓线偏移<b>pp</b><input id="dp-sell" type="number" step="0.1" min="0" max="3"></label>
+        <label class="dec-param-row">清仓线偏移<b>pp</b><input id="dp-clear" type="number" step="0.1" min="0" max="4"></label>
+        <div class="cols-foot"><button class="btn sm primary" onclick="saveDecPanel()">保存</button></div>
+      </div>
+    </div>
   </div>
 
   <div class="table-wrap">
@@ -273,7 +291,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
     超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；行业红线=资源/周期类≥7%（C32，血泪教训升级，按股票 isResource 标记判定）。<br>
-    <b style="color:var(--red)">🧭 决策引擎</b>：档位=非资源类 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类整体上移2%（7/8/9/10%）。卖出=非资源 ≤5%减仓/≤4.5%清仓（资源 7%/6.5%）。"下一档"=预期每股分红÷下一档股息率。基本面状态由你点击标记（🟢正常可加仓/🟡观察停止新增/🔴逻辑破坏停止买入并复核），系统仅自动提示派息率>100%。<br>
+    <b style="color:var(--red)">🧭 决策引擎</b>：买入档=非资源 5%建仓3%/6%加仓8%/7%深度12%/8%极端20%（复核后）；资源周期类上移2%（7/8/9/10%）。卖出滞回（防来回交易，默认 ⚙参数可调）=非资源 减仓≤4.2%/清仓≤3.8%，资源 减仓≤6.2%/清仓≤5.8%，两线之间为持有区（买卖不重叠）。"下一档"=预期每股分红÷下一档股息率。<b>双闸门</b>：①基本面（🟢可加仓/🟡暂停新增/🔴禁止买入，你点击标记）②expDps 确认状态（🟢已确认才能触发深度+档建议；未确认仅参考）。系统自动提示派息率>100%。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
@@ -895,24 +913,47 @@ function zoneOf(y){
   return { label:'🔴 极端低估', cls:'badge-extreme' };
 }
 
-// ============ 投资决策引擎（阶段1：状态/仓位/下一档价/卖出/基本面） ============
-// 档位规则：非资源类 5建仓/6加仓/7深度/8极端，资源周期类整体上移2%（C32红线）
-// 卖出：非资源 ≤5%减仓 ≤4.5%清仓；资源 ≤7%减仓 ≤6.5%清仓
-const DEC_DEFAULTS = { maxPos:20, buyRes:7, addRes:8, deepRes:9, extRes:10, sellRes:7, clearRes:6.5 };
+// ============ 投资决策引擎 V1.1（买入档/卖出滞回/基本面闸门/expDps闸门） ============
+// 买入档：非资源 5建仓/6加仓/7深度/8极端，资源周期类 +2（7/8/9/10，C32红线）
+// 卖出滞回：减仓线 = 建仓线 − sellGap(默认0.8)，清仓线 = 建仓线 − clearGap(默认1.2)
+//   → 非资源 减仓≤4.2/清仓≤3.8；资源 减仓≤6.2/清仓≤5.8；建仓线与减仓线之间为「持有区」（买卖不重叠）
+// 闸门1：基本面 🔴禁止买入 / 🟡暂停新增（人工标记）
+// 闸门2：expDps 确认状态（🟢已确认才能触发深度/极端低估的加仓建议）
+const DEC_KEY = 'dec_params_v1';
+const DEC_DEFAULTS = { maxPos:20, sellGap:0.8, clearGap:1.2 };
+function decParams(){ let p={...DEC_DEFAULTS}; try{ p=Object.assign(p, JSON.parse(localStorage.getItem(DEC_KEY)||'{}')); }catch(e){} return p; }
+function saveDecParams(p){ try{ localStorage.setItem(DEC_KEY, JSON.stringify(p)); }catch(e){} }
 function decOf(s, q){
+  const P = decParams();
   const y = q && s.expDps>0 ? s.expDps/q.price*100 : null;
   const isRes = s.isResource===true;
-  const buy = isRes?DEC_DEFAULTS.buyRes:5, add = isRes?DEC_DEFAULTS.addRes:6,
-        deep = isRes?DEC_DEFAULTS.deepRes:7, ext = isRes?DEC_DEFAULTS.extRes:8,
-        sell = isRes?DEC_DEFAULTS.sellRes:5, clear = isRes?DEC_DEFAULTS.clearRes:4.5;
-  const d = { y, isRes, buy, add, deep, ext, sell, clear };
+  const buy = isRes?7:5, add = isRes?8:6, deep = isRes?9:7, ext = isRes?10:8;
+  const sell = +(buy - P.sellGap).toFixed(1), clear = +(buy - P.clearGap).toFixed(1);
+  const d = { y, isRes, buy, add, deep, ext, sell, clear, maxPos:P.maxPos };
   if(y==null || !isFinite(y) || y<0){ d.state='none'; d.label='—'; d.cls='badge-sell'; d.pos='—'; d.next=null; return d; }
-  if(y>=ext){ d.state='extreme'; d.label='🔥 极端低估'; d.cls='badge-extreme'; d.pos=DEC_DEFAULTS.maxPos+'%（复核后）'; d.next=null; }
+  if(y>=ext){ d.state='extreme'; d.label='🔥 极端低估'; d.cls='badge-extreme'; d.pos=P.maxPos+'%（复核后）'; d.next=null; }
   else if(y>=deep){ d.state='deep'; d.label='🟠 深度低估'; d.cls='badge-deep'; d.pos='12%'; d.next=ext; }
   else if(y>=add){ d.state='add'; d.label='🟢 加仓区'; d.cls='badge-buy'; d.pos='8%'; d.next=deep; }
   else if(y>=buy){ d.state='buy'; d.label='🟢 建仓区'; d.cls='badge-buy'; d.pos='3%'; d.next=add; }
-  else if(y>=clear){ d.state='sell'; d.label='🟡 减仓区'; d.cls='badge-hold'; d.pos='减仓'; d.next=null; d.sellNote='估值修复，考虑减仓'; }
+  else if(y>=sell){ d.state='hold'; d.label='🤔 持有区'; d.cls='badge-hold'; d.pos='持有不动'; d.next=null; d.holdNote='滞回区间：未到减仓线，持有观察'; }
+  else if(y>=clear){ d.state='sell'; d.label='🟡 减仓区'; d.cls='badge-hold'; d.pos='减仓'; d.next=null; d.sellNote='估值修复明显，考虑减仓'; }
   else { d.state='clear'; d.label='🔴 清仓区'; d.cls='badge-sell'; d.pos='清仓'; d.next=null; d.sellNote='估值偏贵，考虑清仓'; }
+  const isBuyZone = (d.state==='extreme'||d.state==='deep'||d.state==='add'||d.state==='buy');
+  // 闸门1：基本面（人工标记）
+  const fs = s.fundStatus;
+  if(fs==='bad'){ d.gate='🔴 基本面逻辑破坏 → 禁止买入，重新估值'; d.pos='0%'; }
+  else if(fs==='watch' && isBuyZone){ d.gate='⚠️ 基本面观察中 → 暂停新增仓位'; d.pos='持有不动'; }
+  // 闸门2：expDps 确认状态（未确认/过期 → 深度+档仓位降级为"待复核"，不直接给出加仓建议）
+  const ds = s.expDpsStatus;
+  if(ds==='expired'){
+    d.gate=(d.gate?d.gate+'；':'')+'🔴 expDps已过期 → 先重新核算';
+    if(isBuyZone){ d.pos='待复核'; }
+  } else if(ds!=='confirmed' && (d.state==='extreme'||d.state==='deep')){
+    d.gate=(d.gate?d.gate+'；':'')+'⚠️ expDps未确认 → 复核确认后再执行';
+    d.pos='待复核';
+  }
+  // 依据文本（决策可解释性）
+  d.reason = '预期股息率 '+y.toFixed(2)+'%' + (isBuyZone ? ' ≥ '+ (d.state==='extreme'?ext:d.state==='deep'?deep:d.state==='add'?add:buy) + '%档' : (d.state==='sell'?' ≤减仓线'+sell+'%':(d.state==='clear'?' ≤清仓线'+clear+'%':' 位于滞回区'))) + (isRes?'（资源类）':'');
   return d;
 }
 const FUND_ORDER = ['good','watch','bad',null];
@@ -939,6 +980,53 @@ function cycleFundStatus(code){
 function fundBadge(s){
   const f = FUND_MAP[s.fundStatus||'none'];
   return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="cycleFundStatus(\''+s.code+'\')" title="点击切换：正常→观察→逻辑破坏→未标记">'+f[0]+'</button>';
+}
+// expDps 确认状态（决策闸门2：未确认/过期不得触发深度+档位的强买入建议）
+const DPS_ORDER = ['auto','confirmed','expired',null];
+const DPS_MAP = {
+  auto:      ['🟡 自动·未确认','dps-auto','🟡 expDps 标记为自动计算（未人工确认）'],
+  confirmed: ['🟢 已确认','dps-conf','✅ expDps 已人工确认'],
+  expired:   ['🔴 过期','dps-exp','🔴 expDps 已过期，需重新核算'],
+  none:      ['⚪ 未标记','dps-none','⚪ 已清除 expDps 状态']
+};
+function cycleExpDpsStatus(code){
+  const s = pool.stocks.find(x=>x.code===code); if(!s) return;
+  const cur = s.expDpsStatus || null;
+  const next = DPS_ORDER[(DPS_ORDER.indexOf(cur)+1) % DPS_ORDER.length];
+  s.expDpsStatus = next || undefined;
+  const diff = loadDiff();
+  const o = diff.custom[code] = diff.custom[code]||{};
+  if(next) o.expDpsStatus = next; else delete o.expDpsStatus;
+  if(!Object.keys(o).length) delete diff.custom[code];
+  saveDiff(diff);
+  renderAll();
+  updateSyncBar();
+  toast(DPS_MAP[next||'none'][2]);
+}
+function dpsBadge(s){
+  const f = DPS_MAP[s.expDpsStatus||'none'];
+  return '<button class="btn sm mini dps-btn '+f[1]+'" onclick="cycleExpDpsStatus(\''+s.code+'\')" title="点击切换：自动·未确认→已确认→过期→未标记">'+f[0]+'</button>';
+}
+// 决策参数面板
+function toggleDecPanel(ev){
+  if(ev && ev.stopPropagation) ev.stopPropagation();
+  const p = document.getElementById('dec-panel');
+  const P = decParams();
+  document.getElementById('dp-max').value = P.maxPos;
+  document.getElementById('dp-sell').value = P.sellGap;
+  document.getElementById('dp-clear').value = P.clearGap;
+  p.classList.toggle('show', !p.classList.contains('show'));
+}
+function saveDecPanel(){
+  const maxPos = parseFloat(document.getElementById('dp-max').value);
+  const sellGap = parseFloat(document.getElementById('dp-sell').value);
+  const clearGap = parseFloat(document.getElementById('dp-clear').value);
+  if(!(maxPos>0) || !(sellGap>=0) || !(clearGap>=0)){ toast('⚠️ 参数格式不正确'); return; }
+  if(clearGap <= sellGap){ toast('⚠️ 清仓线偏移必须大于减仓线偏移'); return; }
+  saveDecParams({ maxPos, sellGap, clearGap });
+  document.getElementById('dec-panel').classList.remove('show');
+  renderAll();
+  toast('✅ 决策参数已保存');
 }
 
 function renderStats(){
@@ -1110,11 +1198,15 @@ function renderTable(){
         decTxt += '<span class="dec-line">下一档 <b class="dec-price">'+np.toFixed(2)+'元</b>（'+d.next+'%）</span>';
       } else if(d.sellNote){
         decTxt += '<span class="dec-line dec-warn">'+d.sellNote+'</span>';
+      } else if(d.holdNote){
+        decTxt += '<span class="dec-line dec-sub">'+d.holdNote+'</span>';
       } else {
         decTxt += '<span class="dec-line dec-warn">已达极限档，基本面复核后再重仓</span>';
       }
+      decTxt += '<span class="dec-line dec-sub" title="'+esc(d.reason)+'">依据：'+esc(d.reason)+'</span>';
       decTxt += '<span class="dec-line dec-sub">卖出：≤'+d.sell+'%减 / ≤'+d.clear+'%清</span>';
-      decTxt += '<span class="dec-line">基本面 '+fundBadge(s)+'</span>';
+      decTxt += '<span class="dec-line">基本面 '+fundBadge(s)+' ｜ expDps '+dpsBadge(s)+'</span>';
+      if(d.gate) decTxt += '<span class="dec-line dec-warn">'+d.gate+'</span>';
       if(payout!=null && payout>1.0) decTxt += '<span class="dec-line dec-warn">⚠️ 派息率'+(payout*100).toFixed(0)+'%过高</span>';
     }
     decTxt += '</td>';
