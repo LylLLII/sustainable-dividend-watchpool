@@ -84,6 +84,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .bond-input{width:64px;border:1px solid var(--border);border-radius:6px;padding:5px 6px;font-size:12px;text-align:center;outline:none}
 .bond-input:focus{border-color:var(--primary)}
 .cat-tag{font-size:10px;color:var(--sub);border:1px solid var(--border);border-radius:4px;padding:0 4px;margin-left:4px}
+.biz-txt{font-size:11px;color:var(--sub);display:inline-block;margin-top:3px;line-height:1.4}
 .auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
@@ -240,7 +241,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
         <th>派息率<sup style="color:var(--gold)">参考</sup></th>
         <th>参考加仓价</th>
         <th>除息日</th>
-        <th>类别<sup style="color:var(--gold)">C32</sup></th>
+        <th>行业/主营<sup style="color:var(--gold)">C32</sup></th>
         <th>备注</th>
         <th>操作</th>
       </tr>
@@ -254,7 +255,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     <b style="color:var(--green)">自动预期分红</b>（东方财富分红接口，A股全覆盖）：按最近12个月已实施分红合计年化，点「✨ 自动更新分红」可批量计算，每行「采用」一键覆盖预期值。
     <b style="color:var(--primary)">预期数据</b>（对应 MR Dang C4 预期股息率五步测算）：预期每股分红 → 预期股息率、估值区间、加仓价。
     <b style="color:var(--green)">参考指标</b>：派息率=TTM股息率×PE（分红可持续性 C10）；股息率百分位=当前预期股息率在52周区间的位置（**越高=股息率越接近52周高位=股价越便宜**，≥70%标"高位·便宜"、<30%标"低位·偏贵"）；
-    超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；类别红线=资源类≥7%（C32，血泪教训升级）。<br>
+    超额收益率=预期股息率−10年国债（C4第④步"对比国债"，手动维护并自动记住，参考中债/财联社约1.70%）；行业红线=资源/周期类≥7%（C32，血泪教训升级，按股票 isResource 标记判定）。<br>
     估值区间与加仓档位参考《可持续高股息估值底价值投资策略》：5%建仓 / 6%加仓 / 7%明显增加 / 8%+重点配置。
     <b>🔄 同步机制</b>：仓库 <code>data/watchpool.json</code> 为基准，你在页面上的增/删/改自动合并（本机记录差异）——仓库更新后刷新即见，你的修改保留；如需全平台生效，把「导出数据」内容提交为仓库数据。
     MR Dang 方法论文档见 <a href="docs/MR-Dang-股息率方法论.md" style="color:var(--primary)">docs/MR-Dang-股息率方法论.md</a>。本页面不构成投资建议。
@@ -285,7 +286,18 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
     </div>
     <div class="form-row">
       <label>备注</label>
-      <textarea id="f-note" rows="2" placeholder="行业 / 分红政策 / 关注点..."></textarea>
+      <textarea id="f-note" rows="2" placeholder="分红政策 / 关注点..."></textarea>
+    </div>
+    <div class="form-row">
+      <label>行业</label>
+      <input id="f-category" placeholder="如：煤炭 / 银行 / 家电 / 医药生物">
+    </div>
+    <div class="form-row">
+      <label>主营业务</label>
+      <input id="f-biz" placeholder="一句话描述主营，如：煤炭开采与销售">
+    </div>
+    <div class="form-row">
+      <label><input type="checkbox" id="f-resource" style="width:auto;vertical-align:middle"> 资源/周期类（适用 C32 预期股息率 ≥7% 红线）</label>
     </div>
     <div class="modal-actions">
       <button class="btn" onclick="closeModal()">取消</button>
@@ -413,6 +425,9 @@ function syncSummaryText(){
     const edits = [];
     if(o.expDps!=null) edits.push('预期每股分红=' + o.expDps + ' 元');
     if(o.note!=null) edits.push('备注="' + o.note + '"');
+    if(o.category!=null) edits.push('行业=' + o.category);
+    if(o.biz!=null) edits.push('主营="' + o.biz + '"');
+    if(o.isResource!=null) edits.push(o.isResource ? '资源类(7%红线)' : '非资源类');
     if(edits.length) lines.push('- 修改：' + name + ' (' + c + ') ' + edits.join('，'));
   });
   return lines.join('\n');
@@ -939,10 +954,11 @@ function renderTable(){
     const exTxt = ex ? (ex<=today ? '—' : (ex.slice(0,10)+ (ex<=today?'':'') )) : '—';
     const exSoon = ex && ex<=today ? '' : (ex && ex > today && (new Date(ex)-new Date(today))/86400000 <= 45 ? ' soon' : '');
     const marketTag = '<span class="market-tag">'+s.market+'</span>';
-    // 类别（MR Dang C32 股息率安全边际分级法）：资源类≥7%红线，稳健类≥5%
-    const isResource = (s.category||'').startsWith('资源类');
-    const redline = isResource ? '<span class="redline" title="C32：资源类股息率安全边际≥7%">7%红线</span>' : '';
-    const catTxt = s.category ? '<span class="cat-tag" title="C32股息率安全边际分级法">'+esc(s.category)+'</span>' : '';
+    // 行业 + 资源标记（MR Dang C32 股息率安全边际分级法）：资源/周期类≥7%红线
+    const isResource = s.isResource===true || (s.category||'').startsWith('资源');
+    const redline = isResource ? '<span class="redline" title="C32：资源/周期类股息率安全边际≥7%">7%红线</span>' : '';
+    const catTxt = s.category ? '<span class="cat-tag" title="行业">'+esc(s.category)+'</span>' : '';
+    const bizTxt = s.biz ? '<span class="biz-txt" title="主营业务">主营：'+esc(s.biz)+'</span>' : '';
     // 超额收益率 = 预期股息率 - 10年国债收益率（C4第④步对比国债）
     const bondYield = parseFloat(document.getElementById('bondYield').value) || 1.70;
     const excess = y!=null ? y - bondYield : null;
@@ -980,7 +996,7 @@ function renderTable(){
       <td>${payoutTxt}</td>
       <td><span class="price-target">${targets}</span></td>
       <td><span class="ex-date${exSoon}">${exTxt}</span></td>
-      <td>${catTxt}</td>
+      <td>${catTxt}${bizTxt?'<br>'+bizTxt:''}</td>
       <td class="note" title="${esc(s.note||'')}">${esc(s.note||'—')}</td>
       <td>
         <button class="btn sm" onclick="openEditModal(${pool.stocks.indexOf(s)})">编辑</button>
@@ -996,7 +1012,8 @@ function esc(s){ return String(s??'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'
 function openAddModal(){
   document.getElementById('modal-title').textContent = '添加股票';
   document.getElementById('edit-index').value = -1;
-  ['f-code','f-name','f-dps','f-note'].forEach(id=>document.getElementById(id).value='');
+  ['f-code','f-name','f-dps','f-note','f-category','f-biz'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('f-resource').checked = false;
   document.getElementById('f-price').value='';
   document.getElementById('modal').classList.add('show');
 }
@@ -1009,6 +1026,9 @@ function openEditModal(i){
   document.getElementById('f-price').value = quotes[s.code] ? quotes[s.code].price : '';
   document.getElementById('f-dps').value = s.expDps||'';
   document.getElementById('f-note').value = s.note||'';
+  document.getElementById('f-category').value = s.category||'';
+  document.getElementById('f-biz').value = s.biz||'';
+  document.getElementById('f-resource').checked = s.isResource===true;
   document.getElementById('modal').classList.add('show');
 }
 function closeModal(){ document.getElementById('modal').classList.remove('show'); }
@@ -1176,9 +1196,12 @@ function saveStock(){
   const name = document.getElementById('f-name').value.trim();
   const dps = parseFloat(document.getElementById('f-dps').value);
   const note = document.getElementById('f-note').value.trim();
+  const category = document.getElementById('f-category').value.trim();
+  const biz = document.getElementById('f-biz').value.trim();
+  const isResource = document.getElementById('f-resource').checked;
   if(!code || !/^(sh|sz|hk|us)[a-zA-Z0-9]+$/.test(code)){ toast('⚠️ 代码格式不正确，如 sh601088'); return; }
   if(!(dps>0)){ toast('⚠️ 请填写预期每股分红'); return; }
-  const obj = { code, name: name||code, market: code.startsWith('sh')?'A股':code.startsWith('sz')?'A股':code.startsWith('hk')?'港股':'美股', expDps: dps, note };
+  const obj = { code, name: name||code, market: code.startsWith('sh')?'A股':code.startsWith('sz')?'A股':code.startsWith('hk')?'港股':'美股', expDps: dps, note, category, biz, isResource };
   const diff = loadDiff();
   if(i>=0){
     // 编辑：判断是仓库票还是用户新增票
