@@ -1,0 +1,602 @@
+{
+ "meta": {
+  "source": "eastmoney mx 中证红利000922 成分详情 2026-08-08",
+  "count": 99
+ },
+ "components": [
+  {
+   "code": "sh601919",
+   "name": "中远海控",
+   "weight": 3.02,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh600188",
+   "name": "兖矿能源",
+   "weight": 1.98,
+   "includeDate": "2020/12/14"
+  },
+  {
+   "code": "sh603565",
+   "name": "中谷物流",
+   "weight": 1.97,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh600256",
+   "name": "广汇能源",
+   "weight": 1.88,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601699",
+   "name": "潞安环能",
+   "weight": 1.85,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh600546",
+   "name": "山煤国际",
+   "weight": 1.81,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh601168",
+   "name": "西部矿业",
+   "weight": 1.8,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601225",
+   "name": "陕西煤业",
+   "weight": 1.56,
+   "includeDate": "2021/12/13"
+  },
+  {
+   "code": "sh600985",
+   "name": "淮北矿业",
+   "weight": 1.55,
+   "includeDate": "2020/12/14"
+  },
+  {
+   "code": "sh601101",
+   "name": "昊华能源",
+   "weight": 1.52,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601666",
+   "name": "平煤股份",
+   "weight": 1.47,
+   "includeDate": "2021/12/13"
+  },
+  {
+   "code": "sh600295",
+   "name": "鄂尔多斯",
+   "weight": 1.46,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sz000983",
+   "name": "山西焦煤",
+   "weight": 1.39,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh600177",
+   "name": "雅戈尔",
+   "weight": 1.31,
+   "includeDate": "2008-05-26"
+  },
+  {
+   "code": "sh601857",
+   "name": "中国石油",
+   "weight": 1.3,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sz000408",
+   "name": "藏格矿业",
+   "weight": 1.25,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600348",
+   "name": "华阳股份",
+   "weight": 1.24,
+   "includeDate": "2020/12/14"
+  },
+  {
+   "code": "sh600919",
+   "name": "江苏银行",
+   "weight": 1.23,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600398",
+   "name": "海澜之家",
+   "weight": 1.21,
+   "includeDate": "2016/12/12"
+  },
+  {
+   "code": "sh600350",
+   "name": "山东高速",
+   "weight": 1.16,
+   "includeDate": "2017/12/11"
+  },
+  {
+   "code": "sh601001",
+   "name": "晋控煤业",
+   "weight": 1.16,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601000",
+   "name": "唐山港",
+   "weight": 1.16,
+   "includeDate": "2021/12/13"
+  },
+  {
+   "code": "sh600153",
+   "name": "建发股份",
+   "weight": 1.16,
+   "includeDate": "2008-05-26"
+  },
+  {
+   "code": "sh601838",
+   "name": "成都银行",
+   "weight": 1.15,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sz000672",
+   "name": "上峰材料",
+   "weight": 1.15,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sz000651",
+   "name": "格力电器",
+   "weight": 1.14,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh601088",
+   "name": "中国神华",
+   "weight": 1.14,
+   "includeDate": "2011-01-04"
+  },
+  {
+   "code": "sh601077",
+   "name": "渝农商行",
+   "weight": 1.12,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600039",
+   "name": "四川路桥",
+   "weight": 1.12,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh600901",
+   "name": "江苏金租",
+   "weight": 1.11,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600015",
+   "name": "华夏银行",
+   "weight": 1.1,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600938",
+   "name": "中国海油",
+   "weight": 1.1,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601939",
+   "name": "建设银行",
+   "weight": 1.09,
+   "includeDate": "2010-01-04"
+  },
+  {
+   "code": "sz002867",
+   "name": "周大生",
+   "weight": 1.08,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601229",
+   "name": "上海银行",
+   "weight": 1.08,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sz000429",
+   "name": "粤高速A",
+   "weight": 1.04,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601916",
+   "name": "浙商银行",
+   "weight": 1.04,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sz000895",
+   "name": "双汇发展",
+   "weight": 1.02,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601009",
+   "name": "南京银行",
+   "weight": 1.02,
+   "includeDate": "2013-01-04"
+  },
+  {
+   "code": "sh601988",
+   "name": "中国银行",
+   "weight": 1.01,
+   "includeDate": "2010-01-04"
+  },
+  {
+   "code": "sh601963",
+   "name": "重庆银行",
+   "weight": 1.01,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601187",
+   "name": "厦门银行",
+   "weight": 1.01,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601169",
+   "name": "北京银行",
+   "weight": 1.01,
+   "includeDate": "2020/12/14"
+  },
+  {
+   "code": "sh600755",
+   "name": "厦门国贸",
+   "weight": 1.01,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh601166",
+   "name": "兴业银行",
+   "weight": 1.0,
+   "includeDate": "2012-01-04"
+  },
+  {
+   "code": "sh601398",
+   "name": "工商银行",
+   "weight": 0.99,
+   "includeDate": "2010-01-04"
+  },
+  {
+   "code": "sh601328",
+   "name": "交通银行",
+   "weight": 0.98,
+   "includeDate": "2014/12/15"
+  },
+  {
+   "code": "sh600012",
+   "name": "皖通高速",
+   "weight": 0.98,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh601998",
+   "name": "中信银行",
+   "weight": 0.98,
+   "includeDate": "2017/12/11"
+  },
+  {
+   "code": "sh600282",
+   "name": "南钢股份",
+   "weight": 0.97,
+   "includeDate": "2019/12/16"
+  },
+  {
+   "code": "sz002563",
+   "name": "森马服饰",
+   "weight": 0.94,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sz301109",
+   "name": "军信股份",
+   "weight": 0.94,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601598",
+   "name": "中国外运",
+   "weight": 0.94,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600096",
+   "name": "云天化",
+   "weight": 0.93,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sz002043",
+   "name": "兔宝宝",
+   "weight": 0.92,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601997",
+   "name": "贵阳银行",
+   "weight": 0.9,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sz002756",
+   "name": "永兴材料",
+   "weight": 0.9,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601216",
+   "name": "君正集团",
+   "weight": 0.89,
+   "includeDate": "2021/12/13"
+  },
+  {
+   "code": "sh601006",
+   "name": "大秦铁路",
+   "weight": 0.89,
+   "includeDate": "2009-01-05"
+  },
+  {
+   "code": "sh601818",
+   "name": "光大银行",
+   "weight": 0.89,
+   "includeDate": "2013-01-04"
+  },
+  {
+   "code": "sh601825",
+   "name": "沪农商行",
+   "weight": 0.89,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh600028",
+   "name": "中国石化",
+   "weight": 0.89,
+   "includeDate": "2012-01-04"
+  },
+  {
+   "code": "sz002601",
+   "name": "龙佰集团",
+   "weight": 0.88,
+   "includeDate": "2018/12/17"
+  },
+  {
+   "code": "sh600036",
+   "name": "招商银行",
+   "weight": 0.87,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600016",
+   "name": "民生银行",
+   "weight": 0.86,
+   "includeDate": "2013-01-04"
+  },
+  {
+   "code": "sh601288",
+   "name": "农业银行",
+   "weight": 0.86,
+   "includeDate": "2013-01-04"
+  },
+  {
+   "code": "sz000933",
+   "name": "神火股份",
+   "weight": 0.85,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600461",
+   "name": "洪城环境",
+   "weight": 0.85,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh601658",
+   "name": "邮储银行",
+   "weight": 0.84,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh601928",
+   "name": "凤凰传媒",
+   "weight": 0.83,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh601098",
+   "name": "中南传媒",
+   "weight": 0.82,
+   "includeDate": "2019/12/16"
+  },
+  {
+   "code": "sh600064",
+   "name": "南京高科",
+   "weight": 0.81,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600737",
+   "name": "中粮糖业",
+   "weight": 0.81,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh601318",
+   "name": "中国平安",
+   "weight": 0.79,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh600273",
+   "name": "嘉化能源",
+   "weight": 0.76,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh601668",
+   "name": "中国建筑",
+   "weight": 0.76,
+   "includeDate": "2014/12/15"
+  },
+  {
+   "code": "sh600757",
+   "name": "长江传媒",
+   "weight": 0.75,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600741",
+   "name": "华域汽车",
+   "weight": 0.71,
+   "includeDate": "2012-01-04"
+  },
+  {
+   "code": "sz000157",
+   "name": "中联重科",
+   "weight": 0.7,
+   "includeDate": "2013-01-04"
+  },
+  {
+   "code": "sh601019",
+   "name": "山东出版",
+   "weight": 0.7,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sz002416",
+   "name": "爱施德",
+   "weight": 0.69,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh601717",
+   "name": "中创智领",
+   "weight": 0.69,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600373",
+   "name": "中文传媒",
+   "weight": 0.68,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sh600057",
+   "name": "厦门象屿",
+   "weight": 0.66,
+   "includeDate": "2022/12/12"
+  },
+  {
+   "code": "sz002233",
+   "name": "塔牌集团",
+   "weight": 0.65,
+   "includeDate": "2019/12/16"
+  },
+  {
+   "code": "sh600585",
+   "name": "海螺水泥",
+   "weight": 0.61,
+   "includeDate": "2016/12/12"
+  },
+  {
+   "code": "sz002572",
+   "name": "索菲亚",
+   "weight": 0.61,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh600729",
+   "name": "重百集团",
+   "weight": 0.6,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh600971",
+   "name": "恒源煤电",
+   "weight": 0.59,
+   "includeDate": "2019/12/16"
+  },
+  {
+   "code": "sh600123",
+   "name": "兰花科创",
+   "weight": 0.54,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sh600502",
+   "name": "安徽建工",
+   "weight": 0.49,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sz002154",
+   "name": "报喜鸟",
+   "weight": 0.48,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sh603706",
+   "name": "东方环宇",
+   "weight": 0.47,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh600997",
+   "name": "开滦股份",
+   "weight": 0.46,
+   "includeDate": "2023/12/11"
+  },
+  {
+   "code": "sz002267",
+   "name": "陕天然气",
+   "weight": 0.46,
+   "includeDate": "2024/12/16"
+  },
+  {
+   "code": "sh603967",
+   "name": "中创物流",
+   "weight": 0.46,
+   "includeDate": "2025/12/15"
+  },
+  {
+   "code": "sz002737",
+   "name": "葵花药业",
+   "weight": 0.45,
+   "includeDate": "2020/12/14"
+  },
+  {
+   "code": "sz000090",
+   "name": "天健集团",
+   "weight": 0.42,
+   "includeDate": "2021/12/13"
+  },
+  {
+   "code": "sz002540",
+   "name": "亚太科技",
+   "weight": 0.33,
+   "includeDate": "2025/12/15"
+  }
+ ]
+}

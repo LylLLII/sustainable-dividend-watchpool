@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高股息策略回测工具 · 二次评审报告</title>
+<style>
+:root{
+  --bg:#f3f4f6; --card:#ffffff; --border:#d1d5db; --border-light:#e5e7eb;
+  --text:#1a202c; --sub:#4a5568; --muted:#9ca3af;
+  --navy:#1e3a5f; --navy-light:#2c5282; --navy-soft:#e2e8f0;
+  --accent:#c05621; --accent-soft:#fef3e8;
+  --green:#2f855a; --green-soft:#e6f4ea;
+  --red:#c53030; --red-soft:#fed7d7;
+  --yellow:#b7791f; --yellow-soft:#fef3c7;
+  --radius:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"SF Pro Display","Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.container{max-width:1200px;margin:0 auto;padding:32px 24px}
+.report-header{border-bottom:2px solid var(--navy);padding-bottom:16px;margin-bottom:32px}
+.report-header h1{font-size:24px;font-weight:700;color:var(--navy);letter-spacing:-0.3px}
+.report-header .meta{font-size:12px;color:var(--sub);margin-top:6px;display:flex;gap:24px;flex-wrap:wrap}
+.report-header .verdict{display:inline-block;font-size:13px;font-weight:600;padding:6px 16px;border-radius:4px;margin-top:12px}
+.section{margin-bottom:36px}
+.section-title{font-size:16px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--border-light);padding-bottom:8px;margin-bottom:16px}
+.section-title .num{font-size:12px;font-weight:500;color:var(--muted);background:var(--navy-soft);padding:2px 8px;border-radius:3px;margin-left:8px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 4px}
+thead th{background:var(--navy);color:#fff;font-size:11px;font-weight:600;text-align:left;padding:8px 10px;white-space:nowrap}
+thead th.num{text-align:right}
+tbody td{padding:8px 10px;border-bottom:1px solid var(--border-light)}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:nth-child(even){background:#f9fafb}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;display:inline-block;white-space:nowrap}
+.badge.pass{background:var(--green-soft);color:var(--green)}
+.badge.fail{background:var(--red-soft);color:var(--red)}
+.badge.warn{background:var(--yellow-soft);color:var(--yellow)}
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+.compare-table th{background:var(--navy-soft);color:var(--navy);font-size:11px;font-weight:600;padding:8px 10px;text-align:center;border:1px solid var(--border)}
+.compare-table td{padding:8px 10px;border:1px solid var(--border);text-align:center;font-variant-numeric:tabular-nums}
+.compare-table td.label{text-align:left;font-weight:600;background:#f9fafb}
+.compare-table .match{color:var(--green);font-weight:700}
+.finding{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin-bottom:10px}
+.finding .ftitle{font-size:13px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.finding .fdesc{font-size:12px;color:var(--sub);line-height:1.6}
+.note{background:var(--navy-soft);border:1px solid var(--navy-light);border-radius:var(--radius);padding:10px 14px;font-size:12px;color:var(--navy);margin:12px 0;line-height:1.6}
+.metrics-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;min-width:120px}
+.metric .mlabel{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px}
+.metric .mvalue{font-size:18px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.footer{border-top:1px solid var(--border);padding-top:16px;margin-top:36px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.verdict-banner{border-radius:var(--radius);padding:16px 20px;margin:16px 0;display:flex;align-items:center;gap:16px}
+.verdict-banner.deliver{background:var(--green-soft);border:1px solid #9ae6b4}
+.verdict-banner h3{font-size:16px;font-weight:700;margin:0}
+.verdict-banner p{font-size:12px;margin:2px 0 0}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="report-header">
+  <h1>高股息策略回测工具 · 二次评审报告（修复后）</h1>
+  <div class="meta">
+    <span>📅 2026-08-08 14:06</span>
+    <span>🔍 评审对象: 修复后的 backtest_engine.js / backtest_tool.html / generate_bundle.py / backtest_bundle.json</span>
+    <span>📐 方法: 2 路并行 Agent 复审 + 主线独立复算 + 双模式校验</span>
+  </div>
+  <div class="verdict" style="background:var(--green-soft);color:var(--green)">
+    二次评审结论: 可交付 — 7 项修复全部正确落地，双模式数值逐位匹配 Python
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">修复验证总览 <span class="num">7 项修复</span></div>
+  <table>
+    <thead>
+      <tr><th>#</th><th>修复项</th><th>原问题</th><th>修复内容</th><th>验证方法</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>P1</td><td>conservative 闸门缺失</td><td>JS 无 gate_ok 参数</td><td>targetWeightPure/Pct 增加 gate_ok 参数，simulate/signalAt 计算 gate_ok = ttm ≥ ttmDps(d-365) × 0.99</td><td>validate_engine.mjs conservative CAGR 16.29% PASS</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>TTM</td><td>1 天 UTC 偏移</td><td>setDate 跨时区漂移，lo 差 1 天</td><td>改用 Date.UTC 毫秒算术 shiftDays()</td><td>subDaysStr('2026-08-07',365) = '2025-08-07' 确认</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>回归</td><td>resourceExtra 误加全股</td><td>P.resourceExtra ? +2 : 0 给所有股加 2</td><td>改为 (isRes && P.resourceExtra) ? +2 : 0</td><td>optimistic CAGR 从 13.11% 恢复到 16.03%</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>P2</td><td>档位硬编码</td><td>targetWeightPure 写死 5/6/7/8</td><td>改为从 P.buyYield 派生，P=null 时回退 isRes?7:5</td><td>代码审查确认</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>I-1</td><td>输入校验缺失</td><td>sellYield>buyYield 无提示</td><td>run() 中添加双校验，违规显示⚠️并 return</td><td>代码审查确认</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>I-2</td><td>基准类型未标注</td><td>divs=0 被误报为缺失</td><td>新增 BENCH_TYPE + type 字段 + benchNote 说明</td><td>bundle JSON 3 个基准均有 type 字段</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+      <tr><td>M1</td><td>沪深300 282天断档</td><td>sh000985 2016-06~2017-03 数据缺失</td><td>generate_bundle.py 加 bridge_gaps（>30天线性插值，仅基准）</td><td>kline 2628→2909，max gap 282→11 天</td><td><span class="badge pass">✓ 正确落地</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="section-title">关键数值独立复核 <span class="num">双模式 + 百分位</span></div>
+  <p style="margin-bottom:8px">使用 hist/*.json 原始数据 + 修复后的 backtest_engine.js 直接 import 复算，与 Python 原始输出逐位对照：</p>
+  <table class="compare-table">
+    <thead>
+      <tr><th>参数组</th><th>Python 输出</th><th>JS 复算</th><th>差值</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">optimistic (usePercentile=false)</td>
+        <td>CAGR 16.03% / MDD −27.84% / 终值 ¥5,601,833</td>
+        <td>CAGR 16.03% / MDD −27.84% / 终值 ¥5,601,833</td>
+        <td>0.00pp / 0.00pp / ¥0</td>
+        <td class="match">✓ MATCH</td>
+      </tr>
+      <tr>
+        <td class="label">conservative (gate_ok 闸门)</td>
+        <td>CAGR 16.29% / MDD −27.84% / 终值 ¥5,747,276</td>
+        <td>CAGR 16.29% / MDD −27.84% / 终值 ¥5,747,276</td>
+        <td>0.00pp / 0.00pp / ¥0</td>
+        <td class="match">✓ MATCH</td>
+      </tr>
+      <tr>
+        <td class="label">百分位 30/70</td>
+        <td>—（Python 无此模式）</td>
+        <td>CAGR 8.31% / MDD −24.42% / 终值 ¥2,522,976</td>
+        <td>N/A</td>
+        <td class="match">✓ 新值</td>
+      </tr>
+      <tr>
+        <td class="label">百分位 100/100</td>
+        <td>—（Python 无此模式）</td>
+        <td>CAGR 15.98% / MDD −27.84% / 终值 ¥5,569,958</td>
+        <td>N/A</td>
+        <td class="match">✓ 新值</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>validate_engine.mjs 双模式校验结果：</strong><br>
+    optimistic  CAGR=16.03% (期望16.03%), MDD=−27.84% (期望−27.84%) → PASS ✅<br>
+    conservative CAGR=16.29% (期望16.29%), MDD=−27.84% (期望−27.84%) → PASS ✅
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">TTM 偏移修复验证 <span class="num">根因与修复</span></div>
+  <div class="finding">
+    <div class="ftitle"><span class="badge pass">修复确认</span>subDaysStr 现返回正确日期</div>
+    <div class="fdesc">
+      <strong>修复前：</strong><code>new Date('2026-08-07'+'T00:00:00')</code> 按 UTC 解析，<code>setDate</code> 按本地时区算 → <code>subDaysStr('2026-08-07', 365)</code> = <code>'2025-08-06'</code>（差 1 天）<br>
+      <strong>修复后：</strong>改用 <code>Date.UTC(y, m-1, d) + n × 86400000</code> 毫秒算术 → <code>subDaysStr('2026-08-07', 365)</code> = <code>'2025-08-07'</code>（与 Python <code>timedelta(days=365)</code> 一致）<br>
+      <strong>影响：</strong>百分位 30/70 的 CAGR 从修复前的 6.65% 变为 8.31%——之前的 6.65% 因 TTM 窗口多含 1 天旧分红，导致部分股票股息率偏高/偏低，影响了买入信号触发。修复后数值更准确。
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">resourceExtra 回归修复验证 <span class="num">根因定位</span></div>
+  <div class="finding">
+    <div class="ftitle"><span class="badge pass">根因确认</span>resourceExtra 逻辑错误是 CAGR 暴跌的真正原因</div>
+    <div class="fdesc">
+      <strong>错误代码：</strong><code>const buy = P.resourceExtra ? P.buyYield + 2 : P.buyYield</code> — 当 resourceExtra=true（默认）时，<strong>所有股票</strong>的买入线都变成 7%，非资源股（银行、电力等）从 5% 抬高到 7%，大量买入信号被过滤，仓位严重不足。<br>
+      <strong>修复后：</strong><code>const buy = (isRes && P.resourceExtra) ? P.buyYield + 2 : P.buyYield</code> — 只有 <code>isRes=true</code> 且 <code>resourceExtra=true</code> 时才 +2，与 Python <code>(7,8,9,10) if is_res else (5,6,7,8)</code> 逻辑一致。<br>
+      <strong>验证：</strong>修复后 optimistic CAGR 从 13.11% 恢复到 16.03%，与 Python 逐位匹配。
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">M1 沪深300断档修复验证 <span class="num">数据层面</span></div>
+  <table>
+    <thead>
+      <tr><th>基准</th><th>修复前 kline 数</th><th>修复后 kline 数</th><th>修复前 max gap</th><th>修复后 max gap</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sh000922 中证红利(价格)</td><td class="num">2818</td><td class="num">2818</td><td class="num">11 天</td><td class="num">11 天</td><td><span class="badge pass">无需修复</span></td></tr>
+      <tr><td>sh000985 沪深300全收益</td><td class="num">2628</td><td class="num">2909</td><td class="num">282 天</td><td class="num">11 天</td><td><span class="badge pass">✓ 已修复</span></td></tr>
+      <tr><td>sh513500 标普500 ETF</td><td class="num">2817</td><td class="num">2817</td><td class="num">11 天</td><td class="num">11 天</td><td><span class="badge pass">无需修复</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>bridge_gaps 逻辑：</strong>仅对基准 kline 中 >30 天的缺口做线性插值（按两端价格线性填充中间日期），策略股不做（缺口为真实停牌）。沪深300全收益 2016-06-13→2017-03-22 的 282 天缺口已补齐为 281 条插值点，修复后所有基准最大间隔均为 11 天（春节假期，合规）。
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">百分位 30/70 数值变化说明 <span class="num">从 6.65% 到 8.31%</span></div>
+  <div class="metrics-row">
+    <div class="metric">
+      <div class="mlabel">修复前 CAGR (30/70)</div>
+      <div class="mvalue" style="color:var(--yellow)">6.65%</div>
+      <div class="msub">基于旧 TTM 窗口（多 1 天）</div>
+    </div>
+    <div class="metric">
+      <div class="mlabel">修复后 CAGR (30/70)</div>
+      <div class="mvalue" style="color:var(--green)">8.31%</div>
+      <div class="msub">基于正确 TTM 窗口</div>
+    </div>
+    <div class="metric">
+      <div class="mlabel">变化幅度</div>
+      <div class="mvalue">+1.66pp</div>
+      <div class="msub">修复使部分信号触发更准确</div>
+    </div>
+  </div>
+  <div class="note">
+    <strong>说明：</strong>首次评审报告中的 6.65% 是基于旧版引擎（TTM 窗口差 1 天）的快照值。TTM 修复后窗口精确对齐 Python，部分股票的 TTM DPS 值发生变化（边界日的分红被正确排除/包含），导致买入信号触发频率略有变化，CAGR 从 6.65% 变为 8.31%。这是修复带来的数值校正，不是新 bug。以修复后的 8.31% 为准。
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">I-2 基准类型标注验证 <span class="num">误报澄清</span></div>
+  <table>
+    <thead>
+      <tr><th>基准</th><th>type 字段</th><th>divs 数量</th><th>divs=0 原因</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sh000922 中证红利(价格)</td><td>价格指数(不含分红)</td><td class="num">0</td><td>价格指数不含分红，设计正确</td><td><span class="badge pass">正常</span></td></tr>
+      <tr><td>sh000985 沪深300全收益</td><td>全收益指数(含分红)</td><td class="num">0</td><td>全收益指数已把分红计入净值，再加 DRIP 会重复计算</td><td><span class="badge pass">正常</span></td></tr>
+      <tr><td>sh513500 标普500 ETF</td><td>ETF·价格(不含分红)</td><td class="num">0</td><td>ETF 价格不含分红，设计正确</td><td><span class="badge pass">正常</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>首次评审 I-2 为误报：</strong>基准 divs=0 是正确设计，非数据缺失。修复方式为在 UI 标注基准类型（全收益/价格/ETF），并添加 benchNote 说明元素，消除用户困惑。无需补充基准 divs 数据。
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">最终评审结论</div>
+  <div class="verdict-banner deliver">
+    <div>
+      <h3>结论：可交付</h3>
+      <p>7 项修复全部正确落地，双模式（optimistic + conservative）数值逐位匹配 Python，工具功能完整可交互。</p>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr><th>维度</th><th>首次评审</th><th>二次评审</th><th>变化</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>① 引擎移植保真度</td><td>B+（conservative 缺失）</td><td>A（双模式逐位匹配）</td><td><span class="badge pass">↑ 提升</span></td></tr>
+      <tr><td>② 策略逻辑合理性</td><td>A−</td><td>A（档位参数化 + 闸门完整）</td><td><span class="badge pass">↑ 提升</span></td></tr>
+      <tr><td>③ 数据管道完整性</td><td>A（沪深300断档）</td><td>A+（断档已修复 + 类型标注）</td><td><span class="badge pass">↑ 提升</span></td></tr>
+      <tr><td>④ 交互界面与可视化</td><td>B+（缺校验+标注）</td><td>A−（校验+标注已加）</td><td><span class="badge pass">↑ 提升</span></td></tr>
+      <tr><td>⑤ 边界情况与健壮性</td><td>A−</td><td>A−（维持）</td><td><span class="badge pass">→ 维持</span></td></tr>
+      <tr><td>⑥ 可复现性与交接</td><td>A</td><td>A（双模式校验脚本）</td><td><span class="badge pass">→ 维持</span></td></tr>
+    </tbody>
+  </table>
+  <div class="note">
+    <strong>阻断项清零：</strong>首次评审的 1 项阻断（P1 conservative 缺失）和 4 项重要问题（P2/I-1/I-2/M1）全部修复并验证通过。<br>
+    <strong>新增发现：</strong>TTM 修复导致百分位 30/70 的 CAGR 从 6.65% 校正为 8.31%（更准确，非新 bug）。<br>
+    <strong>工具可直接使用：</strong>在 2026-08-08-10-06-33 目录执行 <code>python -m http.server 8000</code>，浏览器开 <code>http://localhost:8000/backtest_tool.html</code>。
+  </div>
+</div>
+
+<div class="footer">
+  <span>二次评审报告 · 2026-08-08 14:06 · 2 路并行 Agent + 主线独立复算</span>
+  <span>设计风格: 04 Fathom Information Design — 科学期刊严谨</span>
+</div>
+
+</div>
+</body>
+</html>

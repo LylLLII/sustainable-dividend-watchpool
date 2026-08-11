@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高股息策略 · 可调回测工具</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --border:#e5e7eb;
+  --text:#1f2937; --sub:#6b7280; --red:#e03131; --green:#2f9e44;
+  --primary:#1c64f2; --primary-soft:#e8effd;
+  --gold:#b7791f; --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);padding:20px;line-height:1.5}
+.container{max-width:1500px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+h1{font-size:20px;font-weight:700;display:flex;align-items:center;gap:10px}
+h1 .badge{font-size:12px;font-weight:500;background:var(--primary-soft);color:var(--primary);padding:4px 10px;border-radius:20px}
+.btn{background:var(--primary);border:1px solid var(--primary);color:#fff;padding:9px 18px;
+  border-radius:8px;cursor:pointer;font-size:14px;font-weight:600}
+.btn:hover{background:#174fc8}
+.btn:disabled{opacity:.6;cursor:wait}
+
+.controls{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:14px}
+.ctrl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px 18px}
+.ctrl{display:flex;flex-direction:column;gap:5px}
+.ctrl label{font-size:12px;color:var(--sub);display:flex;justify-content:space-between;align-items:center}
+.ctrl label .val{font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.ctrl input[type=number],.ctrl select{width:100%;border:1px solid var(--border);border-radius:7px;
+  padding:7px 9px;font-size:13px;outline:none;background:#fff}
+.ctrl input[type=number]:focus,.ctrl select:focus{border-color:var(--primary)}
+.ctrl.toggle{flex-direction:row;align-items:center;justify-content:space-between;
+  background:#f9fafb;border:1px solid var(--border);border-radius:8px;padding:8px 11px}
+.ctrl.toggle label{color:var(--text);font-size:13px;font-weight:600}
+.switch{position:relative;width:40px;height:22px;flex:0 0 auto}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;inset:0;background:#cbd5e1;border-radius:22px;transition:.2s}
+.slider:before{content:"";position:absolute;height:16px;width:16px;left:3px;top:3px;background:#fff;
+  border-radius:50%;transition:.2s}
+.switch input:checked + .slider{background:var(--primary)}
+.switch input:checked + .slider:before{transform:translateX(18px)}
+.hint{font-size:11px;color:var(--sub);margin-top:2px}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:14px}
+.card h3{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+#chart{width:100%;height:440px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:1100px){.two-col{grid-template-columns:1fr}}
+
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:#f9fafb;font-size:12px;color:var(--sub);text-align:right;padding:9px 10px;
+  border-bottom:1px solid var(--border);white-space:nowrap}
+thead th:first-child,tbody td:first-child{text-align:left}
+tbody td{padding:9px 10px;text-align:right;border-bottom:1px solid #f0f1f3;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#fafbfc}
+.sig{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:11px;white-space:nowrap}
+.sig.buy{background:#fee2e2;color:var(--red)}
+.sig.hold{background:var(--primary-soft);color:var(--primary)}
+.sig.reduce{background:#fef3c7;color:#9a6700}
+.sig.sell{background:#dcfce7;color:var(--green)}
+.sig.flat{background:#f1f3f5;color:var(--sub)}
+.stk-name{font-weight:600}
+.stk-code{color:var(--sub);font-size:11px;margin-left:5px}
+.res-tag{font-size:10px;color:var(--gold);background:#fdf3e3;border-radius:4px;padding:1px 5px;margin-left:4px}
+.legend-note{font-size:11px;color:var(--sub);margin-top:8px;line-height:1.7}
+.warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:9px 12px;font-size:12px;margin-bottom:12px}
+#status{font-size:12px;color:var(--sub)}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>高股息策略 · 可调回测工具 <span class="badge">股息率触发 + 百分位估值</span></h1>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span id="status">加载数据…</span>
+      <button class="btn" id="runBtn">运行回测</button>
+    </div>
+  </header>
+
+  <div class="warn">
+    模型：<b>买入</b> = 股息率高(≥买入触发线) 且 处于历史低位百分位(便宜)；
+    <b>卖出</b> = 股息率低(≤卖出触发线) 且 处于历史高位百分位(贵)；中间持有。
+    分红自动复投(DRIP)，按月/季再平衡，单票上限封顶、总仓不杠杆。调下面的参数即可实时观察收益变化。<br>
+    <b>⚠️ 口径声明（重要）</b>：本工具是<b>当前股票池回溯测试</b>——固定 watchpool.json 时点的完整股票池，
+    未含历史被剔除/退市股票，收益系统性偏乐观，<b>不可直接外推为实现收益</b>。
+    策略股息率 = <b>realized-TTM</b>（最近12个月真实已实现分红/价），非原始策略的「预期股息率 expDps」口径
+    （后者有前瞻偏差）；分红已改用东财真实历史除息事件。3 个基准为「价格+估算分红复投」的近似全收益；
+    策略与基准均计入佣金/印花税/滑点/整手/执行延迟（默认中性档，见下方成本模型）。
+  </div>
+
+  <div class="controls">
+    <div class="ctrl-grid">
+      <div class="ctrl toggle">
+        <label>使用百分位估值</label>
+        <span class="switch"><input type="checkbox" id="usePercentile" checked><span class="slider"></span></span>
+      </div>
+      <div class="ctrl toggle">
+        <label>百分位软倾斜</label>
+        <span class="switch"><input type="checkbox" id="tilt" checked><span class="slider"></span></span>
+      </div>
+      <div class="ctrl">
+        <label>买入股息率触发线 <span class="val" id="buyYieldV">5%</span></label>
+        <input type="number" id="buyYield" value="5" step="0.5" min="1" max="15">
+        <div class="hint">非资源股阈值；资源股自动 +2%（可关）</div>
+      </div>
+      <div class="ctrl">
+        <label>卖出股息率触发线 <span class="val" id="sellYieldV">3%</span></label>
+        <input type="number" id="sellYield" value="3" step="0.5" min="0" max="10">
+        <div class="hint">股息率跌破此线且处贵区→清仓</div>
+      </div>
+      <div class="ctrl">
+        <label>百分位回看窗口 <span class="val" id="lookbackV">5 年</span></label>
+        <input type="number" id="lookbackYears" value="5" step="1" min="1" max="10">
+        <div class="hint">计算「当前股息率在历史中的分位」</div>
+      </div>
+      <div class="ctrl">
+        <label>便宜百分位 ≤ <span class="val" id="cheapPctV">30</span></label>
+        <input type="number" id="cheapPct" value="30" step="5" min="0" max="100">
+        <div class="hint">低于此分位视为便宜(进入买入区)</div>
+      </div>
+      <div class="ctrl">
+        <label>昂贵百分位 ≥ <span class="val" id="expensivePctV">70</span></label>
+        <input type="number" id="expensivePct" value="70" step="5" min="0" max="100">
+        <div class="hint">高于此分位且股息率低→卖出</div>
+      </div>
+      <div class="ctrl">
+        <label>单票上限 <span class="val" id="maxWeightV">20%</span></label>
+        <input type="number" id="maxWeight" value="20" step="5" min="5" max="40">
+      </div>
+      <div class="ctrl">
+        <label>再平衡频率</label>
+        <select id="rebalance"><option value="month" selected>月度</option><option value="quarter">季度</option></select>
+      </div>
+      <div class="ctrl">
+        <label>回测起始年</label>
+        <select id="startYear"></select>
+        <div class="hint">结束日期为数据快照最新日</div>
+      </div>
+      <div class="ctrl">
+        <label>初始资金(元) <span class="val" id="capV">100万</span></label>
+        <input type="number" id="initialCapital" value="1000000" step="100000" min="10000">
+      </div>
+      <div class="ctrl toggle">
+        <label>分红复投 DRIP</label>
+        <span class="switch"><input type="checkbox" id="drip" checked><span class="slider"></span></span>
+      </div>
+      <div class="ctrl toggle">
+        <label>资源股阈值 +2%</label>
+        <span class="switch"><input type="checkbox" id="resourceExtra" checked><span class="slider"></span></span>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--sub);font-weight:700;margin:12px 0 8px;padding-top:10px;border-top:1px dashed var(--border)">交易成本模型（默认中性档，改动后点「运行回测」生效）</div>
+    <div class="ctrl-grid">
+      <div class="ctrl">
+        <label>佣金(万分) <span class="val" id="commV">2.5</span></label>
+        <input type="number" id="commissionRate" value="2.5" step="0.5" min="0" max="30">
+        <div class="hint">双边收取，另有单笔最低佣金</div>
+      </div>
+      <div class="ctrl">
+        <label>最低佣金(元) <span class="val" id="minCommV">5</span></label>
+        <input type="number" id="minCommission" value="5" step="1" min="0" max="100">
+      </div>
+      <div class="ctrl toggle">
+        <label>印花税(卖出侧)</label>
+        <span class="switch"><input type="checkbox" id="stampOn" checked><span class="slider"></span></span>
+      </div>
+      <div class="ctrl">
+        <label>滑点(单边%) <span class="val" id="slipV">0.1</span></label>
+        <input type="number" id="slippage" value="0.1" step="0.05" min="0" max="2">
+        <div class="hint">买提价/卖压价</div>
+      </div>
+      <div class="ctrl">
+        <label>买入整手(股) <span class="val" id="lotV">100</span></label>
+        <input type="number" id="lotSize" value="100" step="100" min="0" max="1000">
+        <div class="hint">0 = 允许碎股(不真实)</div>
+      </div>
+      <div class="ctrl">
+        <label>调仓执行延迟(交易日) <span class="val" id="execV">1</span></label>
+        <input type="number" id="execDelay" value="1" step="1" min="0" max="5">
+        <div class="hint">信号日收盘定权重，N 日后收盘执行；0=当日</div>
+      </div>
+      <div class="ctrl">
+        <label>分红复投延迟(交易日) <span class="val" id="divDV">1</span></label>
+        <input type="number" id="divDelay" value="1" step="1" min="0" max="5">
+        <div class="hint">除息后 N 日收盘复投；0=除息日当日</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>净值曲线（初始资金 = 100%）</h3>
+    <div id="chart"></div>
+    <div class="legend-note">
+      红线=策略(当前设置)；橙虚线=策略(纯档位基线，无百分位，作对照)；其余为三大基准（买入持有+分红复投，近似全收益）。
+      <b>百分位两种模式</b>：「软倾斜」开=以档位目标权重为基底、按估值微调仓位(便宜满配/中性七成/贵区四成)，收益接近纯档位；
+      关=硬闸门(非便宜区不新建仓)，对高股息组合会显著压低收益(但回撤更小)。拖动参数即可看到权衡。
+      已计入交易成本（佣金/印花税/滑点/整手/调仓与分红复投延迟，默认中性档）。
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <h3>收益指标对比</h3>
+      <table id="metricsTable">
+        <thead><tr><th>策略 / 基准</th><th>CAGR</th><th>总收益</th><th>最大回撤</th><th>年化波动</th><th>夏普*</th><th>Sortino</th><th>Calmar</th><th>年化换手</th><th>月胜率</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="legend-note" id="benchNote" style="display:none">
+        *夏普为<b>标准日度超额收益口径</b>：mean(日收益−无风险利率/252)/std(日超额收益)×√252（无风险利率按 1.7%/年）。
+        基准为「价格+估算分红复投」的近似全收益（中证红利≈4.5%/年、沪深300≈2.5%/年、标普500ETF≈1.8%/年），
+        非官方全收益指数，仅供口径统一对比；<b>基准与策略使用同一套交易成本</b>（建仓佣金+滑点、分红复投费用）。
+        换手=年化单边买入成交额/日均净值；基准无换手列。
+      </div>
+    </div>
+    <div class="card">
+      <h3>当前信号（截至 <span id="lastDate">—</span>，最新再平衡日）</h3>
+      <div style="max-height:360px;overflow:auto">
+        <table id="signalTable">
+          <thead><tr><th>股票</th><th>股息率</th><th>百分位</th><th>信号</th><th>目标权重</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="legend-note">信号基于当前参数，在最近一个再平衡日计算。百分位「—」表示未启用百分位或历史不足。</div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { buildPanel, runStrategy, runBenchmark, signalAt } from './backtest_engine.js';
+
+let BUNDLE = null, panelCache = {};
+const chart = (typeof echarts !== 'undefined') ? echarts.init(document.getElementById('chart')) : null;
+window.addEventListener('resize', () => chart && chart.resize());
+
+const bind = (id, valId, fmt) => {
+  const el = document.getElementById(id), v = document.getElementById(valId);
+  const upd = () => v.textContent = fmt(el.value);
+  el.addEventListener('input', upd); upd();
+};
+bind('buyYield','buyYieldV',x=>x+'%');
+bind('sellYield','sellYieldV',x=>x+'%');
+bind('lookbackYears','lookbackV',x=>x+' 年');
+bind('cheapPct','cheapPctV',x=>x);
+bind('expensivePct','expensivePctV',x=>x);
+bind('maxWeight','maxWeightV',x=>x+'%');
+bind('initialCapital','capV',x=>(+x/10000)+'万');
+bind('commissionRate','commV',x=>x);
+bind('minCommission','minCommV',x=>x);
+bind('slippage','slipV',x=>x+'%');
+bind('lotSize','lotV',x=>x);
+bind('execDelay','execV',x=>x+' 日');
+bind('divDelay','divDV',x=>x+' 日');
+
+function readParams(){
+  return {
+    usePercentile: document.getElementById('usePercentile').checked,
+    tilt: document.getElementById('tilt').checked,
+    buyYield: +document.getElementById('buyYield').value,
+    sellYield: +document.getElementById('sellYield').value,
+    lookbackYears: +document.getElementById('lookbackYears').value,
+    cheapPct: +document.getElementById('cheapPct').value,
+    expensivePct: +document.getElementById('expensivePct').value,
+    maxWeight: +document.getElementById('maxWeight').value / 100,
+    rebalance: document.getElementById('rebalance').value,
+    initialCapital: +document.getElementById('initialCapital').value,
+    drip: document.getElementById('drip').checked,
+    resourceExtra: document.getElementById('resourceExtra').checked,
+    cost: {
+      commissionRate: +document.getElementById('commissionRate').value / 10000,
+      minCommission: +document.getElementById('minCommission').value,
+      stampRate: document.getElementById('stampOn').checked ? 0.001 : 0,
+      stampRateNew: document.getElementById('stampOn').checked ? 0.0005 : 0,
+      stampCutoff: '2023-08-28',
+      slippage: +document.getElementById('slippage').value / 100,
+      lotSize: +document.getElementById('lotSize').value,
+      execDelay: +document.getElementById('execDelay').value,
+      divDelay: +document.getElementById('divDelay').value,
+    },
+  };
+}
+
+function buildPanelFor(start){
+  if (panelCache[start]) return panelCache[start];
+  const { dates, panel } = buildPanel(BUNDLE.stocks, start, BUNDLE.meta.end);
+  const p = { dates, panel };
+  panelCache[start] = p; return p;
+}
+
+const fmtPct = x => (x>=0?'+':'') + x + '%';
+
+function seriesOf(equity, cap){
+  return equity.map(([d,v]) => [d, +(v/cap*100).toFixed(2)]);
+}
+
+function run(){
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true; btn.textContent = '计算中…';
+  try{
+    const P = readParams();
+    // I-1 校验：卖出线必须低于买入线，便宜分位必须低于昂贵分位，否则策略逻辑自相矛盾
+    if (P.sellYield >= P.buyYield){
+      document.getElementById('status').textContent =
+        `⚠️ 参数无效：卖出股息率触发线(${P.sellYield}%) 必须 < 买入触发线(${P.buyYield}%)`;
+      return;
+    }
+    if (P.cheapPct >= P.expensivePct){
+      document.getElementById('status').textContent =
+        `⚠️ 参数无效：便宜百分位(${P.cheapPct}) 必须 < 昂贵百分位(${P.expensivePct})`;
+      return;
+    }
+    const start = document.getElementById('startYear').value + '-01-01';
+    const { dates, panel } = buildPanelFor(start);
+
+    const strat = runStrategy(dates, panel, P);
+    const base = runStrategy(dates, panel, { ...P, usePercentile: false });
+
+    const bench = BUNDLE.benchmarks.map(b => {
+      // 与策略同一套成本模型: 传 P.cost, 用户调佣金/滑点/印花税/延迟时基准同步变化
+      const r = runBenchmark(dates, b.kline, b.divs, P.initialCapital, P.cost);
+      return { name: b.name, type: b.type || '', metrics: r.metrics, equity: r.equity };
+    });
+
+    renderChart(dates, strat, base, bench, P.initialCapital);
+    renderMetrics(strat.metrics, base.metrics, bench);
+    renderSignals(panel, dates, strat.weights, P);
+    document.getElementById('status').textContent =
+      `区间 ${strat.metrics.start} ~ ${strat.metrics.end} · ${dates.length} 交易日`;
+  }catch(e){
+    document.getElementById('status').textContent = '⚠️ 计算失败：' + e.message;
+    console.error(e);
+  }finally{
+    btn.disabled = false; btn.textContent = '运行回测';
+  }
+}
+
+function renderChart(dates, strat, base, bench, cap){
+  if (!chart) return;
+  const benchSeries = bench.map(b => ({
+    name: b.name, type:'line', showSymbol:false,
+    lineStyle:{width:1.3, opacity:.85}, itemStyle:{color:'#868e96'},
+    data: seriesOf(b.equity, cap)
+  }));
+  chart.setOption({
+    tooltip:{ trigger:'axis', valueFormatter:v => (v==null?'-':v+'%') },
+    legend:{ top:0, type:'scroll', textStyle:{fontSize:11} },
+    grid:{ left:55, right:20, top:42, bottom:50 },
+    xAxis:{ type:'category', data: dates, boundaryGap:false,
+      axisLabel:{ fontSize:10, formatter:(v,i)=> (i % Math.ceil(dates.length/10) === 0) ? v.slice(0,7) : '' } },
+    yAxis:{ type:'value', name:'占初始资金%', nameTextStyle:{fontSize:11}, scale:true, axisLabel:{ fontSize:10, formatter:v=>v+'%' } },
+    dataZoom:[{ type:'slider', start:0, end:100, height:18, bottom:18 }, { type:'inside' }],
+    series:[
+      { name:'策略(当前设置)', type:'line', showSymbol:false, data: seriesOf(strat.equity, cap),
+        lineStyle:{width:2.6, color:'#e03131'}, itemStyle:{color:'#e03131'} },
+      { name:'策略(纯档位基线)', type:'line', showSymbol:false, data: seriesOf(base.equity, cap),
+        lineStyle:{width:1.8, color:'#f08c00', type:'dashed'}, itemStyle:{color:'#f08c00'} },
+      ...benchSeries
+    ]
+  }, true);
+}
+
+function renderMetrics(sm, bm, bench){
+  const rows = [
+    ['策略(当前设置)', sm, '#e03131'],
+    ['策略(纯档位基线)', bm, '#f08c00'],
+    ...bench.map(b => [b.name + (b.type ? ` <span style="color:#9aa1ac;font-weight:400;font-size:11px">(${b.type})</span>` : ''), b.metrics, '#868e96'])
+  ];
+  document.querySelector('#metricsTable tbody').innerHTML = rows.map(([name,m,c]) => `
+    <tr>
+      <td style="color:${c};font-weight:600">${name}</td>
+      <td>${fmtPct(m.cagr)}</td>
+      <td>${fmtPct(m.total_ret)}</td>
+      <td style="color:#e03131">${fmtPct(m.mdd)}</td>
+      <td>${m.vol}%</td>
+      <td>${m.sharpe}</td>
+      <td>${m.sortino}</td>
+      <td>${m.calmar}</td>
+      <td>${m.turnover != null ? m.turnover : '—'}</td>
+      <td>${m.win_rate != null ? m.win_rate + '%' : '—'}</td>
+    </tr>`).join('');
+  const note = document.getElementById('benchNote');
+  if (note) note.style.display = 'block';
+}
+
+function renderSignals(panel, dates, weights, P){
+  if (!weights.length) return;
+  const [lastDate, wsMap] = weights[weights.length-1];
+  document.getElementById('lastDate').textContent = lastDate;
+  const rows = Object.keys(panel).map(c => {
+    const sig = signalAt(panel, dates, c, lastDate, P);
+    let tgt;
+    if (sig.tw === null) tgt = '—';
+    else if (sig.tw === 'hold') tgt = (wsMap[c]*100).toFixed(1) + '%';
+    else if (sig.tw === 'reduce') tgt = (wsMap[c]*50).toFixed(1) + '%';
+    else if (sig.tw === 0.0) tgt = '0%';
+    else tgt = (sig.tw*100).toFixed(1) + '%';
+    const pctTxt = (sig.pct === null) ? '—' : sig.pct.toFixed(0);
+    const yTxt = (sig.y === null) ? '—' : sig.y.toFixed(2) + '%';
+    const res = panel[c].isRes ? '<span class="res-tag">资源</span>' : '';
+    return `<tr>
+      <td><span class="stk-name">${panel[c].name}</span><span class="stk-code">${c}</span>${res}</td>
+      <td>${yTxt}</td><td>${pctTxt}</td>
+      <td><span class="sig ${sig.cls}">${sig.label}</span></td><td>${tgt}</td>
+    </tr>`;
+  }).join('');
+  document.querySelector('#signalTable tbody').innerHTML = rows;
+}
+
+(async () => {
+  try{
+    const r = await fetch('backtest_bundle.json');
+    BUNDLE = await r.json();
+    const sy = document.getElementById('startYear');
+    const y0 = +BUNDLE.meta.start.slice(0,4);
+    const yEnd = +BUNDLE.meta.end.slice(0,4) - 1;
+    for (let y = y0; y <= yEnd; y++){
+      const o = document.createElement('option'); o.value = y; o.textContent = y + ' 年'; sy.appendChild(o);
+    }
+    sy.value = y0;
+    const nStocks = (BUNDLE.stocks || []).length;
+    const nBench = (BUNDLE.benchmarks || []).length;
+    document.getElementById('status').textContent = `数据就绪 · ${nStocks} 只股票 + ${nBench} 个基准`;
+    document.getElementById('runBtn').addEventListener('click', run);
+    run();
+  }catch(e){
+    document.getElementById('status').textContent =
+      '⚠️ 加载 backtest_bundle.json 失败：' + e.message + '（需通过本地服务器打开，勿用 file:// 直接双击）';
+  }
+})();
+</script>
+</body>
+</html>

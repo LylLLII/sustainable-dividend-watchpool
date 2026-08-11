@@ -1,0 +1,7098 @@
+{
+ "meta": {
+  "fetched_at": "2026-08-10T21:49:50+08:00",
+  "source": "eastmoney RPT_SHAREBONUS_DET",
+  "dps_calc": "PRETAX_BONUS_RMB/10 (含税, 每股)",
+  "note": "真实除息事件, 无前瞻回填; exDate>=2014-01-01 的事件在 apply 阶段保留以覆盖 2015 年初 TTM 窗口"
+ },
+ "stocks": {
+  "sh601088": [
+   {
+    "exDate": "2008-06-04",
+    "dps": 0.18,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-17"
+   },
+   {
+    "exDate": "2009-06-22",
+    "dps": 0.46,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-28"
+   },
+   {
+    "exDate": "2010-07-05",
+    "dps": 0.53,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-13"
+   },
+   {
+    "exDate": "2011-06-13",
+    "dps": 0.75,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-26"
+   },
+   {
+    "exDate": "2012-06-11",
+    "dps": 0.9,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-24"
+   },
+   {
+    "exDate": "2013-07-08",
+    "dps": 0.96,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-23"
+   },
+   {
+    "exDate": "2014-07-14",
+    "dps": 0.91,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-29"
+   },
+   {
+    "exDate": "2015-06-15",
+    "dps": 0.74,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-21"
+   },
+   {
+    "exDate": "2016-07-04",
+    "dps": 0.32,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-25"
+   },
+   {
+    "exDate": "2017-07-10",
+    "dps": 0.46,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-18"
+   },
+   {
+    "exDate": "2018-07-09",
+    "dps": 0.91,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-24"
+   },
+   {
+    "exDate": "2019-07-08",
+    "dps": 0.88,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-23"
+   },
+   {
+    "exDate": "2020-06-15",
+    "dps": 1.26,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-28"
+   },
+   {
+    "exDate": "2021-07-12",
+    "dps": 1.81,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-27"
+   },
+   {
+    "exDate": "2022-07-11",
+    "dps": 2.54,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-26"
+   },
+   {
+    "exDate": "2023-07-05",
+    "dps": 2.55,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2024-07-08",
+    "dps": 2.26,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-23"
+   },
+   {
+    "exDate": "2025-07-07",
+    "dps": 2.26,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-22"
+   },
+   {
+    "exDate": "2025-11-10",
+    "dps": 0.98,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2026-07-13",
+    "dps": 1.03,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh600900": [
+   {
+    "exDate": "2004-06-01",
+    "dps": 0.09,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-31"
+   },
+   {
+    "exDate": "2005-05-24",
+    "dps": 0.21,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-29"
+   },
+   {
+    "exDate": "2006-06-07",
+    "dps": 0.189,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-28"
+   },
+   {
+    "exDate": "2007-06-11",
+    "dps": 0.2353,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-10"
+   },
+   {
+    "exDate": "2008-07-22",
+    "dps": 0.2968,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-26"
+   },
+   {
+    "exDate": "2009-08-07",
+    "dps": 0.2159,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-30"
+   },
+   {
+    "exDate": "2010-07-20",
+    "dps": 0.3703,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-30"
+   },
+   {
+    "exDate": "2011-06-23",
+    "dps": 0.2558,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-30"
+   },
+   {
+    "exDate": "2012-07-02",
+    "dps": 0.2546,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-27"
+   },
+   {
+    "exDate": "2013-07-01",
+    "dps": 0.3316,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-27"
+   },
+   {
+    "exDate": "2014-07-11",
+    "dps": 0.2804,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-30"
+   },
+   {
+    "exDate": "2015-06-30",
+    "dps": 0.3791,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-30"
+   },
+   {
+    "exDate": "2016-07-19",
+    "dps": 0.1295,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-07-14",
+    "dps": 0.725,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-06-22",
+    "dps": 0.68,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-07-18",
+    "dps": 0.68,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-30"
+   },
+   {
+    "exDate": "2020-07-17",
+    "dps": 0.68,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2021-07-16",
+    "dps": 0.7,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-07-21",
+    "dps": 0.8153,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-07-21",
+    "dps": 0.8533,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-07-19",
+    "dps": 0.82,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2025-01-24",
+    "dps": 0.21,
+    "reportDate": "2024-06",
+    "planDate": "2024-12-14"
+   },
+   {
+    "exDate": "2025-07-18",
+    "dps": 0.733,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-30"
+   },
+   {
+    "exDate": "2026-02-12",
+    "dps": 0.21,
+    "reportDate": "2025-09",
+    "planDate": "2025-12-31"
+   },
+   {
+    "exDate": "2026-07-17",
+    "dps": 0.79,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-30"
+   }
+  ],
+  "sh601398": [
+   {
+    "exDate": "2007-06-21",
+    "dps": 0.016,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-04"
+   },
+   {
+    "exDate": "2008-06-18",
+    "dps": 0.133,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-26"
+   },
+   {
+    "exDate": "2009-06-04",
+    "dps": 0.165,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-26"
+   },
+   {
+    "exDate": "2010-05-27",
+    "dps": 0.17,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-26"
+   },
+   {
+    "exDate": "2011-06-15",
+    "dps": 0.184,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-31"
+   },
+   {
+    "exDate": "2012-06-14",
+    "dps": 0.203,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-30"
+   },
+   {
+    "exDate": "2013-06-26",
+    "dps": 0.239,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-28"
+   },
+   {
+    "exDate": "2014-06-20",
+    "dps": 0.2617,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-28"
+   },
+   {
+    "exDate": "2015-07-07",
+    "dps": 0.2554,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-27"
+   },
+   {
+    "exDate": "2016-07-08",
+    "dps": 0.2333,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-31"
+   },
+   {
+    "exDate": "2017-07-11",
+    "dps": 0.2343,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-07-13",
+    "dps": 0.2408,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-28"
+   },
+   {
+    "exDate": "2019-07-03",
+    "dps": 0.2506,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-29"
+   },
+   {
+    "exDate": "2020-06-30",
+    "dps": 0.2628,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-28"
+   },
+   {
+    "exDate": "2021-07-06",
+    "dps": 0.266,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-27"
+   },
+   {
+    "exDate": "2022-07-12",
+    "dps": 0.2933,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2023-07-17",
+    "dps": 0.3035,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-07-16",
+    "dps": 0.3064,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-28"
+   },
+   {
+    "exDate": "2025-01-07",
+    "dps": 0.1434,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-31"
+   },
+   {
+    "exDate": "2025-07-14",
+    "dps": 0.1646,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2025-12-15",
+    "dps": 0.1414,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2026-05-13",
+    "dps": 0.1689,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sh601939": [
+   {
+    "exDate": "2008-06-24",
+    "dps": 0.065,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-12"
+   },
+   {
+    "exDate": "2008-11-17",
+    "dps": 0.1105,
+    "reportDate": "2008-06",
+    "planDate": "2008-08-23"
+   },
+   {
+    "exDate": "2009-06-24",
+    "dps": 0.0837,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-28"
+   },
+   {
+    "exDate": "2010-07-08",
+    "dps": 0.202,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-29"
+   },
+   {
+    "exDate": "2011-06-24",
+    "dps": 0.2122,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-28"
+   },
+   {
+    "exDate": "2012-06-25",
+    "dps": 0.2365,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-26"
+   },
+   {
+    "exDate": "2013-06-21",
+    "dps": 0.268,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-25"
+   },
+   {
+    "exDate": "2014-07-10",
+    "dps": 0.3,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-31"
+   },
+   {
+    "exDate": "2015-07-01",
+    "dps": 0.301,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-06-30",
+    "dps": 0.274,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-31"
+   },
+   {
+    "exDate": "2017-06-30",
+    "dps": 0.278,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-30"
+   },
+   {
+    "exDate": "2018-07-17",
+    "dps": 0.291,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-28"
+   },
+   {
+    "exDate": "2019-07-10",
+    "dps": 0.306,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-28"
+   },
+   {
+    "exDate": "2020-07-10",
+    "dps": 0.32,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-30"
+   },
+   {
+    "exDate": "2021-07-15",
+    "dps": 0.326,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-27"
+   },
+   {
+    "exDate": "2022-07-08",
+    "dps": 0.364,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-30"
+   },
+   {
+    "exDate": "2023-07-14",
+    "dps": 0.389,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-30"
+   },
+   {
+    "exDate": "2024-07-12",
+    "dps": 0.4,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-01-10",
+    "dps": 0.197,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-31"
+   },
+   {
+    "exDate": "2025-05-09",
+    "dps": 0.206,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2025-12-11",
+    "dps": 0.1858,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2026-07-13",
+    "dps": 0.2029,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sh601288": [
+   {
+    "exDate": "2011-06-17",
+    "dps": 0.054,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-30"
+   },
+   {
+    "exDate": "2012-06-20",
+    "dps": 0.1315,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-23"
+   },
+   {
+    "exDate": "2013-06-28",
+    "dps": 0.1565,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-27"
+   },
+   {
+    "exDate": "2014-07-03",
+    "dps": 0.177,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-26"
+   },
+   {
+    "exDate": "2015-07-10",
+    "dps": 0.182,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-25"
+   },
+   {
+    "exDate": "2016-07-07",
+    "dps": 0.1668,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-01"
+   },
+   {
+    "exDate": "2017-07-13",
+    "dps": 0.17,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-29"
+   },
+   {
+    "exDate": "2018-05-25",
+    "dps": 0.1783,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-27"
+   },
+   {
+    "exDate": "2019-06-19",
+    "dps": 0.1739,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-30"
+   },
+   {
+    "exDate": "2020-07-10",
+    "dps": 0.1819,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-31"
+   },
+   {
+    "exDate": "2021-06-17",
+    "dps": 0.1851,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-31"
+   },
+   {
+    "exDate": "2022-07-15",
+    "dps": 0.2068,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2023-07-18",
+    "dps": 0.2222,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-06-07",
+    "dps": 0.2309,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-01-08",
+    "dps": 0.1164,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-31"
+   },
+   {
+    "exDate": "2025-07-17",
+    "dps": 0.1255,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2025-12-15",
+    "dps": 0.1195,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2026-05-13",
+    "dps": 0.13,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh600028": [
+   {
+    "exDate": "2002-07-22",
+    "dps": 0.08,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-16"
+   },
+   {
+    "exDate": "2002-09-23",
+    "dps": 0.02,
+    "reportDate": "2002-06",
+    "planDate": "2002-09-17"
+   },
+   {
+    "exDate": "2003-06-23",
+    "dps": 0.06,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-17"
+   },
+   {
+    "exDate": "2003-09-22",
+    "dps": 0.03,
+    "reportDate": "2003-06",
+    "planDate": "2003-09-15"
+   },
+   {
+    "exDate": "2004-06-07",
+    "dps": 0.06,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-29"
+   },
+   {
+    "exDate": "2004-09-21",
+    "dps": 0.04,
+    "reportDate": "2004-06",
+    "planDate": "2004-08-30"
+   },
+   {
+    "exDate": "2005-06-06",
+    "dps": 0.08,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-29"
+   },
+   {
+    "exDate": "2005-09-21",
+    "dps": 0.04,
+    "reportDate": "2005-06",
+    "planDate": "2005-08-29"
+   },
+   {
+    "exDate": "2006-06-19",
+    "dps": 0.09,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-03"
+   },
+   {
+    "exDate": "2006-09-14",
+    "dps": 0.04,
+    "reportDate": "2006-06",
+    "planDate": "2006-08-28"
+   },
+   {
+    "exDate": "2007-06-18",
+    "dps": 0.11,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-10"
+   },
+   {
+    "exDate": "2007-09-19",
+    "dps": 0.05,
+    "reportDate": "2007-06",
+    "planDate": "2007-08-27"
+   },
+   {
+    "exDate": "2008-06-16",
+    "dps": 0.115,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-07"
+   },
+   {
+    "exDate": "2008-09-22",
+    "dps": 0.03,
+    "reportDate": "2008-06",
+    "planDate": "2008-08-25"
+   },
+   {
+    "exDate": "2009-06-15",
+    "dps": 0.09,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-30"
+   },
+   {
+    "exDate": "2009-09-22",
+    "dps": 0.07,
+    "reportDate": "2009-06",
+    "planDate": "2009-08-24"
+   },
+   {
+    "exDate": "2010-06-17",
+    "dps": 0.11,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-29"
+   },
+   {
+    "exDate": "2010-09-13",
+    "dps": 0.08,
+    "reportDate": "2010-06",
+    "planDate": "2010-08-23"
+   },
+   {
+    "exDate": "2011-06-20",
+    "dps": 0.13,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-28"
+   },
+   {
+    "exDate": "2011-09-19",
+    "dps": 0.1,
+    "reportDate": "2011-06",
+    "planDate": "2011-08-29"
+   },
+   {
+    "exDate": "2012-05-28",
+    "dps": 0.2,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-26"
+   },
+   {
+    "exDate": "2012-09-17",
+    "dps": 0.1,
+    "reportDate": "2012-06",
+    "planDate": "2012-08-27"
+   },
+   {
+    "exDate": "2013-06-19",
+    "dps": 0.2,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-11"
+   },
+   {
+    "exDate": "2013-09-12",
+    "dps": 0.09,
+    "reportDate": "2013-06",
+    "planDate": "2013-08-26"
+   },
+   {
+    "exDate": "2014-06-03",
+    "dps": 0.15,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-24"
+   },
+   {
+    "exDate": "2014-09-24",
+    "dps": 0.09,
+    "reportDate": "2014-06",
+    "planDate": "2014-08-23"
+   },
+   {
+    "exDate": "2015-06-19",
+    "dps": 0.11,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-23"
+   },
+   {
+    "exDate": "2015-09-23",
+    "dps": 0.09,
+    "reportDate": "2015-06",
+    "planDate": "2015-08-27"
+   },
+   {
+    "exDate": "2016-06-24",
+    "dps": 0.06,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-30"
+   },
+   {
+    "exDate": "2016-09-21",
+    "dps": 0.079,
+    "reportDate": "2016-06",
+    "planDate": "2016-08-29"
+   },
+   {
+    "exDate": "2017-07-19",
+    "dps": 0.17,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-27"
+   },
+   {
+    "exDate": "2017-09-20",
+    "dps": 0.1,
+    "reportDate": "2017-06",
+    "planDate": "2017-08-28"
+   },
+   {
+    "exDate": "2018-06-05",
+    "dps": 0.4,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-26"
+   },
+   {
+    "exDate": "2018-09-12",
+    "dps": 0.16,
+    "reportDate": "2018-06",
+    "planDate": "2018-08-27"
+   },
+   {
+    "exDate": "2019-06-11",
+    "dps": 0.26,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-25"
+   },
+   {
+    "exDate": "2019-09-17",
+    "dps": 0.12,
+    "reportDate": "2019-06",
+    "planDate": "2019-08-26"
+   },
+   {
+    "exDate": "2020-06-10",
+    "dps": 0.19,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-30"
+   },
+   {
+    "exDate": "2020-10-23",
+    "dps": 0.07,
+    "reportDate": "2020-06",
+    "planDate": "2020-08-31"
+   },
+   {
+    "exDate": "2021-06-17",
+    "dps": 0.13,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-29"
+   },
+   {
+    "exDate": "2021-09-17",
+    "dps": 0.16,
+    "reportDate": "2021-06",
+    "planDate": "2021-08-30"
+   },
+   {
+    "exDate": "2022-06-10",
+    "dps": 0.31,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-28"
+   },
+   {
+    "exDate": "2022-09-19",
+    "dps": 0.16,
+    "reportDate": "2022-06",
+    "planDate": "2022-08-29"
+   },
+   {
+    "exDate": "2023-06-21",
+    "dps": 0.195,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-27"
+   },
+   {
+    "exDate": "2023-09-15",
+    "dps": 0.145,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-28"
+   },
+   {
+    "exDate": "2024-07-16",
+    "dps": 0.2,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-25"
+   },
+   {
+    "exDate": "2024-09-13",
+    "dps": 0.146,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-26"
+   },
+   {
+    "exDate": "2025-06-18",
+    "dps": 0.14,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-24"
+   },
+   {
+    "exDate": "2025-09-12",
+    "dps": 0.088,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-22"
+   },
+   {
+    "exDate": "2026-06-17",
+    "dps": 0.112,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-23"
+   }
+  ],
+  "sh601006": [
+   {
+    "exDate": "2007-06-18",
+    "dps": 0.3,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-27"
+   },
+   {
+    "exDate": "2008-07-01",
+    "dps": 0.3,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-29"
+   },
+   {
+    "exDate": "2009-07-01",
+    "dps": 0.3,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-29"
+   },
+   {
+    "exDate": "2010-06-24",
+    "dps": 0.3,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-31"
+   },
+   {
+    "exDate": "2011-06-29",
+    "dps": 0.35,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-29"
+   },
+   {
+    "exDate": "2012-07-19",
+    "dps": 0.39,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-27"
+   },
+   {
+    "exDate": "2013-06-05",
+    "dps": 0.39,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-26"
+   },
+   {
+    "exDate": "2014-06-23",
+    "dps": 0.43,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-26"
+   },
+   {
+    "exDate": "2015-06-19",
+    "dps": 0.48,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-29"
+   },
+   {
+    "exDate": "2016-07-07",
+    "dps": 0.45,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-28"
+   },
+   {
+    "exDate": "2017-06-29",
+    "dps": 0.25,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-27"
+   },
+   {
+    "exDate": "2018-06-28",
+    "dps": 0.47,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-06-27",
+    "dps": 0.48,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-25"
+   },
+   {
+    "exDate": "2020-07-02",
+    "dps": 0.48,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2021-07-08",
+    "dps": 0.48,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-29"
+   },
+   {
+    "exDate": "2022-07-07",
+    "dps": 0.48,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-28"
+   },
+   {
+    "exDate": "2023-07-13",
+    "dps": 0.48,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-27"
+   },
+   {
+    "exDate": "2024-07-11",
+    "dps": 0.3819,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-27"
+   },
+   {
+    "exDate": "2024-10-24",
+    "dps": 0.1292,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-29"
+   },
+   {
+    "exDate": "2025-07-11",
+    "dps": 0.14,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-30"
+   },
+   {
+    "exDate": "2025-10-24",
+    "dps": 0.08,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-07-10",
+    "dps": 0.1417,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-30"
+   }
+  ],
+  "sz000895": [
+   {
+    "exDate": "2001-05-17",
+    "dps": 0.5,
+    "reportDate": "2000-12",
+    "planDate": "2001-05-11"
+   },
+   {
+    "exDate": "2002-06-21",
+    "dps": 0.128,
+    "reportDate": "2001-12",
+    "planDate": "2002-06-13"
+   },
+   {
+    "exDate": "2003-04-25",
+    "dps": 0.5,
+    "reportDate": "2002-12",
+    "planDate": "2003-04-18"
+   },
+   {
+    "exDate": "2004-04-07",
+    "dps": 0.7,
+    "reportDate": "2003-12",
+    "planDate": "2004-02-27"
+   },
+   {
+    "exDate": "2005-04-07",
+    "dps": 0.6,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-26"
+   },
+   {
+    "exDate": "2006-03-28",
+    "dps": 0.5,
+    "reportDate": "2005-12",
+    "planDate": "2006-02-15"
+   },
+   {
+    "exDate": "2007-06-13",
+    "dps": 0.8,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-07"
+   },
+   {
+    "exDate": "2008-04-28",
+    "dps": 0.8,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-19"
+   },
+   {
+    "exDate": "2009-04-29",
+    "dps": 0.6,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-19"
+   },
+   {
+    "exDate": "2010-07-14",
+    "dps": 1.0,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-24"
+   },
+   {
+    "exDate": "2011-07-13",
+    "dps": 0.5,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-29"
+   },
+   {
+    "exDate": "2012-05-04",
+    "dps": 0.55,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-02"
+   },
+   {
+    "exDate": "2013-05-03",
+    "dps": 1.35,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-26"
+   },
+   {
+    "exDate": "2014-04-24",
+    "dps": 1.45,
+    "reportDate": "2013-12",
+    "planDate": "2014-02-25"
+   },
+   {
+    "exDate": "2015-05-20",
+    "dps": 1.42,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-26"
+   },
+   {
+    "exDate": "2016-04-28",
+    "dps": 1.25,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-30"
+   },
+   {
+    "exDate": "2016-09-26",
+    "dps": 0.9,
+    "reportDate": "2016-06",
+    "planDate": "2016-08-17"
+   },
+   {
+    "exDate": "2017-05-11",
+    "dps": 1.2,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-23"
+   },
+   {
+    "exDate": "2018-04-27",
+    "dps": 1.1,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-27"
+   },
+   {
+    "exDate": "2018-12-07",
+    "dps": 0.9,
+    "reportDate": "2018-09",
+    "planDate": "2018-10-31"
+   },
+   {
+    "exDate": "2019-04-22",
+    "dps": 0.55,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-16"
+   },
+   {
+    "exDate": "2020-06-10",
+    "dps": 1.0,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-25"
+   },
+   {
+    "exDate": "2020-11-25",
+    "dps": 0.64,
+    "reportDate": "2020-09",
+    "planDate": "2020-10-28"
+   },
+   {
+    "exDate": "2021-05-21",
+    "dps": 1.68,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-31"
+   },
+   {
+    "exDate": "2022-04-29",
+    "dps": 1.298,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-29"
+   },
+   {
+    "exDate": "2022-09-15",
+    "dps": 0.6,
+    "reportDate": "2022-06",
+    "planDate": "2022-08-17"
+   },
+   {
+    "exDate": "2023-04-27",
+    "dps": 1.0,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-29"
+   },
+   {
+    "exDate": "2023-09-11",
+    "dps": 0.75,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-16"
+   },
+   {
+    "exDate": "2024-04-26",
+    "dps": 0.7,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-27"
+   },
+   {
+    "exDate": "2024-09-11",
+    "dps": 0.66,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-14"
+   },
+   {
+    "exDate": "2025-04-30",
+    "dps": 0.75,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-26"
+   },
+   {
+    "exDate": "2025-08-22",
+    "dps": 0.65,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-13"
+   },
+   {
+    "exDate": "2026-04-29",
+    "dps": 0.8,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-25"
+   }
+  ],
+  "sz000651": [
+   {
+    "exDate": "1997-11-18",
+    "dps": 1.0,
+    "reportDate": "1996-12",
+    "planDate": "1997-11-07"
+   },
+   {
+    "exDate": "1999-06-21",
+    "dps": 0.4,
+    "reportDate": "1998-12",
+    "planDate": "1999-06-15"
+   },
+   {
+    "exDate": "2000-06-13",
+    "dps": 0.4,
+    "reportDate": "1999-12",
+    "planDate": "2000-06-06"
+   },
+   {
+    "exDate": "2001-06-05",
+    "dps": 0.4,
+    "reportDate": "2000-12",
+    "planDate": "2001-05-29"
+   },
+   {
+    "exDate": "2002-06-13",
+    "dps": 0.3,
+    "reportDate": "2001-12",
+    "planDate": "2002-06-06"
+   },
+   {
+    "exDate": "2003-06-27",
+    "dps": 0.32,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-20"
+   },
+   {
+    "exDate": "2004-06-30",
+    "dps": 0.33,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-23"
+   },
+   {
+    "exDate": "2005-04-08",
+    "dps": 0.38,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-24"
+   },
+   {
+    "exDate": "2006-07-11",
+    "dps": 0.4,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-11"
+   },
+   {
+    "exDate": "2008-07-14",
+    "dps": 0.3,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-18"
+   },
+   {
+    "exDate": "2009-06-03",
+    "dps": 0.3,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-21"
+   },
+   {
+    "exDate": "2010-07-13",
+    "dps": 0.5,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-27"
+   },
+   {
+    "exDate": "2011-05-31",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-24"
+   },
+   {
+    "exDate": "2012-07-06",
+    "dps": 0.5,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-25"
+   },
+   {
+    "exDate": "2013-07-11",
+    "dps": 1.0,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-27"
+   },
+   {
+    "exDate": "2014-06-06",
+    "dps": 1.5,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-25"
+   },
+   {
+    "exDate": "2015-07-03",
+    "dps": 3.0,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-28"
+   },
+   {
+    "exDate": "2016-07-07",
+    "dps": 1.5,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-07-05",
+    "dps": 1.8,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-27"
+   },
+   {
+    "exDate": "2019-02-25",
+    "dps": 0.6,
+    "reportDate": "2018-06",
+    "planDate": "2018-08-31"
+   },
+   {
+    "exDate": "2019-08-06",
+    "dps": 1.5,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-29"
+   },
+   {
+    "exDate": "2020-06-11",
+    "dps": 1.2,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2020-11-12",
+    "dps": 1.0,
+    "reportDate": "2020-06",
+    "planDate": "2020-08-31"
+   },
+   {
+    "exDate": "2021-08-23",
+    "dps": 3.0,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-29"
+   },
+   {
+    "exDate": "2022-04-08",
+    "dps": 1.0,
+    "reportDate": "2021-06",
+    "planDate": "2022-02-14"
+   },
+   {
+    "exDate": "2022-08-05",
+    "dps": 2.0,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-02-27",
+    "dps": 1.0,
+    "reportDate": "2022-06",
+    "planDate": "2022-12-13"
+   },
+   {
+    "exDate": "2023-08-09",
+    "dps": 1.0,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2024-08-28",
+    "dps": 2.38,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2025-05-15",
+    "dps": 1.0,
+    "reportDate": "2024-06",
+    "planDate": "2025-01-01"
+   },
+   {
+    "exDate": "2025-08-29",
+    "dps": 2.0,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-28"
+   },
+   {
+    "exDate": "2026-01-23",
+    "dps": 1.0,
+    "reportDate": "2025-09",
+    "planDate": "2025-10-31"
+   }
+  ],
+  "sh600941": [
+   {
+    "exDate": "2022-06-01",
+    "dps": 2.0939,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-24"
+   },
+   {
+    "exDate": "2022-09-06",
+    "dps": 1.8942,
+    "reportDate": "2022-06",
+    "planDate": "2022-08-12"
+   },
+   {
+    "exDate": "2023-06-07",
+    "dps": 1.9796,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-24"
+   },
+   {
+    "exDate": "2023-09-01",
+    "dps": 2.2247,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-11"
+   },
+   {
+    "exDate": "2024-06-06",
+    "dps": 2.1849,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-22"
+   },
+   {
+    "exDate": "2024-09-02",
+    "dps": 2.3789,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-09"
+   },
+   {
+    "exDate": "2025-06-06",
+    "dps": 2.2916,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-21"
+   },
+   {
+    "exDate": "2025-09-01",
+    "dps": 2.5025,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-08"
+   },
+   {
+    "exDate": "2026-06-05",
+    "dps": 2.2012,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-27"
+   }
+  ],
+  "sh601225": [
+   {
+    "exDate": "2014-07-11",
+    "dps": 0.12,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-25"
+   },
+   {
+    "exDate": "2015-06-26",
+    "dps": 0.03,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-25"
+   },
+   {
+    "exDate": "2017-07-20",
+    "dps": 0.11,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-28"
+   },
+   {
+    "exDate": "2018-07-10",
+    "dps": 0.418,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-30"
+   },
+   {
+    "exDate": "2019-07-11",
+    "dps": 0.33,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-11"
+   },
+   {
+    "exDate": "2020-07-10",
+    "dps": 0.36,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2021-07-09",
+    "dps": 0.8,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-07-08",
+    "dps": 1.35,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-28"
+   },
+   {
+    "exDate": "2023-07-12",
+    "dps": 2.18,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-27"
+   },
+   {
+    "exDate": "2024-06-28",
+    "dps": 1.315,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-26"
+   },
+   {
+    "exDate": "2024-10-23",
+    "dps": 0.109,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-30"
+   },
+   {
+    "exDate": "2025-01-17",
+    "dps": 0.103,
+    "reportDate": "2024-09",
+    "planDate": "2024-12-07"
+   },
+   {
+    "exDate": "2025-06-25",
+    "dps": 1.136,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-26"
+   },
+   {
+    "exDate": "2025-09-26",
+    "dps": 0.039,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-28"
+   },
+   {
+    "exDate": "2026-06-26",
+    "dps": 0.909,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-25"
+   }
+  ],
+  "sh601919": [
+   {
+    "exDate": "2008-06-17",
+    "dps": 0.18,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-23"
+   },
+   {
+    "exDate": "2009-07-01",
+    "dps": 0.29,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-23"
+   },
+   {
+    "exDate": "2011-06-21",
+    "dps": 0.09,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-30"
+   },
+   {
+    "exDate": "2022-06-21",
+    "dps": 0.87,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2022-12-14",
+    "dps": 2.01,
+    "reportDate": "2022-06",
+    "planDate": "2022-08-31"
+   },
+   {
+    "exDate": "2023-06-28",
+    "dps": 1.39,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2023-12-20",
+    "dps": 0.51,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-30"
+   },
+   {
+    "exDate": "2024-06-20",
+    "dps": 0.23,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2024-10-10",
+    "dps": 0.52,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-30"
+   },
+   {
+    "exDate": "2025-06-25",
+    "dps": 1.03,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-22"
+   },
+   {
+    "exDate": "2025-10-24",
+    "dps": 0.56,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-06-26",
+    "dps": 0.44,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-20"
+   }
+  ],
+  "sh600585": [
+   {
+    "exDate": "2003-06-09",
+    "dps": 0.05,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-03"
+   },
+   {
+    "exDate": "2004-06-10",
+    "dps": 0.1,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-18"
+   },
+   {
+    "exDate": "2005-06-07",
+    "dps": 0.13,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-23"
+   },
+   {
+    "exDate": "2006-07-06",
+    "dps": 0.07,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-26"
+   },
+   {
+    "exDate": "2007-06-26",
+    "dps": 0.2,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-13"
+   },
+   {
+    "exDate": "2009-06-24",
+    "dps": 0.3,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-31"
+   },
+   {
+    "exDate": "2010-06-21",
+    "dps": 0.35,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-30"
+   },
+   {
+    "exDate": "2011-06-16",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-29"
+   },
+   {
+    "exDate": "2012-06-14",
+    "dps": 0.35,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-27"
+   },
+   {
+    "exDate": "2013-06-14",
+    "dps": 0.25,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-23"
+   },
+   {
+    "exDate": "2014-06-18",
+    "dps": 0.35,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-25"
+   },
+   {
+    "exDate": "2015-06-19",
+    "dps": 0.65,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-24"
+   },
+   {
+    "exDate": "2016-06-22",
+    "dps": 0.43,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-24"
+   },
+   {
+    "exDate": "2017-06-21",
+    "dps": 0.5,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-24"
+   },
+   {
+    "exDate": "2018-06-20",
+    "dps": 1.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-23"
+   },
+   {
+    "exDate": "2019-06-19",
+    "dps": 1.69,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-22"
+   },
+   {
+    "exDate": "2020-06-18",
+    "dps": 2.0,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-21"
+   },
+   {
+    "exDate": "2021-06-17",
+    "dps": 2.12,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-26"
+   },
+   {
+    "exDate": "2022-06-21",
+    "dps": 2.38,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-26"
+   },
+   {
+    "exDate": "2023-06-20",
+    "dps": 1.48,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-28"
+   },
+   {
+    "exDate": "2024-06-24",
+    "dps": 0.96,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-20"
+   },
+   {
+    "exDate": "2025-06-27",
+    "dps": 0.71,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-25"
+   },
+   {
+    "exDate": "2025-09-30",
+    "dps": 0.24,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-27"
+   },
+   {
+    "exDate": "2026-07-02",
+    "dps": 0.61,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-25"
+   }
+  ],
+  "sh600015": [
+   {
+    "exDate": "2003-11-04",
+    "dps": 0.13,
+    "reportDate": "2003-06",
+    "planDate": "2003-10-29"
+   },
+   {
+    "exDate": "2003-11-04",
+    "dps": 0.223,
+    "reportDate": "2002-12",
+    "planDate": "2003-10-29"
+   },
+   {
+    "exDate": "2004-05-21",
+    "dps": 0.01,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-29"
+   },
+   {
+    "exDate": "2005-06-02",
+    "dps": 0.1,
+    "reportDate": "2004-12",
+    "planDate": "2005-04-19"
+   },
+   {
+    "exDate": "2006-03-31",
+    "dps": 0.11,
+    "reportDate": "2005-12",
+    "planDate": "2006-02-17"
+   },
+   {
+    "exDate": "2007-04-17",
+    "dps": 0.11,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-14"
+   },
+   {
+    "exDate": "2008-05-06",
+    "dps": 0.11,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-18"
+   },
+   {
+    "exDate": "2009-06-16",
+    "dps": 0.13,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-21"
+   },
+   {
+    "exDate": "2010-05-20",
+    "dps": 0.13,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-26"
+   },
+   {
+    "exDate": "2011-04-21",
+    "dps": 0.2,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-26"
+   },
+   {
+    "exDate": "2012-05-18",
+    "dps": 0.25,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-27"
+   },
+   {
+    "exDate": "2013-07-24",
+    "dps": 0.47,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-26"
+   },
+   {
+    "exDate": "2014-07-10",
+    "dps": 0.435,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-18"
+   },
+   {
+    "exDate": "2015-07-08",
+    "dps": 0.435,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-17"
+   },
+   {
+    "exDate": "2016-07-08",
+    "dps": 0.363,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-19"
+   },
+   {
+    "exDate": "2017-06-29",
+    "dps": 0.181,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-06-29",
+    "dps": 0.151,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-20"
+   },
+   {
+    "exDate": "2019-07-11",
+    "dps": 0.174,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-19"
+   },
+   {
+    "exDate": "2020-06-19",
+    "dps": 0.249,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-17"
+   },
+   {
+    "exDate": "2021-07-09",
+    "dps": 0.301,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-06-08",
+    "dps": 0.338,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-06-21",
+    "dps": 0.383,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-21",
+    "dps": 0.384,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2025-01-22",
+    "dps": 0.1,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-31"
+   },
+   {
+    "exDate": "2025-06-26",
+    "dps": 0.305,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-18"
+   },
+   {
+    "exDate": "2026-01-23",
+    "dps": 0.1,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-07-30",
+    "dps": 0.32,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sz000807": [
+   {
+    "exDate": "1999-07-22",
+    "dps": 0.075,
+    "reportDate": "1998-12",
+    "planDate": "1999-07-15"
+   },
+   {
+    "exDate": "2000-05-31",
+    "dps": 0.16,
+    "reportDate": "1999-12",
+    "planDate": "2000-05-23"
+   },
+   {
+    "exDate": "2001-05-22",
+    "dps": 0.25,
+    "reportDate": "2000-12",
+    "planDate": "2001-05-15"
+   },
+   {
+    "exDate": "2002-07-16",
+    "dps": 0.3,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-09"
+   },
+   {
+    "exDate": "2003-07-16",
+    "dps": 0.3,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-08"
+   },
+   {
+    "exDate": "2004-05-20",
+    "dps": 0.3,
+    "reportDate": "2003-12",
+    "planDate": "2004-02-21"
+   },
+   {
+    "exDate": "2005-07-18",
+    "dps": 0.3,
+    "reportDate": "2004-12",
+    "planDate": "2005-01-28"
+   },
+   {
+    "exDate": "2006-04-28",
+    "dps": 0.2,
+    "reportDate": "2005-12",
+    "planDate": "2006-01-24"
+   },
+   {
+    "exDate": "2007-04-26",
+    "dps": 0.45,
+    "reportDate": "2006-12",
+    "planDate": "2007-01-30"
+   },
+   {
+    "exDate": "2008-05-30",
+    "dps": 0.4,
+    "reportDate": "2007-12",
+    "planDate": "2008-02-01"
+   },
+   {
+    "exDate": "2009-06-26",
+    "dps": 0.08,
+    "reportDate": "2008-12",
+    "planDate": "2009-02-20"
+   },
+   {
+    "exDate": "2010-06-09",
+    "dps": 0.03,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-11"
+   },
+   {
+    "exDate": "2011-07-15",
+    "dps": 0.03,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-25"
+   },
+   {
+    "exDate": "2012-06-21",
+    "dps": 0.03,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-31"
+   },
+   {
+    "exDate": "2013-08-28",
+    "dps": 0.03,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-27"
+   },
+   {
+    "exDate": "2018-05-24",
+    "dps": 0.07,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-20"
+   },
+   {
+    "exDate": "2022-06-23",
+    "dps": 0.113,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-22"
+   },
+   {
+    "exDate": "2023-06-30",
+    "dps": 0.16,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-22"
+   },
+   {
+    "exDate": "2024-06-20",
+    "dps": 0.23,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-28"
+   },
+   {
+    "exDate": "2024-09-30",
+    "dps": 0.23,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-27"
+   },
+   {
+    "exDate": "2025-06-26",
+    "dps": 0.18,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-27"
+   },
+   {
+    "exDate": "2025-10-28",
+    "dps": 0.32,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-26"
+   },
+   {
+    "exDate": "2026-06-10",
+    "dps": 0.379,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sh600219": [
+   {
+    "exDate": "2001-05-10",
+    "dps": 0.15,
+    "reportDate": "2000-12",
+    "planDate": "2001-04-26"
+   },
+   {
+    "exDate": "2002-07-19",
+    "dps": 0.15,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-15"
+   },
+   {
+    "exDate": "2003-04-28",
+    "dps": 0.15,
+    "reportDate": "2002-12",
+    "planDate": "2003-04-22"
+   },
+   {
+    "exDate": "2004-04-21",
+    "dps": 0.1,
+    "reportDate": "2003-12",
+    "planDate": "2004-02-10"
+   },
+   {
+    "exDate": "2005-06-13",
+    "dps": 0.12,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-18"
+   },
+   {
+    "exDate": "2008-03-05",
+    "dps": 0.1,
+    "reportDate": "2007-12",
+    "planDate": "2008-02-05"
+   },
+   {
+    "exDate": "2009-06-05",
+    "dps": 0.1,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-27"
+   },
+   {
+    "exDate": "2010-06-23",
+    "dps": 0.1,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-17"
+   },
+   {
+    "exDate": "2011-06-24",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-28"
+   },
+   {
+    "exDate": "2012-04-11",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-02-23"
+   },
+   {
+    "exDate": "2013-05-22",
+    "dps": 0.12,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-20"
+   },
+   {
+    "exDate": "2014-05-08",
+    "dps": 0.15,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-20"
+   },
+   {
+    "exDate": "2015-06-10",
+    "dps": 0.1,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-08-30",
+    "dps": 0.1,
+    "reportDate": "2015-12",
+    "planDate": "2016-06-09"
+   },
+   {
+    "exDate": "2017-07-05",
+    "dps": 0.05,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-20"
+   },
+   {
+    "exDate": "2018-05-04",
+    "dps": 0.06,
+    "reportDate": "2017-12",
+    "planDate": "2018-02-10"
+   },
+   {
+    "exDate": "2019-06-28",
+    "dps": 0.05,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-17"
+   },
+   {
+    "exDate": "2020-06-24",
+    "dps": 0.05,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-11"
+   },
+   {
+    "exDate": "2021-07-14",
+    "dps": 0.055,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-16"
+   },
+   {
+    "exDate": "2022-06-17",
+    "dps": 0.063,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2023-06-16",
+    "dps": 0.04,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2024-04-23",
+    "dps": 0.12,
+    "reportDate": "2023-12",
+    "planDate": "2024-02-29"
+   },
+   {
+    "exDate": "2024-10-11",
+    "dps": 0.04,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-21"
+   },
+   {
+    "exDate": "2024-11-25",
+    "dps": 0.04,
+    "reportDate": "2024-09",
+    "planDate": "2024-10-29"
+   },
+   {
+    "exDate": "2025-05-12",
+    "dps": 0.09,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-25"
+   },
+   {
+    "exDate": "2025-09-25",
+    "dps": 0.04,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-05-20",
+    "dps": 0.136,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-27"
+   }
+  ],
+  "sh601899": [
+   {
+    "exDate": "2008-07-18",
+    "dps": 0.09,
+    "reportDate": "2007-12",
+    "planDate": "2008-05-20"
+   },
+   {
+    "exDate": "2009-06-03",
+    "dps": 0.1,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-23"
+   },
+   {
+    "exDate": "2010-06-10",
+    "dps": 0.1,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-31"
+   },
+   {
+    "exDate": "2011-07-04",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-05-07"
+   },
+   {
+    "exDate": "2012-07-06",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-29"
+   },
+   {
+    "exDate": "2013-07-05",
+    "dps": 0.1,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-28"
+   },
+   {
+    "exDate": "2014-07-07",
+    "dps": 0.08,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-29"
+   },
+   {
+    "exDate": "2015-07-09",
+    "dps": 0.08,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-21"
+   },
+   {
+    "exDate": "2016-07-22",
+    "dps": 0.06,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-30"
+   },
+   {
+    "exDate": "2017-08-04",
+    "dps": 0.06,
+    "reportDate": "2016-12",
+    "planDate": "2017-06-09"
+   },
+   {
+    "exDate": "2018-06-29",
+    "dps": 0.09,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-24"
+   },
+   {
+    "exDate": "2019-07-11",
+    "dps": 0.1,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-23"
+   },
+   {
+    "exDate": "2020-07-17",
+    "dps": 0.1,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-21"
+   },
+   {
+    "exDate": "2021-07-09",
+    "dps": 0.12,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-20"
+   },
+   {
+    "exDate": "2022-06-10",
+    "dps": 0.2,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-19"
+   },
+   {
+    "exDate": "2023-06-15",
+    "dps": 0.2,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2023-12-25",
+    "dps": 0.05,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-26"
+   },
+   {
+    "exDate": "2024-06-11",
+    "dps": 0.2,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-23"
+   },
+   {
+    "exDate": "2024-08-09",
+    "dps": 0.1,
+    "reportDate": "2024-06",
+    "planDate": "2024-07-20"
+   },
+   {
+    "exDate": "2025-06-13",
+    "dps": 0.28,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-22"
+   },
+   {
+    "exDate": "2025-09-30",
+    "dps": 0.22,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-27"
+   },
+   {
+    "exDate": "2026-06-26",
+    "dps": 0.38,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-21"
+   }
+  ],
+  "sh600887": [
+   {
+    "exDate": "1997-06-09",
+    "dps": 0.125,
+    "reportDate": "1996-12",
+    "planDate": "1997-06-03"
+   },
+   {
+    "exDate": "1998-07-31",
+    "dps": 0.25,
+    "reportDate": "1997-12",
+    "planDate": "1998-07-25"
+   },
+   {
+    "exDate": "1999-07-16",
+    "dps": 0.26,
+    "reportDate": "1998-12",
+    "planDate": "1999-07-08"
+   },
+   {
+    "exDate": "2000-06-28",
+    "dps": 0.28,
+    "reportDate": "1999-12",
+    "planDate": "2000-06-23"
+   },
+   {
+    "exDate": "2001-06-11",
+    "dps": 0.35,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-02"
+   },
+   {
+    "exDate": "2002-07-29",
+    "dps": 0.36,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-20"
+   },
+   {
+    "exDate": "2003-07-10",
+    "dps": 0.2,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-05"
+   },
+   {
+    "exDate": "2004-07-15",
+    "dps": 0.33,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-06"
+   },
+   {
+    "exDate": "2005-07-07",
+    "dps": 0.25,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-07"
+   },
+   {
+    "exDate": "2006-04-11",
+    "dps": 0.26,
+    "reportDate": "2005-12",
+    "planDate": "2006-02-10"
+   },
+   {
+    "exDate": "2007-07-03",
+    "dps": 0.1,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-30"
+   },
+   {
+    "exDate": "2012-04-12",
+    "dps": 0.25,
+    "reportDate": "2011-12",
+    "planDate": "2012-02-29"
+   },
+   {
+    "exDate": "2013-05-31",
+    "dps": 0.28,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-27"
+   },
+   {
+    "exDate": "2014-07-16",
+    "dps": 0.8,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-30"
+   },
+   {
+    "exDate": "2015-05-28",
+    "dps": 0.8,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-25"
+   },
+   {
+    "exDate": "2016-05-06",
+    "dps": 0.45,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-31"
+   },
+   {
+    "exDate": "2017-05-09",
+    "dps": 0.6,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-06-15",
+    "dps": 0.7,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-27"
+   },
+   {
+    "exDate": "2019-04-08",
+    "dps": 0.7,
+    "reportDate": "2018-12",
+    "planDate": "2019-02-28"
+   },
+   {
+    "exDate": "2020-06-10",
+    "dps": 0.81,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2021-06-11",
+    "dps": 0.82,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-29"
+   },
+   {
+    "exDate": "2022-06-01",
+    "dps": 0.96,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-28"
+   },
+   {
+    "exDate": "2023-06-13",
+    "dps": 1.04,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-05",
+    "dps": 1.2,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2025-06-06",
+    "dps": 1.22,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-30"
+   },
+   {
+    "exDate": "2025-12-17",
+    "dps": 0.48,
+    "reportDate": "2025-09",
+    "planDate": "2025-10-31"
+   },
+   {
+    "exDate": "2026-06-05",
+    "dps": 0.9,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-30"
+   }
+  ],
+  "sz002379": [
+   {
+    "exDate": "2011-06-01",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-08"
+   },
+   {
+    "exDate": "2014-06-16",
+    "dps": 0.01,
+    "reportDate": "2013-12",
+    "planDate": "2014-01-03"
+   },
+   {
+    "exDate": "2026-04-24",
+    "dps": 0.25,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-21"
+   }
+  ],
+  "sh600329": [
+   {
+    "exDate": "2002-07-23",
+    "dps": 0.17,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-17"
+   },
+   {
+    "exDate": "2003-07-28",
+    "dps": 0.15,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-22"
+   },
+   {
+    "exDate": "2004-07-22",
+    "dps": 0.15,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-26"
+   },
+   {
+    "exDate": "2005-06-29",
+    "dps": 0.15,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-29"
+   },
+   {
+    "exDate": "2006-06-12",
+    "dps": 0.15,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-30"
+   },
+   {
+    "exDate": "2011-07-06",
+    "dps": 0.2,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-31"
+   },
+   {
+    "exDate": "2012-12-13",
+    "dps": 0.2,
+    "reportDate": "2012-06",
+    "planDate": "2012-08-15"
+   },
+   {
+    "exDate": "2013-12-19",
+    "dps": 0.1,
+    "reportDate": "2013-06",
+    "planDate": "2013-08-15"
+   },
+   {
+    "exDate": "2014-07-15",
+    "dps": 0.05,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-31"
+   },
+   {
+    "exDate": "2015-06-01",
+    "dps": 0.15,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-31"
+   },
+   {
+    "exDate": "2016-07-15",
+    "dps": 0.15,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-30"
+   },
+   {
+    "exDate": "2016-12-23",
+    "dps": 0.1,
+    "reportDate": "2016-06",
+    "planDate": "2016-08-15"
+   },
+   {
+    "exDate": "2017-07-14",
+    "dps": 0.15,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-07-13",
+    "dps": 0.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-31"
+   },
+   {
+    "exDate": "2019-07-15",
+    "dps": 0.22,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-30"
+   },
+   {
+    "exDate": "2020-06-24",
+    "dps": 0.3,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-20"
+   },
+   {
+    "exDate": "2021-06-24",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-31"
+   },
+   {
+    "exDate": "2022-06-02",
+    "dps": 0.5,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2023-06-06",
+    "dps": 1.12,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-01"
+   },
+   {
+    "exDate": "2024-07-12",
+    "dps": 1.28,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-30"
+   },
+   {
+    "exDate": "2025-07-04",
+    "dps": 1.28,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-31"
+   },
+   {
+    "exDate": "2026-02-12",
+    "dps": 2.45,
+    "reportDate": "2025-09",
+    "planDate": "2025-10-31"
+   },
+   {
+    "exDate": "2026-07-10",
+    "dps": 2.34,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh601216": [
+   {
+    "exDate": "2012-05-24",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-05"
+   },
+   {
+    "exDate": "2013-08-21",
+    "dps": 0.05,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-23"
+   },
+   {
+    "exDate": "2014-07-07",
+    "dps": 0.06,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-15"
+   },
+   {
+    "exDate": "2015-07-15",
+    "dps": 0.04,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-29"
+   },
+   {
+    "exDate": "2016-08-10",
+    "dps": 0.02,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-12"
+   },
+   {
+    "exDate": "2017-08-10",
+    "dps": 0.02,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-12"
+   },
+   {
+    "exDate": "2018-07-27",
+    "dps": 0.03,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-20"
+   },
+   {
+    "exDate": "2018-10-22",
+    "dps": 0.16,
+    "reportDate": "2018-06",
+    "planDate": "2018-08-22"
+   },
+   {
+    "exDate": "2020-05-26",
+    "dps": 0.35,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-22"
+   },
+   {
+    "exDate": "2021-06-11",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-27"
+   },
+   {
+    "exDate": "2022-06-07",
+    "dps": 0.162,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-20"
+   },
+   {
+    "exDate": "2023-06-02",
+    "dps": 0.18,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-06",
+    "dps": 0.32,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-26"
+   },
+   {
+    "exDate": "2025-06-06",
+    "dps": 0.15,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-26"
+   },
+   {
+    "exDate": "2026-07-08",
+    "dps": 0.38,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-25"
+   }
+  ],
+  "sh600066": [
+   {
+    "exDate": "1998-06-05",
+    "dps": 0.6,
+    "reportDate": "1997-12",
+    "planDate": "1998-06-02"
+   },
+   {
+    "exDate": "1999-07-06",
+    "dps": 0.5,
+    "reportDate": "1998-12",
+    "planDate": "1999-06-30"
+   },
+   {
+    "exDate": "2001-07-10",
+    "dps": 0.6,
+    "reportDate": "2000-12",
+    "planDate": "2001-07-03"
+   },
+   {
+    "exDate": "2002-04-12",
+    "dps": 0.6,
+    "reportDate": "2001-12",
+    "planDate": "2002-04-08"
+   },
+   {
+    "exDate": "2004-04-15",
+    "dps": 0.4,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-02"
+   },
+   {
+    "exDate": "2005-04-19",
+    "dps": 0.5,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-01"
+   },
+   {
+    "exDate": "2006-04-20",
+    "dps": 1.0,
+    "reportDate": "2005-12",
+    "planDate": "2006-02-28"
+   },
+   {
+    "exDate": "2007-04-05",
+    "dps": 0.5,
+    "reportDate": "2006-12",
+    "planDate": "2007-02-13"
+   },
+   {
+    "exDate": "2008-05-15",
+    "dps": 0.7,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-01"
+   },
+   {
+    "exDate": "2009-05-15",
+    "dps": 0.6,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-07"
+   },
+   {
+    "exDate": "2010-05-18",
+    "dps": 1.0,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-06"
+   },
+   {
+    "exDate": "2011-05-16",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-02-24"
+   },
+   {
+    "exDate": "2012-05-09",
+    "dps": 0.3,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-27"
+   },
+   {
+    "exDate": "2013-05-15",
+    "dps": 0.7,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-26"
+   },
+   {
+    "exDate": "2014-05-26",
+    "dps": 0.5,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-25"
+   },
+   {
+    "exDate": "2015-05-20",
+    "dps": 1.0,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-31"
+   },
+   {
+    "exDate": "2016-05-23",
+    "dps": 1.5,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-05"
+   },
+   {
+    "exDate": "2017-06-14",
+    "dps": 1.0,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-28"
+   },
+   {
+    "exDate": "2018-07-27",
+    "dps": 0.5,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-03"
+   },
+   {
+    "exDate": "2019-05-15",
+    "dps": 0.5,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-02"
+   },
+   {
+    "exDate": "2020-05-20",
+    "dps": 1.0,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-31"
+   },
+   {
+    "exDate": "2021-05-21",
+    "dps": 0.5,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-30"
+   },
+   {
+    "exDate": "2022-05-25",
+    "dps": 0.5,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-29"
+   },
+   {
+    "exDate": "2023-05-19",
+    "dps": 1.0,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-28"
+   },
+   {
+    "exDate": "2024-05-16",
+    "dps": 1.5,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-02"
+   },
+   {
+    "exDate": "2024-12-05",
+    "dps": 0.5,
+    "reportDate": "2024-09",
+    "planDate": "2024-10-29"
+   },
+   {
+    "exDate": "2025-05-14",
+    "dps": 1.0,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-01"
+   },
+   {
+    "exDate": "2025-09-11",
+    "dps": 0.5,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-26"
+   },
+   {
+    "exDate": "2026-05-15",
+    "dps": 2.0,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh600153": [
+   {
+    "exDate": "1999-05-26",
+    "dps": 0.02,
+    "reportDate": "1998-12",
+    "planDate": "1999-05-21"
+   },
+   {
+    "exDate": "2001-06-19",
+    "dps": 0.3,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-12"
+   },
+   {
+    "exDate": "2002-07-08",
+    "dps": 0.05,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-02"
+   },
+   {
+    "exDate": "2003-06-23",
+    "dps": 0.5,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-17"
+   },
+   {
+    "exDate": "2004-06-24",
+    "dps": 0.5,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-21"
+   },
+   {
+    "exDate": "2005-07-11",
+    "dps": 0.35,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-30"
+   },
+   {
+    "exDate": "2006-06-23",
+    "dps": 0.4,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-08"
+   },
+   {
+    "exDate": "2007-06-19",
+    "dps": 0.5,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-30"
+   },
+   {
+    "exDate": "2008-08-04",
+    "dps": 0.3,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-11"
+   },
+   {
+    "exDate": "2009-08-25",
+    "dps": 0.25,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-15"
+   },
+   {
+    "exDate": "2010-07-16",
+    "dps": 0.25,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-30"
+   },
+   {
+    "exDate": "2011-07-12",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-08"
+   },
+   {
+    "exDate": "2012-07-17",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-11"
+   },
+   {
+    "exDate": "2013-07-09",
+    "dps": 0.15,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-10"
+   },
+   {
+    "exDate": "2014-02-12",
+    "dps": 0.2,
+    "reportDate": "2013-09",
+    "planDate": "2013-12-28"
+   },
+   {
+    "exDate": "2014-12-15",
+    "dps": 0.2,
+    "reportDate": "2014-06",
+    "planDate": "2014-08-27"
+   },
+   {
+    "exDate": "2015-07-23",
+    "dps": 0.2,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-15"
+   },
+   {
+    "exDate": "2016-06-17",
+    "dps": 0.1,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-08"
+   },
+   {
+    "exDate": "2017-07-25",
+    "dps": 0.4,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-11"
+   },
+   {
+    "exDate": "2018-07-20",
+    "dps": 0.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-17"
+   },
+   {
+    "exDate": "2019-06-25",
+    "dps": 0.5,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-23"
+   },
+   {
+    "exDate": "2020-06-29",
+    "dps": 0.5,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-21"
+   },
+   {
+    "exDate": "2021-07-07",
+    "dps": 0.5,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-20"
+   },
+   {
+    "exDate": "2022-07-07",
+    "dps": 0.6,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-19"
+   },
+   {
+    "exDate": "2023-07-06",
+    "dps": 0.8,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-05-21",
+    "dps": 0.7,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-16"
+   },
+   {
+    "exDate": "2025-01-20",
+    "dps": 0.4,
+    "reportDate": "2024-09",
+    "planDate": "2025-01-03"
+   },
+   {
+    "exDate": "2025-05-21",
+    "dps": 0.3,
+    "reportDate": "2024-12",
+    "planDate": "2024-12-18"
+   },
+   {
+    "exDate": "2026-02-11",
+    "dps": 0.2,
+    "reportDate": "2025-09",
+    "planDate": "2026-01-24"
+   },
+   {
+    "exDate": "2026-06-24",
+    "dps": 0.5,
+    "reportDate": "2025-12",
+    "planDate": "2024-12-18"
+   }
+  ],
+  "sz002867": [
+   {
+    "exDate": "2017-07-19",
+    "dps": 0.6,
+    "reportDate": "2016-12",
+    "planDate": "2017-06-06"
+   },
+   {
+    "exDate": "2018-05-23",
+    "dps": 0.6,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-17"
+   },
+   {
+    "exDate": "2019-07-10",
+    "dps": 0.65,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-23"
+   },
+   {
+    "exDate": "2020-06-03",
+    "dps": 0.45,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-06-18",
+    "dps": 0.6,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-30"
+   },
+   {
+    "exDate": "2021-11-25",
+    "dps": 0.3,
+    "reportDate": "2021-06",
+    "planDate": "2021-08-31"
+   },
+   {
+    "exDate": "2022-06-07",
+    "dps": 0.5,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-06-05",
+    "dps": 0.6,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2023-09-26",
+    "dps": 0.3,
+    "reportDate": "2023-06",
+    "planDate": "2023-08-26"
+   },
+   {
+    "exDate": "2024-07-10",
+    "dps": 0.65,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-26"
+   },
+   {
+    "exDate": "2024-10-21",
+    "dps": 0.3,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-28"
+   },
+   {
+    "exDate": "2025-06-11",
+    "dps": 0.65,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-29"
+   },
+   {
+    "exDate": "2025-11-11",
+    "dps": 0.25,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-28"
+   },
+   {
+    "exDate": "2026-07-17",
+    "dps": 0.65,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-29"
+   }
+  ],
+  "sz002271": [
+   {
+    "exDate": "2009-06-03",
+    "dps": 0.35,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-08"
+   },
+   {
+    "exDate": "2010-04-16",
+    "dps": 0.3,
+    "reportDate": "2009-12",
+    "planDate": "2010-01-30"
+   },
+   {
+    "exDate": "2011-06-13",
+    "dps": 0.25,
+    "reportDate": "2010-12",
+    "planDate": "2011-02-26"
+   },
+   {
+    "exDate": "2012-07-04",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-13"
+   },
+   {
+    "exDate": "2013-06-03",
+    "dps": 0.2,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-13"
+   },
+   {
+    "exDate": "2014-04-30",
+    "dps": 0.2,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-18"
+   },
+   {
+    "exDate": "2015-06-01",
+    "dps": 0.2,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-28"
+   },
+   {
+    "exDate": "2016-06-03",
+    "dps": 0.1,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-23"
+   },
+   {
+    "exDate": "2017-06-01",
+    "dps": 0.15,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-21"
+   },
+   {
+    "exDate": "2018-06-20",
+    "dps": 0.15,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-24"
+   },
+   {
+    "exDate": "2019-05-30",
+    "dps": 0.3,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-28"
+   },
+   {
+    "exDate": "2020-06-15",
+    "dps": 0.3,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-24"
+   },
+   {
+    "exDate": "2021-05-31",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-16"
+   },
+   {
+    "exDate": "2022-05-31",
+    "dps": 0.3,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-12"
+   },
+   {
+    "exDate": "2023-05-19",
+    "dps": 0.1,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-13"
+   },
+   {
+    "exDate": "2024-05-22",
+    "dps": 0.6,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-14"
+   },
+   {
+    "exDate": "2024-09-26",
+    "dps": 0.6,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-29"
+   },
+   {
+    "exDate": "2025-04-01",
+    "dps": 0.925,
+    "reportDate": "2024-12",
+    "planDate": "2025-02-28"
+   },
+   {
+    "exDate": "2025-08-27",
+    "dps": 0.925,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-01"
+   }
+  ],
+  "sh600398": [
+   {
+    "exDate": "2001-06-13",
+    "dps": 0.2,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-05"
+   },
+   {
+    "exDate": "2002-04-16",
+    "dps": 0.015,
+    "reportDate": "2001-12",
+    "planDate": "2002-04-10"
+   },
+   {
+    "exDate": "2004-06-15",
+    "dps": 0.1,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-20"
+   },
+   {
+    "exDate": "2005-05-24",
+    "dps": 0.1,
+    "reportDate": "2004-12",
+    "planDate": "2005-01-29"
+   },
+   {
+    "exDate": "2006-04-19",
+    "dps": 0.08,
+    "reportDate": "2005-12",
+    "planDate": "2006-01-25"
+   },
+   {
+    "exDate": "2009-06-16",
+    "dps": 0.05,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-21"
+   },
+   {
+    "exDate": "2010-06-22",
+    "dps": 0.03,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-21"
+   },
+   {
+    "exDate": "2011-04-27",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-24"
+   },
+   {
+    "exDate": "2012-06-01",
+    "dps": 0.05,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-21"
+   },
+   {
+    "exDate": "2013-07-01",
+    "dps": 0.05,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-23"
+   },
+   {
+    "exDate": "2014-05-21",
+    "dps": 0.19,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-26"
+   },
+   {
+    "exDate": "2015-04-30",
+    "dps": 0.38,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-03"
+   },
+   {
+    "exDate": "2016-05-31",
+    "dps": 0.33,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-26"
+   },
+   {
+    "exDate": "2017-04-19",
+    "dps": 0.49,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-11"
+   },
+   {
+    "exDate": "2018-06-08",
+    "dps": 0.48,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-24"
+   },
+   {
+    "exDate": "2019-05-15",
+    "dps": 0.38,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-30"
+   },
+   {
+    "exDate": "2020-07-08",
+    "dps": 0.28,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2021-06-17",
+    "dps": 0.256,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-28"
+   },
+   {
+    "exDate": "2022-06-29",
+    "dps": 0.51,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-28"
+   },
+   {
+    "exDate": "2023-06-06",
+    "dps": 0.43,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-06",
+    "dps": 0.56,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2024-09-05",
+    "dps": 0.23,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-20"
+   },
+   {
+    "exDate": "2025-07-10",
+    "dps": 0.18,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-30"
+   },
+   {
+    "exDate": "2026-05-11",
+    "dps": 0.41,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sh600566": [
+   {
+    "exDate": "2002-05-23",
+    "dps": 0.1,
+    "reportDate": "2001-12",
+    "planDate": "2002-05-16"
+   },
+   {
+    "exDate": "2003-05-29",
+    "dps": 0.05,
+    "reportDate": "2002-12",
+    "planDate": "2003-05-23"
+   },
+   {
+    "exDate": "2005-05-27",
+    "dps": 0.02,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-26"
+   },
+   {
+    "exDate": "2006-05-26",
+    "dps": 0.02,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-18"
+   },
+   {
+    "exDate": "2007-05-28",
+    "dps": 0.01,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-22"
+   },
+   {
+    "exDate": "2008-06-12",
+    "dps": 0.01,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-28"
+   },
+   {
+    "exDate": "2009-05-27",
+    "dps": 0.01,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-25"
+   },
+   {
+    "exDate": "2010-05-18",
+    "dps": 0.01,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-27"
+   },
+   {
+    "exDate": "2011-07-12",
+    "dps": 0.01,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-26"
+   },
+   {
+    "exDate": "2012-05-16",
+    "dps": 0.01,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-28"
+   },
+   {
+    "exDate": "2015-04-07",
+    "dps": 0.4,
+    "reportDate": "2014-12",
+    "planDate": "2015-02-16"
+   },
+   {
+    "exDate": "2016-04-20",
+    "dps": 0.7,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-19"
+   },
+   {
+    "exDate": "2017-04-28",
+    "dps": 0.73,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-25"
+   },
+   {
+    "exDate": "2018-06-01",
+    "dps": 1.0,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-21"
+   },
+   {
+    "exDate": "2019-06-03",
+    "dps": 1.23,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-20"
+   },
+   {
+    "exDate": "2020-04-24",
+    "dps": 1.23,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-13"
+   },
+   {
+    "exDate": "2021-05-26",
+    "dps": 0.45,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-17"
+   },
+   {
+    "exDate": "2022-05-26",
+    "dps": 0.68,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-16"
+   },
+   {
+    "exDate": "2023-07-03",
+    "dps": 0.88,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-10"
+   },
+   {
+    "exDate": "2024-06-17",
+    "dps": 1.3,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-10"
+   },
+   {
+    "exDate": "2025-06-30",
+    "dps": 2.09,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-26"
+   },
+   {
+    "exDate": "2026-06-30",
+    "dps": 1.74,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-24"
+   }
+  ],
+  "sz002007": [
+   {
+    "exDate": "2005-05-23",
+    "dps": 0.4,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-26"
+   },
+   {
+    "exDate": "2006-05-08",
+    "dps": 0.5,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-06"
+   },
+   {
+    "exDate": "2007-10-24",
+    "dps": 0.2,
+    "reportDate": "2007-06",
+    "planDate": "2007-08-04"
+   },
+   {
+    "exDate": "2009-05-06",
+    "dps": 0.2,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-06"
+   },
+   {
+    "exDate": "2010-05-27",
+    "dps": 0.3,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-10"
+   },
+   {
+    "exDate": "2011-06-16",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-29"
+   },
+   {
+    "exDate": "2012-07-13",
+    "dps": 0.12,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-12"
+   },
+   {
+    "exDate": "2013-06-24",
+    "dps": 0.1,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-26"
+   },
+   {
+    "exDate": "2014-06-20",
+    "dps": 0.4,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-26"
+   },
+   {
+    "exDate": "2015-06-05",
+    "dps": 0.6,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-06-07",
+    "dps": 0.4,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-30"
+   },
+   {
+    "exDate": "2017-06-13",
+    "dps": 0.4,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-28"
+   },
+   {
+    "exDate": "2018-06-27",
+    "dps": 0.3,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-27"
+   },
+   {
+    "exDate": "2019-06-17",
+    "dps": 0.4,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-29"
+   },
+   {
+    "exDate": "2020-04-27",
+    "dps": 0.4,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-24"
+   },
+   {
+    "exDate": "2021-06-23",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-30"
+   },
+   {
+    "exDate": "2022-06-16",
+    "dps": 0.2,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-30"
+   },
+   {
+    "exDate": "2023-06-14",
+    "dps": 0.3,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-30"
+   },
+   {
+    "exDate": "2024-06-14",
+    "dps": 0.3,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-30"
+   },
+   {
+    "exDate": "2025-06-17",
+    "dps": 0.2,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2025-10-27",
+    "dps": 0.5,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-28"
+   },
+   {
+    "exDate": "2026-06-15",
+    "dps": 0.5,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sz000690": [
+   {
+    "exDate": "1999-05-18",
+    "dps": 0.1,
+    "reportDate": "1998-12",
+    "planDate": "1999-05-11"
+   },
+   {
+    "exDate": "2000-05-25",
+    "dps": 0.2,
+    "reportDate": "1999-12",
+    "planDate": "2000-05-19"
+   },
+   {
+    "exDate": "2000-08-29",
+    "dps": 0.075,
+    "reportDate": "2000-06",
+    "planDate": "2000-08-23"
+   },
+   {
+    "exDate": "2001-04-30",
+    "dps": 0.2,
+    "reportDate": "2000-12",
+    "planDate": "2001-04-24"
+   },
+   {
+    "exDate": "2002-05-29",
+    "dps": 0.2,
+    "reportDate": "2001-12",
+    "planDate": "2002-05-22"
+   },
+   {
+    "exDate": "2003-06-18",
+    "dps": 0.15,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-11"
+   },
+   {
+    "exDate": "2004-06-11",
+    "dps": 0.12,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-19"
+   },
+   {
+    "exDate": "2005-03-21",
+    "dps": 0.2,
+    "reportDate": "2004-12",
+    "planDate": "2005-01-22"
+   },
+   {
+    "exDate": "2006-03-07",
+    "dps": 0.04,
+    "reportDate": "2005-12",
+    "planDate": "2006-01-24"
+   },
+   {
+    "exDate": "2007-02-16",
+    "dps": 0.03,
+    "reportDate": "2006-12",
+    "planDate": "2007-01-19"
+   },
+   {
+    "exDate": "2008-02-29",
+    "dps": 0.03,
+    "reportDate": "2007-12",
+    "planDate": "2008-01-24"
+   },
+   {
+    "exDate": "2009-08-05",
+    "dps": 0.06,
+    "reportDate": "2008-12",
+    "planDate": "2009-02-28"
+   },
+   {
+    "exDate": "2010-03-19",
+    "dps": 0.1,
+    "reportDate": "2009-12",
+    "planDate": "2010-02-02"
+   },
+   {
+    "exDate": "2011-05-11",
+    "dps": 0.03,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-02"
+   },
+   {
+    "exDate": "2012-04-11",
+    "dps": 0.055,
+    "reportDate": "2011-12",
+    "planDate": "2012-02-25"
+   },
+   {
+    "exDate": "2013-03-19",
+    "dps": 0.15,
+    "reportDate": "2012-12",
+    "planDate": "2013-02-02"
+   },
+   {
+    "exDate": "2014-03-05",
+    "dps": 0.3,
+    "reportDate": "2013-12",
+    "planDate": "2014-01-24"
+   },
+   {
+    "exDate": "2015-04-07",
+    "dps": 0.3,
+    "reportDate": "2014-12",
+    "planDate": "2015-02-28"
+   },
+   {
+    "exDate": "2016-06-03",
+    "dps": 0.2,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-30"
+   },
+   {
+    "exDate": "2017-07-12",
+    "dps": 0.033,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-22"
+   },
+   {
+    "exDate": "2018-06-21",
+    "dps": 0.03,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-06-05",
+    "dps": 0.1,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-22"
+   },
+   {
+    "exDate": "2020-05-21",
+    "dps": 0.2,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-21"
+   },
+   {
+    "exDate": "2021-03-04",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-02-03"
+   },
+   {
+    "exDate": "2022-05-18",
+    "dps": 0.05,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-16"
+   },
+   {
+    "exDate": "2023-07-04",
+    "dps": 0.03,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-18"
+   },
+   {
+    "exDate": "2024-05-14",
+    "dps": 0.3,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-09"
+   },
+   {
+    "exDate": "2025-05-29",
+    "dps": 0.15,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-29"
+   },
+   {
+    "exDate": "2025-09-17",
+    "dps": 0.05,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-19"
+   },
+   {
+    "exDate": "2026-05-22",
+    "dps": 0.2,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-21"
+   }
+  ],
+  "sz002032": [
+   {
+    "exDate": "2005-06-22",
+    "dps": 0.2,
+    "reportDate": "2004-12",
+    "planDate": "2005-04-13"
+   },
+   {
+    "exDate": "2006-05-29",
+    "dps": 0.2,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-07"
+   },
+   {
+    "exDate": "2007-04-18",
+    "dps": 0.2,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-08"
+   },
+   {
+    "exDate": "2009-04-24",
+    "dps": 0.2,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-19"
+   },
+   {
+    "exDate": "2010-05-27",
+    "dps": 0.2,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-30"
+   },
+   {
+    "exDate": "2011-05-23",
+    "dps": 0.28,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-26"
+   },
+   {
+    "exDate": "2012-05-17",
+    "dps": 0.3,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-30"
+   },
+   {
+    "exDate": "2013-05-17",
+    "dps": 0.33,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-30"
+   },
+   {
+    "exDate": "2014-05-19",
+    "dps": 0.37,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-27"
+   },
+   {
+    "exDate": "2015-05-29",
+    "dps": 0.43,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-26"
+   },
+   {
+    "exDate": "2016-05-13",
+    "dps": 0.56,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-25"
+   },
+   {
+    "exDate": "2017-05-25",
+    "dps": 0.77,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-30"
+   },
+   {
+    "exDate": "2018-05-24",
+    "dps": 0.72,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-31"
+   },
+   {
+    "exDate": "2018-10-26",
+    "dps": 0.46,
+    "reportDate": "2018-06",
+    "planDate": "2018-08-30"
+   },
+   {
+    "exDate": "2019-05-24",
+    "dps": 1.02,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-28"
+   },
+   {
+    "exDate": "2019-10-25",
+    "dps": 0.258,
+    "reportDate": "2019-06",
+    "planDate": "2019-08-30"
+   },
+   {
+    "exDate": "2020-06-23",
+    "dps": 1.33,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2021-05-25",
+    "dps": 1.29,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-01"
+   },
+   {
+    "exDate": "2022-05-26",
+    "dps": 1.93,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-01"
+   },
+   {
+    "exDate": "2022-12-06",
+    "dps": 1.25,
+    "reportDate": "2022-09",
+    "planDate": "2022-10-25"
+   },
+   {
+    "exDate": "2023-05-26",
+    "dps": 3.03,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-05-28",
+    "dps": 2.73,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-30"
+   },
+   {
+    "exDate": "2025-05-27",
+    "dps": 2.81,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-28"
+   },
+   {
+    "exDate": "2026-05-28",
+    "dps": 2.63,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-03"
+   }
+  ],
+  "sh600750": [
+   {
+    "exDate": "2001-05-21",
+    "dps": 0.1,
+    "reportDate": "2000-12",
+    "planDate": "2001-05-12"
+   },
+   {
+    "exDate": "2002-05-24",
+    "dps": 0.1,
+    "reportDate": "2001-12",
+    "planDate": "2002-05-17"
+   },
+   {
+    "exDate": "2003-06-05",
+    "dps": 0.1,
+    "reportDate": "2002-12",
+    "planDate": "2003-05-30"
+   },
+   {
+    "exDate": "2004-06-02",
+    "dps": 0.1,
+    "reportDate": "2003-12",
+    "planDate": "2004-02-10"
+   },
+   {
+    "exDate": "2005-07-08",
+    "dps": 0.1,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-12"
+   },
+   {
+    "exDate": "2006-06-12",
+    "dps": 0.2,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-10"
+   },
+   {
+    "exDate": "2007-05-24",
+    "dps": 0.07,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-15"
+   },
+   {
+    "exDate": "2008-04-25",
+    "dps": 0.17,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-18"
+   },
+   {
+    "exDate": "2009-04-03",
+    "dps": 0.39,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-03"
+   },
+   {
+    "exDate": "2010-05-11",
+    "dps": 0.3,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-09"
+   },
+   {
+    "exDate": "2011-05-19",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-29"
+   },
+   {
+    "exDate": "2012-05-25",
+    "dps": 0.3,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-10"
+   },
+   {
+    "exDate": "2013-05-23",
+    "dps": 0.3,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-16"
+   },
+   {
+    "exDate": "2014-06-23",
+    "dps": 0.3,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-29"
+   },
+   {
+    "exDate": "2015-06-02",
+    "dps": 0.3,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-06-03",
+    "dps": 0.4,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-28"
+   },
+   {
+    "exDate": "2017-06-13",
+    "dps": 0.4,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-25"
+   },
+   {
+    "exDate": "2018-06-20",
+    "dps": 0.45,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-30"
+   },
+   {
+    "exDate": "2019-06-12",
+    "dps": 0.35,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-15"
+   },
+   {
+    "exDate": "2020-06-12",
+    "dps": 0.3,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-21"
+   },
+   {
+    "exDate": "2021-06-07",
+    "dps": 0.27,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-20"
+   },
+   {
+    "exDate": "2021-12-30",
+    "dps": 0.2202,
+    "reportDate": "2021-09",
+    "planDate": "2021-10-28"
+   },
+   {
+    "exDate": "2022-06-20",
+    "dps": 0.65,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-25"
+   },
+   {
+    "exDate": "2022-12-01",
+    "dps": 0.5,
+    "reportDate": "2022-09",
+    "planDate": "2022-10-22"
+   },
+   {
+    "exDate": "2023-05-19",
+    "dps": 0.65,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2023-11-27",
+    "dps": 0.6,
+    "reportDate": "2023-09",
+    "planDate": "2023-10-28"
+   },
+   {
+    "exDate": "2024-06-13",
+    "dps": 0.7,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-23"
+   },
+   {
+    "exDate": "2024-10-10",
+    "dps": 0.5,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-22"
+   },
+   {
+    "exDate": "2025-06-20",
+    "dps": 0.7,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-20"
+   },
+   {
+    "exDate": "2025-10-13",
+    "dps": 0.5,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-22"
+   },
+   {
+    "exDate": "2026-06-22",
+    "dps": 0.88,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-20"
+   }
+  ],
+  "sh600642": [
+   {
+    "exDate": "1994-05-03",
+    "dps": 0.15,
+    "reportDate": "1993-12",
+    "planDate": "1994-04-23"
+   },
+   {
+    "exDate": "1995-05-02",
+    "dps": 0.16,
+    "reportDate": "1994-12",
+    "planDate": "1995-04-26"
+   },
+   {
+    "exDate": "1996-07-08",
+    "dps": 0.16,
+    "reportDate": "1995-12",
+    "planDate": "1996-06-29"
+   },
+   {
+    "exDate": "1997-05-09",
+    "dps": 0.16,
+    "reportDate": "1996-12",
+    "planDate": "1997-05-05"
+   },
+   {
+    "exDate": "1998-05-28",
+    "dps": 0.2,
+    "reportDate": "1997-12",
+    "planDate": "1998-05-22"
+   },
+   {
+    "exDate": "1999-08-09",
+    "dps": 0.2,
+    "reportDate": "1998-12",
+    "planDate": "1999-08-04"
+   },
+   {
+    "exDate": "2000-07-20",
+    "dps": 0.25,
+    "reportDate": "1999-12",
+    "planDate": "2000-07-17"
+   },
+   {
+    "exDate": "2001-06-26",
+    "dps": 0.45,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-19"
+   },
+   {
+    "exDate": "2002-07-22",
+    "dps": 0.35,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-16"
+   },
+   {
+    "exDate": "2003-07-18",
+    "dps": 0.3,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-14"
+   },
+   {
+    "exDate": "2004-06-14",
+    "dps": 0.3,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-24"
+   },
+   {
+    "exDate": "2005-04-12",
+    "dps": 0.2,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-04"
+   },
+   {
+    "exDate": "2006-06-26",
+    "dps": 0.25,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-22"
+   },
+   {
+    "exDate": "2007-06-19",
+    "dps": 0.32,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-27"
+   },
+   {
+    "exDate": "2008-05-28",
+    "dps": 0.33,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-09"
+   },
+   {
+    "exDate": "2009-06-23",
+    "dps": 0.1,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-30"
+   },
+   {
+    "exDate": "2010-03-25",
+    "dps": 0.2,
+    "reportDate": "2009-12",
+    "planDate": "2010-02-11"
+   },
+   {
+    "exDate": "2011-06-24",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-30"
+   },
+   {
+    "exDate": "2012-05-24",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-27"
+   },
+   {
+    "exDate": "2013-06-17",
+    "dps": 0.12,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-23"
+   },
+   {
+    "exDate": "2014-07-09",
+    "dps": 0.2,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-28"
+   },
+   {
+    "exDate": "2015-07-21",
+    "dps": 0.2,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-29"
+   },
+   {
+    "exDate": "2016-07-15",
+    "dps": 0.2,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-07-21",
+    "dps": 0.22,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-08-10",
+    "dps": 0.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-06-05",
+    "dps": 0.2,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-30"
+   },
+   {
+    "exDate": "2020-07-23",
+    "dps": 0.22,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-07-14",
+    "dps": 0.28,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-06"
+   },
+   {
+    "exDate": "2022-07-08",
+    "dps": 0.2,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-09"
+   },
+   {
+    "exDate": "2023-06-21",
+    "dps": 0.16,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-26",
+    "dps": 0.4,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2025-07-11",
+    "dps": 0.45,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-08"
+   },
+   {
+    "exDate": "2026-07-14",
+    "dps": 0.46,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-27"
+   }
+  ],
+  "sh600177": [
+   {
+    "exDate": "1999-05-11",
+    "dps": 0.25,
+    "reportDate": "1998-12",
+    "planDate": "1999-05-06"
+   },
+   {
+    "exDate": "2000-04-19",
+    "dps": 0.3,
+    "reportDate": "1999-12",
+    "planDate": "2000-04-12"
+   },
+   {
+    "exDate": "2001-04-24",
+    "dps": 0.2,
+    "reportDate": "2000-12",
+    "planDate": "2001-04-17"
+   },
+   {
+    "exDate": "2002-05-15",
+    "dps": 0.2,
+    "reportDate": "2001-12",
+    "planDate": "2002-05-09"
+   },
+   {
+    "exDate": "2003-05-19",
+    "dps": 0.2,
+    "reportDate": "2002-12",
+    "planDate": "2003-05-13"
+   },
+   {
+    "exDate": "2004-04-16",
+    "dps": 0.5,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-02"
+   },
+   {
+    "exDate": "2005-04-29",
+    "dps": 0.25,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-01"
+   },
+   {
+    "exDate": "2006-06-02",
+    "dps": 0.25,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-07"
+   },
+   {
+    "exDate": "2007-06-04",
+    "dps": 0.3,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-03"
+   },
+   {
+    "exDate": "2008-06-06",
+    "dps": 0.5,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-22"
+   },
+   {
+    "exDate": "2009-06-05",
+    "dps": 0.3,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-31"
+   },
+   {
+    "exDate": "2010-04-30",
+    "dps": 0.55,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-23"
+   },
+   {
+    "exDate": "2011-05-30",
+    "dps": 0.5,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-19"
+   },
+   {
+    "exDate": "2012-06-11",
+    "dps": 0.4,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-27"
+   },
+   {
+    "exDate": "2013-05-23",
+    "dps": 0.5,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-26"
+   },
+   {
+    "exDate": "2014-05-23",
+    "dps": 0.5,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-25"
+   },
+   {
+    "exDate": "2015-06-10",
+    "dps": 0.5,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-30"
+   },
+   {
+    "exDate": "2016-06-08",
+    "dps": 0.8,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-06-05",
+    "dps": 0.5,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-06-07",
+    "dps": 0.4,
+    "reportDate": "2017-12",
+    "planDate": "2018-02-03"
+   },
+   {
+    "exDate": "2019-06-05",
+    "dps": 0.5,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-30"
+   },
+   {
+    "exDate": "2020-06-05",
+    "dps": 0.2,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2021-06-18",
+    "dps": 0.5,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-27"
+   },
+   {
+    "exDate": "2022-06-08",
+    "dps": 0.5,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-26"
+   },
+   {
+    "exDate": "2023-06-14",
+    "dps": 0.5,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2024-06-13",
+    "dps": 0.5,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-30"
+   },
+   {
+    "exDate": "2024-09-13",
+    "dps": 0.1,
+    "reportDate": "2024-03",
+    "planDate": "2024-08-21"
+   },
+   {
+    "exDate": "2024-12-04",
+    "dps": 0.1,
+    "reportDate": "2024-06",
+    "planDate": "2024-10-26"
+   },
+   {
+    "exDate": "2025-03-03",
+    "dps": 0.1,
+    "reportDate": "2024-09",
+    "planDate": "2025-01-22"
+   },
+   {
+    "exDate": "2025-06-06",
+    "dps": 0.2,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-24"
+   },
+   {
+    "exDate": "2025-09-12",
+    "dps": 0.08,
+    "reportDate": "2025-03",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2025-12-04",
+    "dps": 0.08,
+    "reportDate": "2025-06",
+    "planDate": "2025-10-31"
+   },
+   {
+    "exDate": "2026-03-27",
+    "dps": 0.08,
+    "reportDate": "2025-09",
+    "planDate": "2026-02-10"
+   },
+   {
+    "exDate": "2026-06-05",
+    "dps": 0.2,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-28"
+   }
+  ],
+  "sh600295": [
+   {
+    "exDate": "2001-07-11",
+    "dps": 0.36,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-30"
+   },
+   {
+    "exDate": "2002-06-12",
+    "dps": 0.24,
+    "reportDate": "2001-12",
+    "planDate": "2002-06-06"
+   },
+   {
+    "exDate": "2003-06-13",
+    "dps": 0.29,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-09"
+   },
+   {
+    "exDate": "2004-06-10",
+    "dps": 0.1,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-22"
+   },
+   {
+    "exDate": "2005-06-10",
+    "dps": 0.12,
+    "reportDate": "2004-12",
+    "planDate": "2005-04-12"
+   },
+   {
+    "exDate": "2006-06-12",
+    "dps": 0.13,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-28"
+   },
+   {
+    "exDate": "2007-06-08",
+    "dps": 0.15,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-27"
+   },
+   {
+    "exDate": "2008-06-04",
+    "dps": 0.15,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-16"
+   },
+   {
+    "exDate": "2009-06-08",
+    "dps": 0.1,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-29"
+   },
+   {
+    "exDate": "2010-06-18",
+    "dps": 0.1,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-08"
+   },
+   {
+    "exDate": "2011-06-13",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-29"
+   },
+   {
+    "exDate": "2012-06-01",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-22"
+   },
+   {
+    "exDate": "2013-06-04",
+    "dps": 0.1,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-16"
+   },
+   {
+    "exDate": "2014-05-13",
+    "dps": 0.12,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-05"
+   },
+   {
+    "exDate": "2015-06-25",
+    "dps": 0.1,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-02"
+   },
+   {
+    "exDate": "2016-06-21",
+    "dps": 0.05,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-07-12",
+    "dps": 0.05,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-07-06",
+    "dps": 0.1,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-27"
+   },
+   {
+    "exDate": "2019-07-16",
+    "dps": 0.15,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-28"
+   },
+   {
+    "exDate": "2020-05-26",
+    "dps": 0.4,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-15"
+   },
+   {
+    "exDate": "2021-06-07",
+    "dps": 0.8,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-15"
+   },
+   {
+    "exDate": "2022-06-13",
+    "dps": 2.0,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-15"
+   },
+   {
+    "exDate": "2023-06-30",
+    "dps": 1.0,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-15"
+   },
+   {
+    "exDate": "2024-06-26",
+    "dps": 0.8,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-16"
+   },
+   {
+    "exDate": "2025-06-23",
+    "dps": 0.6,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-15"
+   },
+   {
+    "exDate": "2026-06-17",
+    "dps": 0.7,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-15"
+   }
+  ],
+  "sz000719": [
+   {
+    "exDate": "2001-05-18",
+    "dps": 0.01,
+    "reportDate": "2000-12",
+    "planDate": "2001-05-11"
+   },
+   {
+    "exDate": "2003-07-11",
+    "dps": 0.05,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-05"
+   },
+   {
+    "exDate": "2014-06-18",
+    "dps": 0.15,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-15"
+   },
+   {
+    "exDate": "2015-06-16",
+    "dps": 0.15,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-08"
+   },
+   {
+    "exDate": "2016-06-03",
+    "dps": 0.18,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-12"
+   },
+   {
+    "exDate": "2017-05-17",
+    "dps": 0.18,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-05-07",
+    "dps": 0.18,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-29"
+   },
+   {
+    "exDate": "2019-05-06",
+    "dps": 0.25,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-29"
+   },
+   {
+    "exDate": "2020-07-13",
+    "dps": 0.28,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2021-07-01",
+    "dps": 0.31,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-27"
+   },
+   {
+    "exDate": "2022-07-11",
+    "dps": 0.33,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-08"
+   },
+   {
+    "exDate": "2023-07-10",
+    "dps": 0.38,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-26"
+   },
+   {
+    "exDate": "2024-06-26",
+    "dps": 0.42,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-18"
+   },
+   {
+    "exDate": "2025-06-30",
+    "dps": 0.6,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-18"
+   },
+   {
+    "exDate": "2026-07-01",
+    "dps": 0.66,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-17"
+   }
+  ],
+  "sz000423": [
+   {
+    "exDate": "2000-04-13",
+    "dps": 0.2,
+    "reportDate": "1999-12",
+    "planDate": "2000-04-07"
+   },
+   {
+    "exDate": "2001-05-11",
+    "dps": 0.2,
+    "reportDate": "2000-12",
+    "planDate": "2001-04-26"
+   },
+   {
+    "exDate": "2002-05-31",
+    "dps": 0.2,
+    "reportDate": "2001-12",
+    "planDate": "2002-05-27"
+   },
+   {
+    "exDate": "2003-07-10",
+    "dps": 0.25,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-02"
+   },
+   {
+    "exDate": "2004-06-17",
+    "dps": 0.05,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-24"
+   },
+   {
+    "exDate": "2005-08-12",
+    "dps": 0.2,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-16"
+   },
+   {
+    "exDate": "2006-07-26",
+    "dps": 0.2,
+    "reportDate": "2005-12",
+    "planDate": "2006-04-29"
+   },
+   {
+    "exDate": "2007-05-31",
+    "dps": 0.2,
+    "reportDate": "2006-12",
+    "planDate": "2007-04-12"
+   },
+   {
+    "exDate": "2008-08-28",
+    "dps": 0.2,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-18"
+   },
+   {
+    "exDate": "2009-09-04",
+    "dps": 0.16,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-10"
+   },
+   {
+    "exDate": "2010-07-23",
+    "dps": 0.35,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-23"
+   },
+   {
+    "exDate": "2011-08-12",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-12"
+   },
+   {
+    "exDate": "2012-08-10",
+    "dps": 0.3,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-08"
+   },
+   {
+    "exDate": "2013-08-06",
+    "dps": 0.7,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-30"
+   },
+   {
+    "exDate": "2014-08-05",
+    "dps": 0.7,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-12"
+   },
+   {
+    "exDate": "2015-08-07",
+    "dps": 0.8,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-19"
+   },
+   {
+    "exDate": "2016-07-22",
+    "dps": 0.8,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-10"
+   },
+   {
+    "exDate": "2017-07-18",
+    "dps": 0.9,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-10"
+   },
+   {
+    "exDate": "2018-08-09",
+    "dps": 0.9,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-16"
+   },
+   {
+    "exDate": "2019-08-15",
+    "dps": 1.0095,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-14"
+   },
+   {
+    "exDate": "2020-07-16",
+    "dps": 0.2031,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-27"
+   },
+   {
+    "exDate": "2021-08-20",
+    "dps": 0.3047,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-20"
+   },
+   {
+    "exDate": "2022-08-23",
+    "dps": 0.6601,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-26"
+   },
+   {
+    "exDate": "2023-06-21",
+    "dps": 1.1781,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2024-06-12",
+    "dps": 1.7842,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-22"
+   },
+   {
+    "exDate": "2024-09-10",
+    "dps": 1.1467,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-22"
+   },
+   {
+    "exDate": "2025-06-05",
+    "dps": 1.273,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-18"
+   },
+   {
+    "exDate": "2025-09-03",
+    "dps": 1.2701,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-22"
+   },
+   {
+    "exDate": "2026-05-25",
+    "dps": 1.4355,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-20"
+   }
+  ],
+  "sz000333": [
+   {
+    "exDate": "2014-04-30",
+    "dps": 2.0,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-29"
+   },
+   {
+    "exDate": "2015-04-30",
+    "dps": 1.0,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-31"
+   },
+   {
+    "exDate": "2016-05-06",
+    "dps": 1.2,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-26"
+   },
+   {
+    "exDate": "2017-05-10",
+    "dps": 1.0,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-05-04",
+    "dps": 1.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-31"
+   },
+   {
+    "exDate": "2019-05-30",
+    "dps": 1.304,
+    "reportDate": "2018-12",
+    "planDate": "2018-11-22"
+   },
+   {
+    "exDate": "2020-06-02",
+    "dps": 1.6,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-30"
+   },
+   {
+    "exDate": "2021-06-02",
+    "dps": 1.6006,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-06-02",
+    "dps": 1.7009,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-06-01",
+    "dps": 2.5,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2024-05-15",
+    "dps": 3.0,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-28"
+   },
+   {
+    "exDate": "2025-06-12",
+    "dps": 3.5,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2025-11-18",
+    "dps": 0.5,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-30"
+   },
+   {
+    "exDate": "2026-06-29",
+    "dps": 3.8,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh600803": [
+   {
+    "exDate": "2001-06-29",
+    "dps": 0.1,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-21"
+   },
+   {
+    "exDate": "2002-08-26",
+    "dps": 0.12,
+    "reportDate": "2001-12",
+    "planDate": "2002-08-20"
+   },
+   {
+    "exDate": "2015-08-06",
+    "dps": 0.16,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-11"
+   },
+   {
+    "exDate": "2016-08-01",
+    "dps": 0.1,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-28"
+   },
+   {
+    "exDate": "2017-08-11",
+    "dps": 0.1,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-29"
+   },
+   {
+    "exDate": "2018-08-06",
+    "dps": 0.1,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-30"
+   },
+   {
+    "exDate": "2019-08-06",
+    "dps": 0.21,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-12"
+   },
+   {
+    "exDate": "2020-06-04",
+    "dps": 0.21,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-13"
+   },
+   {
+    "exDate": "2021-08-23",
+    "dps": 0.19,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-23"
+   },
+   {
+    "exDate": "2022-08-02",
+    "dps": 0.3075,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-19"
+   },
+   {
+    "exDate": "2023-07-11",
+    "dps": 0.51,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2024-08-01",
+    "dps": 0.66,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-23"
+   },
+   {
+    "exDate": "2025-07-22",
+    "dps": 0.81,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-27"
+   },
+   {
+    "exDate": "2025-10-16",
+    "dps": 0.18,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-28"
+   },
+   {
+    "exDate": "2026-07-09",
+    "dps": 0.96,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-28"
+   }
+  ],
+  "sh600007": [
+   {
+    "exDate": "1999-06-29",
+    "dps": 0.104,
+    "reportDate": "1998-12",
+    "planDate": "1999-06-23"
+   },
+   {
+    "exDate": "2000-07-14",
+    "dps": 0.125,
+    "reportDate": "1999-12",
+    "planDate": "2000-07-10"
+   },
+   {
+    "exDate": "2001-07-17",
+    "dps": 0.104,
+    "reportDate": "2000-12",
+    "planDate": "2001-07-10"
+   },
+   {
+    "exDate": "2002-06-19",
+    "dps": 0.104,
+    "reportDate": "2001-12",
+    "planDate": "2002-06-13"
+   },
+   {
+    "exDate": "2003-06-12",
+    "dps": 0.104,
+    "reportDate": "2002-12",
+    "planDate": "2003-06-06"
+   },
+   {
+    "exDate": "2004-06-11",
+    "dps": 0.155,
+    "reportDate": "2003-12",
+    "planDate": "2004-03-20"
+   },
+   {
+    "exDate": "2005-06-16",
+    "dps": 0.195,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-23"
+   },
+   {
+    "exDate": "2006-06-16",
+    "dps": 0.2,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-25"
+   },
+   {
+    "exDate": "2007-06-21",
+    "dps": 0.12,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-31"
+   },
+   {
+    "exDate": "2008-05-26",
+    "dps": 0.15,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-19"
+   },
+   {
+    "exDate": "2009-06-09",
+    "dps": 0.15,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-21"
+   },
+   {
+    "exDate": "2010-05-31",
+    "dps": 0.14,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-27"
+   },
+   {
+    "exDate": "2011-05-30",
+    "dps": 0.09,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-24"
+   },
+   {
+    "exDate": "2012-05-30",
+    "dps": 0.13,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-24"
+   },
+   {
+    "exDate": "2013-06-04",
+    "dps": 0.16,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-23"
+   },
+   {
+    "exDate": "2014-06-26",
+    "dps": 0.17,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-09"
+   },
+   {
+    "exDate": "2015-06-19",
+    "dps": 0.2,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-25"
+   },
+   {
+    "exDate": "2016-06-08",
+    "dps": 0.2,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-24"
+   },
+   {
+    "exDate": "2017-06-19",
+    "dps": 0.3,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-23"
+   },
+   {
+    "exDate": "2018-05-11",
+    "dps": 0.32,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-24"
+   },
+   {
+    "exDate": "2019-06-21",
+    "dps": 0.32,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-30"
+   },
+   {
+    "exDate": "2020-07-10",
+    "dps": 0.38,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-06-04",
+    "dps": 0.4,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-25"
+   },
+   {
+    "exDate": "2022-06-16",
+    "dps": 0.6,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-31"
+   },
+   {
+    "exDate": "2023-06-15",
+    "dps": 0.7,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-29"
+   },
+   {
+    "exDate": "2024-06-24",
+    "dps": 0.8,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-06-26",
+    "dps": 1.1,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-01"
+   },
+   {
+    "exDate": "2026-06-26",
+    "dps": 1.07,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-02"
+   }
+  ],
+  "sh600098": [
+   {
+    "exDate": "2000-05-19",
+    "dps": 0.1,
+    "reportDate": "1999-12",
+    "planDate": "2000-05-12"
+   },
+   {
+    "exDate": "2001-05-09",
+    "dps": 0.135,
+    "reportDate": "2000-12",
+    "planDate": "2001-04-25"
+   },
+   {
+    "exDate": "2002-04-29",
+    "dps": 0.3,
+    "reportDate": "2001-12",
+    "planDate": "2002-04-23"
+   },
+   {
+    "exDate": "2003-05-16",
+    "dps": 0.3,
+    "reportDate": "2002-12",
+    "planDate": "2003-04-30"
+   },
+   {
+    "exDate": "2004-04-13",
+    "dps": 0.35,
+    "reportDate": "2003-12",
+    "planDate": "2004-02-28"
+   },
+   {
+    "exDate": "2005-05-11",
+    "dps": 0.2,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-16"
+   },
+   {
+    "exDate": "2006-05-10",
+    "dps": 0.15,
+    "reportDate": "2005-12",
+    "planDate": "2006-03-18"
+   },
+   {
+    "exDate": "2007-05-10",
+    "dps": 0.2,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-23"
+   },
+   {
+    "exDate": "2008-05-07",
+    "dps": 0.27,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-20"
+   },
+   {
+    "exDate": "2009-06-12",
+    "dps": 0.09,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-25"
+   },
+   {
+    "exDate": "2010-06-03",
+    "dps": 0.18,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-23"
+   },
+   {
+    "exDate": "2011-06-03",
+    "dps": 0.2,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-20"
+   },
+   {
+    "exDate": "2012-05-24",
+    "dps": 0.1,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-27"
+   },
+   {
+    "exDate": "2013-06-07",
+    "dps": 0.16,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-24"
+   },
+   {
+    "exDate": "2014-06-27",
+    "dps": 0.15,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-24"
+   },
+   {
+    "exDate": "2015-07-08",
+    "dps": 0.18,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-24"
+   },
+   {
+    "exDate": "2016-06-20",
+    "dps": 0.19,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-29"
+   },
+   {
+    "exDate": "2017-06-28",
+    "dps": 0.1,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-07-04",
+    "dps": 0.1,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-06-27",
+    "dps": 0.1,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-12"
+   },
+   {
+    "exDate": "2020-07-07",
+    "dps": 0.05,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-18"
+   },
+   {
+    "exDate": "2021-07-30",
+    "dps": 0.17,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-15"
+   },
+   {
+    "exDate": "2022-06-29",
+    "dps": 0.1,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-09"
+   },
+   {
+    "exDate": "2023-06-28",
+    "dps": 0.2,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-08"
+   },
+   {
+    "exDate": "2024-06-27",
+    "dps": 0.25,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-10"
+   },
+   {
+    "exDate": "2025-06-27",
+    "dps": 0.27,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-09"
+   },
+   {
+    "exDate": "2025-12-12",
+    "dps": 0.1,
+    "reportDate": "2025-09",
+    "planDate": "2025-10-31"
+   },
+   {
+    "exDate": "2026-06-26",
+    "dps": 0.25,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-15"
+   }
+  ],
+  "sh601668": [
+   {
+    "exDate": "2010-06-02",
+    "dps": 0.029,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-20"
+   },
+   {
+    "exDate": "2011-06-03",
+    "dps": 0.062,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-21"
+   },
+   {
+    "exDate": "2012-06-12",
+    "dps": 0.08,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-20"
+   },
+   {
+    "exDate": "2013-07-25",
+    "dps": 0.105,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-22"
+   },
+   {
+    "exDate": "2014-06-17",
+    "dps": 0.143,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-24"
+   },
+   {
+    "exDate": "2015-06-16",
+    "dps": 0.172,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-21"
+   },
+   {
+    "exDate": "2016-06-16",
+    "dps": 0.2,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-19"
+   },
+   {
+    "exDate": "2017-06-16",
+    "dps": 0.215,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-13"
+   },
+   {
+    "exDate": "2018-06-29",
+    "dps": 0.215,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-12"
+   },
+   {
+    "exDate": "2019-06-14",
+    "dps": 0.168,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-12"
+   },
+   {
+    "exDate": "2020-06-24",
+    "dps": 0.185,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-25"
+   },
+   {
+    "exDate": "2021-06-30",
+    "dps": 0.2147,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-17"
+   },
+   {
+    "exDate": "2022-06-30",
+    "dps": 0.25,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-16"
+   },
+   {
+    "exDate": "2023-06-30",
+    "dps": 0.2527,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-18"
+   },
+   {
+    "exDate": "2024-06-27",
+    "dps": 0.2715,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-19"
+   },
+   {
+    "exDate": "2025-07-17",
+    "dps": 0.2715,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-16"
+   },
+   {
+    "exDate": "2026-07-16",
+    "dps": 0.2718,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-18"
+   }
+  ],
+  "sz000001": [
+   {
+    "exDate": "1991-05-02",
+    "dps": 0.3,
+    "reportDate": "1990-12",
+    "planDate": "1991-03-03"
+   },
+   {
+    "exDate": "1992-03-23",
+    "dps": 0.2,
+    "reportDate": "1991-12",
+    "planDate": "1991-12-31"
+   },
+   {
+    "exDate": "1993-05-24",
+    "dps": 0.3,
+    "reportDate": "1992-12",
+    "planDate": "1993-05-09"
+   },
+   {
+    "exDate": "1994-07-11",
+    "dps": 0.5,
+    "reportDate": "1993-12",
+    "planDate": "1994-07-02"
+   },
+   {
+    "exDate": "1995-09-25",
+    "dps": 0.3,
+    "reportDate": "1994-12",
+    "planDate": "1995-09-15"
+   },
+   {
+    "exDate": "1997-08-25",
+    "dps": 0.2,
+    "reportDate": "1996-12",
+    "planDate": "1997-08-19"
+   },
+   {
+    "exDate": "1999-10-18",
+    "dps": 0.6,
+    "reportDate": "1999-06",
+    "planDate": "1999-10-16"
+   },
+   {
+    "exDate": "2002-07-23",
+    "dps": 0.15,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-17"
+   },
+   {
+    "exDate": "2003-09-29",
+    "dps": 0.15,
+    "reportDate": "2002-12",
+    "planDate": "2003-09-23"
+   },
+   {
+    "exDate": "2008-10-31",
+    "dps": 0.0335,
+    "reportDate": "2008-06",
+    "planDate": "2008-08-21"
+   },
+   {
+    "exDate": "2012-10-19",
+    "dps": 0.1,
+    "reportDate": "2012-06",
+    "planDate": "2012-08-16"
+   },
+   {
+    "exDate": "2013-06-20",
+    "dps": 0.17,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-08"
+   },
+   {
+    "exDate": "2014-06-12",
+    "dps": 0.16,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-07"
+   },
+   {
+    "exDate": "2015-04-13",
+    "dps": 0.174,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-13"
+   },
+   {
+    "exDate": "2016-06-16",
+    "dps": 0.153,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-10"
+   },
+   {
+    "exDate": "2017-07-21",
+    "dps": 0.158,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-17"
+   },
+   {
+    "exDate": "2018-07-12",
+    "dps": 0.136,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-15"
+   },
+   {
+    "exDate": "2019-06-26",
+    "dps": 0.145,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-07"
+   },
+   {
+    "exDate": "2020-05-28",
+    "dps": 0.218,
+    "reportDate": "2019-12",
+    "planDate": "2020-02-14"
+   },
+   {
+    "exDate": "2021-05-14",
+    "dps": 0.18,
+    "reportDate": "2020-12",
+    "planDate": "2021-02-02"
+   },
+   {
+    "exDate": "2022-07-22",
+    "dps": 0.228,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-10"
+   },
+   {
+    "exDate": "2023-06-14",
+    "dps": 0.285,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-09"
+   },
+   {
+    "exDate": "2024-06-14",
+    "dps": 0.719,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-15"
+   },
+   {
+    "exDate": "2024-10-10",
+    "dps": 0.246,
+    "reportDate": "2024-06",
+    "planDate": "2024-08-16"
+   },
+   {
+    "exDate": "2025-06-12",
+    "dps": 0.362,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-15"
+   },
+   {
+    "exDate": "2025-10-15",
+    "dps": 0.236,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-23"
+   },
+   {
+    "exDate": "2026-06-12",
+    "dps": 0.36,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-21"
+   }
+  ],
+  "sz002091": [
+   {
+    "exDate": "2007-04-30",
+    "dps": 0.25,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-30"
+   },
+   {
+    "exDate": "2008-04-10",
+    "dps": 0.2,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-08"
+   },
+   {
+    "exDate": "2009-04-20",
+    "dps": 0.15,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-18"
+   },
+   {
+    "exDate": "2010-04-20",
+    "dps": 0.15,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-18"
+   },
+   {
+    "exDate": "2011-04-29",
+    "dps": 0.12,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-31"
+   },
+   {
+    "exDate": "2012-04-23",
+    "dps": 0.15,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-24"
+   },
+   {
+    "exDate": "2013-04-17",
+    "dps": 0.12,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-08"
+   },
+   {
+    "exDate": "2014-05-15",
+    "dps": 0.12,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-19"
+   },
+   {
+    "exDate": "2015-04-27",
+    "dps": 0.15,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-21"
+   },
+   {
+    "exDate": "2016-04-22",
+    "dps": 0.5,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-15"
+   },
+   {
+    "exDate": "2017-05-26",
+    "dps": 0.2,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-26"
+   },
+   {
+    "exDate": "2018-06-29",
+    "dps": 0.2,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-26"
+   },
+   {
+    "exDate": "2019-06-28",
+    "dps": 0.2,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-26"
+   },
+   {
+    "exDate": "2020-06-30",
+    "dps": 0.1,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2020-09-22",
+    "dps": 0.1,
+    "reportDate": "2020-06",
+    "planDate": "2020-08-26"
+   },
+   {
+    "exDate": "2021-05-27",
+    "dps": 0.25,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-24"
+   },
+   {
+    "exDate": "2022-05-26",
+    "dps": 0.25,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-23"
+   },
+   {
+    "exDate": "2023-05-31",
+    "dps": 0.25,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-26"
+   },
+   {
+    "exDate": "2024-06-20",
+    "dps": 0.3,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-25"
+   },
+   {
+    "exDate": "2024-11-07",
+    "dps": 0.1,
+    "reportDate": "2024-09",
+    "planDate": "2024-10-30"
+   },
+   {
+    "exDate": "2025-06-19",
+    "dps": 0.3,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-26"
+   },
+   {
+    "exDate": "2025-11-18",
+    "dps": 0.17,
+    "reportDate": "2025-09",
+    "planDate": "2025-10-31"
+   },
+   {
+    "exDate": "2026-06-08",
+    "dps": 0.3,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-25"
+   }
+  ],
+  "sz002508": [
+   {
+    "exDate": "2011-05-13",
+    "dps": 0.3,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-07"
+   },
+   {
+    "exDate": "2012-04-26",
+    "dps": 0.2,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-13"
+   },
+   {
+    "exDate": "2013-05-17",
+    "dps": 0.3,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-10"
+   },
+   {
+    "exDate": "2014-05-16",
+    "dps": 0.5,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-10"
+   },
+   {
+    "exDate": "2015-05-14",
+    "dps": 0.5,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-10"
+   },
+   {
+    "exDate": "2016-06-02",
+    "dps": 0.6,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-08"
+   },
+   {
+    "exDate": "2017-05-10",
+    "dps": 0.5,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-30"
+   },
+   {
+    "exDate": "2018-05-15",
+    "dps": 0.75,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-10"
+   },
+   {
+    "exDate": "2019-05-27",
+    "dps": 0.8,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-25"
+   },
+   {
+    "exDate": "2020-06-01",
+    "dps": 0.5,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-05-31",
+    "dps": 0.5,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-28"
+   },
+   {
+    "exDate": "2022-06-16",
+    "dps": 0.5,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-20"
+   },
+   {
+    "exDate": "2023-05-30",
+    "dps": 0.5,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-26"
+   },
+   {
+    "exDate": "2024-05-29",
+    "dps": 0.5,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-25"
+   },
+   {
+    "exDate": "2024-09-05",
+    "dps": 0.5,
+    "reportDate": "2024-06",
+    "planDate": "2024-04-25"
+   },
+   {
+    "exDate": "2025-06-04",
+    "dps": 0.5,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-29"
+   },
+   {
+    "exDate": "2025-09-12",
+    "dps": 0.5,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-28"
+   },
+   {
+    "exDate": "2026-06-03",
+    "dps": 0.5,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-29"
+   }
+  ],
+  "sh601229": [
+   {
+    "exDate": "2017-07-20",
+    "dps": 0.5,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-24"
+   },
+   {
+    "exDate": "2018-07-17",
+    "dps": 0.5,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-21"
+   },
+   {
+    "exDate": "2019-07-03",
+    "dps": 0.45,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-20"
+   },
+   {
+    "exDate": "2020-07-08",
+    "dps": 0.4,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-25"
+   },
+   {
+    "exDate": "2021-07-06",
+    "dps": 0.4,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-24"
+   },
+   {
+    "exDate": "2022-07-08",
+    "dps": 0.4,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-22"
+   },
+   {
+    "exDate": "2023-06-28",
+    "dps": 0.4,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-06-27",
+    "dps": 0.46,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-26"
+   },
+   {
+    "exDate": "2024-11-28",
+    "dps": 0.28,
+    "reportDate": "2024-06",
+    "planDate": "2024-09-30"
+   },
+   {
+    "exDate": "2025-06-12",
+    "dps": 0.22,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-25"
+   },
+   {
+    "exDate": "2025-10-16",
+    "dps": 0.3,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-06-08",
+    "dps": 0.22,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-24"
+   }
+  ],
+  "sh600582": [
+   {
+    "exDate": "2002-07-18",
+    "dps": 0.1,
+    "reportDate": "2001-12",
+    "planDate": "2002-07-12"
+   },
+   {
+    "exDate": "2005-08-23",
+    "dps": 0.1,
+    "reportDate": "2004-12",
+    "planDate": "2005-02-28"
+   },
+   {
+    "exDate": "2008-04-14",
+    "dps": 0.06,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-08"
+   },
+   {
+    "exDate": "2009-06-22",
+    "dps": 0.15,
+    "reportDate": "2008-12",
+    "planDate": "2009-03-18"
+   },
+   {
+    "exDate": "2010-07-12",
+    "dps": 0.06,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-18"
+   },
+   {
+    "exDate": "2011-08-12",
+    "dps": 0.1,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-18"
+   },
+   {
+    "exDate": "2012-07-16",
+    "dps": 0.15,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-20"
+   },
+   {
+    "exDate": "2013-07-24",
+    "dps": 0.12,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-28"
+   },
+   {
+    "exDate": "2014-08-18",
+    "dps": 0.1,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-18"
+   },
+   {
+    "exDate": "2015-08-05",
+    "dps": 0.1,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-07-15",
+    "dps": 0.03,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-29"
+   },
+   {
+    "exDate": "2017-08-04",
+    "dps": 0.03,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-29"
+   },
+   {
+    "exDate": "2018-05-15",
+    "dps": 0.05,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-30"
+   },
+   {
+    "exDate": "2019-06-26",
+    "dps": 0.05,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-29"
+   },
+   {
+    "exDate": "2020-07-10",
+    "dps": 0.1,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-07-23",
+    "dps": 0.15,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-21"
+   },
+   {
+    "exDate": "2022-06-28",
+    "dps": 0.18,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-21"
+   },
+   {
+    "exDate": "2023-06-09",
+    "dps": 0.2,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-05-17",
+    "dps": 0.28,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-21"
+   },
+   {
+    "exDate": "2025-05-30",
+    "dps": 0.317,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-21"
+   },
+   {
+    "exDate": "2026-06-12",
+    "dps": 0.3,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-27"
+   }
+  ],
+  "sh601997": [
+   {
+    "exDate": "2017-06-14",
+    "dps": 0.26,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-15"
+   },
+   {
+    "exDate": "2018-07-10",
+    "dps": 0.33,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-28"
+   },
+   {
+    "exDate": "2019-06-17",
+    "dps": 0.4,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-16"
+   },
+   {
+    "exDate": "2020-06-22",
+    "dps": 0.31,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-06-23",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-06-09",
+    "dps": 0.3,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-29"
+   },
+   {
+    "exDate": "2023-06-08",
+    "dps": 0.3,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-29"
+   },
+   {
+    "exDate": "2024-06-12",
+    "dps": 0.29,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-27"
+   },
+   {
+    "exDate": "2025-06-06",
+    "dps": 0.29,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-29"
+   },
+   {
+    "exDate": "2026-06-10",
+    "dps": 0.3,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-23"
+   }
+  ],
+  "sh601717": [
+   {
+    "exDate": "2011-10-19",
+    "dps": 0.45,
+    "reportDate": "2011-06",
+    "planDate": "2011-10-13"
+   },
+   {
+    "exDate": "2012-03-13",
+    "dps": 0.12,
+    "reportDate": "2011-12",
+    "planDate": "2012-02-08"
+   },
+   {
+    "exDate": "2013-06-26",
+    "dps": 0.3,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-20"
+   },
+   {
+    "exDate": "2014-07-04",
+    "dps": 0.165,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-28"
+   },
+   {
+    "exDate": "2015-06-30",
+    "dps": 0.038,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-18"
+   },
+   {
+    "exDate": "2016-06-29",
+    "dps": 0.008,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-05"
+   },
+   {
+    "exDate": "2017-07-24",
+    "dps": 0.011,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-28"
+   },
+   {
+    "exDate": "2018-07-13",
+    "dps": 0.05,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-30"
+   },
+   {
+    "exDate": "2019-07-08",
+    "dps": 0.145,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-27"
+   },
+   {
+    "exDate": "2020-07-06",
+    "dps": 0.185,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-28"
+   },
+   {
+    "exDate": "2021-07-02",
+    "dps": 0.2099,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-27"
+   },
+   {
+    "exDate": "2022-06-15",
+    "dps": 0.435,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-29"
+   },
+   {
+    "exDate": "2023-06-09",
+    "dps": 0.56,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-30"
+   },
+   {
+    "exDate": "2024-06-26",
+    "dps": 0.84,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-07-25",
+    "dps": 1.12,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2026-06-18",
+    "dps": 1.25,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh601169": [
+   {
+    "exDate": "2008-07-22",
+    "dps": 0.12,
+    "reportDate": "2007-12",
+    "planDate": "2008-04-07"
+   },
+   {
+    "exDate": "2009-07-20",
+    "dps": 0.18,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-28"
+   },
+   {
+    "exDate": "2010-07-20",
+    "dps": 0.18,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-28"
+   },
+   {
+    "exDate": "2011-06-13",
+    "dps": 0.216,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-09"
+   },
+   {
+    "exDate": "2012-07-11",
+    "dps": 0.2,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-24"
+   },
+   {
+    "exDate": "2013-07-22",
+    "dps": 0.4,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-26"
+   },
+   {
+    "exDate": "2014-07-17",
+    "dps": 0.18,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-29"
+   },
+   {
+    "exDate": "2015-07-17",
+    "dps": 0.25,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-28"
+   },
+   {
+    "exDate": "2016-07-11",
+    "dps": 0.25,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-27"
+   },
+   {
+    "exDate": "2017-07-12",
+    "dps": 0.25,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-26"
+   },
+   {
+    "exDate": "2018-07-12",
+    "dps": 0.267,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-27"
+   },
+   {
+    "exDate": "2019-07-11",
+    "dps": 0.286,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-25"
+   },
+   {
+    "exDate": "2020-07-15",
+    "dps": 0.305,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-28"
+   },
+   {
+    "exDate": "2021-07-16",
+    "dps": 0.3,
+    "reportDate": "2020-12",
+    "planDate": "2021-04-30"
+   },
+   {
+    "exDate": "2022-07-15",
+    "dps": 0.305,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-30"
+   },
+   {
+    "exDate": "2023-07-06",
+    "dps": 0.31,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-08"
+   },
+   {
+    "exDate": "2024-07-10",
+    "dps": 0.32,
+    "reportDate": "2023-12",
+    "planDate": "2024-04-12"
+   },
+   {
+    "exDate": "2025-01-20",
+    "dps": 0.12,
+    "reportDate": "2024-06",
+    "planDate": "2024-10-31"
+   },
+   {
+    "exDate": "2025-07-10",
+    "dps": 0.2,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-15"
+   },
+   {
+    "exDate": "2026-07-10",
+    "dps": 0.278,
+    "reportDate": "2025-12",
+    "planDate": "2026-04-28"
+   }
+  ],
+  "sh601166": [
+   {
+    "exDate": "2007-05-21",
+    "dps": 0.26,
+    "reportDate": "2006-12",
+    "planDate": "2007-03-28"
+   },
+   {
+    "exDate": "2008-05-27",
+    "dps": 0.32,
+    "reportDate": "2007-12",
+    "planDate": "2008-03-20"
+   },
+   {
+    "exDate": "2009-06-11",
+    "dps": 0.45,
+    "reportDate": "2008-12",
+    "planDate": "2009-04-28"
+   },
+   {
+    "exDate": "2010-04-12",
+    "dps": 0.5,
+    "reportDate": "2009-12",
+    "planDate": "2010-03-04"
+   },
+   {
+    "exDate": "2011-05-06",
+    "dps": 0.46,
+    "reportDate": "2010-12",
+    "planDate": "2011-03-29"
+   },
+   {
+    "exDate": "2012-05-07",
+    "dps": 0.37,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-20"
+   },
+   {
+    "exDate": "2013-07-03",
+    "dps": 0.57,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-23"
+   },
+   {
+    "exDate": "2014-07-18",
+    "dps": 0.46,
+    "reportDate": "2013-12",
+    "planDate": "2014-04-01"
+   },
+   {
+    "exDate": "2015-05-27",
+    "dps": 0.57,
+    "reportDate": "2014-12",
+    "planDate": "2015-04-28"
+   },
+   {
+    "exDate": "2016-06-06",
+    "dps": 0.61,
+    "reportDate": "2015-12",
+    "planDate": "2016-04-28"
+   },
+   {
+    "exDate": "2017-06-14",
+    "dps": 0.61,
+    "reportDate": "2016-12",
+    "planDate": "2017-04-29"
+   },
+   {
+    "exDate": "2018-06-15",
+    "dps": 0.65,
+    "reportDate": "2017-12",
+    "planDate": "2018-04-25"
+   },
+   {
+    "exDate": "2019-06-19",
+    "dps": 0.69,
+    "reportDate": "2018-12",
+    "planDate": "2019-04-30"
+   },
+   {
+    "exDate": "2020-07-15",
+    "dps": 0.762,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-29"
+   },
+   {
+    "exDate": "2021-06-29",
+    "dps": 0.802,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-31"
+   },
+   {
+    "exDate": "2022-06-16",
+    "dps": 1.035,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-25"
+   },
+   {
+    "exDate": "2023-06-19",
+    "dps": 1.188,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-31"
+   },
+   {
+    "exDate": "2024-07-09",
+    "dps": 1.04,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-06-20",
+    "dps": 1.06,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-28"
+   },
+   {
+    "exDate": "2026-02-06",
+    "dps": 0.565,
+    "reportDate": "2025-06",
+    "planDate": "2025-08-29"
+   },
+   {
+    "exDate": "2026-06-12",
+    "dps": 0.501,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-27"
+   }
+  ],
+  "sh601818": [
+   {
+    "exDate": "2011-06-16",
+    "dps": 0.0946,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-12"
+   },
+   {
+    "exDate": "2012-05-31",
+    "dps": 0.133,
+    "reportDate": "2011-12",
+    "planDate": "2012-04-19"
+   },
+   {
+    "exDate": "2013-06-06",
+    "dps": 0.058,
+    "reportDate": "2012-12",
+    "planDate": "2013-04-02"
+   },
+   {
+    "exDate": "2014-07-17",
+    "dps": 0.172,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-31"
+   },
+   {
+    "exDate": "2015-06-03",
+    "dps": 0.186,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-28"
+   },
+   {
+    "exDate": "2016-07-13",
+    "dps": 0.19,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-30"
+   },
+   {
+    "exDate": "2017-07-05",
+    "dps": 0.098,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-31"
+   },
+   {
+    "exDate": "2018-07-27",
+    "dps": 0.181,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-29"
+   },
+   {
+    "exDate": "2019-06-26",
+    "dps": 0.161,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-29"
+   },
+   {
+    "exDate": "2020-06-24",
+    "dps": 0.214,
+    "reportDate": "2019-12",
+    "planDate": "2020-03-28"
+   },
+   {
+    "exDate": "2021-07-21",
+    "dps": 0.21,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-27"
+   },
+   {
+    "exDate": "2022-06-29",
+    "dps": 0.201,
+    "reportDate": "2021-12",
+    "planDate": "2022-03-26"
+   },
+   {
+    "exDate": "2023-07-19",
+    "dps": 0.19,
+    "reportDate": "2022-12",
+    "planDate": "2023-03-25"
+   },
+   {
+    "exDate": "2024-07-24",
+    "dps": 0.173,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-28"
+   },
+   {
+    "exDate": "2025-01-22",
+    "dps": 0.104,
+    "reportDate": "2024-06",
+    "planDate": "2024-10-31"
+   },
+   {
+    "exDate": "2025-07-24",
+    "dps": 0.085,
+    "reportDate": "2024-12",
+    "planDate": "2025-03-29"
+   },
+   {
+    "exDate": "2026-02-05",
+    "dps": 0.105,
+    "reportDate": "2025-06",
+    "planDate": "2025-11-15"
+   },
+   {
+    "exDate": "2026-07-30",
+    "dps": 0.07,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ],
+  "sh600741": [
+   {
+    "exDate": "1998-05-12",
+    "dps": 0.15,
+    "reportDate": "1997-12",
+    "planDate": "1998-05-07"
+   },
+   {
+    "exDate": "1999-05-31",
+    "dps": 0.22,
+    "reportDate": "1998-12",
+    "planDate": "1999-05-25"
+   },
+   {
+    "exDate": "2001-07-04",
+    "dps": 0.19,
+    "reportDate": "2000-12",
+    "planDate": "2001-06-27"
+   },
+   {
+    "exDate": "2002-06-17",
+    "dps": 0.1,
+    "reportDate": "2001-12",
+    "planDate": "2002-06-11"
+   },
+   {
+    "exDate": "2003-07-14",
+    "dps": 0.1,
+    "reportDate": "2002-12",
+    "planDate": "2003-07-08"
+   },
+   {
+    "exDate": "2004-07-26",
+    "dps": 0.05,
+    "reportDate": "2003-12",
+    "planDate": "2004-04-17"
+   },
+   {
+    "exDate": "2005-07-21",
+    "dps": 0.1,
+    "reportDate": "2004-12",
+    "planDate": "2005-03-26"
+   },
+   {
+    "exDate": "2010-06-18",
+    "dps": 0.275,
+    "reportDate": "2009-12",
+    "planDate": "2010-04-07"
+   },
+   {
+    "exDate": "2011-06-21",
+    "dps": 0.22,
+    "reportDate": "2010-12",
+    "planDate": "2011-04-01"
+   },
+   {
+    "exDate": "2012-06-25",
+    "dps": 0.3,
+    "reportDate": "2011-12",
+    "planDate": "2012-03-24"
+   },
+   {
+    "exDate": "2013-07-08",
+    "dps": 0.37,
+    "reportDate": "2012-12",
+    "planDate": "2013-03-23"
+   },
+   {
+    "exDate": "2014-08-08",
+    "dps": 0.47,
+    "reportDate": "2013-12",
+    "planDate": "2014-03-22"
+   },
+   {
+    "exDate": "2015-07-23",
+    "dps": 0.52,
+    "reportDate": "2014-12",
+    "planDate": "2015-03-27"
+   },
+   {
+    "exDate": "2016-06-23",
+    "dps": 0.81,
+    "reportDate": "2015-12",
+    "planDate": "2016-03-25"
+   },
+   {
+    "exDate": "2017-07-10",
+    "dps": 1.0,
+    "reportDate": "2016-12",
+    "planDate": "2017-03-30"
+   },
+   {
+    "exDate": "2018-07-16",
+    "dps": 1.05,
+    "reportDate": "2017-12",
+    "planDate": "2018-03-29"
+   },
+   {
+    "exDate": "2019-07-23",
+    "dps": 1.05,
+    "reportDate": "2018-12",
+    "planDate": "2019-03-30"
+   },
+   {
+    "exDate": "2020-07-17",
+    "dps": 0.85,
+    "reportDate": "2019-12",
+    "planDate": "2020-04-11"
+   },
+   {
+    "exDate": "2021-07-30",
+    "dps": 0.75,
+    "reportDate": "2020-12",
+    "planDate": "2021-03-25"
+   },
+   {
+    "exDate": "2022-07-15",
+    "dps": 0.85,
+    "reportDate": "2021-12",
+    "planDate": "2022-04-29"
+   },
+   {
+    "exDate": "2023-07-14",
+    "dps": 0.88,
+    "reportDate": "2022-12",
+    "planDate": "2023-04-28"
+   },
+   {
+    "exDate": "2024-07-12",
+    "dps": 0.75,
+    "reportDate": "2023-12",
+    "planDate": "2024-03-29"
+   },
+   {
+    "exDate": "2025-07-25",
+    "dps": 0.8,
+    "reportDate": "2024-12",
+    "planDate": "2025-04-29"
+   },
+   {
+    "exDate": "2026-07-28",
+    "dps": 1.0,
+    "reportDate": "2025-12",
+    "planDate": "2026-03-31"
+   }
+  ]
+ }
+}

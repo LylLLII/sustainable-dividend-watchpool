@@ -1,6 +1,9 @@
-# 可持续高股息价值投资观察池
+# 可持续高股息价值投资 · 观察池 + 策略回测一体化
 
-基于《可持续高股息估值底价值投资策略》建立的**高股息观察池**与**实时预期股息率看板**。
+基于《可持续高股息估值底价值投资策略》建立的**高股息观察池**、**实时预期股息率看板**与**策略回测验证引擎**。
+
+> **一站式工作流**：看板（实时监控）→ 回测（历史验证）共享同一份 `data/watchpool.json`，
+> 改了观察池即可一键验证策略历史表现。
 
 ## 核心逻辑
 
@@ -107,11 +110,37 @@
 sustainable-dividend-watchpool/
 ├── index.html              # 实时股息率看板（单文件，无依赖）
 ├── data/
-│   └── watchpool.json      # 观察池数据（股票 + 预期分红 + 分红历史 + 类别）
+│   ├── watchpool.json      # 观察池数据（唯一权威，看板 + 回测共享）
+│   └── dividends_westock.json  # 分红数据（含特殊分红，看板自动分红用）
 ├── docs/
 │   └── MR-Dang-股息率方法论.md  # MR Dang 股息率完整方法论摘录
+├── backtest/               # 策略回测引擎（Python + JS 双引擎）
+│   ├── backtest_tool.html      # 回测交互工具页（浏览器内运行）
+│   ├── backtest_engine.js      # JS 回测引擎
+│   ├── dividend_backtest.py    # Python 回测引擎（与 JS 0 偏差）
+│   ├── validate_engine.mjs     # 校验器（13/13 断言）
+│   ├── sync_watchpool.py       # 同步上层 watchpool.json → backtest/data/
+│   ├── fetch_tencent.py        # 拉取历史 K 线
+│   ├── fetch_real_divs.py      # 拉取东财真实分红
+│   ├── fetch_financials.py     # 拉取财务指标
+│   ├── generate_bundle.py      # 打包回测数据
+│   ├── hist/                   # K 线 + 净值 CSV
+│   ├── delivery/               # 历轮评审报告
+│   └── ...                     # 实验/OOS/PBO 审计脚本
 └── README.md
 ```
+
+### 看板与回测的关系
+
+```
+index.html（实时监控）──→ data/watchpool.json ←── backtest/（历史回测）
+                              ↑ 唯一权威数据源
+                    改了观察池 → 回测自动用新值
+```
+
+- **看板**：实时显示 52 只高股息股的预期股息率、估值区间、加仓参考价
+- **回测**：对同一批 52 只股做历史回测，验证「股息率≥5%买入、≤3%卖出」策略的真实收益
+- **共享**：`data/watchpool.json` 是唯一权威数据源；回测前运行 `python backtest/sync_watchpool.py` 同步最新股票池
 
 ## 初始观察池
 
@@ -132,6 +161,32 @@ sustainable-dividend-watchpool/
 | sh600585 | 海螺水泥 | A股 | 0.85 |
 
 > 注：当前观察池仅跟踪 A 股（港股/美股暂不考虑）。预期分红为按最近已宣告分红年化的参考估算值，请自行复核后维护更新。数据与页面不构成投资建议。
+
+## 策略回测（backtest/）
+
+对同一批 52 只高股息股做可复现回测：**买入 = 股息率高(≥5%) 且 历史百分位便宜；卖出 = 股息率低(≤3%) 且 百分位贵；中间持有。**
+按月再平衡，分红自动复投，含完整交易成本（佣金/印花税/滑点/整手/延迟）。
+
+### 快速使用
+
+```bash
+cd backtest
+python sync_watchpool.py          # 同步上层 watchpool.json
+node validate_engine.mjs           # 运行校验（13/13 全绿）
+```
+
+浏览器打开 `backtest/backtest_tool.html` 可交互调参回测。
+
+### 回测结论（2026-08-10，52 只完整池）
+
+| 组合 | CAGR | 最大回撤 | 夏普 |
+|---|---:|---:|---:|
+| 策略-optimistic | **10.26%** | -29.19% | 0.68 |
+| 基准-中证红利 | 8.62% | -43.97% | 0.43 |
+| 基准-标普500ETF | 9.76% | -59.72% | 0.48 |
+
+策略低波动（13.8% vs 基准 21-24%）且跑赢全部基准。评级：研究使用 Ready with caveats；投资决策 Not ready。
+详见 `backtest/README.md` 与 `backtest/delivery/` 下的历轮评审报告。
 
 ## 免责声明
 

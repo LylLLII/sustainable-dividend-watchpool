@@ -1,0 +1,19 @@
+{
+  "name": "dividend-backtest",
+  "version": "1.0.0",
+  "description": "高股息策略回测工具 — 双引擎(Python/JS)可复现回测",
+  "type": "module",
+  "scripts": {
+    "validate": "node validate_engine.mjs",
+    "validate-v3": "node validate_v3.mjs",
+    "oos": "node walkforward_oos.mjs",
+    "sweep": "node sweep_percentile.mjs",
+    "v2": "node experiment_v2.mjs",
+    "v3": "node experiment_v3.mjs",
+    "pbo": "node pbo_audit.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+# sustainable-dividend-watchpool · 统一依赖
+# 看板（index.html）纯前端无 Python 依赖。
+# 回测管道（backtest/）核心纯标准库，仅 make_chart.py 需 matplotlib。
+
+matplotlib>=3.5          # backtest/make_chart.py 净值曲线图（可选，不影响核心回测）
+
+# 回测数据管道用法（在 backtest/ 目录下执行）：
+#   0. python sync_watchpool.py          # 同步上层 watchpool.json -> backtest/data/
+#   1. python fetch_real_divs.py          # 拉东财真实历史分红 -> data/real_divs.json
+#   2. python fetch_tencent.py            # 拉完整股票池 K 线 -> hist/<code>.json
+#   3. python fetch_benchmark.py          # 拉 3 个基准 K 线 -> hist/bench_*.json
+#   4. python apply_watchpool_divs.py      # 用真实分红覆写 divs（去前视）
+#   5. python apply_benchmark_divs.py      # 给价格基准补估算分红
+#   6. python fetch_financials.py          # 拉东财财务指标 -> data/financials.json
+#   7. python generate_bundle.py           # 打包 -> backtest_bundle.json
+#   8. node validate_engine.mjs            # 校验（13/13 全绿）
+#   9. 打开 backtest_tool.html 交互回测 / python make_chart.py 出图

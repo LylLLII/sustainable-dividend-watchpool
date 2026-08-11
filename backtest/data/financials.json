@@ -1,0 +1,4553 @@
+{
+ "meta": {
+  "fetched_at": "2026-08-08T17:46:31+08:00",
+  "source": "eastmoney datacenter RPT_F10_FINANCE_MAINFINADATA",
+  "fields": "roe=ROEJQ, grossMargin=XSMLL, ocps=MGJYXJJE(每股经营现金流), debtRatio=ZCFZL, eps=EPSJB; 仅年报(12-31)+中报(06-30)"
+ },
+ "stocks": {
+  "sh601088": [
+   {
+    "reportDate": "2005-12-31",
+    "noticeDate": "2007-09-19",
+    "roe": 34.98,
+    "grossMargin": 55.7176218368,
+    "ocps": 1.48,
+    "debtRatio": 47.9344668489,
+    "eps": 0.881
+   },
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-09-19",
+    "roe": null,
+    "grossMargin": 53.858395693,
+    "ocps": 0,
+    "debtRatio": null,
+    "eps": 0.446
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-03-17",
+    "roe": 26.52,
+    "grossMargin": 52.9101340779,
+    "ocps": 1.42,
+    "debtRatio": 48.5689611203,
+    "eps": 0.919
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-30",
+    "roe": 14.49,
+    "grossMargin": 52.0446766348,
+    "ocps": 0.76,
+    "debtRatio": 49.0920617933,
+    "eps": 0.545
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-28",
+    "roe": 19.84,
+    "grossMargin": 51.6533304103,
+    "ocps": 1.51,
+    "debtRatio": 36.8229998548,
+    "eps": 1.106
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-29",
+    "roe": 10.7,
+    "grossMargin": 51.645631265,
+    "ocps": 1.13,
+    "debtRatio": 38.3901404676,
+    "eps": 0.711
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-13",
+    "roe": 18.81,
+    "grossMargin": 48.6516759542,
+    "ocps": 2.22,
+    "debtRatio": 37.6648908722,
+    "eps": 1.305
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-28",
+    "roe": 10.6,
+    "grossMargin": 52.3833715817,
+    "ocps": 1.47,
+    "debtRatio": 37.201974619,
+    "eps": 0.803
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-26",
+    "roe": 19.1,
+    "grossMargin": 49.3158137695,
+    "ocps": 2.81,
+    "debtRatio": 36.6350631534,
+    "eps": 1.522
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-28",
+    "roe": 10.61,
+    "grossMargin": 49.1655969191,
+    "ocps": 1.67,
+    "debtRatio": 37.7288960261,
+    "eps": 0.947
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-26",
+    "roe": 20.1,
+    "grossMargin": 46.0497773718,
+    "ocps": 3.06,
+    "debtRatio": 36.2771255055,
+    "eps": 1.903
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-27",
+    "roe": 10.86,
+    "grossMargin": 43.3095075679,
+    "ocps": 2.68,
+    "debtRatio": 37.5906030123,
+    "eps": 1.104
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-24",
+    "roe": 21.39,
+    "grossMargin": 41.1389652288,
+    "ocps": 3.71,
+    "debtRatio": 34.1703517314,
+    "eps": 2.262
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-25",
+    "roe": 10.76,
+    "grossMargin": 37.4452530708,
+    "ocps": 1.78,
+    "debtRatio": 33.3850890687,
+    "eps": 1.266
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-23",
+    "roe": 19.81,
+    "grossMargin": 36.0762054404,
+    "ocps": 3.75,
+    "debtRatio": 33.8873527162,
+    "eps": 2.439
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-24",
+    "roe": 9,
+    "grossMargin": 36.6852683776,
+    "ocps": 0.94,
+    "debtRatio": 33.6632992641,
+    "eps": 1.227
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-29",
+    "roe": 17.21,
+    "grossMargin": 33.8565946786,
+    "ocps": 2.83,
+    "debtRatio": 35.0888562345,
+    "eps": 2.297
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-23",
+    "roe": 7.59,
+    "grossMargin": 34.959790088,
+    "ocps": 1.61,
+    "debtRatio": 38.9400701623,
+    "eps": 1.083
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-21",
+    "roe": 13.04,
+    "grossMargin": 34.3233984377,
+    "ocps": 3.47,
+    "debtRatio": 33.9667371197,
+    "eps": 1.881
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-22",
+    "roe": 4.03,
+    "grossMargin": 39.4051177209,
+    "ocps": 1.62,
+    "debtRatio": 35.7350467677,
+    "eps": 0.607
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-25",
+    "roe": 5.48,
+    "grossMargin": 37.6361757281,
+    "ocps": 2.79,
+    "debtRatio": 35.3466374229,
+    "eps": 0.812
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-27",
+    "roe": 3.29,
+    "grossMargin": 40.7758850654,
+    "ocps": 1.92,
+    "debtRatio": 34.4914223674,
+    "eps": 0.494
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-18",
+    "roe": 7.51,
+    "grossMargin": 39.5124694884,
+    "ocps": 4.12,
+    "debtRatio": 33.5441797979,
+    "eps": 1.142
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-26",
+    "roe": 7.47,
+    "grossMargin": 41.9829403077,
+    "ocps": 2.4,
+    "debtRatio": 41.9270156555,
+    "eps": 1.222
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-24",
+    "roe": 14.67,
+    "grossMargin": 42.1731404726,
+    "ocps": 4.78,
+    "debtRatio": 33.9426650962,
+    "eps": 2.264
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-25",
+    "roe": 7.32,
+    "grossMargin": 41.4209452033,
+    "ocps": 1.61,
+    "debtRatio": 34.7659679358,
+    "eps": 1.155
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-23",
+    "roe": 13.94,
+    "grossMargin": 41.1202532365,
+    "ocps": 4.44,
+    "debtRatio": 31.1268495451,
+    "eps": 2.205
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-24",
+    "roe": 7.32,
+    "grossMargin": 42.4749709964,
+    "ocps": 2.06,
+    "debtRatio": 28.6869016903,
+    "eps": 1.219
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-28",
+    "roe": 12.73,
+    "grossMargin": 40.7146784856,
+    "ocps": 3.17,
+    "debtRatio": 25.5808581804,
+    "eps": 2.174
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-29",
+    "roe": 5.91,
+    "grossMargin": 38.203702293,
+    "ocps": 2.7,
+    "debtRatio": 27.9599785376,
+    "eps": 1.039
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-27",
+    "roe": 11,
+    "grossMargin": 36.4892846272,
+    "ocps": 4.09,
+    "debtRatio": 23.8728115649,
+    "eps": 1.97
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-28",
+    "roe": 7.32,
+    "grossMargin": 32.8283985859,
+    "ocps": 2.02,
+    "debtRatio": 29.7088101126,
+    "eps": 1.31
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-26",
+    "roe": 13.6,
+    "grossMargin": 32.933798117,
+    "ocps": 4.75,
+    "debtRatio": 26.5934113017,
+    "eps": 2.52
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-27",
+    "roe": 11.03,
+    "grossMargin": 40.7249711618,
+    "ocps": 2.94,
+    "debtRatio": 31.5629931069,
+    "eps": 2.072
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-25",
+    "roe": 18.08,
+    "grossMargin": 39.0308040159,
+    "ocps": 5.52,
+    "debtRatio": 26.1358574431,
+    "eps": 3.505
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-26",
+    "roe": 8.59,
+    "grossMargin": 35.8683207233,
+    "ocps": 2.33,
+    "debtRatio": 31.7844895348,
+    "eps": 1.675
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-23",
+    "roe": 14.52,
+    "grossMargin": 35.8966287157,
+    "ocps": 4.53,
+    "debtRatio": 24.0840396679,
+    "eps": 3.004
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 7.04,
+    "grossMargin": 32.7712111447,
+    "ocps": 2.61,
+    "debtRatio": 29.7860449077,
+    "eps": 1.41
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-22",
+    "roe": 13.55,
+    "grossMargin": 34.0992030325,
+    "ocps": 4.58,
+    "debtRatio": 25.6543946157,
+    "eps": 2.809
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-30",
+    "roe": 6,
+    "grossMargin": 35.6986148622,
+    "ocps": 2.304796416528,
+    "debtRatio": 31.1244373857,
+    "eps": 1.24
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-31",
+    "roe": 12.76,
+    "grossMargin": 35.0781239404,
+    "ocps": 3.777693895012,
+    "debtRatio": 23.3066405846,
+    "eps": 2.66
+   }
+  ],
+  "sh600900": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-07-30",
+    "roe": 5.76,
+    "grossMargin": 71.0690357921,
+    "ocps": 0.208,
+    "debtRatio": 45.187873939,
+    "eps": 0.1603
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-04-26",
+    "roe": 15.64,
+    "grossMargin": 70.3475707959,
+    "ocps": 0.61,
+    "debtRatio": 39.2856069794,
+    "eps": 0.4416
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-30",
+    "roe": 7.35,
+    "grossMargin": 67.5674843256,
+    "ocps": 0.195,
+    "debtRatio": 41.9738824889,
+    "eps": 0.2695
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-04-30",
+    "roe": 15.16,
+    "grossMargin": 69.6654761095,
+    "ocps": 0.5232,
+    "debtRatio": 35.8566142091,
+    "eps": 0.6035
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-31",
+    "roe": 3.67,
+    "grossMargin": 59.0364643071,
+    "ocps": 0.242,
+    "debtRatio": 39.0852929723,
+    "eps": 0.1571
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-04-30",
+    "roe": 10.11,
+    "grossMargin": 59.4932650006,
+    "ocps": 0.713,
+    "debtRatio": 34.8617927407,
+    "eps": 0.4234
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-31",
+    "roe": 5.01,
+    "grossMargin": 54.7686191844,
+    "ocps": 0.2379,
+    "debtRatio": 36.2776860309,
+    "eps": 0.1398
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2010-04-30",
+    "roe": 10.18,
+    "grossMargin": 58.0944190087,
+    "ocps": 0.4963,
+    "debtRatio": 61.7763881556,
+    "eps": 0.3128
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-31",
+    "roe": 3.17,
+    "grossMargin": 51.2425780292,
+    "ocps": 0.2572,
+    "debtRatio": 62.7102448687,
+    "eps": 0.1201
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-04-30",
+    "roe": 12.79,
+    "grossMargin": 61.904263324,
+    "ocps": 1.050060746386,
+    "debtRatio": 57.9797914032,
+    "eps": 0.4985
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-31",
+    "roe": 4,
+    "grossMargin": 52.5220947184,
+    "ocps": 0.3119,
+    "debtRatio": 58.636590117,
+    "eps": 0.1628
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-04-27",
+    "roe": 11.54,
+    "grossMargin": 59.314925101,
+    "ocps": 0.936365532,
+    "debtRatio": 56.9110651855,
+    "eps": 0.4667
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-31",
+    "roe": 4.09,
+    "grossMargin": 54.5180084683,
+    "ocps": 0.448178041118,
+    "debtRatio": 57.643770378,
+    "eps": 0.1725
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-04-27",
+    "roe": 14.42,
+    "grossMargin": 63.7010072427,
+    "ocps": 1.300654327548,
+    "debtRatio": 51.7581059589,
+    "eps": 0.6274
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-31",
+    "roe": 3.74,
+    "grossMargin": 50.4085259708,
+    "ocps": 0.355878216327,
+    "debtRatio": 54.0835594542,
+    "eps": 0.1725
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-04-30",
+    "roe": 11.83,
+    "grossMargin": 57.9928043591,
+    "ocps": 1.096449632353,
+    "debtRatio": 47.7423295297,
+    "eps": 0.545
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-30",
+    "roe": 4.29,
+    "grossMargin": 53.3632869232,
+    "ocps": 0.356290600176,
+    "debtRatio": 48.4439185389,
+    "eps": 0.2057
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-04-30",
+    "roe": 16.3,
+    "grossMargin": 63.0978835614,
+    "ocps": 1.290842010267,
+    "debtRatio": 41.4014018681,
+    "eps": 0.717
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-31",
+    "roe": 5.77,
+    "grossMargin": 55.6069160563,
+    "ocps": 0.862180163318,
+    "debtRatio": 40.951214607,
+    "eps": 0.3872
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-04-29",
+    "roe": 15.56,
+    "grossMargin": 61.8137578663,
+    "ocps": 2.411705459545,
+    "debtRatio": 56.1876628522,
+    "eps": 0.8288
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-31",
+    "roe": 6.25,
+    "grossMargin": 57.1724046651,
+    "ocps": 0.633102417707,
+    "debtRatio": 62.4524876389,
+    "eps": 0.3432
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-04-29",
+    "roe": 16.88,
+    "grossMargin": 60.6901607806,
+    "ocps": 1.772265054286,
+    "debtRatio": 56.9994842651,
+    "eps": 0.9446
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 6.25,
+    "grossMargin": 55.1990839,
+    "ocps": 0.623650653782,
+    "debtRatio": 59.805083582,
+    "eps": 0.3684
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-04-28",
+    "roe": 16.91,
+    "grossMargin": 61.2054276873,
+    "ocps": 1.80423477575,
+    "debtRatio": 54.7362580356,
+    "eps": 1.0119
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-31",
+    "roe": 6.24,
+    "grossMargin": 56.7430044275,
+    "ocps": 0.594827811604,
+    "debtRatio": 57.1035038713,
+    "eps": 0.3874
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-04-30",
+    "roe": 16.31,
+    "grossMargin": 62.8906778129,
+    "ocps": 1.806212109764,
+    "debtRatio": 51.713703168,
+    "eps": 1.0278
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-31",
+    "roe": 5.94,
+    "grossMargin": 56.995942671,
+    "ocps": 0.628545750967,
+    "debtRatio": 54.1647841648,
+    "eps": 0.3897
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-04-30",
+    "roe": 14.77,
+    "grossMargin": 62.5110046209,
+    "ocps": 1.657473616831,
+    "debtRatio": 49.4014743791,
+    "eps": 0.9792
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": 5.25,
+    "grossMargin": 56.0646764296,
+    "ocps": 0.548472566556,
+    "debtRatio": 56.8739582731,
+    "eps": 0.3592
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-04-30",
+    "roe": 16.71,
+    "grossMargin": 63.3987160148,
+    "ocps": 1.804463917632,
+    "debtRatio": 46.098246386,
+    "eps": 1.1853
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-31",
+    "roe": 4.94,
+    "grossMargin": 48.5418100007,
+    "ocps": 0.419655403671,
+    "debtRatio": 49.5117534285,
+    "eps": 0.3774
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-04-30",
+    "roe": 14.92,
+    "grossMargin": 62.0584026421,
+    "ocps": 1.571219897717,
+    "debtRatio": 42.0847570248,
+    "eps": 1.1553
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 4.5,
+    "grossMargin": 57.04360326,
+    "ocps": 0.782176238349,
+    "debtRatio": 44.9062043932,
+    "eps": 0.4705
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-04-28",
+    "roe": 9.32,
+    "grossMargin": 57.1262297267,
+    "ocps": 1.911739128206,
+    "debtRatio": 55.7410615696,
+    "eps": 0.9697
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-31",
+    "roe": 4.28,
+    "grossMargin": 49.9307162981,
+    "ocps": 1.02524512125,
+    "debtRatio": 66.0204976325,
+    "eps": 0.363
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-04-30",
+    "roe": 13.52,
+    "grossMargin": 57.8234032988,
+    "ocps": 2.646267457655,
+    "debtRatio": 62.9034409926,
+    "eps": 1.1135
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 5.56,
+    "grossMargin": 52.3648554074,
+    "ocps": 0.94087030088,
+    "debtRatio": 64.3206450956,
+    "eps": 0.4646
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-04-30",
+    "roe": 15.71,
+    "grossMargin": 59.1341202945,
+    "ocps": 2.437793752555,
+    "debtRatio": 60.8030492936,
+    "eps": 1.3281
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-30",
+    "roe": 6.09,
+    "grossMargin": 56.1225369146,
+    "ocps": 0.980504047744,
+    "debtRatio": 61.5165462506,
+    "eps": 0.5336
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-04-30",
+    "roe": 15.9,
+    "grossMargin": 61.6684875716,
+    "ocps": 2.4751670217,
+    "debtRatio": 58.2694597691,
+    "eps": 1.4101
+   }
+  ],
+  "sh601398": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-24",
+    "roe": 9.04,
+    "grossMargin": null,
+    "ocps": 1.15,
+    "debtRatio": 95.3182896068,
+    "eps": 0.1
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-03-26",
+    "roe": 15.18,
+    "grossMargin": null,
+    "ocps": 1.14,
+    "debtRatio": 93.7172289619,
+    "eps": 0.17
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-22",
+    "roe": 8.41,
+    "grossMargin": null,
+    "ocps": 0.94,
+    "debtRatio": 93.9388520311,
+    "eps": 0.12
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-26",
+    "roe": 16.15,
+    "grossMargin": null,
+    "ocps": 0.89,
+    "debtRatio": 93.7329116676,
+    "eps": 0.24
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-21",
+    "roe": 11.39,
+    "grossMargin": null,
+    "ocps": 0.59,
+    "debtRatio": 94.102719586,
+    "eps": 0.19
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-26",
+    "roe": 19.39,
+    "grossMargin": null,
+    "ocps": 1.11,
+    "debtRatio": 93.7778281542,
+    "eps": 0.33
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-27",
+    "roe": 10.4,
+    "grossMargin": null,
+    "ocps": -0.2,
+    "debtRatio": 94.57004521,
+    "eps": 0.2
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-31",
+    "roe": 20.14,
+    "grossMargin": null,
+    "ocps": 1.21,
+    "debtRatio": 94.2390246357,
+    "eps": 0.38
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-27",
+    "roe": 11.95,
+    "grossMargin": null,
+    "ocps": 1.45,
+    "debtRatio": 94.5248523172,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-31",
+    "roe": 22.79,
+    "grossMargin": null,
+    "ocps": 0.797022511668,
+    "debtRatio": 93.8949396157,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-26",
+    "roe": 25.12,
+    "grossMargin": null,
+    "ocps": 0.68,
+    "debtRatio": 94.2292412055,
+    "eps": 0.31
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-30",
+    "roe": 23.44,
+    "grossMargin": null,
+    "ocps": 0.997247080932,
+    "debtRatio": 93.8112607796,
+    "eps": 0.6
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-31",
+    "roe": 12.155,
+    "grossMargin": null,
+    "ocps": 2.350338656025,
+    "debtRatio": 94.040619573,
+    "eps": 0.35
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-28",
+    "roe": 23.02,
+    "grossMargin": null,
+    "ocps": 1.525965333791,
+    "debtRatio": 93.5671813888,
+    "eps": 0.68
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-30",
+    "roe": 11.625,
+    "grossMargin": null,
+    "ocps": 0.408191048191,
+    "debtRatio": 93.7239179329,
+    "eps": 0.4
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-28",
+    "roe": 21.92,
+    "grossMargin": null,
+    "ocps": -0.005540852045,
+    "debtRatio": 93.2419930233,
+    "eps": 0.75
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-29",
+    "roe": 10.885,
+    "grossMargin": null,
+    "ocps": 1.18976625328,
+    "debtRatio": 93.3041537255,
+    "eps": 0.42
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-27",
+    "roe": 19.96,
+    "grossMargin": null,
+    "ocps": 0.569900564364,
+    "debtRatio": 92.5409630968,
+    "eps": 0.78
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-28",
+    "roe": 9.43,
+    "grossMargin": null,
+    "ocps": 3.041042964925,
+    "debtRatio": 92.8018210939,
+    "eps": 0.42
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-31",
+    "roe": 17.1,
+    "grossMargin": null,
+    "ocps": 3.175481963037,
+    "debtRatio": 91.8931254609,
+    "eps": 0.77
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-31",
+    "roe": 16.83,
+    "grossMargin": null,
+    "ocps": 0.835090219889,
+    "debtRatio": 92.0602319463,
+    "eps": 0.42
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-31",
+    "roe": 15.24,
+    "grossMargin": null,
+    "ocps": 0.671201744073,
+    "debtRatio": 91.7920982348,
+    "eps": 0.77
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 7.845,
+    "grossMargin": null,
+    "ocps": 0.972320970127,
+    "debtRatio": 92.0411133538,
+    "eps": 0.43
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-28",
+    "roe": 14.35,
+    "grossMargin": null,
+    "ocps": 2.162875588863,
+    "debtRatio": 91.792645874,
+    "eps": 0.79
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-31",
+    "roe": 7.67,
+    "grossMargin": null,
+    "ocps": 0.523367947319,
+    "debtRatio": 91.970865558,
+    "eps": 0.45
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-29",
+    "roe": 13.79,
+    "grossMargin": null,
+    "ocps": 2.031758635493,
+    "debtRatio": 91.5345778305,
+    "eps": 0.82
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-30",
+    "roe": 7.205,
+    "grossMargin": null,
+    "ocps": 2.545665489174,
+    "debtRatio": 91.9011122064,
+    "eps": 0.47
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-28",
+    "roe": 13.05,
+    "grossMargin": null,
+    "ocps": 1.350254063472,
+    "debtRatio": 91.059271253,
+    "eps": 0.86
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": 5.85,
+    "grossMargin": null,
+    "ocps": 5.257284509002,
+    "debtRatio": 91.7046533871,
+    "eps": 0.42
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-27",
+    "roe": 11.95,
+    "grossMargin": null,
+    "ocps": 4.370329426751,
+    "debtRatio": 91.2745240989,
+    "eps": 0.86
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-28",
+    "roe": 5.95,
+    "grossMargin": null,
+    "ocps": 1.059311405219,
+    "debtRatio": 91.3286020798,
+    "eps": 0.46
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-31",
+    "roe": 12.15,
+    "grossMargin": null,
+    "ocps": 1.012555870115,
+    "debtRatio": 90.687719047,
+    "eps": 0.95
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 5.63,
+    "grossMargin": null,
+    "ocps": 3.957287595361,
+    "debtRatio": 91.3966713517,
+    "eps": 0.47
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-31",
+    "roe": 11.45,
+    "grossMargin": null,
+    "ocps": 3.941159965994,
+    "debtRatio": 91.1249531875,
+    "eps": 0.97
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-31",
+    "roe": 5.255,
+    "grossMargin": null,
+    "ocps": 3.639852752611,
+    "debtRatio": 91.7644780216,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-28",
+    "roe": 10.66,
+    "grossMargin": null,
+    "ocps": 3.975797332825,
+    "debtRatio": 91.5507051367,
+    "eps": 0.98
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 4.765,
+    "grossMargin": null,
+    "ocps": 0.075708389566,
+    "debtRatio": 91.7979942329,
+    "eps": 0.47
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-29",
+    "roe": 9.88,
+    "grossMargin": null,
+    "ocps": 1.625091538606,
+    "debtRatio": 91.833012281,
+    "eps": 0.98
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-30",
+    "roe": 4.41,
+    "grossMargin": null,
+    "ocps": 2.206233323139,
+    "debtRatio": 92.0889914397,
+    "eps": 0.46
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-28",
+    "roe": 9.45,
+    "grossMargin": null,
+    "ocps": 5.304413212984,
+    "debtRatio": 92.0115895626,
+    "eps": 1
+   }
+  ],
+  "sh601939": [
+   {
+    "reportDate": "2004-12-31",
+    "noticeDate": "2007-09-11",
+    "roe": 22.99,
+    "grossMargin": null,
+    "ocps": 0.63,
+    "debtRatio": 94.9985933216,
+    "eps": 0.26
+   },
+   {
+    "reportDate": "2005-12-31",
+    "noticeDate": "2007-09-11",
+    "roe": 21.75,
+    "grossMargin": null,
+    "ocps": 1.52,
+    "debtRatio": 93.7267076953,
+    "eps": 0.24
+   },
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-09-11",
+    "roe": 7.79,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": null,
+    "eps": 0.1
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-04-12",
+    "roe": 15,
+    "grossMargin": null,
+    "ocps": 1.84,
+    "debtRatio": 93.9395552289,
+    "eps": 0.21
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-23",
+    "roe": 9.9,
+    "grossMargin": null,
+    "ocps": 1.02,
+    "debtRatio": 94.6755618163,
+    "eps": 0.15
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-28",
+    "roe": 19.5,
+    "grossMargin": null,
+    "ocps": 1.3,
+    "debtRatio": 93.6000352825,
+    "eps": 0.3
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-22",
+    "roe": 13.18,
+    "grossMargin": null,
+    "ocps": -0.11,
+    "debtRatio": 93.5475067961,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-29",
+    "roe": 20.68,
+    "grossMargin": null,
+    "ocps": 0.77,
+    "debtRatio": 93.8115945942,
+    "eps": 0.4
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-23",
+    "roe": 11.27,
+    "grossMargin": null,
+    "ocps": -0.21,
+    "debtRatio": 94.4399067811,
+    "eps": 0.24
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-28",
+    "roe": 20.87,
+    "grossMargin": null,
+    "ocps": 1.81,
+    "debtRatio": 94.1910071903,
+    "eps": 0.45
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-23",
+    "roe": 12,
+    "grossMargin": null,
+    "ocps": 0.85,
+    "debtRatio": 94.3317792403,
+    "eps": 0.3
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-28",
+    "roe": 22.61,
+    "grossMargin": null,
+    "ocps": 1.04,
+    "debtRatio": 93.5163325923,
+    "eps": 0.56
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-22",
+    "roe": 12.49,
+    "grossMargin": null,
+    "ocps": -0.27,
+    "debtRatio": 93.7159446645,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-26",
+    "roe": 22.51,
+    "grossMargin": null,
+    "ocps": 0.5,
+    "debtRatio": 93.3506591931,
+    "eps": 0.68
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-27",
+    "roe": 12.28,
+    "grossMargin": null,
+    "ocps": 1.36,
+    "debtRatio": 93.5627023907,
+    "eps": 0.43
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-25",
+    "roe": 21.98,
+    "grossMargin": null,
+    "ocps": 1.48,
+    "debtRatio": 93.2043463213,
+    "eps": 0.77
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-26",
+    "roe": 11.95,
+    "grossMargin": null,
+    "ocps": 0.31,
+    "debtRatio": 93.2667299899,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-31",
+    "roe": 21.23,
+    "grossMargin": null,
+    "ocps": 0.18,
+    "debtRatio": 93.0071319731,
+    "eps": 0.86
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-30",
+    "roe": 11.485,
+    "grossMargin": null,
+    "ocps": 0.36,
+    "debtRatio": 93.0059348321,
+    "eps": 0.52
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-28",
+    "roe": 19.74,
+    "grossMargin": null,
+    "ocps": 1.27,
+    "debtRatio": 92.5236440099,
+    "eps": 0.91
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-31",
+    "roe": 10.09,
+    "grossMargin": null,
+    "ocps": 1.28,
+    "debtRatio": 92.7963301983,
+    "eps": 0.53
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-31",
+    "roe": 17.27,
+    "grossMargin": null,
+    "ocps": 2.53,
+    "debtRatio": 92.1246689758,
+    "eps": 0.91
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-26",
+    "roe": 8.9,
+    "grossMargin": null,
+    "ocps": 1.89,
+    "debtRatio": 92.3788020211,
+    "eps": 0.53
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-30",
+    "roe": 15.44,
+    "grossMargin": null,
+    "ocps": 3.53,
+    "debtRatio": 92.4171132918,
+    "eps": 0.92
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 8.545,
+    "grossMargin": null,
+    "ocps": -0.48,
+    "debtRatio": 92.4184172951,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-28",
+    "roe": 14.8,
+    "grossMargin": null,
+    "ocps": 0.32,
+    "debtRatio": 91.8830414389,
+    "eps": 0.96
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-29",
+    "roe": 8.33,
+    "grossMargin": null,
+    "ocps": 1.1,
+    "debtRatio": 91.823888974,
+    "eps": 0.59
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-28",
+    "roe": 14.04,
+    "grossMargin": null,
+    "ocps": 1.77,
+    "debtRatio": 91.423931755,
+    "eps": 1
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-29",
+    "roe": 7.81,
+    "grossMargin": null,
+    "ocps": 0.46,
+    "debtRatio": 91.5021729554,
+    "eps": 0.62
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-30",
+    "roe": 13.18,
+    "grossMargin": null,
+    "ocps": 2.33,
+    "debtRatio": 91.2128319488,
+    "eps": 1.05
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": 6.325,
+    "grossMargin": null,
+    "ocps": 0.25,
+    "debtRatio": 91.6785519941,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-27",
+    "roe": 12.12,
+    "grossMargin": null,
+    "ocps": 2.32,
+    "debtRatio": 91.5067132552,
+    "eps": 1.06
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-28",
+    "roe": 6.55,
+    "grossMargin": null,
+    "ocps": 0.69,
+    "debtRatio": 91.7463028088,
+    "eps": 0.61
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-30",
+    "roe": 12.55,
+    "grossMargin": null,
+    "ocps": 1.75,
+    "debtRatio": 91.359410939,
+    "eps": 1.19
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 6.31,
+    "grossMargin": null,
+    "ocps": 3.26,
+    "debtRatio": 92.0394022063,
+    "eps": 0.65
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-30",
+    "roe": 12.3,
+    "grossMargin": null,
+    "ocps": 3.91,
+    "debtRatio": 91.6873268876,
+    "eps": 1.28
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-24",
+    "roe": 5.975,
+    "grossMargin": null,
+    "ocps": 3.258316634068,
+    "debtRatio": 92.2722501122,
+    "eps": 0.67
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-29",
+    "roe": 11.56,
+    "grossMargin": null,
+    "ocps": 2.57,
+    "debtRatio": 91.7231874712,
+    "eps": 1.31
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 5.41,
+    "grossMargin": null,
+    "ocps": 1.163168820572,
+    "debtRatio": 91.9207705033,
+    "eps": 0.66
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-29",
+    "roe": 10.69,
+    "grossMargin": null,
+    "ocps": 1.35,
+    "debtRatio": 91.7577759506,
+    "eps": 1.31
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-30",
+    "roe": 5.04,
+    "grossMargin": null,
+    "ocps": 4.803570336391,
+    "debtRatio": 91.9319621376,
+    "eps": 0.65
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-28",
+    "roe": 10.04,
+    "grossMargin": null,
+    "ocps": 8.032270642202,
+    "debtRatio": 91.9221342441,
+    "eps": 1.3
+   }
+  ],
+  "sh601288": [
+   {
+    "reportDate": "2002-12-31",
+    "noticeDate": "2009-05-12",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": 95.4296326707,
+    "eps": null
+   },
+   {
+    "reportDate": "2003-12-31",
+    "noticeDate": "2009-05-12",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": 96.051277384,
+    "eps": null
+   },
+   {
+    "reportDate": "2004-12-31",
+    "noticeDate": "2009-05-11",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": 98.055119764,
+    "eps": null
+   },
+   {
+    "reportDate": "2005-12-31",
+    "noticeDate": "2008-05-23",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": 98.3314465945,
+    "eps": null
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-05-28",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0,
+    "debtRatio": 98.4405704497,
+    "eps": null
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-04-27",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 1.189973028977,
+    "debtRatio": 113.7141490369,
+    "eps": null
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-06-17",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 1.095311538462,
+    "debtRatio": 95.8579061698,
+    "eps": null
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-28",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": null,
+    "eps": 0.13
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2010-06-17",
+    "roe": 20.53,
+    "grossMargin": null,
+    "ocps": -0.080865384615,
+    "debtRatio": 96.1393571333,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-28",
+    "roe": 12.55,
+    "grossMargin": null,
+    "ocps": 0.64,
+    "debtRatio": 96.3446967177,
+    "eps": 0.17
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-30",
+    "roe": 22.49,
+    "grossMargin": null,
+    "ocps": -0.28,
+    "debtRatio": 94.7546221944,
+    "eps": 0.33
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-26",
+    "roe": 11.78,
+    "grossMargin": null,
+    "ocps": 1.17,
+    "debtRatio": 94.856743069,
+    "eps": 0.21
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-23",
+    "roe": 20.46,
+    "grossMargin": null,
+    "ocps": 0.69,
+    "debtRatio": 94.4355922466,
+    "eps": 0.38
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-30",
+    "roe": 11.63,
+    "grossMargin": null,
+    "ocps": 1.567565903311,
+    "debtRatio": 94.6375947067,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-27",
+    "roe": 20.74,
+    "grossMargin": null,
+    "ocps": 0.98,
+    "debtRatio": 94.3269812876,
+    "eps": 0.45
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-29",
+    "roe": 11.61,
+    "grossMargin": null,
+    "ocps": -0.49,
+    "debtRatio": 94.4368051948,
+    "eps": 0.28
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-26",
+    "roe": 20.89,
+    "grossMargin": null,
+    "ocps": 0.1,
+    "debtRatio": 94.2004457873,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-27",
+    "roe": 11.52,
+    "grossMargin": null,
+    "ocps": 1.48,
+    "debtRatio": 94.328987296,
+    "eps": 0.32
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-25",
+    "roe": 19.57,
+    "grossMargin": null,
+    "ocps": 0.11,
+    "debtRatio": 93.5356881542,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-28",
+    "roe": 9.98,
+    "grossMargin": null,
+    "ocps": 1.6,
+    "debtRatio": 93.573478452,
+    "eps": 0.32
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-04-01",
+    "roe": 16.79,
+    "grossMargin": null,
+    "ocps": 2.53,
+    "debtRatio": 93.1883636093,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-27",
+    "roe": 8.815,
+    "grossMargin": null,
+    "ocps": 1.65,
+    "debtRatio": 93.2613109877,
+    "eps": 0.32
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-29",
+    "roe": 15.14,
+    "grossMargin": null,
+    "ocps": 2.2,
+    "debtRatio": 93.2468733746,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 8.37,
+    "grossMargin": null,
+    "ocps": 1.06,
+    "debtRatio": 93.397159834,
+    "eps": 0.33
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-27",
+    "roe": 14.57,
+    "grossMargin": null,
+    "ocps": 1.95,
+    "debtRatio": 93.2106062579,
+    "eps": 0.58
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-29",
+    "roe": 8.36,
+    "grossMargin": null,
+    "ocps": -0.63,
+    "debtRatio": 92.8391876757,
+    "eps": 0.35
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-30",
+    "roe": 13.66,
+    "grossMargin": null,
+    "ocps": 0.3,
+    "debtRatio": 92.5925423023,
+    "eps": 0.59
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-31",
+    "roe": 7.29,
+    "grossMargin": null,
+    "ocps": -0.03,
+    "debtRatio": 92.7502652434,
+    "eps": 0.34
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-31",
+    "roe": 12.43,
+    "grossMargin": null,
+    "ocps": 1.02,
+    "debtRatio": 92.1460689102,
+    "eps": 0.59
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": 5.97,
+    "grossMargin": null,
+    "ocps": -0.93,
+    "debtRatio": 92.0935367226,
+    "eps": 0.3
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-31",
+    "roe": 11.35,
+    "grossMargin": null,
+    "ocps": -0.17,
+    "debtRatio": 91.8737651878,
+    "eps": 0.59
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-31",
+    "roe": 6.2,
+    "grossMargin": null,
+    "ocps": 0.46,
+    "debtRatio": 92.1040823055,
+    "eps": 0.34
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-31",
+    "roe": 11.57,
+    "grossMargin": null,
+    "ocps": 0.68,
+    "debtRatio": 91.6703495509,
+    "eps": 0.65
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-30",
+    "roe": 5.96,
+    "grossMargin": null,
+    "ocps": 2.6,
+    "debtRatio": 92.2093990024,
+    "eps": 0.35
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-31",
+    "roe": 11.29,
+    "grossMargin": null,
+    "ocps": 3.78,
+    "debtRatio": 92.1187279605,
+    "eps": 0.69
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-30",
+    "roe": 5.715,
+    "grossMargin": null,
+    "ocps": 3.87,
+    "debtRatio": 92.8465339473,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-29",
+    "roe": 10.91,
+    "grossMargin": null,
+    "ocps": 5.22,
+    "debtRatio": 92.7347633758,
+    "eps": 0.72
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 5.375,
+    "grossMargin": null,
+    "ocps": 0.83,
+    "debtRatio": 92.7200296738,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-29",
+    "roe": 10.46,
+    "grossMargin": null,
+    "ocps": 3.87,
+    "debtRatio": 92.8367100015,
+    "eps": 0.75
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-30",
+    "roe": 5.08,
+    "grossMargin": null,
+    "ocps": 2.873865302029,
+    "debtRatio": 93.2788774121,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-31",
+    "roe": 10.16,
+    "grossMargin": null,
+    "ocps": 6.037170376847,
+    "debtRatio": 93.3516599906,
+    "eps": 0.78
+   }
+  ],
+  "sh600028": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-27",
+    "roe": 9.2,
+    "grossMargin": 14.7763202632,
+    "ocps": 0.279,
+    "debtRatio": 56.2957910872,
+    "eps": 0.24
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-04-07",
+    "roe": 21.457,
+    "grossMargin": 15.5694477281,
+    "ocps": 1.183,
+    "debtRatio": 53.2454539421,
+    "eps": 0.6
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-25",
+    "roe": null,
+    "grossMargin": 18.1680174508,
+    "ocps": 0.738,
+    "debtRatio": 52.8054083717,
+    "eps": 0.4
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-30",
+    "roe": 19.37,
+    "grossMargin": 15.9059728114,
+    "ocps": 1.426,
+    "debtRatio": 54.3073152085,
+    "eps": 0.65
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-24",
+    "roe": 0,
+    "grossMargin": 7.2822234352,
+    "ocps": 0.069,
+    "debtRatio": 59.6250591063,
+    "eps": 0.088
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-29",
+    "roe": 9.65,
+    "grossMargin": 8.5343604578,
+    "ocps": 1.005,
+    "debtRatio": 54.1245412991,
+    "eps": 0.328
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-23",
+    "roe": 0,
+    "grossMargin": 27.0961097327,
+    "ocps": 0.95,
+    "debtRatio": 53.8477745847,
+    "eps": 0.383
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-28",
+    "roe": 17.52,
+    "grossMargin": 23.4644459842,
+    "ocps": 1.915,
+    "debtRatio": 54.1605780159,
+    "eps": 0.723
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-23",
+    "roe": 9.26,
+    "grossMargin": 18.6699668137,
+    "ocps": 0.644,
+    "debtRatio": 53.5311334227,
+    "eps": 0.424
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-28",
+    "roe": 17.43,
+    "grossMargin": 19.6557881059,
+    "ocps": 1.975,
+    "debtRatio": 54.0605791215,
+    "eps": 0.816
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-29",
+    "roe": 9.1,
+    "grossMargin": 16.4924688147,
+    "ocps": 0.356,
+    "debtRatio": 54.4165006083,
+    "eps": 0.464
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-26",
+    "roe": 15.93,
+    "grossMargin": 16.4619387209,
+    "ocps": 1.342,
+    "debtRatio": 54.9114068101,
+    "eps": 0.827
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-27",
+    "roe": 4.89,
+    "grossMargin": 14.5126521432,
+    "ocps": 0.236742686017,
+    "debtRatio": 55.5529208734,
+    "eps": 0.21
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-25",
+    "roe": 12.8,
+    "grossMargin": 14.8529546364,
+    "ocps": 1.272,
+    "debtRatio": 55.5437045123,
+    "eps": 0.562
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-26",
+    "roe": 5.49,
+    "grossMargin": 14.2515354243,
+    "ocps": 0.282271693905,
+    "debtRatio": 53.9034854693,
+    "eps": 0.254
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-24",
+    "roe": 12.24,
+    "grossMargin": 14.695288113,
+    "ocps": 1.308,
+    "debtRatio": 54.9314636608,
+    "eps": 0.579
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-23",
+    "roe": 5.37,
+    "grossMargin": 15.3463572467,
+    "ocps": 0.498428871099,
+    "debtRatio": 55.0121262529,
+    "eps": 0.269
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-23",
+    "roe": 8.14,
+    "grossMargin": 14.0449072406,
+    "ocps": 1.267,
+    "debtRatio": 55.4148224296,
+    "eps": 0.406
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-27",
+    "roe": 3.8,
+    "grossMargin": 21.2037678256,
+    "ocps": 0.554178952846,
+    "debtRatio": 46.3790717208,
+    "eps": 0.203
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-30",
+    "roe": 5.07,
+    "grossMargin": 21.1002907876,
+    "ocps": 1.371,
+    "debtRatio": 45.4444512005,
+    "eps": 0.267
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-29",
+    "roe": 2.81,
+    "grossMargin": 24.3428265963,
+    "ocps": 0.628655912646,
+    "debtRatio": 43.461578195,
+    "eps": 0.159
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-27",
+    "roe": 6.68,
+    "grossMargin": 22.7222280053,
+    "ocps": 1.772,
+    "debtRatio": 44.446817015,
+    "eps": 0.383
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-28",
+    "roe": 3.79,
+    "grossMargin": 19.1480455673,
+    "ocps": 0.502572870464,
+    "debtRatio": 43.1392004776,
+    "eps": 0.224
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-26",
+    "roe": 7.14,
+    "grossMargin": 19.9049399774,
+    "ocps": 1.577,
+    "debtRatio": 46.4702062796,
+    "eps": 0.422
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-27",
+    "roe": 5.74,
+    "grossMargin": 19.1911260279,
+    "ocps": 0.591553716414,
+    "debtRatio": 46.9913510385,
+    "eps": 0.344
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-25",
+    "roe": 8.67,
+    "grossMargin": 16.9538793689,
+    "ocps": 1.453,
+    "debtRatio": 46.1373678962,
+    "eps": 0.521
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-26",
+    "roe": 4.28,
+    "grossMargin": 15.7374002332,
+    "ocps": 0.271890047988,
+    "debtRatio": 52.4172189967,
+    "eps": 0.259
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-30",
+    "roe": 7.85,
+    "grossMargin": 16.2322846923,
+    "ocps": 1.275,
+    "debtRatio": 50.1004950332,
+    "eps": 0.476
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": -3.21,
+    "grossMargin": 15.4229554026,
+    "ocps": 0.333399410263,
+    "debtRatio": 54.3692246378,
+    "eps": -0.19
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-29",
+    "roe": 4.46,
+    "grossMargin": 19.9099739443,
+    "ocps": 1.392,
+    "debtRatio": 48.8917106026,
+    "eps": 0.275
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-30",
+    "roe": 5.2,
+    "grossMargin": 20.8195289715,
+    "ocps": 0.399327667237,
+    "debtRatio": 51.0351523289,
+    "eps": 0.326
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-28",
+    "roe": 9.4,
+    "grossMargin": 19.130068985,
+    "ocps": 1.86,
+    "debtRatio": 51.5131096649,
+    "eps": 0.588
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-29",
+    "roe": 5.61,
+    "grossMargin": 17.449070358,
+    "ocps": 0.040860321629,
+    "debtRatio": 54.7691199302,
+    "eps": 0.363
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-27",
+    "roe": 8.57,
+    "grossMargin": 15.0325420533,
+    "ocps": 0.962,
+    "debtRatio": 51.7991452093,
+    "eps": 0.555
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-28",
+    "roe": 4.43,
+    "grossMargin": 15.192554098,
+    "ocps": 0.22988256489,
+    "debtRatio": 53.1560479984,
+    "eps": 0.293
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-25",
+    "roe": 7.59,
+    "grossMargin": 15.6452479053,
+    "ocps": 1.348,
+    "debtRatio": 52.6981152371,
+    "eps": 0.505
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-26",
+    "roe": 4.37,
+    "grossMargin": 15.7700724115,
+    "ocps": 0.347207162806,
+    "debtRatio": 53.9507716384,
+    "eps": 0.296
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-24",
+    "roe": 6.19,
+    "grossMargin": 15.4697482113,
+    "ocps": 1.233,
+    "debtRatio": 53.1702522723,
+    "eps": 0.415
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-22",
+    "roe": 2.61,
+    "grossMargin": 15.3506754896,
+    "ocps": 0.50324549466,
+    "debtRatio": 54.104429077,
+    "eps": 0.177
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-23",
+    "roe": 3.86,
+    "grossMargin": 15.886000166,
+    "ocps": 1.343763954815,
+    "debtRatio": 54.0840511093,
+    "eps": 0.262
+   }
+  ],
+  "sh601006": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-30",
+    "roe": null,
+    "grossMargin": 53.0488605109,
+    "ocps": 0.16,
+    "debtRatio": 50.2242773583,
+    "eps": 0.23
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-04-29",
+    "roe": null,
+    "grossMargin": 49.5404793022,
+    "ocps": 0.39,
+    "debtRatio": 14.0198383994,
+    "eps": 0.39
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-28",
+    "roe": null,
+    "grossMargin": 52.848996465,
+    "ocps": 0.27,
+    "debtRatio": 12.4462579483,
+    "eps": 0.23
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-04-29",
+    "roe": 16.92,
+    "grossMargin": 51.7686106528,
+    "ocps": 0.7,
+    "debtRatio": 26.5588580539,
+    "eps": 0.47
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-28",
+    "roe": 9.44,
+    "grossMargin": 52.8118939551,
+    "ocps": 0.3,
+    "debtRatio": 32.9579092092,
+    "eps": 0.29
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-31",
+    "roe": 13.62,
+    "grossMargin": 48.1802857955,
+    "ocps": 0.69,
+    "debtRatio": 35.4090292306,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-31",
+    "roe": 6.9,
+    "grossMargin": 49.6826558735,
+    "ocps": 0.25,
+    "debtRatio": 40.7635064056,
+    "eps": 0.22
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-04-29",
+    "roe": 13.78,
+    "grossMargin": 39.6618026503,
+    "ocps": 0.67,
+    "debtRatio": 35.1158846366,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-31",
+    "roe": 9.35,
+    "grossMargin": 44.8142626695,
+    "ocps": 0.57,
+    "debtRatio": 36.2310035475,
+    "eps": 0.35
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-04-29",
+    "roe": 22.64,
+    "grossMargin": 42.3551564176,
+    "ocps": 1.137824242994,
+    "debtRatio": 43.7406024131,
+    "eps": 0.7
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-30",
+    "roe": 10.56,
+    "grossMargin": 43.935901398,
+    "ocps": 0.43,
+    "debtRatio": 42.2335754511,
+    "eps": 0.42
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-04-27",
+    "roe": 19.78,
+    "grossMargin": 41.2973507743,
+    "ocps": 1.01621256114,
+    "debtRatio": 33.2377692662,
+    "eps": 0.79
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-29",
+    "roe": 9.35,
+    "grossMargin": 40.8953379197,
+    "ocps": 0.271723124552,
+    "debtRatio": 35.0916957522,
+    "eps": 0.41
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-04-26",
+    "roe": 17.42,
+    "grossMargin": 38.3584468173,
+    "ocps": 0.87045566845,
+    "debtRatio": 29.978620552,
+    "eps": 0.77
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-30",
+    "roe": 8.94,
+    "grossMargin": 38.7557091129,
+    "ocps": 0.442784186284,
+    "debtRatio": 28.2125620474,
+    "eps": 0.44
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-04-26",
+    "roe": 16.77,
+    "grossMargin": 37.0762296694,
+    "ocps": 0.992805342157,
+    "debtRatio": 25.6717254746,
+    "eps": 0.85
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-28",
+    "roe": 9.03,
+    "grossMargin": 33.3038376697,
+    "ocps": 0.501726896655,
+    "debtRatio": 23.9707911444,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-04-29",
+    "roe": 17.2,
+    "grossMargin": 31.7700005713,
+    "ocps": 1.164557304075,
+    "debtRatio": 23.3561108178,
+    "eps": 0.95
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-27",
+    "roe": 8.22,
+    "grossMargin": 33.4408855146,
+    "ocps": 0.540803035132,
+    "debtRatio": 19.7397614525,
+    "eps": 0.49
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-04-28",
+    "roe": 14.35,
+    "grossMargin": 29.6068726826,
+    "ocps": 0.949609826273,
+    "debtRatio": 20.8978435169,
+    "eps": 0.85
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-26",
+    "roe": 4.1,
+    "grossMargin": 18.0815666624,
+    "ocps": 0.023772523696,
+    "debtRatio": 28.3967435367,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-04-27",
+    "roe": 7.39,
+    "grossMargin": 17.1940648634,
+    "ocps": 0.422057443047,
+    "debtRatio": 25.8405925248,
+    "eps": 0.48
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-30",
+    "roe": 8.2,
+    "grossMargin": 32.3662170418,
+    "ocps": 0.512953783109,
+    "debtRatio": 21.3368828516,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-04-28",
+    "roe": 13.96,
+    "grossMargin": 29.5139729955,
+    "ocps": 1.350755851736,
+    "debtRatio": 22.3412155309,
+    "eps": 0.9
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-29",
+    "roe": 8.05,
+    "grossMargin": 28.0849854497,
+    "ocps": 0.388406671103,
+    "debtRatio": 19.5394806875,
+    "eps": 0.56
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-04-25",
+    "roe": 14,
+    "grossMargin": 24.816445428,
+    "ocps": 1.203202055792,
+    "debtRatio": 21.5728042912,
+    "eps": 0.98
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-29",
+    "roe": 7.43,
+    "grossMargin": 26.2619132203,
+    "ocps": 0.339234220851,
+    "debtRatio": 19.8909846409,
+    "eps": 0.54
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-04-29",
+    "roe": 12.5,
+    "grossMargin": 22.7894803834,
+    "ocps": 1.010476001301,
+    "debtRatio": 17.4412520924,
+    "eps": 0.92
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-28",
+    "roe": 4.61,
+    "grossMargin": 20.5793131064,
+    "ocps": 0.197605981208,
+    "debtRatio": 17.5896335454,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-04-29",
+    "roe": 9.08,
+    "grossMargin": 19.4510669945,
+    "ocps": 0.854267790982,
+    "debtRatio": 29.8949651028,
+    "eps": 0.72
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-27",
+    "roe": 6.04,
+    "grossMargin": 26.0510378107,
+    "ocps": 0.649914930337,
+    "debtRatio": 32.9050619456,
+    "eps": 0.5
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-04-28",
+    "roe": 9.94,
+    "grossMargin": 21.8263977041,
+    "ocps": 1.271175339635,
+    "debtRatio": 31.8403373248,
+    "eps": 0.82
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-30",
+    "roe": 5.76,
+    "grossMargin": 25.3281773436,
+    "ocps": 0.434035325103,
+    "debtRatio": 32.778713476,
+    "eps": 0.49
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-04-27",
+    "roe": 8.9,
+    "grossMargin": 19.9616008294,
+    "ocps": 1.083080998191,
+    "debtRatio": 30.7012971148,
+    "eps": 0.75
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-29",
+    "roe": 5.74,
+    "grossMargin": 25.4311244026,
+    "ocps": 0.428636394321,
+    "debtRatio": 30.9969103008,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-04-27",
+    "roe": 9.09,
+    "grossMargin": 20.6634938992,
+    "ocps": 1.095149352491,
+    "debtRatio": 26.6118492324,
+    "eps": 0.79
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-29",
+    "roe": 3.97,
+    "grossMargin": 20.9204230959,
+    "ocps": 0.075588223579,
+    "debtRatio": 22.8193421603,
+    "eps": 0.34
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-04-30",
+    "roe": 6.1,
+    "grossMargin": 15.3020471484,
+    "ocps": 0.495373874235,
+    "debtRatio": 17.8965011336,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-29",
+    "roe": 2.55,
+    "grossMargin": 13.9865639107,
+    "ocps": -0.028703624158,
+    "debtRatio": 14.6071329595,
+    "eps": 0.21
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-04-30",
+    "roe": 3.64,
+    "grossMargin": 8.6206079024,
+    "ocps": 0.24751571904,
+    "debtRatio": 15.2391537619,
+    "eps": 0.3
+   }
+  ],
+  "sz000895": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-09",
+    "roe": 11.16,
+    "grossMargin": 13.5528041262,
+    "ocps": 0.017,
+    "debtRatio": 31.3702575301,
+    "eps": 0.33
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-03-19",
+    "roe": 24.78,
+    "grossMargin": 11.919171838,
+    "ocps": 1.36,
+    "debtRatio": 30.1270843524,
+    "eps": 0.7715
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-23",
+    "roe": 11.19,
+    "grossMargin": 10.1137876352,
+    "ocps": 0.944,
+    "debtRatio": 32.5074322166,
+    "eps": 0.3964
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-19",
+    "roe": 26.73,
+    "grossMargin": 8.8331167332,
+    "ocps": 1.27,
+    "debtRatio": 32.0540837801,
+    "eps": 0.93
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-15",
+    "roe": 13.02,
+    "grossMargin": 8.1295317088,
+    "ocps": 0.197,
+    "debtRatio": 31.2582409535,
+    "eps": 0.4634
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-04-24",
+    "roe": 31.71,
+    "grossMargin": 9.1678409427,
+    "ocps": 1.85,
+    "debtRatio": 32.0618691153,
+    "eps": 1.15
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-30",
+    "roe": 14.86,
+    "grossMargin": 11.0364979957,
+    "ocps": 0.757,
+    "debtRatio": 46.8094878862,
+    "eps": 0.6015
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-04-29",
+    "roe": 34.13,
+    "grossMargin": 9.7819970288,
+    "ocps": 2.45,
+    "debtRatio": 35.3921554936,
+    "eps": 1.5
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-30",
+    "roe": 15.71,
+    "grossMargin": 10.1915418104,
+    "ocps": 0.42,
+    "debtRatio": 40.6893810716,
+    "eps": 0.8274
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-04-29",
+    "roe": 35.43,
+    "grossMargin": 9.5232405052,
+    "ocps": 2.976272628615,
+    "debtRatio": 35.5484945175,
+    "eps": 1.91
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-19",
+    "roe": 2.05,
+    "grossMargin": 7.7429311726,
+    "ocps": 0.73,
+    "debtRatio": 47.4611761235,
+    "eps": 0.1254
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-02",
+    "roe": 14.76,
+    "grossMargin": 13.405770178,
+    "ocps": 3.872802391456,
+    "debtRatio": 38.9129134398,
+    "eps": 1.21
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-28",
+    "roe": 10.77,
+    "grossMargin": 17.19844889,
+    "ocps": 2.198120662055,
+    "debtRatio": 32.5937016009,
+    "eps": 0.4656
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-26",
+    "roe": 27.93,
+    "grossMargin": 17.985149246,
+    "ocps": 4.14192588767,
+    "debtRatio": 24.803785896,
+    "eps": 1.31
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-07",
+    "roe": 13.98,
+    "grossMargin": 20.1375584223,
+    "ocps": 0.513790821639,
+    "debtRatio": 22.966262916,
+    "eps": 0.768
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-02-25",
+    "roe": 30.44,
+    "grossMargin": 19.4309242161,
+    "ocps": 1.758306376351,
+    "debtRatio": 24.0187354068,
+    "eps": 1.7533
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-12",
+    "roe": 15.96,
+    "grossMargin": 21.8002644602,
+    "ocps": 0.513926500243,
+    "debtRatio": 20.9380862663,
+    "eps": 0.6657
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-26",
+    "roe": 28.6,
+    "grossMargin": 19.9296189109,
+    "ocps": 2.141274034599,
+    "debtRatio": 25.5731212075,
+    "eps": 1.2239
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-13",
+    "roe": 12.41,
+    "grossMargin": 21.5023008768,
+    "ocps": 0.698753718859,
+    "debtRatio": 28.1455440578,
+    "eps": 0.6007
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-30",
+    "roe": 27.24,
+    "grossMargin": 20.769600001,
+    "ocps": 1.746911677912,
+    "debtRatio": 22.7136564585,
+    "eps": 1.2893
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-17",
+    "roe": 12.52,
+    "grossMargin": 17.9984014833,
+    "ocps": 0.860626184263,
+    "debtRatio": 22.9494602294,
+    "eps": 0.652
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-23",
+    "roe": 28.33,
+    "grossMargin": 18.1057451537,
+    "ocps": 1.680830820163,
+    "debtRatio": 29.4267297161,
+    "eps": 1.3346
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-15",
+    "roe": 13.74,
+    "grossMargin": 18.5979936241,
+    "ocps": 0.677784458094,
+    "debtRatio": 35.5301009517,
+    "eps": 0.5771
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-27",
+    "roe": 35.62,
+    "grossMargin": 18.9056286162,
+    "ocps": 1.712363692855,
+    "debtRatio": 33.0101609386,
+    "eps": 1.3091
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-15",
+    "roe": 16.32,
+    "grossMargin": 21.3602879159,
+    "ocps": 0.581536347654,
+    "debtRatio": 33.5091432747,
+    "eps": 0.7229
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-16",
+    "roe": 38.84,
+    "grossMargin": 21.5685665157,
+    "ocps": 1.477832116973,
+    "debtRatio": 40.0591813178,
+    "eps": 1.4798
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-14",
+    "roe": 17.58,
+    "grossMargin": 19.6296594687,
+    "ocps": 0.470691744038,
+    "debtRatio": 40.6490428463,
+    "eps": 0.7228
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-25",
+    "roe": 37.37,
+    "grossMargin": 18.7912440463,
+    "ocps": 1.332702425144,
+    "debtRatio": 40.2256582891,
+    "eps": 1.6382
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-12",
+    "roe": 17.42,
+    "grossMargin": 16.9626113706,
+    "ocps": 0.532926819283,
+    "debtRatio": 45.9214581352,
+    "eps": 0.9161
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-31",
+    "roe": 32.93,
+    "grossMargin": 15.885040919,
+    "ocps": 2.546259574988,
+    "debtRatio": 30.4610385308,
+    "eps": 1.8642
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-13",
+    "roe": 10.99,
+    "grossMargin": 14.4378688777,
+    "ocps": 0.368018507791,
+    "debtRatio": 34.476941708,
+    "eps": 0.7323
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-29",
+    "roe": 21.8,
+    "grossMargin": 15.3522624469,
+    "ocps": 1.741599657681,
+    "debtRatio": 31.8672513785,
+    "eps": 1.4044
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-17",
+    "roe": 12.04,
+    "grossMargin": 17.9411248394,
+    "ocps": 0.447793606994,
+    "debtRatio": 36.8919552031,
+    "eps": 0.7881
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-29",
+    "roe": 25.43,
+    "grossMargin": 16.3904136792,
+    "ocps": 2.183609204436,
+    "debtRatio": 39.0792029295,
+    "eps": 1.6223
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-16",
+    "roe": 12.83,
+    "grossMargin": 17.2975379146,
+    "ocps": 0.101541583139,
+    "debtRatio": 41.4928927428,
+    "eps": 0.8187
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-27",
+    "roe": 23.83,
+    "grossMargin": 17.0532199131,
+    "ocps": 0.977792178851,
+    "debtRatio": 42.3419952932,
+    "eps": 1.4584
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-14",
+    "roe": 10.84,
+    "grossMargin": 18.2939436969,
+    "ocps": 1.032594242639,
+    "debtRatio": 42.1786085208,
+    "eps": 0.6628
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-26",
+    "roe": 23.81,
+    "grossMargin": 17.690935777,
+    "ocps": 2.429028515355,
+    "debtRatio": 42.8046438184,
+    "eps": 1.44
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-13",
+    "roe": 10.85,
+    "grossMargin": 17.277047854,
+    "ocps": 0.841122552937,
+    "debtRatio": 44.7354528156,
+    "eps": 0.6705
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-25",
+    "roe": 24.1,
+    "grossMargin": 18.0516849722,
+    "ocps": 2.122124158862,
+    "debtRatio": 45.3233752789,
+    "eps": 1.4733
+   }
+  ],
+  "sz000651": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-13",
+    "roe": 10.76,
+    "grossMargin": 17.2139485369,
+    "ocps": 5.29,
+    "debtRatio": 79.6039236874,
+    "eps": 0.5863
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-04-18",
+    "roe": 22.35,
+    "grossMargin": 18.2637313863,
+    "ocps": 2.15,
+    "debtRatio": 78.667086776,
+    "eps": 0.86
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-28",
+    "roe": 13.96,
+    "grossMargin": 18.2760919598,
+    "ocps": 3.23,
+    "debtRatio": 80.1103823282,
+    "eps": 0.6092
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-04-21",
+    "roe": 31.92,
+    "grossMargin": 18.1327125316,
+    "ocps": 3.34,
+    "debtRatio": 77.0622107313,
+    "eps": 1.05
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-27",
+    "roe": 16.38,
+    "grossMargin": 18.2582785248,
+    "ocps": 1.15,
+    "debtRatio": 75.3790022733,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2009-04-21",
+    "roe": 30.36,
+    "grossMargin": 19.744767117,
+    "ocps": 0.29,
+    "debtRatio": 75.1640163688,
+    "eps": 1.05
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-19",
+    "roe": 14.96,
+    "grossMargin": 25.3145633756,
+    "ocps": 10.48,
+    "debtRatio": 78.2811886442,
+    "eps": 0.6556
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-24",
+    "roe": 33.48,
+    "grossMargin": 24.7346783134,
+    "ocps": 5.03,
+    "debtRatio": 79.3273171892,
+    "eps": 1.03
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-19",
+    "roe": 14.64,
+    "grossMargin": 16.2664085672,
+    "ocps": 0.68,
+    "debtRatio": 77.1604162313,
+    "eps": 0.8371
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-24",
+    "roe": 36.51,
+    "grossMargin": 21.5490461697,
+    "ocps": 0.218601615351,
+    "debtRatio": 78.6421141066,
+    "eps": 1.52
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-07-27",
+    "roe": 16.29,
+    "grossMargin": 15.5107976084,
+    "ocps": 2,
+    "debtRatio": 76.7841848398,
+    "eps": 0.78
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-04-25",
+    "roe": 34,
+    "grossMargin": 18.0665906474,
+    "ocps": 1.191019337484,
+    "debtRatio": 78.4335046028,
+    "eps": 1.86
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-24",
+    "roe": 13.21,
+    "grossMargin": 22.8621616365,
+    "ocps": 5.206764540988,
+    "debtRatio": 73.3210439702,
+    "eps": 0.96
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-04-27",
+    "roe": 31.38,
+    "grossMargin": 26.2929107455,
+    "ocps": 6.120202730106,
+    "debtRatio": 74.359954457,
+    "eps": 2.47
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-21",
+    "roe": 14.25,
+    "grossMargin": 27.6051256185,
+    "ocps": 5.236918232086,
+    "debtRatio": 74.1668523331,
+    "eps": 1.33
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-04-25",
+    "roe": 35.77,
+    "grossMargin": 33.0357514025,
+    "ocps": 4.31197385417,
+    "debtRatio": 73.5462572109,
+    "eps": 3.61
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-26",
+    "roe": 15.27,
+    "grossMargin": 33.2037406566,
+    "ocps": 6.418309744989,
+    "debtRatio": 71.8142242757,
+    "eps": 1.9
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-04-28",
+    "roe": 35.23,
+    "grossMargin": 36.100255058,
+    "ocps": 6.296546800985,
+    "debtRatio": 71.11234909,
+    "eps": 2.35
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-31",
+    "roe": 12.1,
+    "grossMargin": 28.0890660032,
+    "ocps": 9.89280951253,
+    "debtRatio": 74.3168501816,
+    "eps": 0.95
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-04-29",
+    "roe": 27.24,
+    "grossMargin": 32.4597052701,
+    "ocps": 7.377055710716,
+    "debtRatio": 69.9646231384,
+    "eps": 2.08
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-19",
+    "roe": 12.62,
+    "grossMargin": 35.6938353709,
+    "ocps": 1.904152820347,
+    "debtRatio": 73.2691704617,
+    "eps": 1.06
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-04-27",
+    "roe": 30.44,
+    "grossMargin": 32.7018330366,
+    "ocps": 2.470182328346,
+    "debtRatio": 69.868425241,
+    "eps": 2.57
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 16.14,
+    "grossMargin": 31.9372979446,
+    "ocps": 0.604604793664,
+    "debtRatio": 73.8224449143,
+    "eps": 1.57
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-04-26",
+    "roe": 37.44,
+    "grossMargin": 32.8577137378,
+    "ocps": 2.715893231527,
+    "debtRatio": 68.9030390343,
+    "eps": 3.72
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-31",
+    "roe": 17.8,
+    "grossMargin": 30.0265260771,
+    "ocps": 1.485964407369,
+    "debtRatio": 63.6441350508,
+    "eps": 2.13
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-04-29",
+    "roe": 33.36,
+    "grossMargin": 30.2281692815,
+    "ocps": 4.478390421604,
+    "debtRatio": 63.0962952122,
+    "eps": 4.36
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-31",
+    "roe": 14.95,
+    "grossMargin": 31.0230011081,
+    "ocps": 2.735505889589,
+    "debtRatio": 66.8108577505,
+    "eps": 2.29
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-04-30",
+    "roe": 25.72,
+    "grossMargin": 27.5815391959,
+    "ocps": 4.636795538112,
+    "debtRatio": 60.4032928375,
+    "eps": 4.11
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-31",
+    "roe": 5.57,
+    "grossMargin": 21.1141701268,
+    "ocps": -0.75097703494,
+    "debtRatio": 59.2650157989,
+    "eps": 1.06
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-04-29",
+    "roe": 18.88,
+    "grossMargin": 26.1417233686,
+    "ocps": 3.198054849747,
+    "debtRatio": 58.1400486153,
+    "eps": 3.71
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-23",
+    "roe": 8.11,
+    "grossMargin": 23.7373446444,
+    "ocps": -1.009223988795,
+    "debtRatio": 67.9260217391,
+    "eps": 1.62
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-04-30",
+    "roe": 21.34,
+    "grossMargin": 24.2814230558,
+    "ocps": 0.320293038294,
+    "debtRatio": 66.2308934644,
+    "eps": 4.04
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 11.09,
+    "grossMargin": 24.4949628973,
+    "ocps": 2.222390594776,
+    "debtRatio": 71.5879885202,
+    "eps": 1.94
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-04-29",
+    "roe": 24.19,
+    "grossMargin": 26.035460021,
+    "ocps": 5.09081342027,
+    "debtRatio": 71.3082414149,
+    "eps": 4.43
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-31",
+    "roe": 12.23,
+    "grossMargin": 28.746600632,
+    "ocps": 5.479926923028,
+    "debtRatio": 72.3712926628,
+    "eps": 2.26
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-04-30",
+    "roe": 26.53,
+    "grossMargin": 29.427392416,
+    "ocps": 10.014981862087,
+    "debtRatio": 67.2205205347,
+    "eps": 5.22
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-31",
+    "roe": 11.41,
+    "grossMargin": 29.3719225785,
+    "ocps": 0.909571543408,
+    "debtRatio": 68.4335330088,
+    "eps": 2.56
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-04-28",
+    "roe": 25.42,
+    "grossMargin": 29.4282401746,
+    "ocps": 5.243192857052,
+    "debtRatio": 61.5485043248,
+    "eps": 5.83
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-29",
+    "roe": 10.09,
+    "grossMargin": 28.489913657,
+    "ocps": 5.057402283831,
+    "debtRatio": 65.205541119,
+    "eps": 2.6
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-04-29",
+    "roe": 20.3,
+    "grossMargin": 29.8073230213,
+    "ocps": 8.280620418998,
+    "debtRatio": 61.7266230738,
+    "eps": 5.2
+   }
+  ],
+  "sh600941": [
+   {
+    "reportDate": "1999-12-31",
+    "noticeDate": "2002-10-25",
+    "roe": null,
+    "grossMargin": 35.3157445046,
+    "ocps": null,
+    "debtRatio": 34.7034940241,
+    "eps": null
+   },
+   {
+    "reportDate": "2000-12-31",
+    "noticeDate": "2002-10-25",
+    "roe": null,
+    "grossMargin": 41.2809306906,
+    "ocps": null,
+    "debtRatio": 46.4580217083,
+    "eps": null
+   },
+   {
+    "reportDate": "2001-12-31",
+    "noticeDate": "2002-10-25",
+    "roe": null,
+    "grossMargin": 40.8766981292,
+    "ocps": null,
+    "debtRatio": 35.6663923246,
+    "eps": null
+   },
+   {
+    "reportDate": "2002-06-30",
+    "noticeDate": "2002-10-25",
+    "roe": null,
+    "grossMargin": 40.099009901,
+    "ocps": null,
+    "debtRatio": 31.2429866429,
+    "eps": null
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2010-11-11",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": 33.585865308,
+    "eps": null
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-11-11",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": 32.6578956571,
+    "eps": null
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2010-11-11",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": 32.4386984806,
+    "eps": null
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-11-11",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": 34.7821097177,
+    "eps": null
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-06-30",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": null,
+    "debtRatio": 33.0108418848,
+    "eps": null
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-29",
+    "roe": null,
+    "grossMargin": -412.1078431373,
+    "ocps": null,
+    "debtRatio": 31.7186984939,
+    "eps": 6.27
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2021-08-18",
+    "roe": 11.74,
+    "grossMargin": 32.644787933,
+    "ocps": 10.07,
+    "debtRatio": 31.9937225528,
+    "eps": 5.7
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2021-08-18",
+    "roe": 10.2,
+    "grossMargin": 31.2513322528,
+    "ocps": 12.09,
+    "debtRatio": 32.7459628342,
+    "eps": 5.19
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-08-18",
+    "roe": 9.8,
+    "grossMargin": 30.5714322913,
+    "ocps": 15.03,
+    "debtRatio": 33.9782651594,
+    "eps": 5.27
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-18",
+    "roe": 5.2,
+    "grossMargin": 29.4173070031,
+    "ocps": 7.89,
+    "debtRatio": 35.045913867,
+    "eps": 2.89
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-24",
+    "roe": 10.1,
+    "grossMargin": 28.8064480382,
+    "ocps": null,
+    "debtRatio": 34.9405075339,
+    "eps": 5.66
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-12",
+    "roe": 5.7,
+    "grossMargin": 28.5848824995,
+    "ocps": 6.8938442289,
+    "debtRatio": 33.2216581577,
+    "eps": 3.29
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-24",
+    "roe": 10.1,
+    "grossMargin": 27.7827153434,
+    "ocps": 13.14198739247,
+    "debtRatio": 33.3702936159,
+    "eps": 5.88
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-11",
+    "roe": 5.9,
+    "grossMargin": 28.8122339694,
+    "ocps": 7.510145026952,
+    "debtRatio": 33.4668679995,
+    "eps": 3.56
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-22",
+    "roe": 10.2,
+    "grossMargin": 28.2322856529,
+    "ocps": 14.201379072257,
+    "debtRatio": 33.0380201466,
+    "eps": 6.16
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-09",
+    "roe": 6,
+    "grossMargin": 30.8113120583,
+    "ocps": 6.126929455766,
+    "debtRatio": 32.1067186492,
+    "eps": 3.75
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-21",
+    "roe": 10.4,
+    "grossMargin": 29.0160354126,
+    "ocps": 14.673808708936,
+    "debtRatio": 34.3293482765,
+    "eps": 6.45
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-08",
+    "roe": 6.1,
+    "grossMargin": 31.6159987053,
+    "ocps": 3.879036103536,
+    "debtRatio": 33.1453231634,
+    "eps": 3.9
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-27",
+    "roe": 9.9,
+    "grossMargin": 28.8682872669,
+    "ocps": 10.7610641383,
+    "debtRatio": 33.2236122247,
+    "eps": 6.35
+   }
+  ],
+  "sh601225": [
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2011-01-30",
+    "roe": null,
+    "grossMargin": null,
+    "ocps": 0.208606108554,
+    "debtRatio": 65.4885204779,
+    "eps": null
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2011-08-25",
+    "roe": 15.58,
+    "grossMargin": 41.7927352592,
+    "ocps": 0,
+    "debtRatio": 53.084744133,
+    "eps": 0.25
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-08-25",
+    "roe": 13.79,
+    "grossMargin": 41.7973916798,
+    "ocps": 0.67,
+    "debtRatio": 50.9394848746,
+    "eps": 0.24
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-08-25",
+    "roe": 27.14,
+    "grossMargin": 47.1142074722,
+    "ocps": 1.27,
+    "debtRatio": 49.6721841268,
+    "eps": 0.61
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-25",
+    "roe": 19.09,
+    "grossMargin": 51.1000827105,
+    "ocps": 0.69,
+    "debtRatio": 53.8916934245,
+    "eps": 0.5
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2013-06-06",
+    "roe": 37.89,
+    "grossMargin": 51.2335741964,
+    "ocps": 1.678151804884,
+    "debtRatio": 48.3376632431,
+    "eps": 1.01
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2014-01-08",
+    "roe": 23.47,
+    "grossMargin": 42.6043540115,
+    "ocps": 0.546453493,
+    "debtRatio": 53.3341465785,
+    "eps": 0.71
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2014-01-08",
+    "roe": 8.7,
+    "grossMargin": 43.0849494034,
+    "ocps": 0.327171787358,
+    "debtRatio": 49.3572615807,
+    "eps": 0.3
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-04-25",
+    "roe": 11.52,
+    "grossMargin": 33.4255135808,
+    "ocps": 0.663100267138,
+    "debtRatio": 51.3341917847,
+    "eps": 0.39
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-22",
+    "roe": 2.39,
+    "grossMargin": 35.3403313553,
+    "ocps": 0.034568888947,
+    "debtRatio": 51.3064943386,
+    "eps": 0.08
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-04-25",
+    "roe": 2.79,
+    "grossMargin": 34.5378055181,
+    "ocps": 0.012141589464,
+    "debtRatio": 51.8259845599,
+    "eps": 0.1
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-29",
+    "roe": -3.13,
+    "grossMargin": 29.0276088214,
+    "ocps": 0.08527520995,
+    "debtRatio": 54.3770032857,
+    "eps": -0.1
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-04-23",
+    "roe": -9.1,
+    "grossMargin": 32.2037047776,
+    "ocps": -0.088858762923,
+    "debtRatio": 58.0740980658,
+    "eps": -0.3
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-27",
+    "roe": 0.79,
+    "grossMargin": 35.2406391894,
+    "ocps": 0.063143833336,
+    "debtRatio": 53.3558660237,
+    "eps": 0.03
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-04-28",
+    "roe": 8.35,
+    "grossMargin": 43.3887959576,
+    "ocps": 0.8266537896,
+    "debtRatio": 52.4291558982,
+    "eps": 0.28
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-26",
+    "roe": 14.6,
+    "grossMargin": 54.4510138635,
+    "ocps": 0.578059031601,
+    "debtRatio": 47.3366506053,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-30",
+    "roe": 26.59,
+    "grossMargin": 55.4029944252,
+    "ocps": 1.693086464516,
+    "debtRatio": 44.4345298045,
+    "eps": 1.04
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-10",
+    "roe": 12.5,
+    "grossMargin": 54.6780952412,
+    "ocps": 0.635164705221,
+    "debtRatio": 44.8631401865,
+    "eps": 0.59
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-01-25",
+    "roe": 22.91,
+    "grossMargin": 48.6907806411,
+    "ocps": 1.975826879318,
+    "debtRatio": 44.9190308994,
+    "eps": 1.1
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-16",
+    "roe": 11,
+    "grossMargin": 43.9409197123,
+    "ocps": 1.103398126242,
+    "debtRatio": 42.2141780753,
+    "eps": 0.6
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-02-27",
+    "roe": 21.27,
+    "grossMargin": 40.833831069,
+    "ocps": 1.938104040099,
+    "debtRatio": 39.843455743,
+    "eps": 1.2
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-26",
+    "roe": 9.34,
+    "grossMargin": 33.706664207,
+    "ocps": 0.453595794249,
+    "debtRatio": 39.7297098001,
+    "eps": 0.51
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-04-30",
+    "roe": 19.37,
+    "grossMargin": 27.3990616069,
+    "ocps": 2.114653657381,
+    "debtRatio": 39.7787159173,
+    "eps": 1.53
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-31",
+    "roe": 11.65,
+    "grossMargin": 29.971922414,
+    "ocps": 1.44750368285,
+    "debtRatio": 40.6051043903,
+    "eps": 0.86
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-04-28",
+    "roe": 21.5,
+    "grossMargin": 36.8426596145,
+    "ocps": 5.426264940603,
+    "debtRatio": 37.6112372525,
+    "eps": 2.21
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 25.52,
+    "grossMargin": 43.9618398482,
+    "ocps": 1.858125674635,
+    "debtRatio": 36.9403013754,
+    "eps": 2.64
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-04-27",
+    "roe": 32.47,
+    "grossMargin": 44.98919646,
+    "ocps": 5.789022448972,
+    "debtRatio": 35.3267702265,
+    "eps": 3.63
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-31",
+    "roe": 10.86,
+    "grossMargin": 37.0201914787,
+    "ocps": 1.695447044273,
+    "debtRatio": 39.7435773388,
+    "eps": 1.19
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-04-26",
+    "roe": 20.64,
+    "grossMargin": 37.3300275048,
+    "ocps": 4.330635859985,
+    "debtRatio": 41.0616202306,
+    "eps": 2.38
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-30",
+    "roe": 10.68,
+    "grossMargin": 34.0607140497,
+    "ocps": 2.25894031904,
+    "debtRatio": 35.4403455175,
+    "eps": 1.14
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-04-26",
+    "roe": 21.32,
+    "grossMargin": 32.6884126429,
+    "ocps": 4.368255740372,
+    "debtRatio": 43.7124054683,
+    "eps": 2.31
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-28",
+    "roe": 8.02,
+    "grossMargin": 28.0982051762,
+    "ocps": 1.631266595844,
+    "debtRatio": 42.8764175159,
+    "eps": 0.79
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-04-25",
+    "roe": 17.88,
+    "grossMargin": 29.0587175782,
+    "ocps": 3.637882698511,
+    "debtRatio": 41.8428735173,
+    "eps": 1.73
+   }
+  ],
+  "sh601919": [
+   {
+    "reportDate": "2003-12-31",
+    "noticeDate": "2006-10-23",
+    "roe": null,
+    "grossMargin": 15.7627289918,
+    "ocps": 0,
+    "debtRatio": 83.9400268249,
+    "eps": null
+   },
+   {
+    "reportDate": "2004-12-31",
+    "noticeDate": "2006-10-23",
+    "roe": null,
+    "grossMargin": 21.2900009651,
+    "ocps": 1.660119056412,
+    "debtRatio": 70.2035552324,
+    "eps": null
+   },
+   {
+    "reportDate": "2005-12-31",
+    "noticeDate": "2007-06-08",
+    "roe": 22.56,
+    "grossMargin": 25.5555478876,
+    "ocps": 0.93,
+    "debtRatio": 53.1841106513,
+    "eps": 0.75
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2007-06-08",
+    "roe": 22.25,
+    "grossMargin": 18.7863016592,
+    "ocps": 1.35,
+    "debtRatio": 48.437516646,
+    "eps": 0.9
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-27",
+    "roe": 4.89,
+    "grossMargin": 23.5015206756,
+    "ocps": 0.13,
+    "debtRatio": 44.1945492297,
+    "eps": 0.84
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-04-23",
+    "roe": 41.63,
+    "grossMargin": 26.4447375161,
+    "ocps": 2.46,
+    "debtRatio": 52.5926589739,
+    "eps": 2.05
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-28",
+    "roe": 27.35,
+    "grossMargin": 32.0039927675,
+    "ocps": 1.63,
+    "debtRatio": 45.6020261029,
+    "eps": 1.39
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-04-23",
+    "roe": 22.36,
+    "grossMargin": 24.7800403737,
+    "ocps": 2.29,
+    "debtRatio": 48.520141356,
+    "eps": 1.06
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-26",
+    "roe": -9.52,
+    "grossMargin": -8.8265264948,
+    "ocps": -0.61,
+    "debtRatio": 57.97134056,
+    "eps": -0.45
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-30",
+    "roe": -15.8,
+    "grossMargin": -3.6338413373,
+    "ocps": -0.58,
+    "debtRatio": 61.4825891096,
+    "eps": -0.74
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-26",
+    "roe": 7.83,
+    "grossMargin": 18.9736093699,
+    "ocps": 0.46,
+    "debtRatio": 59.4646399275,
+    "eps": 0.35
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-30",
+    "roe": 14.98,
+    "grossMargin": 17.7616349707,
+    "ocps": 1.090229021118,
+    "debtRatio": 58.7692597737,
+    "eps": 0.66
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-26",
+    "roe": -6.25,
+    "grossMargin": 2.7599061384,
+    "ocps": -0.08,
+    "debtRatio": 62.3919332542,
+    "eps": -0.27
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-30",
+    "roe": -25.34,
+    "grossMargin": -4.3255159701,
+    "ocps": -0.490497397839,
+    "debtRatio": 68.1329192332,
+    "eps": -1.02
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-30",
+    "roe": -15.07,
+    "grossMargin": -1.2109892856,
+    "ocps": -0.309948543479,
+    "debtRatio": 70.9293258766,
+    "eps": -0.48
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-28",
+    "roe": -31.95,
+    "grossMargin": -0.5217532466,
+    "ocps": -0.518497415986,
+    "debtRatio": 74.7699161648,
+    "eps": -0.94
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-30",
+    "roe": -4.07,
+    "grossMargin": -1.264686228,
+    "ocps": -0.332795471911,
+    "debtRatio": 75.3273067918,
+    "eps": -0.1
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-28",
+    "roe": 0.96,
+    "grossMargin": 0.8211924976,
+    "ocps": -0.228862909676,
+    "debtRatio": 73.9919123834,
+    "eps": 0.02
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-29",
+    "roe": -9.82,
+    "grossMargin": 6.1979468715,
+    "ocps": 0.136931134821,
+    "debtRatio": 73.1859166833,
+    "eps": -0.22
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-27",
+    "roe": 1.49,
+    "grossMargin": 7.0248945483,
+    "ocps": 0.577638897872,
+    "debtRatio": 71.1343609578,
+    "eps": 0.04
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-28",
+    "roe": 7.8,
+    "grossMargin": 4.4610307747,
+    "ocps": 0.627969955149,
+    "debtRatio": 70.7714809237,
+    "eps": 0.19
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-31",
+    "roe": 1.64,
+    "grossMargin": 4.9590012669,
+    "ocps": 0.692208441385,
+    "debtRatio": 66.8702623575,
+    "eps": 0.05
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-26",
+    "roe": -29.77,
+    "grossMargin": -5.0688264933,
+    "ocps": 0.007908268513,
+    "debtRatio": 66.7236340646,
+    "eps": -0.7
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-31",
+    "roe": -44.19,
+    "grossMargin": -0.9915931695,
+    "ocps": 0.148736430215,
+    "debtRatio": 68.6184612808,
+    "eps": -0.97
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-31",
+    "roe": 9.59,
+    "grossMargin": 8.8642491117,
+    "ocps": 0.174406079364,
+    "debtRatio": 66.5218243173,
+    "eps": 0.18
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-30",
+    "roe": 13.77,
+    "grossMargin": 8.6877928061,
+    "ocps": 0.694190380567,
+    "debtRatio": 67.1817866658,
+    "eps": 0.26
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-31",
+    "roe": 0.2,
+    "grossMargin": 6.5811452956,
+    "ocps": 0.045639049401,
+    "debtRatio": 69.9635548436,
+    "eps": 0.004
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-30",
+    "roe": 5.52,
+    "grossMargin": 8.4620423603,
+    "ocps": 0.795865042137,
+    "debtRatio": 75.2993997096,
+    "eps": 0.12
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-31",
+    "roe": 4.41,
+    "grossMargin": 10.913706121,
+    "ocps": 0.772202470849,
+    "debtRatio": 75.4652667098,
+    "eps": 0.1
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-31",
+    "roe": 21.57,
+    "grossMargin": 10.7423389821,
+    "ocps": 1.729460498507,
+    "debtRatio": 73.638862628,
+    "eps": 0.56
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-29",
+    "roe": 3.15,
+    "grossMargin": 9.3499915126,
+    "ocps": 0.932963321282,
+    "debtRatio": 72.1275630295,
+    "eps": 0.07
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-31",
+    "roe": 25.16,
+    "grossMargin": 14.2087915243,
+    "ocps": 3.673106406147,
+    "debtRatio": 71.0593929259,
+    "eps": 0.62
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-31",
+    "roe": 59.65,
+    "grossMargin": 38.2400021674,
+    "ocps": 5.187370270435,
+    "debtRatio": 63.0002335689,
+    "eps": 2.33
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-31",
+    "roe": 100.57,
+    "grossMargin": 42.300244241,
+    "ocps": 10.67860588351,
+    "debtRatio": 56.6809502249,
+    "eps": 5.59
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-31",
+    "roe": 38.7,
+    "grossMargin": 47.1705376782,
+    "ocps": 7.029129942445,
+    "debtRatio": 51.4792607008,
+    "eps": 4.05
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-31",
+    "roe": 59.84,
+    "grossMargin": 44.2561143315,
+    "ocps": 12.227430688824,
+    "debtRatio": 50.4242659489,
+    "eps": 6.83
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-30",
+    "roe": 7.85,
+    "grossMargin": 22.1789819994,
+    "ocps": 0.820123562816,
+    "debtRatio": 48.5582670735,
+    "eps": 1.03
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-29",
+    "roe": 11.8,
+    "grossMargin": 16.361328294,
+    "ocps": 1.405248473498,
+    "debtRatio": 47.3915951902,
+    "eps": 1.48
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-30",
+    "roe": 8.23,
+    "grossMargin": 23.4580316434,
+    "ocps": 1.419393934131,
+    "debtRatio": 44.8896620762,
+    "eps": 1.05
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-22",
+    "roe": 22.6,
+    "grossMargin": 29.5411477139,
+    "ocps": 4.342689812278,
+    "debtRatio": 42.6985531156,
+    "eps": 3.08
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-29",
+    "roe": 7.35,
+    "grossMargin": 21.1439021854,
+    "ocps": 1.664130715065,
+    "debtRatio": 43.2506926702,
+    "eps": 1.12
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-20",
+    "roe": 13.17,
+    "grossMargin": 20.0494163485,
+    "ocps": 2.940356062904,
+    "debtRatio": 41.4157469326,
+    "eps": 1.99
+   }
+  ],
+  "sh600585": [
+   {
+    "reportDate": "2006-06-30",
+    "noticeDate": "2007-08-18",
+    "roe": 8.33,
+    "grossMargin": 25.5479890933,
+    "ocps": 0.7,
+    "debtRatio": 63.6158245118,
+    "eps": 0.46
+   },
+   {
+    "reportDate": "2006-12-31",
+    "noticeDate": "2008-03-28",
+    "roe": 22.6,
+    "grossMargin": 28.495378392,
+    "ocps": 2.33,
+    "debtRatio": 61.327601555,
+    "eps": 1.19
+   },
+   {
+    "reportDate": "2007-06-30",
+    "noticeDate": "2008-08-15",
+    "roe": 10.72,
+    "grossMargin": 29.2354530818,
+    "ocps": 0.54,
+    "debtRatio": 62.0431807381,
+    "eps": 0.65
+   },
+   {
+    "reportDate": "2007-12-31",
+    "noticeDate": "2009-03-31",
+    "roe": 26.39,
+    "grossMargin": 31.1587230286,
+    "ocps": 1.7,
+    "debtRatio": 62.7978825585,
+    "eps": 1.7
+   },
+   {
+    "reportDate": "2008-06-30",
+    "noticeDate": "2009-08-20",
+    "roe": 9.07,
+    "grossMargin": 28.1440811612,
+    "ocps": 0.59,
+    "debtRatio": 42.5390677459,
+    "eps": 0.82
+   },
+   {
+    "reportDate": "2008-12-31",
+    "noticeDate": "2010-03-30",
+    "roe": 13.81,
+    "grossMargin": 24.9155722793,
+    "ocps": 1.56,
+    "debtRatio": 40.5902993386,
+    "eps": 1.55
+   },
+   {
+    "reportDate": "2009-06-30",
+    "noticeDate": "2010-08-17",
+    "roe": 5.1,
+    "grossMargin": 25.4061523843,
+    "ocps": 2.49,
+    "debtRatio": 36.9945154961,
+    "eps": 0.37
+   },
+   {
+    "reportDate": "2009-12-31",
+    "noticeDate": "2011-03-29",
+    "roe": 13.17,
+    "grossMargin": 28.5326906611,
+    "ocps": 1.33,
+    "debtRatio": 37.8498117665,
+    "eps": 1
+   },
+   {
+    "reportDate": "2010-06-30",
+    "noticeDate": "2010-08-17",
+    "roe": 6.09,
+    "grossMargin": 25.2299701633,
+    "ocps": 0.06,
+    "debtRatio": 42.4309775906,
+    "eps": 0.34
+   },
+   {
+    "reportDate": "2010-12-31",
+    "noticeDate": "2011-03-29",
+    "roe": 19.39,
+    "grossMargin": 32.0839266377,
+    "ocps": 1.7,
+    "debtRatio": 41.0184923468,
+    "eps": 1.16
+   },
+   {
+    "reportDate": "2011-06-30",
+    "noticeDate": "2011-08-16",
+    "roe": 15.77,
+    "grossMargin": 42.4704888571,
+    "ocps": 0.98,
+    "debtRatio": 45.9502674857,
+    "eps": 1.13
+   },
+   {
+    "reportDate": "2011-12-31",
+    "noticeDate": "2012-03-27",
+    "roe": 29.1,
+    "grossMargin": 39.889957093,
+    "ocps": 1.98,
+    "debtRatio": 44.2383215426,
+    "eps": 2.19
+   },
+   {
+    "reportDate": "2012-06-30",
+    "noticeDate": "2012-08-15",
+    "roe": 6.38,
+    "grossMargin": 26.9122716473,
+    "ocps": 1.270495237181,
+    "debtRatio": 41.8271709025,
+    "eps": 0.55
+   },
+   {
+    "reportDate": "2012-12-31",
+    "noticeDate": "2013-03-23",
+    "roe": 13.5,
+    "grossMargin": 27.7591021163,
+    "ocps": 2.17,
+    "debtRatio": 41.5287584109,
+    "eps": 1.19
+   },
+   {
+    "reportDate": "2013-06-30",
+    "noticeDate": "2013-08-16",
+    "roe": 6.14,
+    "grossMargin": 28.2498784795,
+    "ocps": 1.199193591093,
+    "debtRatio": 39.226997482,
+    "eps": 0.58
+   },
+   {
+    "reportDate": "2013-12-31",
+    "noticeDate": "2014-03-25",
+    "roe": 18.05,
+    "grossMargin": 33.0131032554,
+    "ocps": 2.87,
+    "debtRatio": 36.8757634932,
+    "eps": 1.77
+   },
+   {
+    "reportDate": "2014-06-30",
+    "noticeDate": "2014-08-22",
+    "roe": 9.92,
+    "grossMargin": 35.82620443,
+    "ocps": 1.538691913784,
+    "debtRatio": 33.8680821166,
+    "eps": 1.1
+   },
+   {
+    "reportDate": "2014-12-31",
+    "noticeDate": "2015-03-24",
+    "roe": 18.47,
+    "grossMargin": 33.7305407896,
+    "ocps": 3.33,
+    "debtRatio": 31.9226089159,
+    "eps": 2.07
+   },
+   {
+    "reportDate": "2015-06-30",
+    "noticeDate": "2015-08-22",
+    "roe": 6.9,
+    "grossMargin": 28.1994538589,
+    "ocps": 0.790017675079,
+    "debtRatio": 32.1333010027,
+    "eps": 0.89
+   },
+   {
+    "reportDate": "2015-12-31",
+    "noticeDate": "2016-03-24",
+    "roe": 11.03,
+    "grossMargin": 27.6368700527,
+    "ocps": 1.87,
+    "debtRatio": 30.128003068,
+    "eps": 1.42
+   },
+   {
+    "reportDate": "2016-06-30",
+    "noticeDate": "2016-08-23",
+    "roe": 4.67,
+    "grossMargin": 30.378925275,
+    "ocps": 0.880736088272,
+    "debtRatio": 27.1758677611,
+    "eps": 0.63
+   },
+   {
+    "reportDate": "2016-12-31",
+    "noticeDate": "2017-03-24",
+    "roe": 11.59,
+    "grossMargin": 32.4715263912,
+    "ocps": 2.49,
+    "debtRatio": 26.6772441997,
+    "eps": 1.61
+   },
+   {
+    "reportDate": "2017-06-30",
+    "noticeDate": "2017-08-22",
+    "roe": 8.46,
+    "grossMargin": 32.3659741713,
+    "ocps": 0.952397666818,
+    "debtRatio": 25.447530392,
+    "eps": 1.27
+   },
+   {
+    "reportDate": "2017-12-31",
+    "noticeDate": "2018-03-23",
+    "roe": 19.12,
+    "grossMargin": 35.0853828947,
+    "ocps": 3.28,
+    "debtRatio": 24.7075803544,
+    "eps": 2.99
+   },
+   {
+    "reportDate": "2018-06-30",
+    "noticeDate": "2018-08-23",
+    "roe": 13.65,
+    "grossMargin": 44.227235918,
+    "ocps": 2.254350694626,
+    "debtRatio": 20.4133585456,
+    "eps": 2.44
+   },
+   {
+    "reportDate": "2018-12-31",
+    "noticeDate": "2019-03-22",
+    "roe": 29.66,
+    "grossMargin": 36.7380293069,
+    "ocps": 6.8,
+    "debtRatio": 22.153169722,
+    "eps": 5.63
+   },
+   {
+    "reportDate": "2019-06-30",
+    "noticeDate": "2019-08-23",
+    "roe": 12.84,
+    "grossMargin": 32.4456654105,
+    "ocps": 2.737025010136,
+    "debtRatio": 19.0045152002,
+    "eps": 2.88
+   },
+   {
+    "reportDate": "2019-12-31",
+    "noticeDate": "2020-03-21",
+    "roe": 27,
+    "grossMargin": 33.286715165,
+    "ocps": 7.7,
+    "debtRatio": 20.3922739148,
+    "eps": 6.34
+   },
+   {
+    "reportDate": "2020-06-30",
+    "noticeDate": "2020-08-22",
+    "roe": 11.18,
+    "grossMargin": 31.4061471652,
+    "ocps": 2.747831375907,
+    "debtRatio": 18.8076204612,
+    "eps": 3.03
+   },
+   {
+    "reportDate": "2020-12-31",
+    "noticeDate": "2021-03-26",
+    "roe": 23.59,
+    "grossMargin": 28.8361605492,
+    "ocps": 6.57,
+    "debtRatio": 16.4660915192,
+    "eps": 6.63
+   },
+   {
+    "reportDate": "2021-06-30",
+    "noticeDate": "2021-08-28",
+    "roe": 8.92,
+    "grossMargin": 27.3581469304,
+    "ocps": 2.328803827112,
+    "debtRatio": 14.5531364956,
+    "eps": 2.82
+   },
+   {
+    "reportDate": "2021-12-31",
+    "noticeDate": "2022-03-26",
+    "roe": 19.23,
+    "grossMargin": 29.6349764987,
+    "ocps": 6.4,
+    "debtRatio": 16.7849073573,
+    "eps": 6.28
+   },
+   {
+    "reportDate": "2022-06-30",
+    "noticeDate": "2022-08-26",
+    "roe": 5.3,
+    "grossMargin": 28.4744905829,
+    "ocps": 0.843195531183,
+    "debtRatio": 17.9571031369,
+    "eps": 1.86
+   },
+   {
+    "reportDate": "2022-12-31",
+    "noticeDate": "2023-03-28",
+    "roe": 8.51,
+    "grossMargin": 21.3028726073,
+    "ocps": 1.81,
+    "debtRatio": 19.6669936648,
+    "eps": 2.96
+   },
+   {
+    "reportDate": "2023-06-30",
+    "noticeDate": "2023-08-22",
+    "roe": 3.47,
+    "grossMargin": 19.4518244918,
+    "ocps": 0.955075874712,
+    "debtRatio": 19.3241531571,
+    "eps": 1.22
+   },
+   {
+    "reportDate": "2023-12-31",
+    "noticeDate": "2024-03-20",
+    "roe": 5.64,
+    "grossMargin": 16.5854521471,
+    "ocps": 3.79,
+    "debtRatio": 19.6199779508,
+    "eps": 1.97
+   },
+   {
+    "reportDate": "2024-06-30",
+    "noticeDate": "2024-08-28",
+    "roe": 1.79,
+    "grossMargin": 18.9251483461,
+    "ocps": 1.296525175639,
+    "debtRatio": 19.5009818351,
+    "eps": 0.63
+   },
+   {
+    "reportDate": "2024-12-31",
+    "noticeDate": "2025-03-25",
+    "roe": 4.14,
+    "grossMargin": 21.7045478576,
+    "ocps": 3.5,
+    "debtRatio": 21.3080508295,
+    "eps": 1.46
+   },
+   {
+    "reportDate": "2025-06-30",
+    "noticeDate": "2025-08-27",
+    "roe": 2.3,
+    "grossMargin": 25.1992102759,
+    "ocps": 1.563704549319,
+    "debtRatio": 20.5168760897,
+    "eps": 0.83
+   },
+   {
+    "reportDate": "2025-12-31",
+    "noticeDate": "2026-03-25",
+    "roe": 4.27,
+    "grossMargin": 24.163947065,
+    "ocps": 3.14077323136,
+    "debtRatio": 20.4249564235,
+    "eps": 1.54
+   }
+  ]
+ }
+}

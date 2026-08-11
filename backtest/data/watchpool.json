@@ -1,0 +1,1198 @@
+{
+  "meta": {
+    "strategy": "可持续高股息估值底价值投资策略",
+    "formula": "可持续预期股息率 = 预期每股分红 ÷ 当前股价 × 100%",
+    "updated": "2026-08-07",
+    "disclaimer": "预期每股分红(expDps)为按最近已宣告分红年化估算的参考值；TTM股息率(dividendRatioTtm)与PE/PB等估值指标由行情接口自动获取(A股)，divHist为近三年实际分红记录。请结合公司盈利与分红政策自行复核。",
+    "valuation_bands": [
+      {
+        "max": 5,
+        "label": "正常/偏贵",
+        "class": "band-normal"
+      },
+      {
+        "max": 6,
+        "label": "开始低估",
+        "class": "band-cheap"
+      },
+      {
+        "max": 7,
+        "label": "明显低估",
+        "class": "band-cheaper"
+      },
+      {
+        "max": 8,
+        "label": "深度低估",
+        "class": "band-deep"
+      },
+      {
+        "max": 999,
+        "label": "极端低估·重点研究",
+        "class": "band-extreme"
+      }
+    ],
+    "scope": "当前仅跟踪A股（港股/美股暂不考虑）"
+  },
+  "stocks": [
+    {
+      "code": "sh601088",
+      "name": "中国神华",
+      "market": "A股",
+      "expDps": 2.01,
+      "note": "煤价下行致分红随盈利波动，关注其高分红承诺兑现",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 1.03,
+          "exDate": "2026-07-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.98,
+          "exDate": "2025-11-10"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.26,
+          "exDate": "2025-07-07"
+        }
+      ],
+      "category": "煤炭",
+      "isResource": true,
+      "biz": "煤炭开采、电力与铁路运输一体化"
+    },
+    {
+      "code": "sh600900",
+      "name": "长江电力",
+      "market": "A股",
+      "expDps": 1.0,
+      "note": "水电龙头，现金流极稳，分红承诺长期稳固",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.79,
+          "exDate": "2026-07-17"
+        },
+        {
+          "period": "2025Q3",
+          "dps": 0.21,
+          "exDate": "2026-02-12"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.73,
+          "exDate": "2025-07-18"
+        }
+      ],
+      "category": "水电",
+      "isResource": false,
+      "biz": "水力发电开发与运营"
+    },
+    {
+      "code": "sh601398",
+      "name": "工商银行",
+      "market": "A股",
+      "expDps": 0.31,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.169,
+          "exDate": "2026-05-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.141,
+          "exDate": "2025-12-15"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.165,
+          "exDate": "2025-07-14"
+        }
+      ],
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh601939",
+      "name": "建设银行",
+      "market": "A股",
+      "expDps": 0.39,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.203,
+          "exDate": "2026-07-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.186,
+          "exDate": "2025-12-11"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.206,
+          "exDate": "2025-05-09"
+        }
+      ],
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh601288",
+      "name": "农业银行",
+      "market": "A股",
+      "expDps": 0.25,
+      "note": "国有大行，分红率约30%，稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.13,
+          "exDate": "2026-05-13"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.12,
+          "exDate": "2025-12-15"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.126,
+          "exDate": "2025-07-17"
+        }
+      ],
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh600028",
+      "name": "中国石化",
+      "market": "A股",
+      "expDps": 0.2,
+      "note": "分红+回购组合回报，油价波动影响盈利",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.112,
+          "exDate": "2026-06-17"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.088,
+          "exDate": "2025-09-12"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.14,
+          "exDate": "2025-06-18"
+        }
+      ],
+      "category": "石油石化",
+      "isResource": true,
+      "biz": "炼油、化工品与成品油销售"
+    },
+    {
+      "code": "sh601006",
+      "name": "大秦铁路",
+      "market": "A股",
+      "expDps": 0.22,
+      "note": "煤炭运输大动脉，分红率长期超50%",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.142,
+          "exDate": "2026-07-10"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.08,
+          "exDate": "2025-10-24"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.14,
+          "exDate": "2025-07-11"
+        }
+      ],
+      "category": "铁路运输",
+      "isResource": false,
+      "biz": "煤炭等大宗货物铁路运输"
+    },
+    {
+      "code": "sz000895",
+      "name": "双汇发展",
+      "market": "A股",
+      "expDps": 1.45,
+      "note": "肉制品龙头，高分红习惯，关注需求",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.8,
+          "exDate": "2026-04-29"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.65,
+          "exDate": "2025-08-22"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.75,
+          "exDate": "2025-04-30"
+        }
+      ],
+      "category": "食品饮料",
+      "isResource": false,
+      "biz": "肉类加工与肉制品销售"
+    },
+    {
+      "code": "sz000651",
+      "name": "格力电器",
+      "market": "A股",
+      "expDps": 3.0,
+      "note": "含特别分红，历史分红率极高",
+      "divHist": [
+        {
+          "period": "2025Q3",
+          "dps": 1.0,
+          "exDate": "2026-01-23"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.0,
+          "exDate": "2025-08-29"
+        },
+        {
+          "period": "2024中报",
+          "dps": 1.0,
+          "exDate": "2025-05-15"
+        }
+      ],
+      "category": "家用电器",
+      "isResource": true,
+      "biz": "空调等家电制造与销售"
+    },
+    {
+      "code": "sh600941",
+      "name": "中国移动",
+      "market": "A股",
+      "expDps": 4.7,
+      "note": "运营商龙头，承诺分红率提升至75%",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 2.2,
+          "exDate": "2026-06-05"
+        },
+        {
+          "period": "2025中报",
+          "dps": 2.5,
+          "exDate": "2025-09-01"
+        },
+        {
+          "period": "2024年报",
+          "dps": 2.29,
+          "exDate": "2025-06-06"
+        }
+      ],
+      "category": "通信",
+      "isResource": false,
+      "biz": "移动通信与宽带服务"
+    },
+    {
+      "code": "sh601225",
+      "name": "陕西煤业",
+      "market": "A股",
+      "expDps": 0.95,
+      "note": "煤炭主业稳健，分红率高",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.91,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.04,
+          "exDate": "2025-09-26"
+        },
+        {
+          "period": "2024年报",
+          "dps": 1.14,
+          "exDate": "2025-06-25"
+        }
+      ],
+      "category": "煤炭",
+      "isResource": true,
+      "biz": "煤炭开采与销售"
+    },
+    {
+      "code": "sh601919",
+      "name": "中远海控",
+      "market": "A股",
+      "expDps": 1.0,
+      "note": "强周期航运股，分红随盈利大幅波动，谨慎",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.44,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.56,
+          "exDate": "2025-10-24"
+        },
+        {
+          "period": "2024年报",
+          "dps": 1.03,
+          "exDate": "2025-06-25"
+        }
+      ],
+      "category": "航运",
+      "isResource": true,
+      "biz": "集装箱航运与码头运营"
+    },
+    {
+      "code": "sh600585",
+      "name": "海螺水泥",
+      "market": "A股",
+      "expDps": 0.85,
+      "note": "水泥行业下行期，分红仍维持但盈利承压",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.61,
+          "exDate": "2026-07-02"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.24,
+          "exDate": "2025-09-30"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.71,
+          "exDate": "2025-06-27"
+        }
+      ],
+      "category": "建材",
+      "isResource": true,
+      "biz": "水泥及熟料生产销售"
+    },
+    {
+      "code": "sh600015",
+      "name": "华夏银行",
+      "market": "A股",
+      "expDps": 0.42,
+      "category": "银行",
+      "note": "股份行，股息率较高，分红率稳定",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.32,
+          "exDate": "2026-07-30"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.1,
+          "exDate": "2026-01-23"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.305,
+          "exDate": "2025-06-26"
+        }
+      ],
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sz000807",
+      "name": "云铝股份",
+      "market": "A股",
+      "expDps": 0.7,
+      "category": "有色金属",
+      "note": "电解铝，MR Dang周期变异分析可锚定股息率(C101)",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.379,
+          "exDate": "2026-06-10"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.32,
+          "exDate": "2025-10-28"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.18,
+          "exDate": "2025-06-26"
+        }
+      ],
+      "isResource": true,
+      "biz": "电解铝及铝加工"
+    },
+    {
+      "code": "sh600219",
+      "name": "南山铝业",
+      "market": "A股",
+      "expDps": 0.43,
+      "category": "有色金属",
+      "note": "含2025特殊分红0.258，若不再派则预期分红下降(C141)",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.136,
+          "exDate": "2026-05-20"
+        },
+        {
+          "period": "2025Q3特殊",
+          "dps": 0.258,
+          "exDate": "2025-12-12"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.04,
+          "exDate": "2025-09-25"
+        }
+      ],
+      "expDpsExSpecial": 0.18,
+      "isResource": true,
+      "biz": "氧化铝、电解铝与铝加工"
+    },
+    {
+      "code": "sh601899",
+      "name": "紫金矿业",
+      "market": "A股",
+      "expDps": 0.6,
+      "category": "有色金属",
+      "note": "铜金龙头，分红随盈利增长，股息率偏低",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.38,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025中报",
+          "dps": 0.22,
+          "exDate": "2025-09-30"
+        },
+        {
+          "period": "2024年报",
+          "dps": 0.28,
+          "exDate": "2025-06-13"
+        }
+      ],
+      "isResource": true,
+      "biz": "金铜等金属矿开采冶炼"
+    },
+    {
+      "code": "sh600887",
+      "name": "伊利股份",
+      "market": "A股",
+      "expDps": 1.38,
+      "category": "食品饮料",
+      "note": "乳业龙头，高分红，关注需求与盈利",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.9,
+          "exDate": "2026-06-05"
+        },
+        {
+          "period": "2025Q3",
+          "dps": 0.48,
+          "exDate": "2025-12-17"
+        },
+        {
+          "period": "2024年报",
+          "dps": 1.22,
+          "exDate": "2025-06-06"
+        }
+      ],
+      "isResource": false,
+      "biz": "乳制品生产与销售"
+    },
+    {
+      "code": "sz002379",
+      "name": "宏桥控股",
+      "market": "A股",
+      "expDps": 0.25,
+      "category": "有色金属",
+      "note": "铝产业链，近2年仅1次分红记录，股息率低，派息持续性待观察(C141)",
+      "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 0.25,
+          "exDate": "2026-04-24"
+        }
+      ],
+      "isResource": true,
+      "biz": "铝产业链(氧化铝/电解铝/铝加工)"
+    },
+    {
+      "code": "sh600329",
+      "name": "达仁堂",
+      "market": "A股",
+      "expDps": 4.79,
+      "divHist": [
+        {
+          "period": "2026-07-03",
+          "dps": 2.34,
+          "exDate": "2026-07-10"
+        },
+        {
+          "period": "2026-02-05",
+          "dps": 2.45,
+          "exDate": "2026-02-12"
+        }
+      ],
+      "note": "中药OTC龙头，高分红率，股息率极高，警惕盈利波动与股价低基数",
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "中药制剂与OTC产品"
+    },
+    {
+      "code": "sh601216",
+      "name": "君正集团",
+      "market": "A股",
+      "expDps": 0.38,
+      "divHist": [
+        {
+          "period": "2026-07-01",
+          "dps": 0.38,
+          "exDate": "2026-07-08"
+        }
+      ],
+      "note": "化工+能源集团，股息率较高，关注主营业绩稳定性",
+      "category": "化工",
+      "isResource": true,
+      "biz": "化工(PVC等)与能源"
+    },
+    {
+      "code": "sh600066",
+      "name": "宇通客车",
+      "market": "A股",
+      "expDps": 2.5,
+      "divHist": [
+        {
+          "period": "2026-05-09",
+          "dps": 2.0,
+          "exDate": "2026-05-15"
+        },
+        {
+          "period": "2025-09-04",
+          "dps": 0.5,
+          "exDate": "2025-09-11"
+        }
+      ],
+      "note": "客车龙头，出口高增长，分红率高，关注销量与汇率",
+      "category": "汽车制造",
+      "isResource": true,
+      "biz": "客车制造与销售"
+    },
+    {
+      "code": "sh600153",
+      "name": "建发股份",
+      "market": "A股",
+      "expDps": 0.7,
+      "divHist": [
+        {
+          "period": "2026-06-16",
+          "dps": 0.5,
+          "exDate": "2026-06-24"
+        },
+        {
+          "period": "2026-02-03",
+          "dps": 0.2,
+          "exDate": "2026-02-11"
+        }
+      ],
+      "note": "供应链+地产，分红率高但地产敞口需关注",
+      "category": "供应链",
+      "isResource": false,
+      "biz": "供应链运营与地产"
+    },
+    {
+      "code": "sz002867",
+      "name": "周大生",
+      "market": "A股",
+      "expDps": 0.9,
+      "divHist": [
+        {
+          "period": "2026-07-11",
+          "dps": 0.65,
+          "exDate": "2026-07-17"
+        },
+        {
+          "period": "2025-11-05",
+          "dps": 0.25,
+          "exDate": "2025-11-11"
+        }
+      ],
+      "note": "黄金珠宝连锁，加盟扩张，分红稳定，关注金价与消费",
+      "category": "珠宝首饰",
+      "isResource": false,
+      "biz": "黄金珠宝零售"
+    },
+    {
+      "code": "sz002271",
+      "name": "东方雨虹",
+      "market": "A股",
+      "expDps": 0.93,
+      "divHist": [
+        {
+          "period": "2025-08-21",
+          "dps": 0.925,
+          "exDate": "2025-08-27"
+        }
+      ],
+      "note": "防水材料龙头，行业下行期分红仍维持，关注需求回暖(C141)",
+      "category": "建材",
+      "isResource": true,
+      "biz": "防水材料生产销售"
+    },
+    {
+      "code": "sh600398",
+      "name": "海澜之家",
+      "market": "A股",
+      "expDps": 0.41,
+      "divHist": [
+        {
+          "period": "2026-04-30",
+          "dps": 0.41,
+          "exDate": "2026-05-11"
+        }
+      ],
+      "note": "男装龙头，高分红，分红率长期70%+，关注终端消费",
+      "category": "纺织服装",
+      "isResource": false,
+      "biz": "男装品牌零售"
+    },
+    {
+      "code": "sh600566",
+      "name": "济川药业",
+      "market": "A股",
+      "expDps": 1.74,
+      "divHist": [
+        {
+          "period": "2026-06-24",
+          "dps": 1.74,
+          "exDate": "2026-06-30"
+        }
+      ],
+      "note": "医药，高分红率，业绩稳定，关注集采影响",
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "中药制剂"
+    },
+    {
+      "code": "sz002007",
+      "name": "华兰生物",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-06-09",
+          "dps": 0.5,
+          "exDate": "2026-06-15"
+        },
+        {
+          "period": "2025-10-18",
+          "dps": 0.5,
+          "exDate": "2025-10-27"
+        }
+      ],
+      "note": "血制品龙头，分红稳定，关注浆站扩张与采浆量",
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "血液制品与疫苗"
+    },
+    {
+      "code": "sz000690",
+      "name": "宝新能源",
+      "market": "A股",
+      "expDps": 0.25,
+      "divHist": [
+        {
+          "period": "2026-05-16",
+          "dps": 0.2,
+          "exDate": "2026-05-22"
+        },
+        {
+          "period": "2025-09-11",
+          "dps": 0.05,
+          "exDate": "2025-09-17"
+        }
+      ],
+      "note": "火电，分红率提升，关注煤价与电价",
+      "category": "电力",
+      "isResource": false,
+      "biz": "火电与新能源电力"
+    },
+    {
+      "code": "sz002032",
+      "name": "苏泊尔",
+      "market": "A股",
+      "expDps": 2.63,
+      "divHist": [
+        {
+          "period": "2026-05-21",
+          "dps": 2.63,
+          "exDate": "2026-05-28"
+        }
+      ],
+      "note": "小家电龙头，ROE高，分红率高，关注海外与内需",
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "炊具与小家电制造"
+    },
+    {
+      "code": "sh600750",
+      "name": "华润江中",
+      "market": "A股",
+      "expDps": 1.38,
+      "divHist": [
+        {
+          "period": "2026-06-13",
+          "dps": 0.88,
+          "exDate": "2026-06-22"
+        },
+        {
+          "period": "2025-09-27",
+          "dps": 0.5,
+          "exDate": "2025-10-13"
+        }
+      ],
+      "note": "OTC医药，连续多年分红，业绩稳健，关注渠道改革",
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "OTC中成药"
+    },
+    {
+      "code": "sh600642",
+      "name": "申能股份",
+      "market": "A股",
+      "expDps": 0.46,
+      "divHist": [
+        {
+          "period": "2026-07-08",
+          "dps": 0.46,
+          "exDate": "2026-07-14"
+        }
+      ],
+      "note": "上海公用事业，分红稳定，关注电价气价",
+      "category": "电力",
+      "isResource": false,
+      "biz": "电力与燃气"
+    },
+    {
+      "code": "sh600177",
+      "name": "雅戈尔",
+      "market": "A股",
+      "expDps": 0.44,
+      "divHist": [
+        {
+          "period": "2026-05-30",
+          "dps": 0.2,
+          "exDate": "2026-06-05"
+        },
+        {
+          "period": "2026-03-21",
+          "dps": 0.08,
+          "exDate": "2026-03-27"
+        },
+        {
+          "period": "2025-11-28",
+          "dps": 0.08,
+          "exDate": "2025-12-04"
+        }
+      ],
+      "note": "服装+投资，分红率高(近年多次派息)，关注主业与投资收益",
+      "category": "纺织服装",
+      "isResource": false,
+      "biz": "服装品牌与投资"
+    },
+    {
+      "code": "sh600295",
+      "name": "鄂尔多斯",
+      "market": "A股",
+      "expDps": 0.7,
+      "divHist": [
+        {
+          "period": "2026-06-11",
+          "dps": 0.7,
+          "exDate": "2026-06-17"
+        }
+      ],
+      "note": "煤化工+羊绒，周期品，股息率高，关注产品价格",
+      "category": "化工",
+      "isResource": true,
+      "biz": "羊绒制品与煤化工"
+    },
+    {
+      "code": "sz000719",
+      "name": "中原传媒",
+      "market": "A股",
+      "expDps": 0.66,
+      "divHist": [
+        {
+          "period": "2026-06-24",
+          "dps": 0.66,
+          "exDate": "2026-07-01"
+        }
+      ],
+      "note": "出版传媒，分红稳定，现金充沛，关注数字化转型",
+      "category": "传媒出版",
+      "isResource": false,
+      "biz": "图书出版发行"
+    },
+    {
+      "code": "sz000423",
+      "name": "东阿阿胶",
+      "market": "A股",
+      "expDps": 2.71,
+      "divHist": [
+        {
+          "period": "2026-05-19",
+          "dps": 1.4355,
+          "exDate": "2026-05-25"
+        },
+        {
+          "period": "2025-08-27",
+          "dps": 1.2701,
+          "exDate": "2025-09-03"
+        }
+      ],
+      "note": "滋补品龙头，分红率高，业绩稳健增长，关注消费复苏",
+      "category": "医药生物",
+      "isResource": false,
+      "biz": "阿胶及滋补品"
+    },
+    {
+      "code": "sz000333",
+      "name": "美的集团",
+      "market": "A股",
+      "expDps": 4.3,
+      "divHist": [
+        {
+          "period": "2026-06-23",
+          "dps": 3.8,
+          "exDate": "2026-06-29"
+        },
+        {
+          "period": "2025-11-12",
+          "dps": 0.5,
+          "exDate": "2025-11-18"
+        }
+      ],
+      "note": "家电龙头，全球布局，分红率高(约50%)，关注海外需求",
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "家电全品类制造"
+    },
+    {
+      "code": "sh600803",
+      "name": "新奥股份",
+      "market": "A股",
+      "expDps": 1.14,
+      "divHist": [
+        {
+          "period": "2026-07-03",
+          "dps": 0.96,
+          "exDate": "2026-07-09"
+        },
+        {
+          "period": "2025-10-10",
+          "dps": 0.18,
+          "exDate": "2025-10-16"
+        }
+      ],
+      "note": "2024年报含特殊分红10派2.2元(每股0.22,2025-07-22除息,已过窗口)",
+      "category": "燃气",
+      "isResource": true,
+      "biz": "城市燃气与能源分销"
+    },
+    {
+      "code": "sh600007",
+      "name": "中国国贸",
+      "market": "A股",
+      "expDps": 1.07,
+      "divHist": [
+        {
+          "period": "2026-06-18",
+          "dps": 1.07,
+          "exDate": "2026-06-26"
+        }
+      ],
+      "note": "写字楼运营商，现金流稳定，分红稳定，关注租金",
+      "category": "房地产",
+      "isResource": false,
+      "biz": "商业写字楼运营"
+    },
+    {
+      "code": "sh600098",
+      "name": "广州发展",
+      "market": "A股",
+      "expDps": 0.35,
+      "divHist": [
+        {
+          "period": "2026-06-18",
+          "dps": 0.25,
+          "exDate": "2026-06-26"
+        },
+        {
+          "period": "2025-12-05",
+          "dps": 0.1,
+          "exDate": "2025-12-12"
+        }
+      ],
+      "note": "广州公用事业，分红稳定，关注燃气电力",
+      "category": "电力",
+      "isResource": false,
+      "biz": "电力燃气与能源物流"
+    },
+    {
+      "code": "sh601668",
+      "name": "中国建筑",
+      "market": "A股",
+      "expDps": 0.27,
+      "divHist": [
+        {
+          "period": "2026-07-08",
+          "dps": 0.2718,
+          "exDate": "2026-07-16"
+        }
+      ],
+      "note": "建筑央企，低估值高股息，分红率稳定，关注订单",
+      "category": "建筑",
+      "isResource": false,
+      "biz": "建筑工程与地产"
+    },
+    {
+      "code": "sz000001",
+      "name": "平安银行",
+      "market": "A股",
+      "expDps": 0.6,
+      "divHist": [
+        {
+          "period": "2026-06-05",
+          "dps": 0.36,
+          "exDate": "2026-06-12"
+        },
+        {
+          "period": "2025-09-30",
+          "dps": 0.236,
+          "exDate": "2025-10-15"
+        }
+      ],
+      "note": "股份行，股息率5%+，关注净息差与资产质量",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sz002091",
+      "name": "江苏国泰",
+      "market": "A股",
+      "expDps": 0.47,
+      "divHist": [
+        {
+          "period": "2026-05-30",
+          "dps": 0.3,
+          "exDate": "2026-06-08"
+        },
+        {
+          "period": "2025-11-11",
+          "dps": 0.17,
+          "exDate": "2025-11-18"
+        }
+      ],
+      "note": "供应链+贸易，分红率高，关注主营业务质量",
+      "category": "供应链",
+      "isResource": false,
+      "biz": "供应链服务与化工品贸易"
+    },
+    {
+      "code": "sz002508",
+      "name": "老板电器",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-05-26",
+          "dps": 0.5,
+          "exDate": "2026-06-03"
+        },
+        {
+          "period": "2025-09-06",
+          "dps": 0.5,
+          "exDate": "2025-09-12"
+        }
+      ],
+      "note": "厨电龙头，分红率高，关注地产后周期需求",
+      "category": "家用电器",
+      "isResource": false,
+      "biz": "厨电制造"
+    },
+    {
+      "code": "sh601229",
+      "name": "上海银行",
+      "market": "A股",
+      "expDps": 0.52,
+      "divHist": [
+        {
+          "period": "2026-06-02",
+          "dps": 0.22,
+          "exDate": "2026-06-08"
+        },
+        {
+          "period": "2025-10-10",
+          "dps": 0.3,
+          "exDate": "2025-10-16"
+        }
+      ],
+      "note": "城商行，股息率5%+，分红稳定，关注资产质量",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh600582",
+      "name": "天地科技",
+      "market": "A股",
+      "expDps": 0.3,
+      "divHist": [
+        {
+          "period": "2026-06-05",
+          "dps": 0.3,
+          "exDate": "2026-06-12"
+        }
+      ],
+      "note": "煤机龙头，现金流好，分红稳定，关注煤价与订单",
+      "category": "机械设备",
+      "isResource": false,
+      "biz": "煤机装备制造"
+    },
+    {
+      "code": "sh601997",
+      "name": "贵阳银行",
+      "market": "A股",
+      "expDps": 0.3,
+      "divHist": [
+        {
+          "period": "2026-06-04",
+          "dps": 0.3,
+          "exDate": "2026-06-10"
+        }
+      ],
+      "note": "城商行，股息率5%+，关注区域经济与净息差",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh601717",
+      "name": "中创智领",
+      "market": "A股",
+      "expDps": 1.25,
+      "divHist": [
+        {
+          "period": "2026-06-11",
+          "dps": 1.25,
+          "exDate": "2026-06-18"
+        }
+      ],
+      "note": "煤机装备龙头，分红率高，关注煤价与资本开支",
+      "category": "机械设备",
+      "isResource": true,
+      "biz": "煤机装备与汽车零部件"
+    },
+    {
+      "code": "sh601169",
+      "name": "北京银行",
+      "market": "A股",
+      "expDps": 0.28,
+      "divHist": [
+        {
+          "period": "2026-07-04",
+          "dps": 0.278,
+          "exDate": "2026-07-10"
+        }
+      ],
+      "note": "城商行，股息率5%+，分红稳定",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh601166",
+      "name": "兴业银行",
+      "market": "A股",
+      "expDps": 1.07,
+      "divHist": [
+        {
+          "period": "2026-06-08",
+          "dps": 0.501,
+          "exDate": "2026-06-12"
+        },
+        {
+          "period": "2026-02-02",
+          "dps": 0.565,
+          "exDate": "2026-02-06"
+        }
+      ],
+      "note": "股份行，股息率5%+，分红率约30%，关注资产质量",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh601818",
+      "name": "光大银行",
+      "market": "A股",
+      "expDps": 0.17,
+      "divHist": [
+        {
+          "period": "2026-07-23",
+          "dps": 0.07,
+          "exDate": "2026-07-30"
+        },
+        {
+          "period": "2026-01-30",
+          "dps": 0.105,
+          "exDate": "2026-02-05"
+        }
+      ],
+      "note": "股份行，股息率5%+，分红稳定，关注净息差",
+      "category": "银行",
+      "isResource": false,
+      "biz": "综合金融服务"
+    },
+    {
+      "code": "sh600741",
+      "name": "华域汽车",
+      "market": "A股",
+      "expDps": 1.0,
+      "divHist": [
+        {
+          "period": "2026-07-22",
+          "dps": 1.0,
+          "exDate": "2026-07-28"
+        }
+      ],
+      "note": "汽车零部件龙头，分红率高，关注客户结构与新能源",
+      "category": "汽车零部件",
+      "isResource": false,
+      "biz": "汽车零部件制造"
+    }
+  ]
+}

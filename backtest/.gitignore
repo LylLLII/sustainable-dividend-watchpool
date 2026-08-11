@@ -1,0 +1,19 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# WorkBuddy 会话记忆
+.workbuddy/
+
+# watchpool.json 副本不提交——权威副本在上层 data/watchpool.json
+# 运行 python sync_watchpool.py 自动同步到 backtest/data/
+backtest/data/watchpool.json

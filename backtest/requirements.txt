@@ -1,0 +1,19 @@
+# dividend-backtest — Python 依赖
+# 核心数据管道（fetch_tencent/fetch_benchmark/fetch_real_divs/apply_*/generate_bundle/dividend_backtest）
+# 全部使用 Python 标准库（json/urllib/ssl/csv/statistics/argparse），无需安装任何第三方包。
+#
+# 可选：make_chart.py（净值曲线 PNG）需要 matplotlib：
+#   pip install matplotlib
+# 运行环境：Python 3.9+，Windows/Linux/macOS 均可。
+# 注意：所有脚本读写文件均显式指定 encoding="utf-8"（Windows 默认 GBK 下也能直接运行）。
+#
+# 数据管道用法（按顺序）：
+#   1. python fetch_real_divs.py        # 拉东财真实历史分红 -> data/real_divs.json
+#   2. python fetch_tencent.py          # 拉完整股票池 K 线 -> hist/<code>.json
+#   3. python fetch_benchmark.py        # 拉 3 个基准 K 线 -> hist/bench_*.json
+#   4. python apply_watchpool_divs.py   # 用真实分红覆写 divs（去前视）
+#   5. python apply_benchmark_divs.py   # 给价格基准注入估算分红（近似全收益）
+#   6. python generate_bundle.py        # 合并 -> backtest_bundle.json
+#   7. python dividend_backtest.py      # 双模式回测 -> hist/summary_metrics.json + equity CSV
+#   8. node validate_engine.mjs         # 校验 JS/Python 双引擎 0 偏差 + 口径检查
+# 工具页：python -m http.server 8000 后打开 http://localhost:8000/backtest_tool.html

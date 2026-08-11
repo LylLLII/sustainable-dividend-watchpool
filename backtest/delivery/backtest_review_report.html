@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高股息策略回测工具 · 评审报告</title>
+<style>
+:root{
+  --bg:#f3f4f6; --card:#ffffff; --border:#d1d5db; --border-light:#e5e7eb;
+  --text:#1a202c; --sub:#4a5568; --muted:#9ca3af;
+  --navy:#1e3a5f; --navy-light:#2c5282; --navy-soft:#e2e8f0;
+  --accent:#c05621; --accent-soft:#fef3e8;
+  --green:#2f855a; --green-soft:#e6f4ea;
+  --red:#c53030; --red-soft:#fed7d7;
+  --yellow:#b7791f; --yellow-soft:#fef3c7;
+  --radius:6px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"SF Pro Display","Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.6;font-size:14px}
+.container{max-width:1200px;margin:0 auto;padding:32px 24px}
+
+/* Header */
+.report-header{border-bottom:2px solid var(--navy);padding-bottom:16px;margin-bottom:32px}
+.report-header h1{font-size:24px;font-weight:700;color:var(--navy);letter-spacing:-0.3px}
+.report-header .meta{font-size:12px;color:var(--sub);margin-top:6px;display:flex;gap:24px;flex-wrap:wrap}
+.report-header .meta span{display:flex;align-items:center;gap:4px}
+.report-header .verdict{display:inline-block;font-size:13px;font-weight:600;padding:6px 16px;border-radius:4px;margin-top:12px}
+
+/* Section */
+.section{margin-bottom:36px}
+.section-title{font-size:16px;font-weight:700;color:var(--navy);border-bottom:1px solid var(--border-light);padding-bottom:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title .num{font-size:12px;font-weight:500;color:var(--muted);background:var(--navy-soft);padding:2px 8px;border-radius:3px}
+
+/* Score Card */
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+@media(max-width:900px){.score-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.score-grid{grid-template-columns:1fr}}
+.score-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.score-card .label{font-size:11px;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.score-card .score{font-size:20px;font-weight:700;display:flex;align-items:baseline;gap:4px}
+.score-card .score .max{font-size:12px;color:var(--muted);font-weight:400}
+.score-card .grade{font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;display:inline-block;margin-top:6px}
+.score-card .desc{font-size:12px;color:var(--sub);margin-top:8px;line-height:1.5}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0 4px}
+thead th{background:var(--navy);color:#fff;font-size:11px;font-weight:600;text-align:left;padding:8px 10px;white-space:nowrap}
+thead th.num{text-align:right}
+tbody td{padding:8px 10px;border-bottom:1px solid var(--border-light)}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:nth-child(even){background:#f9fafb}
+tbody tr:hover{background:var(--navy-soft)}
+
+/* Badge */
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;display:inline-block;white-space:nowrap}
+.badge.pass{background:var(--green-soft);color:var(--green)}
+.badge.fail{background:var(--red-soft);color:var(--red)}
+.badge.warn{background:var(--yellow-soft);color:var(--yellow)}
+.badge.info{background:var(--navy-soft);color:var(--navy)}
+.badge.block{background:var(--red-soft);color:var(--red)}
+.badge.important{background:var(--yellow-soft);color:var(--yellow)}
+.badge.suggest{background:var(--navy-soft);color:var(--navy)}
+
+/* Compare Table */
+.compare-table{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0}
+.compare-table th{background:var(--navy-soft);color:var(--navy);font-size:11px;font-weight:600;padding:8px 10px;text-align:center;border:1px solid var(--border)}
+.compare-table td{padding:8px 10px;border:1px solid var(--border);text-align:center;font-variant-numeric:tabular-nums}
+.compare-table td.label{text-align:left;font-weight:600;background:#f9fafb}
+.compare-table .match{color:var(--green);font-weight:700}
+.compare-table .mismatch{color:var(--red);font-weight:700}
+
+/* Finding Card */
+.finding{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:12px 16px;margin-bottom:10px}
+.finding.block{border-left-color:var(--red)}
+.finding.important{border-left-color:var(--yellow)}
+.finding.suggest{border-left-color:var(--navy)}
+.finding .ftitle{font-size:13px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.finding .fdesc{font-size:12px;color:var(--sub);line-height:1.6}
+.finding .faction{font-size:11px;color:var(--accent);margin-top:6px;font-weight:500}
+
+/* Signal Table */
+.signal-table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.signal-table th{background:var(--navy-soft);color:var(--navy);font-size:10px;font-weight:600;padding:6px 8px;text-align:center}
+.signal-table td{padding:6px 8px;border:1px solid var(--border-light);text-align:center;font-variant-numeric:tabular-nums}
+.signal-table td.name{text-align:left;font-weight:600}
+.sig-buy{color:var(--red);font-weight:700}
+.sig-hold{color:var(--navy);font-weight:700}
+.sig-reduce{color:var(--yellow);font-weight:700}
+.sig-sell{color:var(--green);font-weight:700}
+
+/* Note */
+.note{background:var(--accent-soft);border:1px solid #f6c992;border-radius:var(--radius);padding:10px 14px;font-size:12px;color:#744210;margin:12px 0;line-height:1.6}
+.note.navy{background:var(--navy-soft);border-color:var(--navy-light);color:var(--navy)}
+
+/* Metrics Block */
+.metrics-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;min-width:120px}
+.metric .mlabel{font-size:10px;color:var(--sub);text-transform:uppercase;letter-spacing:0.5px}
+.metric .mvalue{font-size:18px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.metric .msub{font-size:10px;color:var(--muted)}
+
+/* Timeline */
+.timeline{display:flex;gap:0;margin:16px 0;overflow-x:auto}
+.t-step{flex:1;min-width:140px;background:var(--card);border:1px solid var(--border);padding:10px 12px;position:relative;font-size:12px}
+.t-step:not(:last-child)::after{content:"→";position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;z-index:1}
+.t-step .t-num{font-size:10px;color:var(--muted);font-weight:600}
+.t-step .t-title{font-weight:600;color:var(--navy);margin:2px 0}
+.t-step .t-desc{color:var(--sub);font-size:11px;line-height:1.4}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding-top:16px;margin-top:36px;font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* Verdict Banner */
+.verdict-banner{border-radius:var(--radius);padding:16px 20px;margin:16px 0;display:flex;align-items:center;gap:16px}
+.verdict-banner.deliver{background:var(--green-soft);border:1px solid #9ae6b4}
+.verdict-banner h3{font-size:16px;font-weight:700;margin:0}
+.verdict-banner p{font-size:12px;margin:2px 0 0}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="report-header">
+  <h1>高股息策略回测工具 · 结构化评审报告</h1>
+  <div class="meta">
+    <span>📅 2026-08-08</span>
+    <span>🔍 评审对象: backtest_engine.js / backtest_tool.html / backtest_bundle.json</span>
+    <span>📐 方法: 4 路并行 Agent 审查 + 主线独立复算</span>
+  </div>
+  <div class="verdict" style="background:var(--green-soft);color:var(--green)">
+    评审结论: 需修复后交付 — 1 项阻断级问题(conservative 模式缺失) + 4 项重要级问题
+  </div>
+</div>
+
+<!-- Executive Summary -->
+<div class="section">
+  <div class="section-title">评审摘要 <span class="num">Executive Summary</span></div>
+  <p style="margin-bottom:12px">
+    对 watchpool 股息率策略交互式回测工具进行了六维度全面评审，方法包括：4 路并行 Agent 分维度审查（引擎逻辑 / 数据管道 / UI 健壮性 / 百分位发现核验）+ 主线独立运行 validate_engine.mjs 复算 + 三组关键参数对照 + 个股信号手工校验 + TTM 窗口偏移分析。
+  </p>
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="label">① 引擎移植保真度</div>
+      <div class="score">B+ <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--yellow-soft);color:var(--yellow)">需修复</div>
+      <div class="desc">optimistic 模式下数值逐位匹配 Python(16.03% / −27.84% / ¥5,601,833)；conservative 模式完全缺失</div>
+    </div>
+    <div class="score-card">
+      <div class="label">② 策略逻辑合理性</div>
+      <div class="score">A− <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--green-soft);color:var(--green)">通过</div>
+      <div class="desc">档位决策 / 滞回带 / DRIP / 再平衡 / 分支顺序均与策略定义一致；百分位门控为合理扩展</div>
+    </div>
+    <div class="score-card">
+      <div class="label">③ 数据管道完整性</div>
+      <div class="score">A <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--green-soft);color:var(--green)">通过</div>
+      <div class="desc">16/16 标的记录数零差异；3 只抽样逐条一致；零精度损失；个股停牌断档为真实市场事件</div>
+    </div>
+    <div class="score-card">
+      <div class="label">④ 交互界面与可视化</div>
+      <div class="score">B+ <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--yellow-soft);color:var(--yellow)">需优化</div>
+      <div class="desc">12/12 控件正确绑定；三线对比清晰；16 个边界场景全部通过；缺少输入校验和基准标注</div>
+    </div>
+    <div class="score-card">
+      <div class="label">⑤ 边界情况与健壮性</div>
+      <div class="score">A− <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--green-soft);color:var(--green)">通过</div>
+      <div class="desc">退化参数 / 极端值 / 空数据 / CDN 不可达 全部不崩溃；try-catch 覆盖关键路径</div>
+    </div>
+    <div class="score-card">
+      <div class="label">⑥ 可复现性与交接就绪</div>
+      <div class="score">A <span class="max">/ A+</span></div>
+      <div class="grade" style="background:var(--green-soft);color:var(--green)">通过</div>
+      <div class="desc">python -m http.server 8000 即可启动；无额外依赖；validate_engine.mjs 可独立验证</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 1: Engine Port Fidelity -->
+<div class="section">
+  <div class="section-title">一、引擎移植保真度 <span class="num">维度 ①</span></div>
+  
+  <p style="margin-bottom:8px">独立运行 <code>validate_engine.mjs</code>，使用 hist/*.json 原始数据（非 bundle），在 usePercentile=false 下复算结果：</p>
+  
+  <table class="compare-table">
+    <thead>
+      <tr><th>指标</th><th>Python 原始输出</th><th>JS 独立复算</th><th>差值</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label">CAGR</td><td>16.03%</td><td>16.03%</td><td>0.00pp</td><td class="match">✓ MATCH</td></tr>
+      <tr><td class="label">最大回撤 (MDD)</td><td>−27.84%</td><td>−27.84%</td><td>0.00pp</td><td class="match">✓ MATCH</td></tr>
+      <tr><td class="label">终值</td><td>¥5,601,833</td><td>¥5,601,833</td><td>¥0</td><td class="match">✓ MATCH</td></tr>
+      <tr><td class="label">年化波动率</td><td>15.98%</td><td>15.98%</td><td>0.00pp</td><td class="match">✓ MATCH</td></tr>
+      <tr><td class="label">Sharpe</td><td>0.90</td><td>0.90</td><td>0.00</td><td class="match">✓ MATCH</td></tr>
+      <tr><td class="label">回测区间</td><td>2015-01-05 ~ 2026-08-07</td><td>2015-01-05 ~ 2026-08-07</td><td>—</td><td class="match">✓ MATCH</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note navy">
+    <strong>TTM 窗口偏移分析：</strong>JS <code>subDaysStr(t, 365)</code> 使用 <code>setDate()</code> 计算出 <code>lo = 2025-08-06</code>，Python <code>timedelta(days=365)</code> 计算出 <code>lo = 2025-08-07</code>，存在 1 天偏移。但 125 对年度分红中无任何一对在再平衡日（月初首个交易日）精确命中边界，因此偏移不影响任何回测结果。validate_engine.mjs 的逐位匹配证实了这一点。
+  </div>
+
+  <div class="finding block">
+    <div class="ftitle"><span class="badge block">阻断 P1</span>conservative 模式完全缺失</div>
+    <div class="fdesc">
+      Python <code>target_weight()</code> 有 <code>gate_ok</code> 参数：当 <code>gate_ok=False</code> 时不允许新买入（y ≥ buy 也只返回 "hold"），y < buy 直接返回 0.0。JS <code>targetWeightPure()</code> 完全未实现此参数，<code>simulate()</code> 也无 conservative 模式分支。<strong>对默认结果无影响</strong>（默认等价于 optimistic），但如果需要保守回测则无法使用。
+    </div>
+    <div class="faction">修复方向：在 targetWeightPure 增加 gateOk 参数，在 simulate 增加 conservative 配置项，计算 gate_ok = ttm ≥ ttmDps(divs, subDaysStr(d,365)) × 0.99</div>
+  </div>
+
+  <div class="finding important">
+    <div class="ftitle"><span class="badge important">重要 P2</span>targetWeightPure 档位硬编码 vs targetWeightPct 参数化</div>
+    <div class="fdesc">
+      <code>targetWeightPure</code> 使用硬编码 <code>buy = isRes ? 7 : 5</code>，而 <code>targetWeightPct</code> 使用 <code>P.buyYield</code> 和 <code>P.resourceExtra</code>。当 usePercentile=false 时，用户修改 buyYield 滑块不会生效。
+    </div>
+    <div class="faction">修复方向：将 targetWeightPure 也改为参数化，或在 UI 标注"buyYield 仅百分位模式生效"</div>
+  </div>
+</div>
+
+<!-- Section 2: Strategy Logic -->
+<div class="section">
+  <div class="section-title">二、策略逻辑合理性 <span class="num">维度 ②</span></div>
+  
+  <p style="margin-bottom:8px">逐行审查引擎中买卖 / 再平衡 / 百分位门控逻辑，与方法论文档交叉核对：</p>
+  
+  <table>
+    <thead>
+      <tr><th>逻辑项</th><th>策略定义</th><th>JS 实现</th><th>一致?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>买入阈值(非资源)</td><td>5% / 6% / 7% / 8%</td><td>buy=5, add=6, deep=7, ext=8</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>买入阈值(资源)</td><td>+2% → 7% / 8% / 9% / 10%</td><td>isRes ? 7:5, 8:6, 9:7, 10:8</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>对应仓位</td><td>3% / 8% / 12% / 20%</td><td>0.03 / 0.08 / 0.12 / 0.20</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>滞回带</td><td>sell = buy − 0.8, clear = buy − 1.2</td><td>同</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>DRIP 复投</td><td>分红现金按收盘价买入该股</td><td>shares[c] += shares[c] × dps / px</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>再平衡频率</td><td>月度（Python 硬编码）</td><td>月度/季度可选（JS 扩展）</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>不杠杆缩放</td><td>目标合计 > 100% 时等比例缩放</td><td>des[c] /= s</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>百分位分支顺序</td><td>cheap 优先于 expensive（已修复）</td><td>if(pct≤cheapPct){...} if(pct≥expensivePct){...}</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>百分位预热</td><td>历史不足时退化为经典档位</td><td>hist.length < 126 → return null → targetWeightPure</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>波动率计算</td><td>总体标准差 × √252</td><td>Math.sqrt(Σ(x-μ)²/n) × Math.sqrt(252)</td><td><span class="badge pass">✓</span></td></tr>
+      <tr><td>无风险利率</td><td>rf = 0.017</td><td>rf = 0.017</td><td><span class="badge pass">✓</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Section 3: Data Pipeline -->
+<div class="section">
+  <div class="section-title">三、数据管道完整性 <span class="num">维度 ③</span></div>
+  
+  <p style="margin-bottom:8px">比对 backtest_bundle.json (976KB) 与 hist/*.json 原始文件，16 个标的全覆盖：</p>
+  
+  <table>
+    <thead>
+      <tr><th>类别</th><th>标的数</th><th>kline 总条数</th><th>divs 总条数</th><th>记录数差异</th><th>精度损失</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>核心股票</td><td>13</td><td>34,420</td><td>169</td><td>0</td><td>0 条</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>基准</td><td>3</td><td>8,263</td><td>0</td><td>0</td><td>0 条</td><td><span class="badge pass">PASS</span></td></tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:12px;margin-bottom:4px"><strong>3 只抽样股票逐条校验（kline 前5/尾5 + divs 全量）：</strong></p>
+  <table>
+    <thead>
+      <tr><th>股票</th><th>kline 比对</th><th>divs 比对</th><th>首日</th><th>末日</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sh600585 海螺水泥</td><td>10/10 一致</td><td>13/13 一致</td><td>2015-01-05 @ 22.69</td><td>2026-08-07 @ 17.76</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>sh601006 大秦铁路</td><td>10/10 一致</td><td>13/13 一致</td><td>2015-01-05 @ 11.20</td><td>2026-08-07 @ 4.80</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>sz000651 格力电器</td><td>10/10 一致</td><td>13/13 一致</td><td>2015-01-05 @ 40.80</td><td>2026-08-07 @ 40.10</td><td><span class="badge pass">PASS</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>个股停牌断档（非数据缺失）：</strong>格力电器 2016-02-19→09-02（196天，收购银隆停牌）、中远海控 2015-08-07→12-25（140天，重组停牌）、长江电力 2015-06-12→11-16（157天，重组停牌）均为 A 股已知停牌事件。回测引擎通过向前填充收盘价正确处理了停牌场景。
+  </div>
+
+  <div class="finding important">
+    <div class="ftitle"><span class="badge important">重要 M1</span>沪深300全收益基准存在 282 天断档</div>
+    <div class="fdesc">sh000985 在 2016-06-13→2017-03-22 存在 282 天断档，可能为数据源获取遗漏或指数编制延迟。该期间基准净值无变化（向前填充），会导致基准收益率偏低。</div>
+    <div class="faction">修复方向：排查 fetch_benchmark.py 获取逻辑，或标注该基准为"部分覆盖"</div>
+  </div>
+</div>
+
+<!-- Section 4: Key Numbers Verification -->
+<div class="section">
+  <div class="section-title">四、关键数值独立复核 <span class="num">三组参数对照</span></div>
+  
+  <p style="margin-bottom:8px">使用 hist/*.json 原始数据 + backtest_engine.js 直接 import 复算（非通过 bundle），三组参数全部精确复现：</p>
+  
+  <table class="compare-table">
+    <thead>
+      <tr><th>参数组</th><th>CAGR (声称)</th><th>CAGR (复算)</th><th>MDD (复算)</th><th>Sharpe (复算)</th><th>终值 (复算)</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">纯档位 (usePercentile=false)</td>
+        <td>16.03%</td><td>16.03%</td><td>−27.84%</td><td>0.90</td><td>¥5,601,833</td>
+        <td class="match">✓ MATCH</td>
+      </tr>
+      <tr>
+        <td class="label">百分位 30/70</td>
+        <td>6.65%</td><td>6.65%</td><td>−24.42%</td><td>0.42</td><td>¥2,109,613</td>
+        <td class="match">✓ MATCH</td>
+      </tr>
+      <tr>
+        <td class="label">百分位 100/100</td>
+        <td>14.03%</td><td>14.03%</td><td>−29.08%</td><td>0.75</td><td>¥4,576,599</td>
+        <td class="match">✓ MATCH</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="margin-top:12px;margin-bottom:8px"><strong>百分位 30/70 低收益发现的解释验证：</strong></p>
+  
+  <div class="metrics-row">
+    <div class="metric">
+      <div class="mlabel">纯档位平均股票仓位</div>
+      <div class="mvalue">65.8%</div>
+      <div class="msub">现金 34.2%</div>
+    </div>
+    <div class="metric">
+      <div class="mlabel">30/70 平均股票仓位</div>
+      <div class="mvalue">37.0%</div>
+      <div class="msub">现金 63.0%</div>
+    </div>
+    <div class="metric">
+      <div class="mlabel">买入信号触发率</div>
+      <div class="mvalue">21.0%</div>
+      <div class="msub">整体 13 股均值</div>
+    </div>
+    <div class="metric">
+      <div class="mlabel">平均历史百分位</div>
+      <div class="mvalue">38.2</div>
+      <div class="msub">高于 30 阈值</div>
+    </div>
+  </div>
+
+  <div class="note navy">
+    <strong>结论：</strong>「结构性高股息股很少处于自身 5 年历史最便宜 30%」的解释成立。13 只股票整体平均百分位 38.2，高于 30 的买入阈值；买入信号触发率仅 21%；30/70 场景平均股票仓位仅 37%（vs 纯档位 65.8%），大量资金闲置导致收益被压低。cheapPct 扫描（10→100）确认 CAGR 随阈值放宽单调上升，验证了因果链。
+  </div>
+
+  <p style="margin-top:8px;margin-bottom:4px"><strong>cheapPct 扫描表（expensivePct 固定 70）：</strong></p>
+  <table>
+    <thead>
+      <tr><th class="num">cheapPct</th><th class="num">CAGR</th><th class="num">MDD</th><th class="num">Sharpe</th><th class="num">终值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">10</td><td class="num">4.49%</td><td class="num">−24.42%</td><td class="num">0.27</td><td class="num">¥1,664,220</td></tr>
+      <tr><td class="num">20</td><td class="num">6.32%</td><td class="num">−24.42%</td><td class="num">0.42</td><td class="num">¥2,033,232</td></tr>
+      <tr><td class="num">30</td><td class="num">6.65%</td><td class="num">−24.42%</td><td class="num">0.42</td><td class="num">¥2,109,613</td></tr>
+      <tr><td class="num">50</td><td class="num">8.71%</td><td class="num">−24.42%</td><td class="num">0.54</td><td class="num">¥2,631,026</td></tr>
+      <tr><td class="num">70</td><td class="num">9.38%</td><td class="num">−24.93%</td><td class="num">0.56</td><td class="num">¥2,826,371</td></tr>
+      <tr><td class="num">100</td><td class="num">14.03%</td><td class="num">−29.08%</td><td class="num">0.75</td><td class="num">¥4,576,599</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Section 5: Signal Verification -->
+<div class="section">
+  <div class="section-title">五、个股信号表抽样校验 <span class="num">截至 2026-08-07</span></div>
+  
+  <p style="margin-bottom:8px">使用 hist/*.json 原始数据手工推算 3 只股票的 TTM 股息率、百分位和信号，与引擎 signalAt() 输出对照：</p>
+  
+  <table class="signal-table">
+    <thead>
+      <tr><th>股票</th><th>收盘价</th><th>TTM DPS</th><th>股息率</th><th>手工 Y</th><th>百分位</th><th>信号</th><th>目标权重</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="name">sh600585 海螺水泥</td>
+        <td>17.76</td><td>0.85</td><td>4.79%</td><td>0.85/17.76=4.79%</td>
+        <td>96</td><td class="sig-reduce">减仓</td><td>当前×50%</td>
+        <td><span class="badge pass">✓ MATCH</span></td>
+      </tr>
+      <tr>
+        <td class="name">sz000651 格力电器</td>
+        <td>40.10</td><td>3.00</td><td>7.48%</td><td>3.00/40.10=7.48%</td>
+        <td>29</td><td class="sig-buy">买入</td><td>3%</td>
+        <td><span class="badge pass">✓ MATCH</span></td>
+      </tr>
+      <tr>
+        <td class="name">sh601006 大秦铁路</td>
+        <td>4.80</td><td>0.222</td><td>4.63%</td><td>0.222/4.80=4.63%</td>
+        <td>99</td><td class="sig-reduce">减仓</td><td>当前×50%</td>
+        <td><span class="badge pass">✓ MATCH</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>手工推算细节（海螺水泥为例）：</strong>TTM 窗口 (2025-08-06, 2026-08-07] 包含 2025-09-30 (dps=0.24) + 2026-07-02 (dps=0.61) = 0.85。股息率 = 0.85/17.76×100 = 4.79%。资源股 buyYield=5+2=7，4.79 < 7 不触发买入。百分位 96 ≥ expensivePct(70) 进入贵区。4.79 > sellYield(3) → 返回 reduce。引擎输出完全一致。
+  </div>
+
+  <p style="margin-top:12px;margin-bottom:4px"><strong>全部 13 只股票信号快照（2026-08-07，百分位 30/70 模式）：</strong></p>
+  <table class="signal-table">
+    <thead>
+      <tr><th>代码</th><th>名称</th><th>资源</th><th>股息率</th><th>百分位</th><th>信号</th><th>目标权重</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>sh600028</td><td class="name">中国石化</td><td>是</td><td>3.92%</td><td>59</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh600585</td><td class="name">海螺水泥</td><td>是</td><td>4.79%</td><td>96</td><td class="sig-reduce">减仓</td><td>当前×50%</td></tr>
+      <tr><td>sh600900</td><td class="name">长江电力</td><td>否</td><td>3.60%</td><td>39</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh600941</td><td class="name">中国移动</td><td>否</td><td>4.92%</td><td>56</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601006</td><td class="name">大秦铁路</td><td>否</td><td>4.63%</td><td>99</td><td class="sig-reduce">减仓</td><td>当前×50%</td></tr>
+      <tr><td>sh601088</td><td class="name">中国神华</td><td>是</td><td>4.57%</td><td>2</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601225</td><td class="name">陕西煤业</td><td>是</td><td>3.79%</td><td>9</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601288</td><td class="name">农业银行</td><td>否</td><td>3.86%</td><td>18</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601398</td><td class="name">工商银行</td><td>否</td><td>4.12%</td><td>14</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601919</td><td class="name">中远海控</td><td>是</td><td>6.48%</td><td>18</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sh601939</td><td class="name">建设银行</td><td>否</td><td>3.86%</td><td>13</td><td class="sig-hold">持有</td><td>维持</td></tr>
+      <tr><td>sz000651</td><td class="name">格力电器</td><td>是</td><td>7.48%</td><td>29</td><td class="sig-buy">买入</td><td>3%</td></tr>
+      <tr><td>sz000895</td><td class="name">双汇发展</td><td>否</td><td>5.97%</td><td>90</td><td class="sig-reduce">减仓</td><td>当前×50%</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Section 6: UI & Robustness -->
+<div class="section">
+  <div class="section-title">六、交互界面与健壮性 <span class="num">维度 ④⑤</span></div>
+  
+  <p style="margin-bottom:8px">12 个参数控件全部正确绑定到 readParams()，16 个边界场景实跑全部通过：</p>
+  
+  <table>
+    <thead>
+      <tr><th>测试场景</th><th>预期</th><th>实际</th><th>判定</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>fetch 失败</td><td>显示错误提示</td><td>try-catch 捕获，status 提示</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>ECharts CDN 不可达</td><td>表格仍渲染</td><td>chart=null，表格正常</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>cheapPct=100 / expensivePct=0</td><td>cheap 优先，不矛盾</td><td>CAGR=14.03%，逻辑正确</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>initialCapital=1</td><td>不崩溃</td><td>final=2.11，无 NaN</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>maxWeight=100%</td><td>缩放正确</td><td>CAGR=14.03%（tw≤0.20 不变）</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>空数据股票</td><td>无 NaN/Infinity</td><td>close=null → y=null → 维持权重 0</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>drip=false</td><td>收益降低</td><td>CAGR=3.68%（vs 6.65%）</td><td><span class="badge pass">PASS</span></td></tr>
+      <tr><td>rebalance=quarter</td><td>回撤更小</td><td>CAGR=10.02%, MDD=−19.77%</td><td><span class="badge pass">PASS</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="finding important">
+    <div class="ftitle"><span class="badge important">重要 I-1</span>sellYield > buyYield 无输入校验</div>
+    <div class="fdesc">用户可设置卖出线高于买入线，引擎不崩溃但产生无意义结果。UI 无任何提示。</div>
+    <div class="faction">修复方向：readParams() 中添加 if (P.sellYield >= P.buyYield) { 提示; return; }</div>
+  </div>
+
+  <div class="finding important">
+    <div class="ftitle"><span class="badge important">重要 I-2</span>基准 divs 为空数组——未含分红复投</div>
+    <div class="fdesc">三个基准的 divs 均为 []，simulateHold 不执行分红复投。「沪深300全收益」名称含「全收益」但实际不含分红，名称误导。基准收益被低估。</div>
+    <div class="faction">修复方向：补充基准 divs 数据，或在图例标注"基准为价格指数"</div>
+  </div>
+</div>
+
+<!-- Section 7: Issues Summary -->
+<div class="section">
+  <div class="section-title">七、改进建议清单 <span class="num">按严重度分级</span></div>
+  
+  <table>
+    <thead>
+      <tr><th>#</th><th>级别</th><th>问题</th><th>影响范围</th><th>修复方向</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>P1</td><td><span class="badge block">阻断</span></td>
+        <td>conservative 模式（gate_ok 闸门）缺失</td>
+        <td>需要保守回测时不可用</td>
+        <td>在 targetWeightPure 增加 gateOk 参数</td>
+      </tr>
+      <tr>
+        <td>P2</td><td><span class="badge important">重要</span></td>
+        <td>targetWeightPure 档位硬编码 vs 参数化</td>
+        <td>纯档位模式下 buyYield 滑块不生效</td>
+        <td>改为参数化或 UI 标注</td>
+      </tr>
+      <tr>
+        <td>I-1</td><td><span class="badge important">重要</span></td>
+        <td>sellYield > buyYield 无输入校验</td>
+        <td>用户误操作得无意义结果</td>
+        <td>readParams() 添加校验</td>
+      </tr>
+      <tr>
+        <td>I-2</td><td><span class="badge important">重要</span></td>
+        <td>基准 divs 为空，未含分红复投</td>
+        <td>基准收益被低估；名称误导</td>
+        <td>补充 divs 或标注"价格指数"</td>
+      </tr>
+      <tr>
+        <td>M1</td><td><span class="badge important">重要</span></td>
+        <td>沪深300全收益 282 天断档</td>
+        <td>该基准 2016-2017 区间无数据</td>
+        <td>排查 fetch_benchmark.py</td>
+      </tr>
+      <tr>
+        <td>S-1</td><td><span class="badge suggest">建议</span></td>
+        <td>yAxis 名称"万元"在非 100 万初始资金时不精确</td>
+        <td>低，多数用户用默认值</td>
+        <td>改为"归一净值(初始=100)"</td>
+      </tr>
+      <tr>
+        <td>S-2</td><td><span class="badge suggest">建议</span></td>
+        <td>信号表 reduce 目标权重可能被误解</td>
+        <td>低，数值正确</td>
+        <td>添加 tooltip 说明</td>
+      </tr>
+      <tr>
+        <td>S-3</td><td><span class="badge suggest">建议</span></td>
+        <td>初始资金输入框无 max 上限</td>
+        <td>极低</td>
+        <td>添加 max="100000000"</td>
+      </tr>
+      <tr>
+        <td>L1</td><td><span class="badge suggest">建议</span></td>
+        <td>meta.start 与实际最早数据差 4 天</td>
+        <td>不影响功能</td>
+        <td>改为 2015-01-05</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Section 8: Reproducibility -->
+<div class="section">
+  <div class="section-title">八、可复现性与交接就绪度 <span class="num">维度 ⑥</span></div>
+  
+  <div class="timeline">
+    <div class="t-step">
+      <div class="t-num">Step 1</div>
+      <div class="t-title">打开终端</div>
+      <div class="t-desc">cd 到工作目录 2026-08-08-10-06-33</div>
+    </div>
+    <div class="t-step">
+      <div class="t-num">Step 2</div>
+      <div class="t-title">启动服务器</div>
+      <div class="t-desc">python -m http.server 8000</div>
+    </div>
+    <div class="t-step">
+      <div class="t-num">Step 3</div>
+      <div class="t-title">打开浏览器</div>
+      <div class="t-desc">http://localhost:8000/backtest_tool.html</div>
+    </div>
+    <div class="t-step">
+      <div class="t-num">Step 4</div>
+      <div class="t-title">验证引擎</div>
+      <div class="t-desc">node validate_engine.mjs → PASS ✅</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>检查项</th><th>状态</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>无需额外依赖</td><td><span class="badge pass">✓</span></td><td>仅需 Python 3 (内置 http.server) + 浏览器</td></tr>
+      <tr><td>数据文件路径正确</td><td><span class="badge pass">✓</span></td><td>backtest_bundle.json 与 html 同目录，fetch 相对路径</td></tr>
+      <tr><td>validate_engine.mjs 可独立运行</td><td><span class="badge pass">✓</span></td><td>node validate_engine.mjs → PASS ✅</td></tr>
+      <tr><td>页面正常加载</td><td><span class="badge pass">✓</span></td><td>13 股 + 3 基准数据加载，图表/表格渲染</td></tr>
+      <tr><td>参数可交互</td><td><span class="badge pass">✓</span></td><td>12 个控件均可调，点击"运行回测"刷新</td></tr>
+      <tr><td>无死代码</td><td><span class="badge pass">✓</span></td><td>无 runWrapped / 重复监听器 / 未捕获 bench equity</td></tr>
+      <tr><td>try-catch 覆盖</td><td><span class="badge pass">✓</span></td><td>fetch / run / ECharts 初始化均有异常处理</td></tr>
+      <tr><td>pctAt 中 lo 变量已恢复</td><td><span class="badge pass">✓</span></td><td>之前误删的 lo 赋值已修复</td></tr>
+      <tr><td>signalAt 传参正确</td><td><span class="badge pass">✓</span></td><td>(y, pct, isRes, P) 顺序与定义一致</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Verdict -->
+<div class="section">
+  <div class="section-title">九、最终评审结论</div>
+  
+  <div class="verdict-banner deliver">
+    <div>
+      <h3>结论：需修复后交付</h3>
+      <p>工具核心功能完备、数据准确、引擎移植忠实、交互健壮。但存在 1 项阻断级问题需处理后才能达到完整交付标准。</p>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>维度</th><th>评分</th><th>判定</th><th>关键依据</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>① 引擎移植保真度</td><td>B+</td><td><span class="badge warn">需修复</span></td><td>optimistic 逐位匹配；conservative 缺失</td></tr>
+      <tr><td>② 策略逻辑合理性</td><td>A−</td><td><span class="badge pass">通过</span></td><td>11 项逻辑全部与策略定义一致</td></tr>
+      <tr><td>③ 数据管道完整性</td><td>A</td><td><span class="badge pass">通过</span></td><td>16/16 标的零差异，3 只抽样逐条一致</td></tr>
+      <tr><td>④ 交互界面与可视化</td><td>B+</td><td><span class="badge warn">需优化</span></td><td>12/12 控件绑定；缺输入校验和基准标注</td></tr>
+      <tr><td>⑤ 边界情况与健壮性</td><td>A−</td><td><span class="badge pass">通过</span></td><td>16 个边界场景全部通过</td></tr>
+      <tr><td>⑥ 可复现性与交接</td><td>A</td><td><span class="badge pass">通过</span></td><td>一键启动，无额外依赖，校验脚本可独立运行</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>上线前必须修复的阻断项清单：</strong>
+    <ol style="margin:8px 0 0 20px;line-height:1.8">
+      <li><strong>P1 — conservative 模式缺失</strong>：如果工具仅用于 optimistic 回测（当前默认），可降级为"重要"并在文档中标注限制；如需完整对齐 Python 功能，必须补齐 gate_ok 闸门逻辑。</li>
+    </ol>
+    <strong>建议交付前处理的项：</strong>
+    <ol style="margin:8px 0 0 20px;line-height:1.8" start="2">
+      <li><strong>I-1</strong> — 添加 sellYield ≥ buyYield 的输入校验（5 分钟工作量）</li>
+      <li><strong>I-2</strong> — 在图例标注"基准为价格指数，不含分红"或在数据中补充基准 divs</li>
+      <li><strong>P2</strong> — 在 UI 标注"buyYield 仅百分位模式生效"或将 targetWeightPure 参数化</li>
+    </ol>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <span>评审报告 · 2026-08-08 · 4 路并行 Agent + 主线独立复算</span>
+  <span>设计风格: 04 Fathom Information Design — 科学期刊严谨</span>
+</div>
+
+</div>
+</body>
+</html>
