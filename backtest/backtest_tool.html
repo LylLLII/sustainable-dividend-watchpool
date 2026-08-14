@@ -85,7 +85,7 @@ tbody tr:hover{background:#fafbfc}
   <div class="warn">
     模型：<b>买入</b> = 股息率高(≥买入触发线) 且 处于历史低位百分位(便宜)；
     <b>卖出</b> = 股息率低(≤卖出触发线) 且 处于历史高位百分位(贵)；中间持有。
-    分红自动复投(DRIP)，按月/季再平衡，单票上限封顶、总仓不杠杆。调下面的参数即可实时观察收益变化。<br>
+    分红自动复投(DRIP)，按月/季再平衡，单票上限封顶、总仓不杠杆。调下面的参数后点【运行回测】生效。<br>
     <b>⚠️ 口径声明（重要）</b>：本工具是<b>当前股票池回溯测试</b>——固定 watchpool.json 时点的完整股票池，
     未含历史被剔除/退市股票，收益系统性偏乐观，<b>不可直接外推为实现收益</b>。
     策略股息率 = <b>realized-TTM</b>（最近12个月真实已实现分红/价），非原始策略的「预期股息率 expDps」口径
@@ -198,7 +198,7 @@ tbody tr:hover{background:#fafbfc}
     <div class="legend-note">
       红线=策略(当前设置)；橙虚线=策略(纯档位基线，无百分位，作对照)；其余为三大基准（买入持有+分红复投，近似全收益）。
       <b>百分位两种模式</b>：「软倾斜」开=以档位目标权重为基底、按估值微调仓位(便宜满配/中性七成/贵区四成)，收益接近纯档位；
-      关=硬闸门(非便宜区不新建仓)，对高股息组合会显著压低收益(但回撤更小)。拖动参数即可看到权衡。
+      关=硬闸门(非便宜区不新建仓)，对高股息组合会显著压低收益(但回撤更小)。调参后点【运行回测】查看权衡。
       已计入交易成本（佣金/印花税/滑点/整手/调仓与分红复投延迟，默认中性档）。
     </div>
   </div>
@@ -328,8 +328,11 @@ function run(){
     renderChart(dates, strat, base, bench, P.initialCapital);
     renderMetrics(strat.metrics, base.metrics, bench);
     renderSignals(panel, dates, strat.weights, P);
+    // 成功反馈: 带参数摘要 + 关键指标, 让用户看到"已更新"且数字随参数变化
+    const resTag = P.usePercentile ? (P.tilt ? '百分位+倾斜' : '百分位') : '纯档位';
     document.getElementById('status').textContent =
-      `区间 ${strat.metrics.start} ~ ${strat.metrics.end} · ${dates.length} 交易日`;
+      `✓ 已更新 · 买入${P.buyYield}%/卖出${P.sellYield}% · 便宜${P.cheapPct}/昂贵${P.expensivePct} · ${resTag} | ` +
+      `CAGR ${fmtPct(strat.metrics.cagr)} 回撤 ${fmtPct(strat.metrics.mdd)} · ${dates.length} 交易日`;
   }catch(e){
     document.getElementById('status').textContent = '⚠️ 计算失败：' + e.message;
     console.error(e);
