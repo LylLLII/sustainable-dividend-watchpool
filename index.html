@@ -9,7 +9,7 @@
 :root{
   --bg:#f5f6f8; --card:#ffffff; --border:#e5e7eb;
   --text:#1f2937; --sub:#6b7280;
-  --red:#e03131; --green:#2f9e44;
+  --red:#e03131; --green:#2f9e44; --orange:#e8590c;
   --primary:#1c64f2; --primary-soft:#e8effd;
   --gold:#b7791f; --gold-bg:#fdf3e3;
   --band1:#e8effd; --band2:#dcfce7; --band3:#fef3c7; --band4:#ffedd5; --band5:#fee2e2;
@@ -817,17 +817,17 @@ function fetchDatacenterDps(s){
     if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
-    let sum = 0, cnt = 0, last = null;
+    let sum = 0, cnt = 0, last = null, pending = 0;
     rows.forEach(r => {
       const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
       const prog = r.ASSIGN_PROGRESS || '';
-      if(ex && ex >= oneYearAgo && ex <= now && prog.indexOf('实施') >= 0){
+      if(ex && ex >= oneYearAgo && prog.indexOf('实施') >= 0){
         const per = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
-        if(per>0){ sum += per; cnt++; }
+        if(per>0){ sum += per; cnt++; if(ex > now) pending += per; }
         if(!last || ex > last.ex) last = { ex, period:(r.REPORT_DATE||'').slice(0,10), plan:r.IMPL_PLAN_PROFILE };
       }
     });
-    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period };
+    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, pending };
     const r0 = rows.find(x=>/派/.test(x.IMPL_PLAN_PROFILE||'')) || rows[0];
     const per0 = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
     return per0>0 ? { code:s.code, dps:per0, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'' } : { code:s.code, dps:null, note:'无已实施分红' };
@@ -842,15 +842,16 @@ function fetchWestockDps(aList){
     const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
     aList.forEach(s=>{
       const rows = dividends[s.code] || [];
-      let sum = 0, cnt = 0, last = null;
+      let sum = 0, cnt = 0, last = null, pending = 0;
       rows.forEach(r => {
         const ex = r.exDate ? new Date(r.exDate) : null;
-        if(ex && ex >= oneYearAgo && ex <= now){
+        if(ex && ex >= oneYearAgo){
           sum += r.dps || 0; cnt++;
+          if(ex > now) pending += r.dps || 0;
           if(!last || ex > last.ex) last = { ex, period:r.period, plan:r.period + ' 每股'+r.dps+'元' };
         }
       });
-      autoDps[s.code] = cnt ? { code:s.code, dps:sum, source:'本地数据近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, special:specialMap[s.code]||null }
+      autoDps[s.code] = cnt ? { code:s.code, dps:sum, source:'本地数据近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, special:specialMap[s.code]||null, pending }
                             : { code:s.code, dps:null, note:'无近12月记录', special:specialMap[s.code]||null };
     });
     return autoDps;
@@ -1095,10 +1096,10 @@ function fundBadge(s){
   return '<button class="btn sm mini fund-btn '+f[1]+'" onclick="openFundModal(\''+s.code+'\')" title="'+esc(tip)+'">'+txt+'</button>';
 }
 // expDps 确认状态（决策闸门2：未确认/过期不得触发深度+档位的强买入建议）
-// 概念分离：Auto DPS（东财自动=TTM实际分红年化，后视）→ 人工研究 → Forward DPS（expDps=前瞻估值锚）
+// 概念分离：Auto DPS（东财自动=已实施+待除息分红合计）→ 人工研究 → Forward DPS（expDps=前瞻估值锚）
 const DPS_ORDER = ['auto','confirmed','expired',null];
 const DPS_MAP = {
-  auto:      ['🟡 自动·未确认','dps-auto','Auto DPS 自动计算（TTM实际分红年化，后视），未人工确认'],
+  auto:      ['🟡 自动·未确认','dps-auto','Auto DPS 自动计算（含已实施+待除息分红），未人工确认'],
   confirmed: ['🟢 已确认','dps-conf','Forward DPS 已人工确认（前瞻估值锚）'],
   expired:   ['🔴 过期','dps-exp','Forward DPS 已过期，需重新核算'],
   none:      ['⚪ 未标记','dps-none','⚪ 已清除 expDps 状态']
@@ -1151,7 +1152,7 @@ function dpsBadge(s){
   } else if(ds==='expired'){
     tip = '已超过复核日'+(s.expDpsReviewDate?' '+s.expDpsReviewDate:'')+'，需重新核算确认';
   } else if(ds==='auto'){
-    tip = 'Auto DPS（TTM实际分红年化，后视）未人工确认；点确认时需选择依据（年报/中报/公告/自估）';
+    tip = 'Auto DPS（含已实施+待除息分红）未人工确认；点确认时需选择依据（年报/中报/公告/自估）';
   }
   return '<button class="btn sm mini dps-btn '+f[1]+'" onclick="cycleExpDpsStatus(\''+s.code+'\')" title="'+esc(tip)+'">'+txt+'</button>';
 }
@@ -1322,10 +1323,11 @@ function renderTable(){
     const excessTxt = excess!=null
       ? `<span class="excess ${excess>=0?'pos':'neg'}" title="预期股息率(${y.toFixed(2)}%) − 10年国债(${bondYield.toFixed(2)}%)">${excess>0?'+':''}${excess.toFixed(2)}%</span>`
       : '—';
-    // 自动预期分红对照（东财接口自动计算=Auto DPS 后视值，A股）
+    // 自动预期分红对照（东财接口自动计算=Auto DPS，含已实施+待除息，A股）
     const auto = autoDps[s.code];
+    const pendTxt = auto && auto.pending>0 ? ` <span style="color:var(--orange)" title="已公告待除息 ${auto.pending.toFixed(2)}元">（含待除息${auto.pending.toFixed(2)}）</span>` : '';
     const autoDpsTxt = auto && auto.dps>0
-      ? `<div class="auto-dps" title="Auto DPS（TTM实际分红年化，后视）：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}。确认前不可作为前瞻估值锚">Auto后视 ${auto.dps.toFixed(2)} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button></div>`
+      ? `<div class="auto-dps" title="Auto DPS（含已实施+待除息分红）：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}${auto&&auto.pending>0?'｜待除息 '+auto.pending.toFixed(2)+'元':''}。确认前不可作为前瞻估值锚">Auto ${auto.dps.toFixed(2)}${pendTxt} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button></div>`
       : (ttmDpsOf(s)!=null
         ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
         : '');
