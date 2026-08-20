@@ -882,11 +882,11 @@ function applyAutoDps(code){
   const s = pool.stocks.find(x=>x.code===code);
   const auto = autoDps[code];
   if(!s || !auto || !(auto.dps>0)){ toast('⚠️ 无可用自动值'); return; }
-  // 存在预案时询问是否合并。合并公式=实施后TTM预估：已实施 − 将滚出窗口的旧分红 + 预案
-  // （简单相加会高估：预案实施时12月窗口右移，最老一笔会滚出，须剔除；一次性特别分红另作警示）
+  // 「采用」统一按实施后TTM预估口径：已实施 − 将滚出12月窗口的旧分红（+ 预案若有）
+  // 原理：12月滚动窗口持续右移，除息日早于约60天前的旧分红即将滚出，直接采用会高估前瞻
   let newDps = Math.round(auto.dps*100)/100;
+  const aged = Math.round((auto.aged||0)*100)/100;
   if(auto.plan && auto.plan.dps>0){
-    const aged = Math.round((auto.aged||0)*100)/100;
     const base = Math.max(0, Math.round((newDps - aged)*100)/100);
     const merged = Math.round((base + auto.plan.dps)*100)/100;
     const agedTxt = aged>0 ? newDps.toFixed(2) + ' − ' + aged.toFixed(2) + '（滚出窗口） + ' + auto.plan.dps.toFixed(2) : newDps.toFixed(2) + ' + ' + auto.plan.dps.toFixed(2);
@@ -896,7 +896,14 @@ function applyAutoDps(code){
       '（剔除预案实施时将滚出12月窗口的旧分红，避免高估）\n' +
       '\n【取消】仅采用已实施（后视TTM）：' + newDps.toFixed(2) + ' 元\n' +
       '（保守口径，等实施后自动并入）');
-    if(ok) newDps = merged;
+    if(ok) newDps = merged; else if(aged>0) newDps = Math.max(0, Math.round((newDps - aged)*100)/100);
+  } else if(aged>0){
+    // 无预案但有旧分红即将滚出：同样按预估口径采用，弹窗说明
+    const adj = Math.max(0, Math.round((newDps - aged)*100)/100);
+    const ok = confirm('近12月有 ' + aged.toFixed(2) + ' 元旧分红即将滚出窗口（除息日早于约60天前），前瞻不宜继续包含。\n\n' +
+      '【确定】采用实施后TTM预估：' + newDps.toFixed(2) + ' − ' + aged.toFixed(2) + ' = ' + adj.toFixed(2) + ' 元\n' +
+      '\n【取消】采用后视TTM原值：' + newDps.toFixed(2) + ' 元');
+    if(ok) newDps = adj;
   }
   const diff = loadDiff();
   if(diff.added.some(x=>x.code===code)){
