@@ -879,7 +879,17 @@ function applyAutoDps(code){
   const s = pool.stocks.find(x=>x.code===code);
   const auto = autoDps[code];
   if(!s || !auto || !(auto.dps>0)){ toast('⚠️ 无可用自动值'); return; }
-  const newDps = Math.round(auto.dps*100)/100;
+  // 存在预案时询问是否合并（预案实施后自动计入 Auto，届时会重复叠加——先弹窗让用户选）
+  let newDps = Math.round(auto.dps*100)/100;
+  if(auto.plan && auto.plan.dps>0){
+    const merged = Math.round((newDps + auto.plan.dps)*100)/100;
+    const ok = confirm('检测到预案 ' + auto.plan.dps.toFixed(2) + ' 元（' + (auto.plan.prog||'') + '）\n\n' +
+      '【确定】合并预案：' + newDps.toFixed(2) + ' + ' + auto.plan.dps.toFixed(2) + ' = ' + merged.toFixed(2) + ' 元\n' +
+      '（适合：判断预案大概率实施，提前反映前瞻）\n\n' +
+      '【取消】仅采用已实施：' + newDps.toFixed(2) + ' 元\n' +
+      '（适合：保守口径，等实施后自动并入）');
+    if(ok) newDps = merged;
+  }
   const diff = loadDiff();
   if(diff.added.some(x=>x.code===code)){
     diff.added = diff.added.map(x=> x.code===code ? {...x, expDps:newDps, autoNote:auto.note||''} : x);
