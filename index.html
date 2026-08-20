@@ -125,6 +125,7 @@ select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-si
 .fund-checks{background:#fafbfc;border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin-bottom:12px}
 #fund-preview{font-size:14px}
 .auto-dps{font-size:11px;color:var(--green);margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
+.plan-hint{font-size:11px;color:var(--sub);cursor:help}
 .btn.mini{padding:1px 6px;font-size:10px;border-radius:4px;color:var(--green);border-color:#a9d8b0}
 .btn.mini:hover{background:var(--green);color:#fff;border-color:var(--green)}
 .dps-val{font-size:11px;color:var(--sub);display:block;margin-top:2px}
@@ -794,7 +795,11 @@ function fetchAutoDps(){
     return fetchWestockDps(aList).then(()=>{
       aList.forEach(s=>{
         const w = autoDps[s.code];
-        if(w && w.special){ autoDps[s.code] = w; }          // 特殊分红股票必须用 westock 完整值（含特殊分红）
+        if(w && w.special){
+          // 特殊分红股票必须用 westock 完整值（含特殊分红），但预案提示仍取东财实时（本地文件无预案数据）
+          if(live[s.code] && live[s.code].plan){ autoDps[s.code] = { ...w, plan: live[s.code].plan }; }
+          else { autoDps[s.code] = w; }
+        }
         else if(live[s.code]){ autoDps[s.code] = live[s.code]; } // 其余优先实时值
       });
       autoDpsLoading = false;
@@ -817,7 +822,7 @@ function fetchDatacenterDps(s){
     if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
-    let sum = 0, cnt = 0, last = null, pending = 0;
+    let sum = 0, cnt = 0, last = null, pending = 0, plan = null;
     rows.forEach(r => {
       const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
       const prog = r.ASSIGN_PROGRESS || '';
@@ -825,9 +830,13 @@ function fetchDatacenterDps(s){
         const per = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
         if(per>0){ sum += per; cnt++; if(ex > now) pending += per; }
         if(!last || ex > last.ex) last = { ex, period:(r.REPORT_DATE||'').slice(0,10), plan:r.IMPL_PLAN_PROFILE };
+      } else if(!plan && prog && prog.indexOf('实施') < 0 && r.REPORT_DATE && new Date(r.REPORT_DATE.slice(0,10)) > oneYearAgo){
+        // 预案提示：实施前的最新方案（董事会预案/股东大会通过等），仅提示不计入 Auto
+        const planPer = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
+        if(planPer>0) plan = { dps:planPer, prog, period:(r.REPORT_DATE||'').slice(0,10), profile:r.IMPL_PLAN_PROFILE };
       }
     });
-    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, pending };
+    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, pending, plan };
     const r0 = rows.find(x=>/派/.test(x.IMPL_PLAN_PROFILE||'')) || rows[0];
     const per0 = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
     return per0>0 ? { code:s.code, dps:per0, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'' } : { code:s.code, dps:null, note:'无已实施分红' };
@@ -1326,11 +1335,16 @@ function renderTable(){
     // 自动预期分红对照（东财接口自动计算=Auto DPS，含已实施+待除息，A股）
     const auto = autoDps[s.code];
     const pendTxt = auto && auto.pending>0 ? ` <span style="color:var(--orange)" title="已公告待除息 ${auto.pending.toFixed(2)}元">（含待除息${auto.pending.toFixed(2)}）</span>` : '';
+    // 预案提示（董事会预案/股东大会通过等，未实施不计入 Auto）
+    const planTip = auto && auto.plan ? `报告期 ${auto.plan.period}｜方案 ${auto.plan.profile}｜进度 ${auto.plan.prog}。实施后自动计入 Auto` : '';
+    const planTxt = auto && auto.plan ? ` <span class="plan-hint" title="${esc(planTip)}">预案 ${auto.plan.dps.toFixed(2)}（待实施）</span>` : '';
     const autoDpsTxt = auto && auto.dps>0
-      ? `<div class="auto-dps" title="Auto DPS（含已实施+待除息分红）：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}${auto&&auto.pending>0?'｜待除息 '+auto.pending.toFixed(2)+'元':''}。确认前不可作为前瞻估值锚">Auto ${auto.dps.toFixed(2)}${pendTxt} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button></div>`
+      ? `<div class="auto-dps" title="Auto DPS（含已实施+待除息分红）：${esc(auto.note||'')}${auto.period?'｜报告期 '+auto.period:''}${auto&&auto.pending>0?'｜待除息 '+auto.pending.toFixed(2)+'元':''}。确认前不可作为前瞻估值锚">Auto ${auto.dps.toFixed(2)}${pendTxt}${planTxt} <button class="btn sm mini" onclick="applyAutoDps('${s.code}')">采用</button></div>`
       : (ttmDpsOf(s)!=null
-        ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}</div>`
-        : '');
+        ? `<div class="auto-dps" title="TTM反推：TTM股息率×现价">TTM反推 ${ttmDpsOf(s).toFixed(2)}${planTxt}</div>`
+        : (auto && auto.plan
+          ? `<div class="auto-dps" title="${esc(planTip)}">${planTxt.replace(' <span','<span').trim()}</div>`
+          : ''));
     // 状态徽章（不删除，仅标注买卖区）
     const zone = y!=null ? zoneOf(y) : { label:'—', cls:'badge-sell' };
     // 决策引擎列
