@@ -822,13 +822,14 @@ function fetchDatacenterDps(s){
     if(!rows.length) return { code:s.code, dps:null, note:'无分红记录' };
     const now = new Date();
     const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
-    let sum = 0, cnt = 0, last = null, pending = 0, plan = null;
+    let sum = 0, cnt = 0, last = null, pending = 0, plan = null, aged = 0;
+    const agedCutoff = new Date(now.getTime() - 305*86400000); // 预估预案约60天后实施：除息日早于此的旧分红届时将滚出12月窗口
     rows.forEach(r => {
       const ex = r.EX_DIVIDEND_DATE ? new Date(r.EX_DIVIDEND_DATE.slice(0,10)) : null;
       const prog = r.ASSIGN_PROGRESS || '';
       if(ex && ex >= oneYearAgo && prog.indexOf('实施') >= 0){
         const per = parseFloat(r.PRETAX_BONUS_RMB)/10 || 0;
-        if(per>0){ sum += per; cnt++; if(ex > now) pending += per; }
+        if(per>0){ sum += per; cnt++; if(ex > now) pending += per; else if(ex < agedCutoff) aged += per; }
         if(!last || ex > last.ex) last = { ex, period:(r.REPORT_DATE||'').slice(0,10), plan:r.IMPL_PLAN_PROFILE };
       } else if(!plan && prog && prog.indexOf('实施') < 0 && r.REPORT_DATE && new Date(r.REPORT_DATE.slice(0,10)) > oneYearAgo){
         // 预案提示：实施前的最新方案（董事会预案/股东大会通过等），仅提示不计入 Auto
@@ -836,7 +837,7 @@ function fetchDatacenterDps(s){
         if(planPer>0) plan = { dps:planPer, prog, period:(r.REPORT_DATE||'').slice(0,10), profile:r.IMPL_PLAN_PROFILE };
       }
     });
-    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, pending, plan };
+    if(cnt) return { code:s.code, dps:sum, source:'东财实时', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, pending, plan, aged };
     const r0 = rows.find(x=>/派/.test(x.IMPL_PLAN_PROFILE||'')) || rows[0];
     const per0 = parseFloat(r0 && r0.PRETAX_BONUS_RMB)/10 || 0;
     return per0>0 ? { code:s.code, dps:per0, source:'预案', note:(r0&&r0.IMPL_PLAN_PROFILE)||'' } : { code:s.code, dps:null, note:'无已实施分红' };
@@ -851,16 +852,18 @@ function fetchWestockDps(aList){
     const oneYearAgo = new Date(now.getFullYear()-1, now.getMonth(), now.getDate());
     aList.forEach(s=>{
       const rows = dividends[s.code] || [];
-      let sum = 0, cnt = 0, last = null, pending = 0;
+      let sum = 0, cnt = 0, last = null, pending = 0, aged = 0;
+      const agedCutoff = new Date(now.getTime() - 305*86400000); // 同东财口径：除息日早于此的旧分红在预案实施后将滚出12月窗口
       rows.forEach(r => {
         const ex = r.exDate ? new Date(r.exDate) : null;
         if(ex && ex >= oneYearAgo){
           sum += r.dps || 0; cnt++;
           if(ex > now) pending += r.dps || 0;
+          else if(ex < agedCutoff) aged += r.dps || 0;
           if(!last || ex > last.ex) last = { ex, period:r.period, plan:r.period + ' 每股'+r.dps+'元' };
         }
       });
-      autoDps[s.code] = cnt ? { code:s.code, dps:sum, source:'本地数据近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, special:specialMap[s.code]||null, pending }
+      autoDps[s.code] = cnt ? { code:s.code, dps:sum, source:'本地数据近12月', note:last.plan, exDate:last.ex.toISOString().slice(0,10), period:last.period, special:specialMap[s.code]||null, pending, aged }
                             : { code:s.code, dps:null, note:'无近12月记录', special:specialMap[s.code]||null };
     });
     return autoDps;
@@ -879,15 +882,20 @@ function applyAutoDps(code){
   const s = pool.stocks.find(x=>x.code===code);
   const auto = autoDps[code];
   if(!s || !auto || !(auto.dps>0)){ toast('⚠️ 无可用自动值'); return; }
-  // 存在预案时询问是否合并（预案实施后自动计入 Auto，届时会重复叠加——先弹窗让用户选）
+  // 存在预案时询问是否合并。合并公式=实施后TTM预估：已实施 − 将滚出窗口的旧分红 + 预案
+  // （简单相加会高估：预案实施时12月窗口右移，最老一笔会滚出，须剔除；一次性特别分红另作警示）
   let newDps = Math.round(auto.dps*100)/100;
   if(auto.plan && auto.plan.dps>0){
-    const merged = Math.round((newDps + auto.plan.dps)*100)/100;
-    const ok = confirm('检测到预案 ' + auto.plan.dps.toFixed(2) + ' 元（' + (auto.plan.prog||'') + '）\n\n' +
-      '【确定】合并预案：' + newDps.toFixed(2) + ' + ' + auto.plan.dps.toFixed(2) + ' = ' + merged.toFixed(2) + ' 元\n' +
-      '（适合：判断预案大概率实施，提前反映前瞻）\n\n' +
-      '【取消】仅采用已实施：' + newDps.toFixed(2) + ' 元\n' +
-      '（适合：保守口径，等实施后自动并入）');
+    const aged = Math.round((auto.aged||0)*100)/100;
+    const base = Math.max(0, Math.round((newDps - aged)*100)/100);
+    const merged = Math.round((base + auto.plan.dps)*100)/100;
+    const agedTxt = aged>0 ? newDps.toFixed(2) + ' − ' + aged.toFixed(2) + '（滚出窗口） + ' + auto.plan.dps.toFixed(2) : newDps.toFixed(2) + ' + ' + auto.plan.dps.toFixed(2);
+    const spNote = (auto.special>0) ? '\n⚠️ 注意：近12月含一次性特别分红 ' + auto.special.toFixed(2) + ' 元，常态前瞻基数请自行评估剔除\n' : '';
+    const ok = confirm('检测到预案 ' + auto.plan.dps.toFixed(2) + ' 元（' + (auto.plan.prog||'') + '）\n' + spNote +
+      '\n【确定】合并预案（实施后TTM预估）：' + agedTxt + ' = ' + merged.toFixed(2) + ' 元\n' +
+      '（剔除预案实施时将滚出12月窗口的旧分红，避免高估）\n' +
+      '\n【取消】仅采用已实施（后视TTM）：' + newDps.toFixed(2) + ' 元\n' +
+      '（保守口径，等实施后自动并入）');
     if(ok) newDps = merged;
   }
   const diff = loadDiff();
