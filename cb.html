@@ -137,6 +137,11 @@ function nameLink(r){
 function codeLink(r){
   return '<a class="bond-link" href="'+quoteUrl(r.code)+'" target="_blank" rel="noopener">'+r.code+'</a>';
 }
+// 正股行情跳转：6开头沪市、0/3开头深市
+function stockQuoteUrl(code){ return 'https://quote.eastmoney.com/' + (String(code).startsWith('6') ? 'sh' : 'sz') + code + '.html'; }
+function stockLink(r){
+  return '<a class="bond-link" href="'+stockQuoteUrl(r.stock_code)+'" target="_blank" rel="noopener" title="正股行情：'+r.stock_name+' '+r.stock_code+'">'+r.stock_name+'</a>';
+}
 function rateTag(r){
   const cls = (r==='AAA'||r==='AAA+') ? ' rate-aaa' : '';
   return '<span class="rate'+cls+'">'+r+'</span>';
@@ -146,7 +151,7 @@ function rowHTML(r, tag){
     +'<td>'+codeLink(r)+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td>'
     +'<td>'+fmt(r.cv,1)+'</td><td><b>'+fmt(r.dual_low,1)+'</b></td>'
     +'<td>'+rateTag(r.rating)+'</td><td>'+(r.scale!=null?r.scale:'—')+'</td>'
-    +'<td>'+(r.expire||'—')+'</td><td>'+r.stock_name+'</td></tr>';
+    +'<td>'+(r.expire||'—')+'</td><td>'+stockLink(r)+'</td></tr>';
 }
 fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).then(d=>{
   const m = d.meta;
@@ -178,7 +183,7 @@ fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).t
     (d.top_dual_low||[]).map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+nameLink(r)+'</td><td>'+codeLink(r)
       +'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td><td>'+fmt(r.cv,1)
       +'</td><td><b>'+fmt(r.dual_low,1)+'</b></td><td>'+rateTag(r.rating)+'</td><td>'+(r.expire||'—')
-      +'</td><td>'+r.stock_name+'</td></tr>').join('');
+      +'</td><td>'+stockLink(r)+'</td></tr>').join('');
 }).catch(()=>{ document.getElementById('sig-detail').textContent='⚠️ 无法加载 data/cb_monitor.json，请通过本仓库页面（HTTP）访问'; });
 </script>
 </body>
