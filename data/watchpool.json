@@ -2,7 +2,7 @@
   "meta": {
     "strategy": "可持续高股息估值底价值投资策略",
     "formula": "可持续预期股息率 = 预期每股分红 ÷ 当前股价 × 100%",
-    "updated": "2026-08-28",
+    "updated": "2026-10-03",
     "disclaimer": "预期每股分红(expDps)为按最近已宣告分红年化估算的参考值；TTM股息率(dividendRatioTtm)与PE/PB等估值指标由行情接口自动获取(A股)，divHist为近三年实际分红记录。请结合公司盈利与分红政策自行复核。",
     "valuation_bands": [
       {
@@ -255,8 +255,13 @@
       "name": "格力电器",
       "market": "A股",
       "expDps": 3.0,
-      "note": "含特别分红，历史分红率极高",
+      "note": "年报+三季度一年两派，近12月每股合计约3元，关注空调需求与渠道改革",
       "divHist": [
+        {
+          "period": "2025年报",
+          "dps": 2.0,
+          "exDate": "2026-08-27"
+        },
         {
           "period": "2025Q3",
           "dps": 1.0,
@@ -642,23 +647,6 @@
       "category": "珠宝首饰",
       "isResource": false,
       "biz": "黄金珠宝零售"
-    },
-    {
-      "code": "sz002271",
-      "name": "东方雨虹",
-      "market": "A股",
-      "expDps": 0.93,
-      "divHist": [
-        {
-          "period": "2025-08-21",
-          "dps": 0.925,
-          "exDate": "2025-08-27"
-        }
-      ],
-      "note": "防水材料龙头，行业下行期分红仍维持，关注需求回暖(C141)",
-      "category": "建材",
-      "isResource": true,
-      "biz": "防水材料生产销售"
     },
     {
       "code": "sh600398",
