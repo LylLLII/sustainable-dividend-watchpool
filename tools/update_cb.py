@@ -145,14 +145,19 @@ def main():
     trimmed = dual_lows[: int(n * 0.9)] if n >= 20 else dual_lows  # 剔除双高尾部10%
     trimmed_avg = sum(trimmed) / len(trimmed) if trimmed else 0
 
-    if avg < 180:
-        sig, sig_text = "add", "加仓区 · 便宜券遍地，逐步加仓"
-    elif avg < 200:
-        sig, sig_text = "build", "建仓区 · 开始建仓"
-    elif avg < 220:
-        sig, sig_text = "wait", "偏贵区间 · 耐心等待，严格标准，不追高"
+    # 信号判定用「中位数」：转债双低分布长尾极重（妖债 P95 可达 500+），
+    # 全体均值会被尾部拉爆，中位数代表"典型转债的便宜程度"最稳健。
+    # 阈值 200/180 沿用 MR Dang 表述（集思录口径），绝对值仅作参考刻度，
+    # 实际使用看趋势与黄金区数量（实验：全体均值 vs 集思录口径存在系统性差 70+）。
+    ref = median
+    if ref < 180:
+        sig, sig_text = "add", "加仓区 · 便宜券遍地，逐步加仓（中位数口径）"
+    elif ref < 200:
+        sig, sig_text = "build", "建仓区 · 开始建仓（中位数口径）"
+    elif ref < 220:
+        sig, sig_text = "wait", "偏贵区间 · 耐心等待，严格标准，不追高（中位数口径）"
     else:
-        sig, sig_text = "hot", "高热 · 便宜券消失，多留现金"
+        sig, sig_text = "hot", "高热 · 便宜券消失，多留现金（中位数口径）"
 
     ok = [r for r in records if not is_disqualified(r["rating"], r["stock_name"])]
     golden = sorted(
@@ -169,15 +174,15 @@ def main():
         "meta": {
             "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
             "total_bonds": len(records),
-            "avg_dual_low": round(avg, 2),
-            "median_dual_low": round(median, 2),
+            "avg_dual_low": round(median, 2),
+            "avg_all_mean": round(avg, 2),
             "trimmed_avg_dual_low": round(trimmed_avg, 2),
             "signal": sig,
             "signal_text": sig_text,
             "golden_strict_count": len(golden),
             "golden_relaxed_extra": len(relaxed),
-            "rule": "双低值=转债价+溢价率%×100；均值<200建仓，<180加仓；黄金区=价格<120且溢价<20%（放宽125/30）；评级≥AA、剔ST前置",
-            "source": "东财债券列表 + 腾讯行情；体系：MR Dang《地阶功法卷十九》",
+            "rule": "双低值=转债价+溢价率%×100；中位数<200建仓，<180加仓（分布长尾重，中位数比均值稳健）；黄金区=价格<120且溢价<20%（放宽125/30）；评级≥AA、剔ST前置",
+            "source": "东财债券列表 + 腾讯行情；体系：MR Dang《地阶功法卷十九》；⚠️自算口径含妖债尾部，绝对值系统性高于集思录口径，看趋势不看绝对值",
         },
         "golden": golden,
         "relaxed": relaxed,
@@ -188,7 +193,7 @@ def main():
         json.dump(out, f, ensure_ascii=False, indent=1)
     print(
         f"[OK] {OUT}\n"
-        f"     在市 {len(records)} | 双低均值 {avg:.1f}（截尾 {trimmed_avg:.1f} / 中位 {median:.1f}）"
+        f"     在市 {len(records)} | 双低中位 {median:.1f}（全体均值 {avg:.1f} / 截尾 {trimmed_avg:.1f}）"
         f" | 信号 {sig_text}\n"
         f"     黄金区（严格 {len(golden)} + 放宽新增 {len(relaxed)}）"
     )

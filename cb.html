@@ -72,7 +72,7 @@ tr:hover td{background:#fafbfd}
   </header>
 
   <div class="sig-bar">
-    <span style="font-weight:600">全市场双低均值</span>
+    <span style="font-weight:600">全市场双低中位数</span>
     <span class="sig-pill" id="sig-pill">—</span>
     <span class="sig-note" id="sig-detail">加载中...</span>
   </div>
@@ -88,7 +88,7 @@ tr:hover td{background:#fafbfd}
     <div class="stat-card"><div class="label">在市转债</div><div class="value" id="st-total">—</div></div>
     <div class="stat-card"><div class="label">黄金区（严格 &lt;120元 &amp; &lt;20%）</div><div class="value" id="st-golden">—</div></div>
     <div class="stat-card"><div class="label">放宽线新增（&lt;125元 &amp; &lt;30%）</div><div class="value" id="st-relax">—</div></div>
-    <div class="stat-card"><div class="label">中位数 / 截尾均值<small>（剔双高尾部10%）</small></div><div class="value" id="st-median" style="font-size:20px">—</div></div>
+    <div class="stat-card"><div class="label">全体均值<small>（含妖债尾部，仅参考）</small></div><div class="value" id="st-median" style="font-size:20px">—</div></div>
   </div>
 
   <div class="sec-title">🌱 黄金区名单 <small>价格&lt;120 且溢价&lt;20% · 已过评级≥AA与ST排雷 · 按双低升序</small></div>
@@ -118,8 +118,8 @@ tr:hover td{background:#fafbfd}
   <div class="foot">
     <b>口径与规则</b>（体系：MR Dang《地阶功法卷十九》，2026-10-02）：<br>
     ① 双低值 = 转债价格 + 转股溢价率(%)×100；<b>先排雷再排序</b>：评级≥AA、剔除正股ST放在双低值之前（"双低值是排序工具，不是买入按钮"）。<br>
-    ② 仓位信号看全市场双低均值：&lt;200 开始建仓，&lt;180 逐步加仓；均值高企=便宜券消失，多留现金。<br>
-    ③ ⚠️ 本页为<b>东财列表+腾讯行情自算口径</b>（含双高妖债，未剔除已公告强赎），绝对值系统性高于集思录口径（MR Dang 10/2 引用约210），<b>关注趋势变化而非绝对阈值</b>；精确触发请以集思录"下修/双低"页为准。<br>
+    ② 仓位信号看全市场双低<b>中位数</b>（分布长尾极重，妖债 P95 双低可达 500+，中位数比均值稳健）：&lt;200 开始建仓，&lt;180 逐步加仓；中位高企=便宜券消失，多留现金。<br>
+    ③ ⚠️ 本页为<b>东财列表+腾讯行情自算口径</b>（未剔已公告强赎与妖债）。实验结论：剔除强赎执行期仅 4 只影响≈0，与集思录口径（MR Dang 10/2 引用约 210）的差异主因是<b>妖债尾部</b>——故信号用中位数、绝对阈值仅作参考刻度，<b>关注趋势与黄金区数量，勿等绝对值跌破阈值</b>。<br>
     ④ 止盈参考：130 元以上分批卖出、150 元清仓；公告强赎立即处理；单只仓位≤10%。<br>
     <b>更新方式</b>：本地运行 <code>python tools/update_cb.py</code> → 提交 <code>data/cb_monitor.json</code> → 刷新本页。数据为快照，非实时。
   </div>
