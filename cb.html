@@ -55,6 +55,8 @@ tr:hover td{background:#fafbfd}
 .tag-relax{background:#e8effd;color:var(--primary)}
 .rate{display:inline-block;padding:0 6px;border-radius:4px;font-size:11px;background:#f1f3f5;color:var(--sub)}
 .rate-aaa{background:#e6f4ea;color:#1a7f37}
+.bond-link{color:inherit;text-decoration:none;border-bottom:1px dashed var(--border);transition:all .15s}
+.bond-link:hover{color:var(--primary);border-bottom-color:var(--primary)}
 .foot{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;line-height:1.8}
 .foot b{color:var(--text)}
 .empty{padding:24px;text-align:center;color:var(--sub);font-size:13px}
@@ -127,13 +129,21 @@ tr:hover td{background:#fafbfd}
 
 <script>
 function fmt(v, d=2){ return (typeof v==='number') ? v.toFixed(d) : '—'; }
+// 转债行情跳转（东方财富）：11开头沪市、12开头深市
+function quoteUrl(code){ return 'https://quote.eastmoney.com/' + (String(code).startsWith('11') ? 'sh' : 'sz') + code + '.html'; }
+function nameLink(r){
+  return '<a class="bond-link" href="'+quoteUrl(r.code)+'" target="_blank" rel="noopener" title="打开行情：'+r.name+' '+r.code+'"><b>'+r.name+'</b></a>';
+}
+function codeLink(r){
+  return '<a class="bond-link" href="'+quoteUrl(r.code)+'" target="_blank" rel="noopener">'+r.code+'</a>';
+}
 function rateTag(r){
   const cls = (r==='AAA'||r==='AAA+') ? ' rate-aaa' : '';
   return '<span class="rate'+cls+'">'+r+'</span>';
 }
 function rowHTML(r, tag){
-  return '<tr><td><b>'+r.name+'</b>'+(tag?' <span class="tag '+tag+'">'+(tag==='tag-strict'?'严格':'放宽')+'</span>':'')+'</td>'
-    +'<td>'+r.code+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td>'
+  return '<tr><td>'+nameLink(r)+(tag?' <span class="tag '+tag+'">'+(tag==='tag-strict'?'严格':'放宽')+'</span>':'')+'</td>'
+    +'<td>'+codeLink(r)+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td>'
     +'<td>'+fmt(r.cv,1)+'</td><td><b>'+fmt(r.dual_low,1)+'</b></td>'
     +'<td>'+rateTag(r.rating)+'</td><td>'+(r.scale!=null?r.scale:'—')+'</td>'
     +'<td>'+(r.expire||'—')+'</td><td>'+r.stock_name+'</td></tr>';
@@ -165,7 +175,7 @@ fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).t
   put('tb-golden', d.golden||[], 'tag-strict');
   put('tb-relaxed', d.relaxed||[], 'tag-relax');
   document.getElementById('tb-top').innerHTML =
-    (d.top_dual_low||[]).map((r,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+r.name+'</b></td><td>'+r.code
+    (d.top_dual_low||[]).map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+nameLink(r)+'</td><td>'+codeLink(r)
       +'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td><td>'+fmt(r.cv,1)
       +'</td><td><b>'+fmt(r.dual_low,1)+'</b></td><td>'+rateTag(r.rating)+'</td><td>'+(r.expire||'—')
       +'</td><td>'+r.stock_name+'</td></tr>').join('');
