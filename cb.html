@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可转债双低监控 · 全市场均值与黄金区</title>
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --border:#e5e7eb;
+  --text:#1f2937; --sub:#6b7280;
+  --red:#e03131; --green:#2f9e44; --orange:#e8590c;
+  --primary:#1c64f2; --primary-soft:#e8effd;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);padding:20px;line-height:1.5}
+.container{max-width:1400px;margin:0 auto}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+h1{font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px}
+h1 .badge{font-size:12px;font-weight:500;background:var(--primary-soft);color:var(--primary);padding:4px 10px;border-radius:20px}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid var(--border);background:#fff;color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s;white-space:nowrap;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--primary);color:var(--primary)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:16px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px}
+.stat-card .label{font-size:12px;color:var(--sub);margin-bottom:4px}
+.stat-card .value{font-size:24px;font-weight:700}
+.stat-card .value small{font-size:13px;font-weight:500;color:var(--sub)}
+.sig-bar{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:16px;display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.sig-pill{padding:6px 18px;border-radius:20px;font-weight:700;font-size:15px}
+.sig-wait{background:#fff3bf;color:#9a6700}
+.sig-build{background:#d3f9d8;color:#1a7f37}
+.sig-add{background:#b2f2bb;color:#087f5b}
+.sig-hot{background:#ffc9c9;color:#c92a2a}
+.sig-note{font-size:12px;color:var(--sub)}
+.ruler{display:flex;gap:6px;margin-bottom:16px;font-size:12px;flex-wrap:wrap}
+.ruler span{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:16px;color:var(--sub);background:#fff;border:1px solid var(--border)}
+.ruler span.on{font-weight:700}
+.ruler .r-add{background:#b2f2bb;color:#087f5b;border-color:#69db7c}
+.ruler .r-build{background:#d3f9d8;color:#1a7f37;border-color:#8ce99a}
+.ruler .r-wait{background:#fff3bf;color:#9a6700;border-color:#ffe066}
+.ruler .r-hot{background:#ffc9c9;color:#c92a2a;border-color:#ffa8a8}
+.table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#fafbfc;color:var(--sub);font-weight:600;text-align:right;padding:9px 12px;border-bottom:1px solid var(--border);white-space:nowrap;font-size:12px}
+th:first-child,td:first-child{text-align:left}
+th:nth-child(2),td:nth-child(2){text-align:left}
+td{padding:8px 12px;border-bottom:1px solid #f1f2f4;text-align:right;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafbfd}
+.sec-title{font-size:15px;font-weight:700;margin:4px 0 8px;display:flex;align-items:center;gap:8px}
+.sec-title small{font-size:12px;color:var(--sub);font-weight:400}
+.tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:10.5px;font-weight:600}
+.tag-strict{background:#d3f9d8;color:#1a7f37}
+.tag-relax{background:#e8effd;color:var(--primary)}
+.rate{display:inline-block;padding:0 6px;border-radius:4px;font-size:11px;background:#f1f3f5;color:var(--sub)}
+.rate-aaa{background:#e6f4ea;color:#1a7f37}
+.foot{font-size:12px;color:var(--sub);background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;line-height:1.8}
+.foot b{color:var(--text)}
+.empty{padding:24px;text-align:center;color:var(--sub);font-size:13px}
+@media(max-width:860px){ body{padding:12px} }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>可转债双低监控 <span class="badge">MR Dang 卷十九体系</span></h1>
+    <div class="header-actions">
+      <span id="upd-time" style="font-size:12px;color:var(--sub)"></span>
+      <a class="btn" href="index.html" style="text-decoration:none">← 高股息观察池</a>
+    </div>
+  </header>
+
+  <div class="sig-bar">
+    <span style="font-weight:600">全市场双低均值</span>
+    <span class="sig-pill" id="sig-pill">—</span>
+    <span class="sig-note" id="sig-detail">加载中...</span>
+  </div>
+
+  <div class="ruler" id="ruler">
+    <span class="r-add" data-th="180">&lt;180 加仓区</span>
+    <span class="r-build" data-th="200">180~200 建仓区</span>
+    <span class="r-wait" data-th="220">200~220 偏贵 · 等待</span>
+    <span class="r-hot" data-th="999">&ge;220 高热 · 留现金</span>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="label">在市转债</div><div class="value" id="st-total">—</div></div>
+    <div class="stat-card"><div class="label">黄金区（严格 &lt;120元 &amp; &lt;20%）</div><div class="value" id="st-golden">—</div></div>
+    <div class="stat-card"><div class="label">放宽线新增（&lt;125元 &amp; &lt;30%）</div><div class="value" id="st-relax">—</div></div>
+    <div class="stat-card"><div class="label">中位数 / 截尾均值<small>（剔双高尾部10%）</small></div><div class="value" id="st-median" style="font-size:20px">—</div></div>
+  </div>
+
+  <div class="sec-title">🌱 黄金区名单 <small>价格&lt;120 且溢价&lt;20% · 已过评级≥AA与ST排雷 · 按双低升序</small></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>转债</th><th>代码</th><th>转债价</th><th>溢价率%</th><th>转股价值</th><th>双低值</th><th>评级</th><th>规模(亿)</th><th>到期日</th><th>正股</th></tr></thead>
+      <tbody id="tb-golden"><tr><td colspan="10" class="empty">加载中...</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">🔵 放宽线新增 <small>120~125元 且 20~30%溢价 · 邻近黄金区，观察名单</small></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>转债</th><th>代码</th><th>转债价</th><th>溢价率%</th><th>转股价值</th><th>双低值</th><th>评级</th><th>规模(亿)</th><th>到期日</th><th>正股</th></tr></thead>
+      <tbody id="tb-relaxed"><tr><td colspan="10" class="empty">加载中...</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">📋 全市场双低值 TOP30 <small>评级 AA+ 及以上、非ST · 仅供观察，非买入名单（"双低值是排序工具，不是买入按钮"）</small></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>#</th><th>转债</th><th>代码</th><th>转债价</th><th>溢价率%</th><th>转股价值</th><th>双低值</th><th>评级</th><th>到期日</th><th>正股</th></tr></thead>
+      <tbody id="tb-top"><tr><td colspan="10" class="empty">加载中...</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <b>口径与规则</b>（体系：MR Dang《地阶功法卷十九》，2026-10-02）：<br>
+    ① 双低值 = 转债价格 + 转股溢价率(%)×100；<b>先排雷再排序</b>：评级≥AA、剔除正股ST放在双低值之前（"双低值是排序工具，不是买入按钮"）。<br>
+    ② 仓位信号看全市场双低均值：&lt;200 开始建仓，&lt;180 逐步加仓；均值高企=便宜券消失，多留现金。<br>
+    ③ ⚠️ 本页为<b>东财列表+腾讯行情自算口径</b>（含双高妖债，未剔除已公告强赎），绝对值系统性高于集思录口径（MR Dang 10/2 引用约210），<b>关注趋势变化而非绝对阈值</b>；精确触发请以集思录"下修/双低"页为准。<br>
+    ④ 止盈参考：130 元以上分批卖出、150 元清仓；公告强赎立即处理；单只仓位≤10%。<br>
+    <b>更新方式</b>：本地运行 <code>python tools/update_cb.py</code> → 提交 <code>data/cb_monitor.json</code> → 刷新本页。数据为快照，非实时。
+  </div>
+</div>
+
+<script>
+function fmt(v, d=2){ return (typeof v==='number') ? v.toFixed(d) : '—'; }
+function rateTag(r){
+  const cls = (r==='AAA'||r==='AAA+') ? ' rate-aaa' : '';
+  return '<span class="rate'+cls+'">'+r+'</span>';
+}
+function rowHTML(r, tag){
+  return '<tr><td><b>'+r.name+'</b>'+(tag?' <span class="tag '+tag+'">'+(tag==='tag-strict'?'严格':'放宽')+'</span>':'')+'</td>'
+    +'<td>'+r.code+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td>'
+    +'<td>'+fmt(r.cv,1)+'</td><td><b>'+fmt(r.dual_low,1)+'</b></td>'
+    +'<td>'+rateTag(r.rating)+'</td><td>'+(r.scale!=null?r.scale:'—')+'</td>'
+    +'<td>'+(r.expire||'—')+'</td><td>'+r.stock_name+'</td></tr>';
+}
+fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).then(d=>{
+  const m = d.meta;
+  document.getElementById('upd-time').textContent = '更新于 ' + m.updated_at;
+  document.getElementById('st-total').textContent = m.total_bonds;
+  document.getElementById('st-golden').textContent = m.golden_strict_count;
+  document.getElementById('st-relax').textContent = m.golden_relaxed_extra;
+  document.getElementById('st-median').innerHTML = fmt(m.median_dual_low,1) + ' <small>/ ' + fmt(m.trimmed_avg_dual_low,1) + '</small>';
+  const pill = document.getElementById('sig-pill');
+  pill.textContent = fmt(m.avg_dual_low,1);
+  pill.classList.add('sig-' + (m.signal||'wait'));
+  document.getElementById('sig-detail').textContent =
+    m.signal_text + ' ｜ ' + (m.rule||'');
+  // 高亮当前信号档
+  const th = m.avg_dual_low;
+  document.querySelectorAll('#ruler span').forEach(el=>{
+    const t = +el.dataset.th;
+    const on = (t===180&&th<180)||(t===200&&th>=180&&th<200)||(t===220&&th>=200&&th<220)||(t===999&&th>=220);
+    if(on) el.classList.add('on');
+  });
+  const put = (id, list, tag) => {
+    document.getElementById(id).innerHTML = list.length
+      ? list.map(r=>rowHTML(r, tag)).join('')
+      : '<tr><td colspan="10" class="empty">当前无（便宜券稀缺，耐心等待）</td></tr>';
+  };
+  put('tb-golden', d.golden||[], 'tag-strict');
+  put('tb-relaxed', d.relaxed||[], 'tag-relax');
+  document.getElementById('tb-top').innerHTML =
+    (d.top_dual_low||[]).map((r,i)=>'<tr><td>'+(i+1)+'</td><td><b>'+r.name+'</b></td><td>'+r.code
+      +'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td><td>'+fmt(r.cv,1)
+      +'</td><td><b>'+fmt(r.dual_low,1)+'</b></td><td>'+rateTag(r.rating)+'</td><td>'+(r.expire||'—')
+      +'</td><td>'+r.stock_name+'</td></tr>').join('');
+}).catch(()=>{ document.getElementById('sig-detail').textContent='⚠️ 无法加载 data/cb_monitor.json，请通过本仓库页面（HTTP）访问'; });
+</script>
+</body>
+</html>
