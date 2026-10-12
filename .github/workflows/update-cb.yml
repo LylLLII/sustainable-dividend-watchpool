@@ -36,7 +36,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "数据无变化（节假日或行情未变），跳过提交"
           else
-            git commit -m "chore: cb_monitor 快照自动更新 ($(TZ=Asia/Shanghai date +%F %H:%M))"
+            git commit -m "chore: cb_monitor 快照自动更新 ($(date -u -d '+8 hours' '+%F %H:%M'))"
             git pull --rebase origin main
             git push
           fi

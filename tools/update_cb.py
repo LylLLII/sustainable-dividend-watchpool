@@ -16,7 +16,7 @@ import os
 import sys
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -55,7 +55,7 @@ def fetch_bond_list():
         "TRANSFER_VALUE,RATING,ACTUAL_ISSUE_SCALE,EXPIRE_DATE,DELIST_DATE"
         "&pageSize=500&pageNumber=1&sortColumns=SECURITY_CODE&sortTypes=1"
         '&filter=(EXPIRE_DATE%3E%27{today}%27)'
-    ).format(today=datetime.now().strftime("%Y-%m-%d"))
+    ).format(today=datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d"))
     d = json.loads(http_get(url))
     out = []
     for x in d["result"]["data"]:
@@ -120,6 +120,10 @@ def is_disqualified(rating, stock_name):
 
 
 def main():
+    # 北京时间（UTC+8 无夏令时）；不用 datetime.now()——GitHub Actions runner 是 UTC，
+    # 会把 updated_at 写成凌晨时间误导阅读
+    now_bj = datetime.now(timezone(timedelta(hours=8)))
+    today = now_bj.strftime("%Y-%m-%d")
     print("[1/3] 拉取在市转债列表（东财）...")
     try:
         bonds = fetch_bond_list()
@@ -204,7 +208,7 @@ def main():
 
     out = {
         "meta": {
-            "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+            "updated_at": now_bj.strftime("%Y-%m-%d %H:%M"),
             "total_bonds": len(records),
             "avg_dual_low": round(median, 2),
             "avg_all_mean": round(avg, 2),
