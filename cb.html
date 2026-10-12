@@ -66,7 +66,7 @@ tr:hover td{background:#fafbfd}
 <body>
 <div class="container">
   <header>
-    <h1>可转债双低监控 <span class="badge">MR Dang 卷十九体系</span></h1>
+    <h1>可转债双低监控 <span class="badge">MR Dang 卷十九体系</span> <span class="badge">盘中实时</span></h1>
     <div class="header-actions">
       <span id="upd-time" style="font-size:12px;color:var(--sub)"></span>
       <a class="btn" href="index.html" style="text-decoration:none">← 高股息观察池</a>
@@ -123,12 +123,12 @@ tr:hover td{background:#fafbfd}
     ② 仓位信号看全市场双低<b>中位数</b>（分布长尾极重，妖债 P95 双低可达 500+，中位数比均值稳健）：&lt;200 开始建仓，&lt;180 逐步加仓；中位高企=便宜券消失，多留现金。<br>
     ③ ⚠️ 本页为<b>东财列表+腾讯行情自算口径</b>（未剔已公告强赎与妖债）。实验结论：剔除强赎执行期仅 4 只影响≈0，与集思录口径（MR Dang 10/2 引用约 210）的差异主因是<b>妖债尾部</b>——故信号用中位数、绝对阈值仅作参考刻度，<b>关注趋势与黄金区数量，勿等绝对值跌破阈值</b>。<br>
     ④ 止盈参考：130 元以上分批卖出、150 元清仓；公告强赎立即处理；单只仓位≤10%。<br>
-    <b>更新方式</b>：本地运行 <code>python tools/update_cb.py</code> → 提交 <code>data/cb_monitor.json</code> → 刷新本页。数据为快照，非实时。
+    <b>更新方式</b>：GitHub Actions 每交易日收盘后自动运行 <code>tools/update_cb.py</code> 生成快照（转股价/评级/到期日等静态字段 + 兜底）；页面打开时另<b>直连腾讯行情实时刷新</b>（30 秒轮询，转债价/正股价/溢价率/双低值/中位数信号均为盘中实时；标签页隐藏时暂停轮询）。
   </div>
 </div>
 
 <script>
-function fmt(v, d=2){ return (typeof v==='number') ? v.toFixed(d) : '—'; }
+function fmt(v, d=2){ return (typeof v==='number' && isFinite(v)) ? v.toFixed(d) : '—'; }
 // 转债行情跳转（东方财富）：11开头沪市、12开头深市
 function quoteUrl(code){ return 'https://quote.eastmoney.com/' + (String(code).startsWith('11') ? 'sh' : 'sz') + code + '.html'; }
 function nameLink(r){
@@ -146,6 +146,7 @@ function rateTag(r){
   const cls = (r==='AAA'||r==='AAA+') ? ' rate-aaa' : '';
   return '<span class="rate'+cls+'">'+r+'</span>';
 }
+// 黄金区/放宽线行（10列，含规模）
 function rowHTML(r, tag){
   return '<tr><td>'+nameLink(r)+(tag?' <span class="tag '+tag+'">'+(tag==='tag-strict'?'严格':'放宽')+'</span>':'')+'</td>'
     +'<td>'+codeLink(r)+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td>'
@@ -153,37 +154,175 @@ function rowHTML(r, tag){
     +'<td>'+rateTag(r.rating)+'</td><td>'+(r.scale!=null?r.scale:'—')+'</td>'
     +'<td>'+(r.expire||'—')+'</td><td>'+stockLink(r)+'</td></tr>';
 }
-fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).then(d=>{
-  const m = d.meta;
-  document.getElementById('upd-time').textContent = '更新于 ' + m.updated_at;
-  document.getElementById('st-total').textContent = m.total_bonds;
-  document.getElementById('st-golden').textContent = m.golden_strict_count;
-  document.getElementById('st-relax').textContent = m.golden_relaxed_extra;
-  document.getElementById('st-median').innerHTML = fmt(m.median_dual_low,1) + ' <small>/ ' + fmt(m.trimmed_avg_dual_low,1) + '</small>';
-  const pill = document.getElementById('sig-pill');
-  pill.textContent = fmt(m.avg_dual_low,1);
-  pill.classList.add('sig-' + (m.signal||'wait'));
-  document.getElementById('sig-detail').textContent =
-    m.signal_text + ' ｜ ' + (m.rule||'');
-  // 高亮当前信号档
-  const th = m.avg_dual_low;
-  document.querySelectorAll('#ruler span').forEach(el=>{
-    const t = +el.dataset.th;
-    const on = (t===180&&th<180)||(t===200&&th>=180&&th<200)||(t===220&&th>=200&&th<220)||(t===999&&th>=220);
-    if(on) el.classList.add('on');
+// TOP30 行（11列，无规模、有序号）
+function topRowHTML(r, idx){
+  return '<tr><td>'+idx+'</td><td>'+nameLink(r)+'</td><td>'+codeLink(r)+'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td><td>'+fmt(r.cv,1)
+    +'</td><td><b>'+fmt(r.dual_low,1)+'</b></td><td>'+rateTag(r.rating)+'</td><td>'+(r.expire||'—')+'</td><td>'+stockLink(r)+'</td></tr>';
+}
+function putList(id, list, tag){
+  document.getElementById(id).innerHTML = list.length
+    ? list.map(r=>rowHTML(r, tag)).join('')
+    : '<tr><td colspan="10" class="empty">当前无（便宜券稀缺，耐心等待）</td></tr>';
+}
+
+// ---------- 与 tools/update_cb.py 同口径的计算 ----------
+function bondPrefix(code){ const c=String(code); return (c.startsWith('11')?'sh':'sz')+c; }
+function stkPrefix(code){ const c=String(code); return (c.startsWith('6')?'sh':'sz')+c; }
+function computeDerived(r){
+  const cv = 100.0 * r.stock_price / r.transfer_price;
+  r.cv = cv;
+  r.prem = (r.bond_price / cv - 1) * 100;
+  r.dual_low = r.bond_price + r.prem;
+}
+function isDisqualified(rating, stockName){
+  if((rating||'').indexOf('sti')>=0) return true;                 // 东财评分字段带 sti 后缀
+  if(String(stockName||'').toUpperCase().indexOf('ST')>=0) return true;
+  return ['AAA','AAA+','AA+'].indexOf(rating||'') < 0;            // 与脚本一致：仅 AAA/AA+/AAA+ 入选
+}
+function medianOf(arr){ if(!arr.length) return 0; const a=[...arr].sort((x,y)=>x-y); return a[Math.floor(a.length/2)]; }
+function signalOf(ref){
+  if(ref<180) return ['add','加仓区 · 便宜券遍地，逐步加仓（中位数口径）'];
+  if(ref<200) return ['build','建仓区 · 开始建仓（中位数口径）'];
+  if(ref<220) return ['wait','偏贵区间 · 耐心等待，严格标准，不追高（中位数口径）'];
+  return ['hot','高热 · 便宜券消失，多留现金（中位数口径）'];
+}
+
+// ---------- 状态 ----------
+let DATA = null;        // 快照 JSON
+let RECORDS = [];       // 全市场明细（实时价就地更新）
+let hasAll = false;     // 快照是否含全市场明细
+let liveBusy = false;
+let lastQuoteTime = ''; // yyyymmddhhmmss
+
+// ---------- 快照渲染 / 实时重算后渲染 ----------
+function renderAll(liveHit, liveTotal){
+  const m = DATA.meta;
+  let med;
+  if(hasAll){
+    document.getElementById('st-total').textContent = RECORDS.length;
+    const duals = RECORDS.map(r=>r.dual_low);
+    med = medianOf(duals);
+    const mean = duals.reduce((s,x)=>s+x,0)/duals.length;
+    const trim = [...duals].sort((a,b)=>a-b).slice(0, Math.floor(duals.length*0.9));
+    const trimMean = trim.reduce((s,x)=>s+x,0)/trim.length;
+    document.getElementById('st-median').innerHTML = fmt(mean,1)+' <small>/ '+fmt(trimMean,1)+'</small>';
+    const [sig, sigText] = signalOf(med);
+    const pill = document.getElementById('sig-pill');
+    pill.textContent = fmt(med,1);
+    pill.className = 'sig-pill sig-'+sig;
+    document.getElementById('sig-detail').textContent = sigText+' ｜ '+(m.rule||'');
+    document.querySelectorAll('#ruler span').forEach(el=>{
+      const t=+el.dataset.th;
+      el.classList.toggle('on',(t===180&&med<180)||(t===200&&med>=180&&med<200)||(t===220&&med>=200&&med<220)||(t===999&&med>=220));
+    });
+    const ok = RECORDS.filter(r=>!isDisqualified(r.rating, r.stock_name));
+    const byDual = (a,b)=>a.dual_low-b.dual_low;
+    const golden = ok.filter(r=>r.bond_price<120 && r.prem<20).sort(byDual);
+    const relaxed = ok.filter(r=>r.bond_price>=120 && r.bond_price<125 && r.prem>=20 && r.prem<30).sort(byDual);
+    const top = [...ok].sort(byDual).slice(0,30);
+    document.getElementById('st-golden').textContent = golden.length;
+    document.getElementById('st-relax').textContent = relaxed.length;
+    putList('tb-golden', golden, 'tag-strict');
+    putList('tb-relaxed', relaxed, 'tag-relax');
+    document.getElementById('tb-top').innerHTML = top.length
+      ? top.map((r,i)=>topRowHTML(r,i+1)).join('')
+      : '<tr><td colspan="10" class="empty">当前无</td></tr>';
+  }else{
+    // 旧版快照口径（数据文件无 all 明细）
+    med = m.avg_dual_low;
+    document.getElementById('st-total').textContent = m.total_bonds;
+    document.getElementById('st-golden').textContent = m.golden_strict_count;
+    document.getElementById('st-relax').textContent = m.golden_relaxed_extra;
+    document.getElementById('st-median').innerHTML = fmt(m.avg_all_mean,1)+' <small>/ '+fmt(m.trimmed_avg_dual_low,1)+'</small>';
+    const pill = document.getElementById('sig-pill');
+    pill.textContent = fmt(m.avg_dual_low,1);
+    pill.className = 'sig-pill sig-'+(m.signal||'wait');
+    document.getElementById('sig-detail').textContent = m.signal_text+' ｜ '+(m.rule||'');
+    document.querySelectorAll('#ruler span').forEach(el=>{
+      const t=+el.dataset.th;
+      el.classList.toggle('on',(t===180&&med<180)||(t===200&&med>=180&&med<200)||(t===220&&med>=200&&med<220)||(t===999&&med>=220));
+    });
+    putList('tb-golden', DATA.golden||[], 'tag-strict');
+    putList('tb-relaxed', DATA.relaxed||[], 'tag-relax');
+    document.getElementById('tb-top').innerHTML = (DATA.top_dual_low||[]).map((r,i)=>topRowHTML(r,i+1)).join('');
+  }
+  // 状态栏
+  const snap = '快照 ' + m.updated_at;
+  const el = document.getElementById('upd-time');
+  if(liveHit==null){ el.textContent = '实时行情刷新中... ｜ ' + snap; }
+  else if(!liveHit){ el.textContent = '⚠️ 实时行情获取失败，当前显示快照数据 ｜ ' + snap; }
+  else{
+    const t = lastQuoteTime ? lastQuoteTime.replace(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/,'$1-$2-$3 $4:$5:$6') : '';
+    el.textContent = '实时行情 ' + (t?('至 '+t):'') + ' · 腾讯直连 30 秒轮询（'+liveHit+'/'+liveTotal+'） ｜ ' + snap;
+  }
+}
+
+// ---------- 腾讯行情批量拉取 ----------
+function fetchQuotes(codes){
+  const batches = [];
+  for(let i=0;i<codes.length;i+=80) batches.push(codes.slice(i,i+80));
+  const out = new Map();
+  let chain = Promise.resolve();
+  batches.forEach((b, idx)=>{
+    chain = chain
+      .then(()=>fetch('https://qt.gtimg.cn/q=' + b.join(',') + '&_t=' + Date.now(), {method:'GET'}))
+      .then(r=>r.text())
+      .then(t=>{
+        t.split(';').forEach(line=>{
+          const mm = line.match(/v_(sh|sz)(\d{6})="([^"]*)"/);
+          if(!mm) return;
+          const parts = mm[3].split('~');
+          if(parts.length<=3) return;
+          const price = parseFloat(parts[3]);
+          if(!(price>0)) return;
+          let qt = '';
+          if(parts.length>30 && /^\d{14}$/.test(parts[30])) qt = parts[30];
+          out.set(mm[1]+mm[2], {price:price, qt:qt});
+        });
+      })
+      .catch(()=>{});
+    if(idx < batches.length-1) chain = chain.then(()=>new Promise(res=>setTimeout(res,150)));
   });
-  const put = (id, list, tag) => {
-    document.getElementById(id).innerHTML = list.length
-      ? list.map(r=>rowHTML(r, tag)).join('')
-      : '<tr><td colspan="10" class="empty">当前无（便宜券稀缺，耐心等待）</td></tr>';
-  };
-  put('tb-golden', d.golden||[], 'tag-strict');
-  put('tb-relaxed', d.relaxed||[], 'tag-relax');
-  document.getElementById('tb-top').innerHTML =
-    (d.top_dual_low||[]).map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+nameLink(r)+'</td><td>'+codeLink(r)
-      +'</td><td>'+fmt(r.bond_price)+'</td><td>'+fmt(r.prem,1)+'</td><td>'+fmt(r.cv,1)
-      +'</td><td><b>'+fmt(r.dual_low,1)+'</b></td><td>'+rateTag(r.rating)+'</td><td>'+(r.expire||'—')
-      +'</td><td>'+stockLink(r)+'</td></tr>').join('');
+  return chain.then(()=>out);
+}
+
+function refreshLive(){
+  if(liveBusy || !hasAll || !RECORDS.length) return;
+  liveBusy = true;
+  const codes = new Set();
+  RECORDS.forEach(r=>{ codes.add(bondPrefix(r.code)); codes.add(stkPrefix(r.stock_code)); });
+  renderAll(null);
+  fetchQuotes([...codes]).then(map=>{
+    let hit = 0;
+    const times = [];
+    RECORDS.forEach(r=>{
+      const b = map.get(bondPrefix(r.code));
+      const s = map.get(stkPrefix(r.stock_code));
+      if(b){ r.bond_price = b.price; hit++; if(b.qt) times.push(b.qt); }
+      if(s){ r.stock_price = s.price; if(s.qt) times.push(s.qt); }
+      if(b || s) computeDerived(r);
+    });
+    if(times.length) lastQuoteTime = times.sort().pop();
+    liveBusy = false;
+    renderAll(hit, RECORDS.length);
+  }).catch(()=>{ liveBusy = false; renderAll(0, RECORDS.length); });
+}
+
+// ---------- 初始化 ----------
+fetch('data/cb_monitor.json').then(r=>{ if(!r.ok) throw 0; return r.json(); }).then(d=>{
+  DATA = d;
+  hasAll = !!(d.all && d.all.length);
+  if(hasAll){
+    RECORDS = d.all.map(r=>Object.assign({}, r));
+    RECORDS.forEach(computeDerived);   // 先按快照价算一遍，保证实时失败前数字完整
+  }
+  renderAll(null);
+  if(hasAll){
+    refreshLive();
+    setInterval(()=>{ if(!document.hidden) refreshLive(); }, 30000);
+  }else{
+    document.getElementById('upd-time').textContent = '快照口径（数据文件较旧，无全市场明细，请运行 tools/update_cb.py 更新）';
+  }
 }).catch(()=>{ document.getElementById('sig-detail').textContent='⚠️ 无法加载 data/cb_monitor.json，请通过本仓库页面（HTTP）访问'; });
 </script>
 </body>

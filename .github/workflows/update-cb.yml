@@ -1,0 +1,42 @@
+name: update-cb
+# 可转债双低监控 · 收盘后自动更新快照
+# 15:35 北京时间（07:35 UTC）运行；周末不跑，法定节假日跑了也无变化→不提交（无成本空转）
+# 东财列表失败时脚本自动复用上次快照静态字段，腾讯行情（海外可达）仍保证价格更新
+on:
+  schedule:
+    - cron: "35 7 * * 1-5" # 15:35 北京时间，交易日收盘后
+  workflow_dispatch: # 支持手动触发
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-cb
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: 更新转债数据
+        run: python tools/update_cb.py
+
+      - name: 有变化才提交推送
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/cb_monitor.json
+          if git diff --cached --quiet; then
+            echo "数据无变化（节假日或行情未变），跳过提交"
+          else
+            git commit -m "chore: cb_monitor 快照自动更新 ($(TZ=Asia/Shanghai date +%F %H:%M))"
+            git pull --rebase origin main
+            git push
+          fi

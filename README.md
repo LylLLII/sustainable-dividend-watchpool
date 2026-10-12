@@ -109,9 +109,15 @@
 ```
 sustainable-dividend-watchpool/
 ├── index.html              # 实时股息率看板（单文件，无依赖）
+├── cb.html                 # 可转债双低监控（快照 + 盘中实时行情）
 ├── data/
 │   ├── watchpool.json      # 观察池数据（唯一权威，看板 + 回测共享）
+│   ├── cb_monitor.json     # 转债双低快照（Actions 收盘自动更新，页面盘中实时叠加）
 │   └── dividends_westock.json  # 分红数据（含特殊分红，看板自动分红用）
+├── tools/
+│   └── update_cb.py        # 转债快照更新脚本（东财列表+腾讯行情，含东财失败兜底）
+├── .github/workflows/
+│   └── update-cb.yml       # 每交易日 15:35 自动更新转债快照
 ├── docs/
 │   └── MR-Dang-股息率方法论.md  # MR Dang 股息率完整方法论摘录
 ├── backtest/               # 策略回测引擎（Python + JS 双引擎）
@@ -187,6 +193,14 @@ node validate_engine.mjs           # 运行校验（13/13 全绿）
 
 策略低波动（13.8% vs 基准 21-24%）且跑赢全部基准。评级：研究使用 Ready with caveats；投资决策 Not ready。
 详见 `backtest/README.md` 与 `backtest/delivery/` 下的历轮评审报告。
+
+## 可转债双低监控（cb.html）
+
+独立页面 `cb.html`，体系来自 MR Dang《地阶功法卷十九》：双低值 = 转债价 + 转股溢价率%×100；全市场双低**中位数** <200 建仓 / <180 加仓；黄金区 = 价格<120 且溢价<20%（放宽 125/30）；评级 AA+ 及以上、剔正股 ST 前置排雷。
+
+- **数据管道**：`tools/update_cb.py`（东财在市转债列表 + 腾讯行情）→ `data/cb_monitor.json` 快照
+- **实时机制**：GitHub Actions 每交易日 15:35（北京时间）收盘后自动重跑脚本提交快照；页面打开时另直连腾讯行情**30 秒轮询**，转债价/正股价/溢价率/双低值/中位数信号盘中实时重算（静态字段——转股价/评级/到期日——以快照为准）
+- **兜底**：东财列表拉取失败时脚本自动复用上次快照的静态字段，仅刷价格，保证管道不断
 
 ## 免责声明
 

@@ -65,6 +65,30 @@ def fetch_bond_list():
     return out
 
 
+def load_prev_static():
+    """上次快照的静态字段（转股价/评级/到期日），东财列表拉取失败时兜底复用"""
+    try:
+        with open(OUT, encoding="utf-8") as f:
+            d = json.load(f)
+        recs = d.get("all") or []
+        return [
+            {
+                "SECURITY_CODE": r["code"],
+                "SECURITY_NAME_ABBR": r["name"],
+                "CONVERT_STOCK_CODE": r["stock_code"],
+                "SECURITY_SHORT_NAME": r["stock_name"],
+                "TRANSFER_VALUE": r["transfer_price"],
+                "RATING": r.get("rating") or "-",
+                "ACTUAL_ISSUE_SCALE": r.get("scale"),
+                "EXPIRE_DATE": (r.get("expire") or "") + " 00:00:00",
+            }
+            for r in recs
+            if r.get("code") and r.get("transfer_price")
+        ]
+    except Exception:  # noqa: BLE001
+        return []
+
+
 def fetch_prices(codes):
     """腾讯行情批量拉最新价，返回 {6位代码: 价格}"""
     pref = sorted({market_prefix(c) for c in codes})
@@ -97,8 +121,16 @@ def is_disqualified(rating, stock_name):
 
 def main():
     print("[1/3] 拉取在市转债列表（东财）...")
-    bonds = fetch_bond_list()
-    print(f"      在市转债 {len(bonds)} 只")
+    try:
+        bonds = fetch_bond_list()
+        list_src = "东财债券列表"
+    except RuntimeError as e:
+        bonds = load_prev_static()
+        if not bonds:
+            raise
+        list_src = "上次快照静态字段（东财本次失败：{}）".format(str(e)[:60])
+        print(f"[WARN] 东财列表拉取失败，复用上次快照 {len(bonds)} 只的静态字段")
+    print(f"      在市转债 {len(bonds)} 只（来源：{list_src}）")
     print("[2/3] 拉取行情（腾讯）...")
     all_codes = set()
     for b in bonds:
@@ -184,6 +216,7 @@ def main():
             "rule": "双低值=转债价+溢价率%×100；中位数<200建仓，<180加仓（分布长尾重，中位数比均值稳健）；黄金区=价格<120且溢价<20%（放宽125/30）；评级≥AA、剔ST前置",
             "source": "东财债券列表 + 腾讯行情；体系：MR Dang《地阶功法卷十九》；⚠️自算口径含妖债尾部，绝对值系统性高于集思录口径，看趋势不看绝对值",
         },
+        "all": records,  # 全市场明细：cb.html 用它在浏览器内实时重算双低/中位数/黄金区
         "golden": golden,
         "relaxed": relaxed,
         "top_dual_low": top,
